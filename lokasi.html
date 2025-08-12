@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lokasi Saya</title>
+</head>
+<body>
+  <h2>Lokasi Saya Sekarang</h2>
+  <p id="lokasi"></p>
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        document.getElementById("lokasi").innerText = "Lat: " + lat + ", Lon: " + lon;
+
+        // Papar Google Maps
+        const mapUrl = `https://www.google.com/maps?q=${lat},${lon}&z=18&output=embed`;
+        document.body.innerHTML += `<iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen src="${mapUrl}"></iframe>`;
+      });
+    } else {
+      document.getElementById("lokasi").innerText = "Geolocation tidak disokong.";
+    }
+  </script>
+</body>
+</html>

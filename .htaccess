@@ -1,0 +1,21 @@
+RewriteEngine On # Turn on the rewriting engine
+
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteRule ^(.*)$ https://%{SERVER_NAME}/$1
+
+RewriteRule ^./?$ index.php
+RewriteRule ^checking/?$ loginaction.php
+
+RewriteRule ^dashboard/?$ dashboard.php
+RewriteRule ^leave/?$ leave.php
+RewriteRule ^applyleave/?$ applyleave.php
+RewriteRule ^printleave/?$ printleave.php
+RewriteRule ^printclaim/?$ printclaim.php
+RewriteRule ^claim/?$ claim.php
+RewriteRule ^applyclaim/?$ applyclaim.php
+
+RewriteRule ^leaveaction/?$ ./components/leaveaction.php
+RewriteRule ^claimaction/?$ ./components/claimaction.php
+RewriteRule ^claimsectionlist/?$ ./components/claimsectionlist.php
+
+RewriteRule ^logout/?$ logout.php
