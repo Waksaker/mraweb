@@ -44,7 +44,7 @@
                 <form name="signup" action="signupaction.php" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" oninput="this.value = this.value.toUpperCase();">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>

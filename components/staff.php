@@ -28,7 +28,7 @@ $date = $row1['outoffice'];
     <div class="card-body">
 		<h5 class="card-title fw-semibold mb-4">Staff</h5>
         <div align="right">
-          <a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a>
+          <!-- <a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a> -->
         </div>
         <table id="example" class="display nowrap" style="width:100%">
 			<thead class="bg-primary text-white">

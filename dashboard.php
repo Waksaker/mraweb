@@ -6,7 +6,11 @@ include('conn.php');
 $name = $_SESSION['name'];
 $position = $_SESSION['position'];
 
+$sql = "SELECT * FROM `mra_staff` WHERE name = '$name'";
+$result = mysqli_query($conn, $sql);
 
+$row = mysqli_fetch_assoc($result);
+$status = $row['status'];
 ?>
 
 <style>
@@ -61,7 +65,13 @@ $position = $_SESSION['position'];
 <?php include("components/header.php"); ?>
 <?php include("components/sidenav.php"); ?>
 <?php include("components/topnav.php"); ?>
-<?php include("components/welcome.php"); ?>
+<?php 
+	if ($status == "STAFF") {
+		include("components/welcome.php");
+	} elseif ($status == "HR STAFF") {
+		include("components/dashadmin.php");
+	}
+?>
 <?php include("components/footer.php"); ?>  
 <script>
         new DataTable('#example', {
