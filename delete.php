@@ -57,13 +57,15 @@ if (isset($_GET['date'])) {
     // Elakkan SQL injection
     $idstaff = mysqli_real_escape_string($conn, $idstaff);
 
-    $sql = "DELETE FROM `mra_staff` WHERE `id` = '$idstaff'";
-    $result = mysqli_query($conn, $sql);
+	$sql1 = "SELECT * FROM `mra_staff` WHERE `id` = '$idstaff'";
+	$result1 = mysqli_query($conn, $sql1);
+	$row1 = mysqli_fetch_assoc($result1);
+	$ic = $row1['icno'];
+	
+	mysqli_query($conn, "DELETE FROM `mra_staff` WHERE `id` = '$idstaff'");
+	mysqli_query($conn, "DELETE FROM `mra_claims` WHERE noic = '$ic'");
+	mysqli_query($conn, "DELETE FROM `mra_leave` WHERE noic = '$ic'");
 
-    if ($result) {
-        header("Location: staff.php");
-        exit();
-    } else {
-        echo "Failed to delete staff: " . mysqli_error($conn);
-    }
+    header("Location: staff.php");
+	exit();
 }

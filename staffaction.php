@@ -34,33 +34,33 @@ include('conn.php');
     $random_pass  = rand(100000, 999999);
 
     // Email content
-    $subject = "PASSWORD SYSTEM";
-    $body = "
-        <table style='border-collapse: collapse;'>
-            <thead>
-                <tr>
-                    <th style='border: 1px solid #000; padding: 8px;'>LINK</th>
-                    <th style='border: 1px solid #000; padding: 8px;'>PASSWORD</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style='border: 1px solid #000; padding: 8px;'>http://192.168.0.60/indexlogin.php</td>
-                    <td style='border: 1px solid #000; padding: 8px;'>$random_pass</td>
-                </tr>
-            </tbody>
-        </table>
-    ";
+    // $subject = "PASSWORD SYSTEM";
+    // $body = "
+    //     <table style='border-collapse: collapse;'>
+    //         <thead>
+    //             <tr>
+    //                 <th style='border: 1px solid #000; padding: 8px;'>LINK</th>
+    //                 <th style='border: 1px solid #000; padding: 8px;'>PASSWORD</th>
+    //             </tr>
+    //         </thead>
+    //         <tbody>
+    //             <tr>
+    //                 <td style='border: 1px solid #000; padding: 8px;'>http://192.168.0.60/indexlogin.php</td>
+    //                 <td style='border: 1px solid #000; padding: 8px;'>$random_pass</td>
+    //             </tr>
+    //         </tbody>
+    //     </table>
+    // ";
 
 
-    $scriptUrl = "https://script.google.com/macros/s/AKfycbx3vNzkU170boiNFepArV3kfiR9j8jVM7mz2GuD40EPy6DG7BVaINhkD7izIbFIkcz7/exec";
+    // $scriptUrl = "https://script.google.com/macros/s/AKfycbx3vNzkU170boiNFepArV3kfiR9j8jVM7mz2GuD40EPy6DG7BVaINhkD7izIbFIkcz7/exec";
 
-    $data = array(
-        "recipient" => $emailuser,
-        "subject"   => $subject,
-        "body"      => $body,
-        "isHTML"    => 'true'
-    );
+    // $data = array(
+    //     "recipient" => $emailuser,
+    //     "subject"   => $subject,
+    //     "body"      => $body,
+    //     "isHTML"    => 'true'
+    // );
 
     // Fungsi Tambah Staff
     if ($fungsi === "addstaff") {
@@ -74,21 +74,21 @@ include('conn.php');
     // Fungsi Kemaskini Staff
     } elseif ($fungsi === "kemaskinistaff") {
         $stmt = $conn->prepare("UPDATE mra_staff SET 
-            name = ?, email = ?, icno = ?, position = ?, password = ?, status = ?, phoneno = ?, bank_name = ?, syarikat = ?, acc_no = ? 
+            name = ?, email = ?, icno = ?, position = ?, status = ?, phoneno = ?, bank_name = ?, syarikat = ?, acc_no = ? 
             WHERE id = ?");
-        $stmt->bind_param("ssssssssssi", $nameuser, $emailuser, $icuser, $positionuser, $random_pass, $status, $phoneuser, $bankuser, $syarikat, $accuser, $id);
+        $stmt->bind_param("sssssssssi", $nameuser, $emailuser, $icuser, $positionuser, $status, $phoneuser, $bankuser, $syarikat, $accuser, $id);
         $result = $stmt->execute();
         $stmt->close();
     }
 
     // Jika query berjaya, hantar email
     if ($result === TRUE) {
-        $ch = curl_init($scriptUrl);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_exec($ch);
-        curl_close($ch);
+        //$ch = curl_init($scriptUrl);
+        //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        //curl_exec($ch);
+        //curl_close($ch);
         ?>
 
         <script>
