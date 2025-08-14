@@ -21,6 +21,7 @@ $noic = $_POST['ic'];
             <th style="text-align: center;">Purpose</th>
             <th style="text-align: center;">Details</th>
             <th style="text-align: center;">Amounts</th>
+			<th style="text-align: center;">Status</th>
             <th style="text-align: center;">Action</th>
         </tr>
     </thead>
@@ -37,6 +38,7 @@ $noic = $_POST['ic'];
         $purpose = $row['purpose'];
         $details = $row['details'];
         $amount = $row['amount'];
+		$status = $row['status'];
         $name  = $row['name'];
     
     ?>
@@ -48,6 +50,17 @@ $noic = $_POST['ic'];
             <td style="text-align: center;"><?php echo $purpose; ?></td>
             <td style="text-align: center;"><?php echo $details; ?></td>
             <td style="text-align: center;"><?php echo $amount; ?></td>
+			<td style="text-align: center;">
+				<?php 
+					if ($status == "1") {
+						echo "<span class='badge bg-secondary'>Pending</span>";
+					} elseif ($status == "2") {
+						echo "<span class='badge bg-success'>Approved</span>";
+					} elseif ($status == "3") {
+						echo "<span class='badge bg-danger'>Rejected</span>";
+					}
+				?>
+			</td>
             <td style="text-align: center;"><button class="btn btn-danger" onclick="test1('<?php echo $id; ?>')"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px; height: 24px;"></button></td>
         </tr>
     </tbody>

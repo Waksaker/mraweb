@@ -32,6 +32,7 @@ $noic = $row['icno'];
             <th style="text-align: center;">Date End</th>
             <th style="text-align: center;">Days</th>
             <th style="text-align: center;">Purpose</th>
+			<th style="text-align: center;">Status</th>
             <th style="text-align: center;">#</th>
           </tr>
         </thead>
@@ -54,7 +55,7 @@ $noic = $row['icno'];
           $purpose = $row['purpose'];
           $contactno = $row['contactno'];
           $matters = $row['matters'];
-
+			$status = $row['status'];
         ?>
           <tbody>
             <tr>
@@ -66,6 +67,17 @@ $noic = $row['icno'];
               <td style="text-align: center;"><?php echo $dateend; ?></td>
               <td style="text-align: center;"><?php echo $daysleave; ?></td>
               <td style="text-align: center;"><?php echo $purpose; ?></td>
+			  <td style="text-align: center;">
+				<?php 
+					if ($status == "1") {
+						echo "<span class='badge bg-secondary'>Pending</span>";
+					} elseif ($status == "2") {
+						echo "<span class='badge bg-success'>Approved</span>";
+					} elseif ($status == "3") {
+						echo "<span class='badge bg-danger'>Rejected</span>";
+					}
+				?>
+			  </td>
               <td style="text-align: center;">
                 <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
                 <!-- <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a> -->

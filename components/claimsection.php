@@ -8,6 +8,9 @@ $position = $_SESSION['position'];
 
 $Date_now=date('D, M d, Y H:i:s');
 $Year_now = date('Y',strtotime($Date_now));
+$tarikh = date('d M Y',strtotime($Date_now));
+
+echo "$tarikh";
 
 $sql = "SELECT * FROM mra_staff where name = '$name'"; // SQL with parameters
 $result = mysqli_query($conn, $sql);
@@ -21,44 +24,33 @@ $noic = $row['icno'];
     <div class="card-body">
       <h5 class="card-title fw-semibold mb-4">Claim</h5>
       <div align="right">
-        <a href="applyclaim.php?id=<?php echo base64_encode($noic); ?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Claim</a>
+		<a href="assets/claim.xlsx" download="<?php echo "$name2"; ?>(<?php echo "$tarikh"; ?>).xlsx" class="btn btn-success py-8 fs-4 mb-4 rounded-2">Download</a>
+		<a href="applyclaim.php?id=<?php echo base64_encode($noic); ?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Upload Claim</a>
       </div>
       
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group row">
-                <h1 class="col-sm-4 col-form-label">Please Choose</h1>
-                <div class="col-sm-4">
-                    <select class="form-control" name="tahun" id="tahun"  value=''>
-                        <?php  
-                            $tahunmin = $Year_now;
-                            $tahunmax = 2024;
-
-                            while ($tahunmin >= $tahunmax)
-                            {
-                                echo "<option value='".$tahunmin."'".$s.">".$tahunmin."</option>";
-                                $tahunmin--;
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-sm-4">
-                    <select class="form-control" name="bulan" id="bulan" onChange="getClaim(this.value,<?php echo $noic;?>); ">
-                        <option value="" style="text-transform: uppercase"><?php echo 'Please Choose...' ?></option>
-                        <option value='01'>JANUARY</option>
-                        <option value='02'>FEBRUARY</option>
-                        <option value='03'>MARCH</option>
-                        <option value='04'>APRIL</option>
-                        <option value='05'>MAY</option>
-                        <option value='06'>JUNE</option>
-                        <option value='07'>JULY</option>
-                        <option value='08'>AUGUST</option>
-                        <option value='09'>SEPTEMBER</option>
-                        <option value='10'>OCTOBER</option>
-                        <option value='11'>NOVEMBER</option>
-                        <option value='12'>DECEMBER</option>
-                    </select>
-                </div>
+					<table>
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Date Apply</th>
+								<th>Title</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+								<td>1</td>
+							</tr>
+						</tbody>
+					</table>
                 </div>
             </div>
         </div>

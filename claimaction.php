@@ -23,48 +23,41 @@ if ($conn->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dates = $_POST['date'];
-    $purposes = $_POST['purpose'];
-    $details = $_POST['details'];
-    $amounts = $_POST['amount'];
+    $title = $_POST['title'];
+    $namefile = $_FILES['namefile']['name'];
+	$tempfile = $_FILES['namefile']['tmp_name'];
     $noics = $_POST['noic'];
 
-    // Prepare the SQL statement
-    $stmt = $conn->prepare("INSERT INTO mra_claims (date, purpose, details, amount, noic) VALUES (?, ?, ?, ?, ?)");
-
-    // Check if the statement was prepared successfully
-    if ($stmt === false) {
-        die('Prepare() failed: ' . htmlspecialchars($conn->error));
-    }
-
-    // Bind the parameters
-    $stmt->bind_param("sssds", $date, $purpose, $detail, $amount, $noic); // "sssds" stands for string, string, string, double, string
-
-    // Iterate through each set of input values and execute the statement
-    foreach ($dates as $index => $date) {
-        $purpose = $purposes[$index];
-        $detail = $details[$index];
-        $amount = $amounts[$index];
-        $noic = $noics[$index];
-        $stmt->execute();
-    }
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-
-    // echo "Records inserted successfully!";
+    if ($namefile != '') {
+		$target_dir = "./claim/";
+		$target_file = $target_dir . basename($namefile);
+		
+		if (move_uploaded_file($tempfile, $target_file)) {
+			$sql = "INSERT INTO `mra_claim` (`apply`, `tajuk`, `ic`, `status`, `folder`) VALUES ('$dates', '$title', '$noics', '1', '$namefile')";
+			
+			if (mysqli_query($conn, $sql)) {
+			
+			?>
+				<script>
+					Swal.fire({
+					text: "Submit Successfull",
+					icon: "warning"
+					}).then((result) => {
+					/* Read more about isConfirmed, isDenied below */
+					if (result.isConfirmed) {
+						window.location = "claim.php";
+						} 
+					});
+				</script>
+			<?php
+			
+			} else {
+				echo "error";
+			}
+			
+			mysqli_close($conn);
+		}
+	}
 }
 
 ?>
-
-<script>
-    Swal.fire({
-    text: "Submit Successfull",
-    icon: "warning"
-    }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-        window.location = "claim.php";
-        } 
-    });
-</script>

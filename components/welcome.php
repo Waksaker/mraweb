@@ -50,51 +50,51 @@ $data = [
 
 $jasondata = json_encode($data);
 
-$sql_jan = "SELECT SUM(amount) AS sum_jan FROM `mra_claims` WHERE MONTH(date) = '01' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_jan = "SELECT SUM(amount) AS sum_jan, status AS status_jan FROM `mra_claims` WHERE MONTH(date) = '01' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_jan = mysqli_query($conn, $sql_jan);
 $row_jan = mysqli_fetch_assoc($result_jan) ?? ['sum_jan' => 0];
 
-$sql_feb = "SELECT SUM(amount) AS sum_feb FROM `mra_claims` WHERE MONTH(date) = '02' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_feb = "SELECT SUM(amount) AS sum_feb, status AS status_feb FROM `mra_claims` WHERE MONTH(date) = '02' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_feb = mysqli_query($conn, $sql_feb);
 $row_feb = mysqli_fetch_assoc($result_feb);
 
-$sql_mar = "SELECT SUM(amount) AS sum_mar FROM `mra_claims` WHERE MONTH(date) = '03' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_mar = "SELECT SUM(amount) AS sum_mar, status AS status_mar FROM `mra_claims` WHERE MONTH(date) = '03' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_mar = mysqli_query($conn, $sql_mar);
 $row_mar = mysqli_fetch_assoc($result_mar);
 
-$sql_apr = "SELECT SUM(amount) AS sum_apr FROM `mra_claims` WHERE MONTH(date) = '04' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_apr = "SELECT SUM(amount) AS sum_apr, status AS status_apr FROM `mra_claims` WHERE MONTH(date) = '04' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_apr = mysqli_query($conn, $sql_apr);   
 $row_apr = mysqli_fetch_assoc($result_apr);
 
-$sql_may = "SELECT SUM(amount) AS sum_may FROM `mra_claims` WHERE MONTH(date) = '05' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_may = "SELECT SUM(amount) AS sum_may, status AS status_may FROM `mra_claims` WHERE MONTH(date) = '05' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_may = mysqli_query($conn, $sql_may);   
 $row_may = mysqli_fetch_assoc($result_may);
 
-$sql_jun = "SELECT SUM(amount) AS sum_jun FROM `mra_claims` WHERE MONTH(date) = '06' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_jun = "SELECT SUM(amount) AS sum_jun, status AS status_jun FROM `mra_claims` WHERE MONTH(date) = '06' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_jun = mysqli_query($conn, $sql_jun);
 $row_jun = mysqli_fetch_assoc($result_jun);
 
-$sql_jul = "SELECT SUM(amount) AS sum_jul FROM `mra_claims` WHERE MONTH(date) = '07' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_jul = "SELECT SUM(amount) AS sum_jul, status AS status_jul FROM `mra_claims` WHERE MONTH(date) = '07' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_jul = mysqli_query($conn, $sql_jul);
 $row_jul = mysqli_fetch_assoc($result_jul);
 
-$sql_aug = "SELECT SUM(amount) AS sum_aug FROM `mra_claims` WHERE MONTH(date) = '08' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_aug = "SELECT SUM(amount) AS sum_aug, status AS status_aug FROM `mra_claims` WHERE MONTH(date) = '08' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_aug = mysqli_query($conn, $sql_aug);
 $row_aug = mysqli_fetch_assoc($result_aug);
 
-$sql_sep = "SELECT SUM(amount) AS sum_sep FROM `mra_claims` WHERE MONTH(date) = '09' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_sep = "SELECT SUM(amount) AS sum_sep, status AS status_sep FROM `mra_claims` WHERE MONTH(date) = '09' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_sep = mysqli_query($conn, $sql_sep);
 $row_sep = mysqli_fetch_assoc($result_sep);
 
-$sql_oct = "SELECT SUM(amount) AS sum_oct FROM `mra_claims` WHERE MONTH(date) = '10' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_oct = "SELECT SUM(amount) AS sum_oct, status AS status_oct FROM `mra_claims` WHERE MONTH(date) = '10' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_oct = mysqli_query($conn, $sql_oct);
 $row_oct = mysqli_fetch_assoc($result_oct);
 
-$sql_nov = "SELECT SUM(amount) AS sum_nov FROM `mra_claims` WHERE MONTH(date) = '11' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_nov = "SELECT SUM(amount) AS sum_nov, status AS status_nov FROM `mra_claims` WHERE MONTH(date) = '11' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_nov = mysqli_query($conn, $sql_nov);
 $row_nov = mysqli_fetch_assoc($result_nov);
 
-$sql_dec = "SELECT SUM(amount) AS sum_dec FROM `mra_claims` WHERE MONTH(date) = '12' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
+$sql_dec = "SELECT SUM(amount) AS sum_dec, status AS status_dec FROM `mra_claims` WHERE MONTH(date) = '12' AND noic = '$noic' AND YEAR(date) = '$Year_now'";
 $result_dec = mysqli_query($conn, $sql_dec);
 $row_dec = mysqli_fetch_assoc($result_dec); 
 
@@ -340,42 +340,7 @@ $jasonwfh = json_encode($attanwfh);
         <div class="col-sm-4">
         </div>
         <br>
-        <h6>
-            JANUARY : <?php if ($row_jan['sum_jan'] != "") { echo "RM" . $row_jan['sum_jan']; } ?>
-        </h6>
-        <h6>
-            FEBRUARY : <?php if ($row_feb['sum_feb'] != "") { echo "RM" . $row_feb['sum_feb']; } ?>
-        </h6>
-        <h6>
-            MARCH : <?php if ($row_mar['sum_mar'] != "") { echo "RM" . $row_mar['sum_mar']; } ?>
-        </h6>
-        <h6>
-            APRIL : <?php if ($row_apr['sum_apr'] != "") { echo "RM" . $row_apr['sum_apr']; } ?>
-        </h6>
-        <h6>
-            MAY : <?php if ($row_may['sum_may'] != "") {echo "RM" . $row_may['sum_may']; } ?>
-        </h6>
-        <h6>
-            JUNE : <?php if ($row_jun['sum_jun'] != "") {echo "RM" . $row_jun['sum_jun'];} ?>
-        </h6>
-        <h6>
-            JULY : <?php if ($row_jul['sum_jul'] != "") {echo "RM" . $row_jul['sum_jul'];} ?>
-        </h6>
-        <h6>
-            AUGUST : <?php if ($row_aug['sum_aug'] != "") {echo "RM" . $row_aug['sum_aug'];} ?>
-        </h6>
-        <h6>
-            SEPTEMBER : <?php if ($row_sep['sum_sep'] != "") {echo "RM" . $row_sep['sum_sep'];} ?>
-        </h6>
-        <h6>
-            OCTOBER : <?php if ($row_oct['sum_oct'] != "") {echo "RM" . $row_oct['sum_oct'];} ?>
-        </h6>
-        <h6>
-            NOVEMBER : <?php if ($row_nov['sum_nov'] != "") {echo "RM" . $row_nov['sum_nov'];} ?>
-        </h6>
-        <h6>
-            DECEMBER : <?php if ($row_dec['sum_dec'] != "") {echo "RM" . $row_dec['sum_dec'];} ?>
-        </h6>
+        <?php include("components/tablelistclaim.php"); ?>
     </div>
     <div class="card-body">
         <?php
