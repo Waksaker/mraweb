@@ -27,3 +27,22 @@
 	}
 	
 </script>
+<script>
+    new DataTable('#claim', {
+        scrollX: true,
+        // layout: {
+        //     topStart: {
+        //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        //     }
+        // }
+    });
+</script>
+<script type="text/javascript">
+  function test(claimid) {
+    var result = confirm("Adakah anda ingin memadam data ini?");
+
+    if (result) {
+      window.location.href = "delete.php?claimid=" + claimid;
+    }
+  }
+</script>

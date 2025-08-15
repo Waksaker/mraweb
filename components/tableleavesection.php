@@ -74,6 +74,8 @@ $noic = $row['icno'];
 					} elseif ($status == "2") {
 						echo "<span class='badge bg-success'>Approved</span>";
 					} elseif ($status == "3") {
+						echo "<span class='badge bg-warning'>Check Again</span>";
+					} elseif ($status == "4") {
 						echo "<span class='badge bg-danger'>Rejected</span>";
 					}
 				?>

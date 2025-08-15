@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2025 at 03:48 PM
+-- Generation Time: Aug 15, 2025 at 02:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -82,10 +82,10 @@ INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `up
 CREATE TABLE `mra_claim` (
   `id` int(11) NOT NULL,
   `apply` date DEFAULT NULL,
-  `tajuk` varchar(255) NOT NULL,
-  `ic` varchar(14) NOT NULL,
-  `status` char(11) NOT NULL,
-  `folder` varchar(255) NOT NULL,
+  `tajuk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ic` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `folder` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -94,7 +94,7 @@ CREATE TABLE `mra_claim` (
 --
 
 INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `updated`) VALUES
-(1, '2025-08-14', 'Test', '000922012519', '1', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(14 Aug 2025).xlsx', '2025-08-14 13:47:25');
+(1, '2025-08-15', 'CLAIM BULAN 8', '000922012519', '3', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Aug 2025).xlsx', '2025-08-15 06:51:33');
 
 -- --------------------------------------------------------
 

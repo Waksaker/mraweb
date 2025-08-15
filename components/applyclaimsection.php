@@ -23,10 +23,9 @@ $phoneno = $row['phoneno'];
     <form name="claim" action="claimaction.php" method="post"  enctype="multipart/form-data">
         <div class="customer_records">
             <div class="row mb-3">
-			<label for="dateend" class="col-sm-2 col-form-label">UPLOAD FILE</label>
+			<label for="noic" class="col-sm-2 col-form-label">NO IC</label>
             <div class="col-sm-4">
-				<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
-                <sup><font style="color:red">*Please upload file</font></sup>
+                <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $noic; ?>">
             </div>
             <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
             <div class="col-sm-4">
@@ -37,9 +36,10 @@ $phoneno = $row['phoneno'];
                 <input type="text" class="form-control mb-1" id="title" name="title" maxlength="255">
                 <sup><font style="color:red">*Max character 255 only including space and break</font></sup>
             </div>
-            <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
+			<label for="dateend" class="col-sm-2 col-form-label">UPLOAD FILE</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $noic; ?>">
+				<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
+                <sup><font style="color:red">*Please upload file</font></sup>
             </div>
         </div>
     </div>

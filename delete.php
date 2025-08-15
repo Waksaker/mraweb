@@ -68,4 +68,25 @@ if (isset($_GET['date'])) {
 
     header("Location: staff.php");
 	exit();
+} elseif (isset($_GET['claimid'])) {
+	$idclaim = $_GET['claimid'];
+	$sql = "SELECT * FROM `mra_claim` WHERE id = '$idclaim'";
+	$result = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($result);
+	$folder = $row['folder'];
+	
+	$file = "claim/$folder"; 
+	
+	if (file_exists($file)) {
+		if (unlink($file)) {
+			mysqli_query($conn, "DELETE FROM `mra_claim` WHERE id = '$idclaim'");
+			header("Location: claim.php");
+			exit();
+		} else {
+			echo "Gagal padam";
+		}
+	} else {
+		echo "File tidak dijumpai";
+	}
+
 }
