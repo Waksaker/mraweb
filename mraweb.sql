@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2025 at 02:39 PM
+-- Generation Time: Aug 16, 2025 at 04:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -314,7 +314,7 @@ INSERT INTO `mra_staff` (`id`, `name`, `email`, `icno`, `position`, `password`, 
 (5, 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '01172259030', 'MAYBANK', '162107427034', '', ''),
 (6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'BANK ISLAM', '01032020736545', 'signature.png', 'LETILICA SDN BHD'),
 (12, 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', '488753', 'HR STAFF', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD'),
-(13, 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD');
+(13, 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD');
 
 -- --------------------------------------------------------
 
@@ -419,7 +419,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `mra_claim`
 --
 ALTER TABLE `mra_claim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mra_claims`
