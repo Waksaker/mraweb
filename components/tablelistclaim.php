@@ -1,4 +1,4 @@
-<table style="">
+<table id="claim" class="display nowrap" style="width:100%">
 	<thead>
 		<tr>
 			<th>Month</th>
@@ -19,7 +19,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_jan['sum_jan'] != "") { echo "RM" . $row_jan['sum_jan']; } ?></td>
 		</tr>
 		<tr>
 			<td>FEBRUARY</td>
@@ -34,7 +33,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_feb['sum_feb'] != "") { echo "RM" . $row_feb['sum_feb']; } ?></td>
 		</tr>
 		<tr>
 			<td>MARCH</td>
@@ -49,7 +47,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_mar['sum_mar'] != "") { echo "RM" . $row_mar['sum_mar']; } ?></td>
 		</tr>
 		<tr>
 			<td>APRIL</td>
@@ -64,7 +61,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_apr['sum_apr'] != "") { echo "RM" . $row_apr['sum_apr']; } ?></td>
 		</tr>
 		<tr>
 			<td>MAY</td>
@@ -79,7 +75,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_may['sum_may'] != "") { echo "RM" . $row_may['sum_may']; } ?></td>
 		</tr>
 		<tr>
 			<td>JUNE</td>
@@ -94,7 +89,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_jun['sum_jun'] != "") { echo "RM" . $row_jun['sum_jun']; } ?></td>
 		</tr>
 		<tr>
 			<td>JULY</td>
@@ -109,7 +103,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_jul['sum_jul'] != "") { echo "RM" . $row_jul['sum_jul']; } ?></td>
 		</tr>
 		<tr>
 			<td>AUGUST</td>
@@ -124,7 +117,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_aug['sum_aug'] != "") { echo "RM" . $row_aug['sum_aug']; } ?></td>
 		</tr>
 		<tr>
 			<td>SEPTEMBER</td>
@@ -139,7 +131,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_sep['sum_sep'] != "") { echo "RM" . $row_sep['sum_sep']; } ?></td>
 		</tr>
 		<tr>
 			<td>OCTOBER</td>
@@ -154,7 +145,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_oct['sum_oct'] != "") { echo "RM" . $row_oct['sum_oct']; } ?></td>
 		</tr>
 		<tr>
 			<td>NOVEMBER</td>
@@ -169,7 +159,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_nov['sum_nov'] != "") { echo "RM" . $row_nov['sum_nov']; } ?></td>
 		</tr>
 		<tr>
 			<td>DECEMBER</td>
@@ -184,7 +173,6 @@
 					}
 				?>
 			</td>
-			<td><?php if ($row_dec['sum_dec'] != "") { echo "RM" . $row_dec['sum_dec']; } ?></td>
 		</tr>
 	</tbody>
 </table>

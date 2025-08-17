@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$namefile2 = $_POST['namefile2'];
     $noics = $_POST['noic'];
 	$status = $_POST['status'];
+	$id = $_POST['id'];
 
     if ($namefile != '') {
 		$target_dir = "./claim/";
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (file_exists($file)) {
 			if (unlink($file)) {
 				if (move_uploaded_file($tempfile, $target_file)) {
-					$sql = "UPDATE `mra_claim` SET `apply`='$dates',`tajuk`='$title',`ic`='$noics',`status`='$status',`folder`='$namefile' WHERE ic = '$noics' AND apply = '$dates'";
+					$sql = "UPDATE `mra_claim` SET `apply`='$dates',`tajuk`='$title',`ic`='$noics',`status`='$status',`folder`='$namefile' WHERE ic = '$noics' AND id = '$id'";
 					
 					if (mysqli_query($conn, $sql)) {
 						?>
@@ -68,7 +69,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			echo "File tidak dijumpai";
 		}
 	} elseif ($namefile == '') {
-		
+		$sql1 = "UPDATE `mra_claim` SET `apply`='$dates',`tajuk`='$title',`ic`='$noics',`status`='$status',`folder`='$namefile2' WHERE ic = '$noics' AND id = '$id'";
+		if (mysqli_query($conn, $sql1)) {
+			?>
+				<script>
+					Swal.fire({
+					text: "Submit Successfull",
+					icon: "warning"
+					}).then((result) => {
+					/* Read more about isConfirmed, isDenied below */
+					if (result.isConfirmed) {
+						window.location = "claim.php";
+						} 
+					});
+				</script>
+			<?php
+		} else {
+			echo "error";
+		}
+	}
 }
 
 ?>

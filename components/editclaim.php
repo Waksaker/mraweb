@@ -18,8 +18,9 @@ if ($_GET['id']) {
 	$ic = $row['ic'];
 	$status = $row['status'];
 	$folder = $row['folder'];
+  $id = $row['id'];
 	
-	$sql1 = "SELECT * FROM `mra_staff` WHERE icno = '$ic'";
+	$sql1 = "SELECT * FROM `mra_staff` WHERE name = '$name'";
 	$result1 = mysqli_query($conn, $sql1);
 	$row1 = mysqli_fetch_assoc($result1);
 	$status1 = $row1['status'];
@@ -44,6 +45,7 @@ if ($_GET['id']) {
             <div class="col-sm-4">
                 <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $ic; ?>">
             </div>
+            <input type="text" name="id" id="id" value="<?php echo "$id"; ?>" style="display: none;">
 			<?php
 				if ($status1 == "STAFF") {
 					?>
@@ -52,8 +54,8 @@ if ($_GET['id']) {
 							<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
 							<sup><font style="color:red">*Please upload file</font></sup>
 						</div>
-						<input type="text" name"namefile2" id="namefile2" value="<?php echo "$folder"; ?>">
-						<input type="text" name"status" id="status" value="<?php echo "$status"; ?>">
+						<input type="text" name="namefile2" id="namefile2" value="<?php echo "$folder"; ?>" style="display: none;">
+						<input type="text" name="status" id="status" value="<?php echo "$status"; ?>" style="display: none;">
 					<?php
 				} else {
 					?>
@@ -71,7 +73,7 @@ if ($_GET['id']) {
 								<option value="4" <?php echo ($status == '4') ? 'selected' : ''; ?>>REJECTED</option>
 							</select>
 						</div>
-						<input type="text" name"namefile2" id="namefile2" value="<?php echo "$folder"; ?>">
+						<input type="text" name="namefile2" id="namefile2" value="<?php echo "$folder"; ?>" style="display: none;">
 					<?php
 				}
 			?>
@@ -84,3 +86,66 @@ if ($_GET['id']) {
     </form>
   </div>
 </div>
+<script>
+  function validateclaim() 
+  {
+    form = document.claim;
+	if (form.date.value == null || form.date.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in date!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.date.focus();
+      return;
+    }
+    else if (form.noic.value == null || form.noic.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Ic No!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.noic.focus();
+      return;
+    }
+	else if (form.namefile2.value == null || form.namefile2.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in namefile2 No!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.focus();
+      return;
+    }
+	else if (form.status.value == null || form.status.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in status No!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.focus();
+      return;
+    }
+    else 
+    {
+      swal.fire({
+      text: "Please make sure everything is correct!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#1B95CF',
+      cancelButtonColor: '#BF000E',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+        form.submit();
+        }
+      })
+    }
+  }
+</script>
