@@ -94,7 +94,7 @@ $status = $row['status'];
 														if (strtolower($ext) === 'pdf') {
 															?>
 																<!-- download pdf -->
-																<a href="claim/<?php echo $folder; ?>" download class="btn btn-primary">
+																<a href="claim/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
 																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
 																</a>
 															<?php
@@ -162,14 +162,25 @@ $status = $row['status'];
 													?>
 												</td>
 												<td style="text-align: center;">
-													<!-- download excel -->
-													<!-- <a href="claim/<?php echo $folder; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
-														<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-													</a> -->
-													<!-- download pdf -->
-													<a href="claim/<?php echo $folder; ?>" download class="btn btn-primary">
-														<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-													</a>
+													<?php
+														$ext = pathinfo($folder, PATHINFO_EXTENSION);
+
+														if (strtolower($ext) === 'pdf') {
+															?>
+																<!-- download pdf -->
+																<a href="claim/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
+																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
+																</a>
+															<?php
+														} elseif (strtolower($ext) === 'xlsx') {
+															?>
+																<!-- Download excel -->
+																<a href="claim/<?php echo $folder; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
+																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
+																</a>
+															<?php
+														}
+													?>
 													<a href="editclaim.php?id=<?php echo $claimid; ?>" class="btn btn-primary">
 														<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 													</a>
