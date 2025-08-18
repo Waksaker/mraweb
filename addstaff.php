@@ -61,7 +61,11 @@
                         <input type="text" class="form-control mb-3" id="fungsi" name="fungsi" value="addstaff" style="display: none;">
                         <label for="datestart" class="col-sm-2 col-form-label">NAME :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-3" id="name" name="name" value="">
+                            <input type="text" class="form-control mb-3" id="name" name="name" value="" oninput="this.value = this.value.toUpperCase();">
+                        </div>
+                        <label for="datestart" class="col-sm-2 col-form-label">ID :</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="iduser" name="iduser" value="">
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">EMAIL :</label>
                         <div class="col-sm-4">
@@ -81,7 +85,28 @@
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">BANK NAME :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="bankname" name="bankname" value="">
+                            <select class="form-control mb-1" id="bankname" name="bankname">
+                                <option value="">Please Choose</option>
+                                <option value="Maybank">Maybank</option>
+                                <option value="CIMB">CIMB</option>
+                                <option value="Public Bank">Public Bank</option>
+                                <option value="RHB Bank">RHB Bank</option>
+                                <option value="Hong Leong Bank">Hong Leong Bank</option>
+                                <option value="AmBank">AmBank</option>
+                                <option value="Bank Islam">Bank Islam</option>
+                                <option value="Bank Rakyat">Bank Rakyat</option>
+                                <option value="Affin Bank">Affin Bank</option>
+                                <option value="Alliance Bank">Alliance Bank</option>
+                                <option value="HSBC Bank">HSBC Bank</option>
+                                <option value="OCBC Bank">OCBC Bank</option>
+                                <option value="Standard Chartered">Standard Chartered</option>
+                                <option value="UOB Bank">UOB Bank</option>
+                                <option value="Agrobank">Agrobank</option>
+                                <option value="Bank Muamalat">Bank Muamalat</option>
+                                <option value="BSN">Bank Simpanan Nasional (BSN)</option>
+                                <option value="Kuwait Finance House">Kuwait Finance House</option>
+                                <option value="Citibank">Citibank</option>
+                            </select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">ACCOUNT NUMBER :</label>
                         <div class="col-sm-4">
@@ -114,7 +139,15 @@
 <script>
 function submitAddStaff() {
 	const form = document.addstaff;
-	if (form.name.value == null || form.name.value == "") {
+    if(form.iduser.value == null || form.iduser.value == ""){
+        Swal.fire({
+            icon: 'warning',
+            text: 'Please fill in Id!',
+            confirmButtonColor: '#1B95CF'
+        })
+        form.iduser.focus();
+        return;
+    }else if (form.name.value == null || form.name.value == "") {
 		Swal.fire({
             icon: 'warning',
             text: 'Please fill in Date!',

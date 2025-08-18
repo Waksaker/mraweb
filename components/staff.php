@@ -1,7 +1,7 @@
 <?php
 set_time_limit(0);
 error_reporting(E_NOTICE);
-include('C:\laragon\www\mraweb\conn.php');
+include('conn.php');
 
 $name = $_SESSION['name'];
 $position = $_SESSION['position'];
@@ -28,7 +28,7 @@ $date = $row1['outoffice'];
     <div class="card-body">
 		<h5 class="card-title fw-semibold mb-4">Staff</h5>
         <div align="right">
-          <!-- <a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a> -->
+          <a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a>
         </div>
         <table id="example" class="display nowrap" style="width:100%">
 			<thead class="bg-primary text-white">
@@ -47,6 +47,7 @@ $date = $row1['outoffice'];
                     $maklumat = "
                         <div>
                             <strong>Name:</strong> {$rowstaff['name']}<br>
+                            <strong>Id:</strong> {$rowstaff['id_user']}<br>
                             <strong>Email:</strong> {$rowstaff['email']}<br>
                             <strong>Ic:</strong> {$rowstaff['icno']}<br>
                             <strong>Position:</strong> {$rowstaff['position']}<br>
@@ -65,6 +66,7 @@ $date = $row1['outoffice'];
 					<td><?php echo $maklumat; ?></td>
 					<td>
 						<a href="kemaskinistaff.php?name=<?php echo $rowstaff['name'];?>&position=<?php echo $rowstaff['position']; ?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;"></a>
+            <button type="button" onclick="send('<?php echo $id ?>')" class="btn btn-primary"><img src="assets/images/send.png" alt="" style="width: 24; height: 24px;"></button>
             <button type="button" onclick="deletestaff('<?php echo $id ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
 					</td>
 				</tr>
@@ -80,5 +82,41 @@ $date = $row1['outoffice'];
     if (result) {
       window.location.href = "delete.php?idstaff=" + id;
     }
+  }
+</script>
+<script>
+  function send(id) {
+    console.log("Hantar");
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        if (this.responseText)
+          Swal.fire({
+              text: 'Berjaya hantar.',
+              icon: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#F7E836',
+              confirmButtonText: 'Ok'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location = 'staff.php';
+              }
+          });
+        else
+          Swal.fire({
+              text: 'Gagal hantar.',
+              icon: 'warning',
+              showCancelButton: false,
+              confirmButtonColor: '#F7E836',
+              confirmButtonText: 'Ok'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location = 'staff.php';
+              }
+          });
+      }
+    };
+    xhttp.open("GET", "send.php?iduser=" + id, true);
+    xhttp.send();
   }
 </script>

@@ -27,6 +27,7 @@ if (mysqli_num_rows($result) > 0) {
         $id = $row['id'];
         $status = $row['status'];
         $syarikat = $row['syarikat'];
+        $iduser = $row['id_user'];
     }
 }
 ?>
@@ -90,7 +91,11 @@ if (mysqli_num_rows($result) > 0) {
                         <input type="text" class="form-control mb-3" id="fungsi" name="fungsi" value="kemaskinistaff" style="display: none;">
                         <label for="datestart" class="col-sm-2 col-form-label">NAME :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-3" id="date" name="name" value="<?php echo $name; ?>">
+                            <input type="text" class="form-control mb-3" id="date" name="name" value="<?php echo $name; ?>" oninput="this.value = this.value.toUpperCase();">
+                        </div>
+                        <label for="datestart" class="col-sm-2 col-form-label">ID :</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="iduser" name="iduser" value="<?php echo $iduser; ?>">
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">EMAIL :</label>
                         <div class="col-sm-4">
@@ -110,7 +115,27 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">BANK NAME :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="purpose" name="bankname" value="<?php echo $bank; ?>">
+                            <select class="form-control mb-1" id="bankname" name="bankname">
+                                <option value="Maybank" <?php echo ($bank == 'Maybank') ? 'selected' : ''; ?>>Maybank</option>
+                                <option value="CIMB" <?php echo ($bank == 'CIMB') ? 'selected' : ''; ?>>CIMB</option>
+                                <option value="Public Bank" <?php echo ($bank == 'Public Bank') ? 'selected' : ''; ?>>Public Bank</option>
+                                <option value="RHB Bank" <?php echo ($bank == 'RHB Bank') ? 'selected' : ''; ?>>RHB Bank</option>
+                                <option value="Hong Leong Bank" <?php echo ($bank == 'Hong Leong Bank') ? 'selected' : ''; ?>>Hong Leong Bank</option>
+                                <option value="AmBank" <?php echo ($bank == 'AmBank') ? 'selected' : ''; ?>>AmBank</option>
+                                <option value="Bank Islam" <?php echo ($bank == 'Bank Islam') ? 'selected' : ''; ?>>Bank Islam</option>
+                                <option value="Bank Rakyat" <?php echo ($bank == 'Bank Rakyat') ? 'selected' : ''; ?>>Bank Rakyat</option>
+                                <option value="Affin Bank" <?php echo ($bank == 'Affin Bank') ? 'selected' : ''; ?>>Affin Bank</option>
+                                <option value="Alliance Bank" <?php echo ($bank == 'Alliance Bank') ? 'selected' : ''; ?>>Alliance Bank</option>
+                                <option value="HSBC Bank" <?php echo ($bank == 'HSBC Bank') ? 'selected' : ''; ?>>HSBC Bank</option>
+                                <option value="OCBC Bank" <?php echo ($bank == 'OCBC Bank') ? 'selected' : ''; ?>>OCBC Bank</option>
+                                <option value="Standard Chartered" <?php echo ($bank == 'Standard Chartered') ? 'selected' : ''; ?>>Standard Chartered</option>
+                                <option value="UOB Bank" <?php echo ($bank == 'UOB Bank') ? 'selected' : ''; ?>>UOB Bank</option>
+                                <option value="Agrobank" <?php echo ($bank == 'Agrobank') ? 'selected' : ''; ?>>Agrobank</option>
+                                <option value="Bank Muamalat" <?php echo ($bank == 'Bank Muamalat') ? 'selected' : ''; ?>>Bank Muamalat</option>
+                                <option value="BSN" <?php echo ($bank == 'BSN') ? 'selected' : ''; ?>>Bank Simpanan Nasional (BSN)</option>
+                                <option value="Kuwait Finance House" <?php echo ($bank == 'Kuwait Finance House') ? 'selected' : ''; ?>>Kuwait Finance House</option>
+                                <option value="Citybank" <?php echo ($bank == 'Citybank') ? 'selected' : ''; ?>>Citybank</option>
+                            </select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">ACCOUNT NUMBER :</label>
                         <div class="col-sm-4">

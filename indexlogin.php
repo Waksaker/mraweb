@@ -43,15 +43,15 @@
                 </a>
                 <form name="login" action="loginaction.php" method="post">
                   <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <label for="email" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="iduser" name="iduser">
                   </div>
                   <div class="mb-4">
                     <label for="katalaluan" class="form-label">Password</label>
                     <input type="password" class="form-control" id="katalaluan" name="katalaluan">
                   </div>
                   <button type="button" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" onClick="validate()">Sign In</button>
-                  <a href="signup.php" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a>
+                  <!-- <a href="signup.php" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Sign Up</a> -->
                   <!-- <a href="indexlogin.php" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">Office Door</a>
                   <a href="" class="w-100 py-8 fs-4 mb-4 rounded-2 text-center d-block">Click here if you forgot your password.</a> -->
                 </form>
@@ -72,14 +72,14 @@
     function validate() 
     {
       form = document.login;
-      if	(form.email.value == null || form.email.value=="")
+      if	(form.iduser.value == null || form.iduser.value=="")
       {
         Swal.fire({
           icon: 'warning',
           text: 'Please fill in your correct e-mail!',
           confirmButtonColor: '#1B95CF'
         })
-        form.email.focus();
+        form.iduser.focus();
         return;
       }
       else if (form.katalaluan.value == null || form.katalaluan.value=="")

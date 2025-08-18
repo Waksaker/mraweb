@@ -7,12 +7,12 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['iduser'], FILTER_SANITIZE_STRING);
     $katalaluan = filter_var($_POST['katalaluan'], FILTER_SANITIZE_STRING);
 
     if ($email != '' && $katalaluan != '') {
         // Gunakan prepared statement untuk keamanan
-        $stmt = $conn->prepare("SELECT * FROM mra_staff WHERE email = ?");
+        $stmt = $conn->prepare("SELECT * FROM mra_staff WHERE id_user = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
