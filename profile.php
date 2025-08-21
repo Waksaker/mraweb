@@ -130,7 +130,28 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">BANK NAME :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="purpose" name="bankname" value="<?php echo $bank; ?>">
+                            <select class="form-control mb-1" id="bankname" name="bankname">
+                                <option value="">Please Choose</option>
+                                <option value="Maybank" <?php echo ($bank == 'Maybank') ? 'selected' : ''; ?>>Maybank</option>
+                                <option value="CIMB" <?php echo ($bank == 'CIMB') ? 'selected' : ''; ?>>CIMB</option>
+                                <option value="Public Bank" <?php echo ($bank == 'Public Bank') ? 'selected' : ''; ?>>Public Bank</option>
+                                <option value="RHB Bank" <?php echo ($bank == 'RHB Bank') ? 'selected' : ''; ?>>RHB Bank</option>
+                                <option value="Hong Leong Bank" <?php echo ($bank == 'Hong Leong Bank') ? 'selected' : ''; ?>>Hong Leong Bank</option>
+                                <option value="AmBank" <?php echo ($bank == 'AmBank') ? 'selected' : ''; ?>>AmBank</option>
+                                <option value="Bank Islam" <?php echo ($bank == 'Bank Islam') ? 'selected' : ''; ?>>Bank Islam</option>
+                                <option value="Bank Rakyat" <?php echo ($bank == 'Bank Rakyat') ? 'selected' : ''; ?>>Bank Rakyat</option>
+                                <option value="Affin Bank" <?php echo ($bank == 'Affin Bank') ? 'selected' : ''; ?>>Affin Bank</option>
+                                <option value="Alliance Bank" <?php echo ($bank == 'Alliance Bank') ? 'selected' : ''; ?>>Alliance Bank</option>
+                                <option value="HSBC Bank" <?php echo ($namebbanknk == 'HSBC Bank') ? 'selected' : ''; ?>>HSBC Bank</option>
+                                <option value="OCBC Bank" <?php echo ($bank == 'OCBC Bank') ? 'selected' : ''; ?>>OCBC Bank</option>
+                                <option value="Standard Chartered" <?php echo ($bank == 'Standard Chartered') ? 'selected' : ''; ?>>Standard Chartered</option>
+                                <option value="UOB Bank" <?php echo ($bank == 'UOB Bank') ? 'selected' : ''; ?>>UOB Bank</option>
+                                <option value="Agrobank" <?php echo ($bank == 'Agrobank') ? 'selected' : ''; ?>>Agrobank</option>
+                                <option value="Bank Muamalat" <?php echo ($bank == 'Bank Muamalat') ? 'selected' : ''; ?>>Bank Muamalat</option>
+                                <option value="Bank Simpanan Nasional" <?php echo ($bank == 'Bank Simpanan Nasional') ? 'selected' : ''; ?>>Bank Simpanan Nasional</option>
+                                <option value="Kuwait Finance House" <?php echo ($bank == 'Kuwait Finance House') ? 'selected' : ''; ?>>Kuwait Finance House</option>
+                                <option value="City Bank" <?php echo ($bank == 'City Bank') ? 'selected' : ''; ?>>City Bank</option>
+                            </select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">ACCOUNT NUMBER :</label>
                         <div class="col-sm-4">
