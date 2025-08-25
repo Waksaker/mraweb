@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2025 at 04:30 PM
+-- Generation Time: Aug 25, 2025 at 04:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -81,7 +81,7 @@ INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `up
 
 CREATE TABLE `mra_claim` (
   `id` int(11) NOT NULL,
-  `apply` date DEFAULT NULL,
+  `apply` date NOT NULL,
   `tajuk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ic` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `mra_claim` (
 --
 
 INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `updated`) VALUES
-(1, '2025-08-15', 'CLAIM BULAN 8', '000922012519', '3', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Aug 2025).xlsx', '2025-08-15 06:51:33');
+(1, '2025-08-17', 'CLAIM BULAN 8', '000922012519', '1', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Aug 2025).pdf', '2025-08-17 09:41:32');
 
 -- --------------------------------------------------------
 
@@ -292,6 +292,7 @@ INSERT INTO `mra_outstation` (`id`, `name`, `ic`, `datestart`, `purpose`, `detai
 
 CREATE TABLE `mra_staff` (
   `id` int(11) NOT NULL,
+  `id_user` varchar(20) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `icno` varchar(14) DEFAULT NULL,
@@ -309,12 +310,13 @@ CREATE TABLE `mra_staff` (
 -- Dumping data for table `mra_staff`
 --
 
-INSERT INTO `mra_staff` (`id`, `name`, `email`, `icno`, `position`, `password`, `status`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`) VALUES
-(3, 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '0125948508', 'MAYBANK', '162870151398', 'wish.png', 'LETILICA SDN BHD'),
-(5, 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '01172259030', 'MAYBANK', '162107427034', '', ''),
-(6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'BANK ISLAM', '01032020736545', 'signature.png', 'LETILICA SDN BHD'),
-(12, 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', '488753', 'HR STAFF', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD'),
-(13, 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD');
+INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `password`, `status`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`) VALUES
+(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD'),
+(5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '01172259030', 'Maybank', '162107427034', '', ''),
+(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD'),
+(12, 'alin', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', '488753', 'HR STAFF', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD'),
+(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD'),
+(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', '265285', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', '', 'LETILICA SDN BHD');
 
 -- --------------------------------------------------------
 
@@ -419,7 +421,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `mra_claim`
 --
 ALTER TABLE `mra_claim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mra_claims`
@@ -449,7 +451,7 @@ ALTER TABLE `mra_outstation`
 -- AUTO_INCREMENT for table `mra_staff`
 --
 ALTER TABLE `mra_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `mra_wfh`
