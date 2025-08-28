@@ -13,7 +13,7 @@ $sql = "SELECT * FROM mra_staff WHERE name = '$name'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
+	$row = mysqli_fetch_assoc($result);	
         $name = $row['name'];
         $email = $row['email'];
         $ic = $row['icno'];
@@ -27,7 +27,7 @@ if (mysqli_num_rows($result) > 0) {
         $id = $row['id'];
         $status = $row['status'];
         $syarikat = $row['syarikat'];
-    }
+	$portfolio = $row['portfolio'];
 }
 ?>
 <style>
@@ -165,6 +165,11 @@ if (mysqli_num_rows($result) > 0) {
                                 <option value="MIM DEFENSE SDN BHD" <?php echo ($syarikat == 'MIM DEFENSE SDN BHD') ? 'selected' : ''; ?>>MIM DEFENSE SDN BHD</option>
                             </select>
                         </div>
+			<label for="datestart" class="col-sm-2 col-form-label">PORTFOLIO :</label>
+			<div class="col-sm-4">
+				<input type="file" class="form-control mb-3" id="portfolio" name="portfolio" value="<?php echo $portfolio; ?>">
+				<input type="text" name="portfolio1" value="<?php echo $portfolio; ?>" style="display: none;">
+			</div>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3" name="submit">UPDATE</button>
                 </div>
