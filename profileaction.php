@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $accuser   = $_POST['account'];
     $passuser = $_POST['password'];
     $namefile = $_FILES['namefile']['name'];
+    $namefile1 = $_POST['namefile1'];
     $temp_name = $_FILES['namefile']['tmp_name'];
     //$nameimage = $_FILES['nameimage']['name'];
     //$temp_name_user = $_FILES['nameimage']['tmp_name'];
@@ -19,7 +20,7 @@ if (isset($_POST['submit'])) {
     $syarikat = $_POST['syarikat'];
     $portfolio = $_FILES['portfolio']['name'];
     $temp_portfolio = $_FILES['portfolio']['tmp_name'];	
-    $portfolio1 = $_POST['portfolio1'];
+    $portfolio1 = $_POST['portfolio1'];	
 
     if ($namefile != '' && $portfolio == '') {
         // Path fizikal untuk simpanan
@@ -28,7 +29,7 @@ if (isset($_POST['submit'])) {
         $target_file = $target_dir . basename($namefile);
 
         // Pastikan move_uploaded_file berfungsi
-        if (move_uploaded_file($temp_name, $target_file) && move_uploaded_file($temp_portfolio, $target_folio_file)) {
+        if (move_uploaded_file($temp_name, $target_file)) {
             $update = "UPDATE `mra_staff` SET name='$nameuser', email='$emailuser', icno='$icuser', position='$positionuser', password='$passuser', phoneno='$phoneuser', bank_name='$bankuser', acc_no='$accuser', image='$namefile', syarikat='$syarikat', portfolio='$portfolio1' WHERE id='$id'";
         } else {
             echo "Gagal memuat naik fail. Error: " . $_FILES['namefile']['error'];
@@ -40,7 +41,7 @@ if (isset($_POST['submit'])) {
 
         // Pastikan move_uploaded_file berfungsi
         if (move_uploaded_file($temp_portfolio, $target_folio_file)) {
-            $update = "UPDATE `mra_staff` SET name='$nameuser', email='$emailuser', icno='$icuser', position='$positionuser', password='$passuser', phoneno='$phoneuser', bank_name='$bankuser', acc_no='$accuser', image='$namefile', syarikat='$syarikat', portfolio='$portfolio' WHERE id='$id'";
+            $update = "UPDATE `mra_staff` SET name='$nameuser', email='$emailuser', icno='$icuser', position='$positionuser', password='$passuser', phoneno='$phoneuser', bank_name='$bankuser', acc_no='$accuser', image='$namefile1', syarikat='$syarikat', portfolio='$portfolio' WHERE id='$id'";
         } else {
             echo "Gagal memuat naik fail. Error: " . $_FILES['namefile']['error'];
         }

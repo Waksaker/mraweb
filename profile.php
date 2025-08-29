@@ -86,8 +86,11 @@ if (mysqli_num_rows($result) > 0) {
             <form method="POST" enctype="multipart/form-data" action="profileaction.php">
                 <div class="col">
                     <label for="datestart" class="col-sm-2 col-form-label">SIGNATURE IMAGE :</label>
-                    <input type="file" name="namefile" value="<?php echo $namefile; ?>" onchange="previewImageSign(event)">
-                    <div class="container-img">
+                    <div class="col-sm-4">
+			<input type="file" name="namefile" class="form-control mb-3" value="<?php echo $namefile; ?>" onchange="previewImageSign(event)">
+               	    	<input type="text" name="namefile1" value="<?php echo $namefile; ?>" style="display: none;">
+		    </div>    
+		<div class="container-img">
                         <label for="input-file" id="drop-area">
                             <div id="img-view">
                                 <?php

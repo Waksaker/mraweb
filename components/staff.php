@@ -56,6 +56,7 @@ $date = $row1['outoffice'];
                             <strong>Bank Name:</strong> {$rowstaff['bank_name']}<br>
                             <strong>Account Number:</strong> {$rowstaff['acc_no']}<br>
                             <strong>Syarikat:</strong> {$rowstaff['syarikat']}<br>
+			    <strong>Portfolio:</strong>{$rowstaff['portfolio']}<br>
                         </div>
                     ";
                     $id = $rowstaff['id'];
@@ -67,7 +68,14 @@ $date = $row1['outoffice'];
 					<td>
 						<a href="kemaskinistaff.php?name=<?php echo $rowstaff['name'];?>&position=<?php echo $rowstaff['position']; ?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;"></a>
             <button type="button" onclick="send('<?php echo $id ?>')" class="btn btn-primary"><img src="assets/images/send.png" alt="" style="width: 24; height: 24px;"></button>
-            <button type="button" onclick="deletestaff('<?php echo $id ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
+            	<?php
+			if ($rowstaff['portfolio'] != ''){
+			?>
+			<a href="./folio/<?php echo $rowstaff['portfolio']; ?>" class="btn btn-primary" target="_blank"><img src="assets/images/resume.png" alt="" style="width: 24px;  height: 24px;"></a>
+			<?php
+			}
+		?>
+		<button type="button" onclick="deletestaff('<?php echo $id ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
 					</td>
 				</tr>
 			</tbody>  
