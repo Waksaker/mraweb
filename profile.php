@@ -168,10 +168,10 @@ if (mysqli_num_rows($result) > 0) {
                                 <option value="MIM DEFENSE SDN BHD" <?php echo ($syarikat == 'MIM DEFENSE SDN BHD') ? 'selected' : ''; ?>>MIM DEFENSE SDN BHD</option>
                             </select>
                         </div>
-			<label for="datestart" class="col-sm-2 col-form-label">PORTFOLIO :</label>
 		    </div>
+            <br>
 		    <div class="row mb-3">
-			<h3>PORTFOLIO</h3>
+			<h3>Portfolio</h3>
 		    </div>
 		    <div class="col-sm-4">
 			<input type="file" class="form-control mb-3" id="portfolio" name="portfolio" value="<?php echo $portfolio; ?>">
