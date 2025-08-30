@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mra Global</title>
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <script src="assets/js/sweetalert2.min.js"></script>
+</head>
+<body>
+
+</body>
+</html>
 <?php
 include("conn.php");
 
@@ -46,14 +59,25 @@ if (isset($_POST['submit'])) {
             echo "Gagal memuat naik fail. Error: " . $_FILES['namefile']['error'];
         }
     } else {
-        $update = "UPDATE `mra_staff` SET name='$nameuser', email='$emailuser', icno='$icuser', position='$positionuser', password='$passuser', phoneno='$phoneuser', bank_name='$bankuser', acc_no='$accuser', status='$status', syarikat='$syarikat', portfolio='$portfolio1' WHERE id='$id'";
+        $update = "UPDATE `mra_staff` SET name='$nameuser', email='$emailuser', icno='$icuser', position='$positionuser', password='$passuser', phoneno='$phoneuser', bank_name='$bankuser', acc_no='$accuser', syarikat='$syarikat', portfolio='$portfolio1' WHERE id='$id'";
     }
 
     if (isset($update)) {
         $result_update = mysqli_query($conn, $update) or die(mysqli_error($conn));
         if ($result_update) {
-            header("Location: dashboard.php");
-            exit();
+            echo "
+                <script>
+                                Swal.fire({
+                                    text: 'Submit Successfull',
+                                    icon: 'success'
+                                }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                        window.location = 'dashboard.php';
+                                    }
+                            });
+                            </script>
+            ";
         } else {
             echo "TIDAK BERJAYA";
         }

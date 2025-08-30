@@ -169,11 +169,24 @@ if (mysqli_num_rows($result) > 0) {
                             </select>
                         </div>
 			<label for="datestart" class="col-sm-2 col-form-label">PORTFOLIO :</label>
-			<div class="col-sm-4">
-				<input type="file" class="form-control mb-3" id="portfolio" name="portfolio" value="<?php echo $portfolio; ?>">
-				<input type="text" name="portfolio1" value="<?php echo $portfolio; ?>" style="display: none;">
-			</div>
-                    </div>
+		    </div>
+		    <div class="row mb-3">
+			<h3>PORTFOLIO</h3>
+		    </div>
+		    <div class="col-sm-4">
+			<input type="file" class="form-control mb-3" id="portfolio" name="portfolio" value="<?php echo $portfolio; ?>">
+			<input type="text" name="portfolio1" value="<?php echo $portfolio; ?>" style="display: none;">
+		    </div>
+		    <div>
+			<?php
+				if ($portfolio != '') {
+			?>
+				<iframe src="./folio/<?php echo $portfolio; ?>" width="100%" height="600" style="border:0;"></iframe>
+			<?php
+				} 
+			?>
+		    </div>
+		     
                     <button type="submit" class="btn btn-primary mt-3" name="submit">UPDATE</button>
                 </div>
             </form>
