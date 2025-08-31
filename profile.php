@@ -162,11 +162,7 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>
                         <div class="col-sm-4">
-                            <select class="form-control mb-1" name="syarikat" id="syarikat">
-                                <option value="MRA GLOBAL SDN BHD" <?php echo ($syarikat == 'MRA GLOBAL SDN BHD') ? 'selected' : ''; ?>>MRA GLOBAL SDN BHD</option>
-                                <option value="LETILICA SDN BHD" <?php echo ($syarikat == 'LETILICA SDN BHD') ? 'selected' : ''; ?>>LETILICA SDN BHD</option>
-                                <option value="MIM DEFENSE SDN BHD" <?php echo ($syarikat == 'MIM DEFENSE SDN BHD') ? 'selected' : ''; ?>>MIM DEFENSE SDN BHD</option>
-                            </select>
+                        	<input type="text" class="form-control mb-1" value="<?php echo $syarikat; ?>" readonly>
                         </div>
 		    </div>
             <br>

@@ -21,7 +21,7 @@ $status = $row['status'];
             <?php
               if ($syarikat == "MRA GLOBAL SDN BHD") {
                 echo "
-                  <img src='assets/images/logos/mra.png' width='100' style='margin: 0 10px;' alt='Logo 1'>
+                  <img src='assets/images/logos/mra.PNG' width='100' style='margin: 0 10px;' alt='Logo 1'>
                   <h4 class='mt-2 mb-0'>MRA GLOBAL SDN BHD</h4>
                 ";
               } elseif ($syarikat == "LETILICA SDN BHD") {
