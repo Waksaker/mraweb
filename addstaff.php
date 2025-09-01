@@ -116,7 +116,10 @@
                         <div class="col-sm-4">
                             <select name="status" id="status" class="form-control mb-3">
                                 <option value="STAFF">STAFF</option>
-                                <option value="HR STAFF">HR STAFF</option>
+				<option value="HR STAFF">HR STAFF</option>
+				<option value="ADMIN STAFF">ADMIN STAFF</option>
+				<option value="LEADER STAFF">LEADER STAFF</option>
+				<option value="MANAGER">MANAGER</option>
                             </select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>

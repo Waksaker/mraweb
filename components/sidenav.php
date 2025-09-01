@@ -97,7 +97,7 @@ $status = $row['status'];
             </li> -->
 
             <?php
-              if ($status == 'HR STAFF') {
+              if ($status == 'HR STAFF' || $status == 'ADMIN STAFF') {
                 echo '
 					<li class="nav-small-cap">
 						<i class="ti ti-dots nav-small-cap-icon fs-4"></i>
