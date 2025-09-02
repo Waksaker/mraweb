@@ -81,7 +81,20 @@ $status = $row['status'];
                 </span>
                 <span class="hide-menu">Claim</span>
               </a>
-            </li>
+	    </li>
+
+		<li class="nav-small-cap">
+			<i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+			<span class="hide-menu">REQUEST</span>
+		</li>
+		<li class="sidebar-item">
+			<a class="sidebar-link" href="request.php" aria-expanded="false">
+				<span>
+					<i class="ti ti-article"></i>
+				</span>
+				<span class="hide-menu">Request</span>
+			</a>
+		</li>
 
             <!-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -97,7 +110,7 @@ $status = $row['status'];
             </li> -->
 
             <?php
-              if ($status == 'HR STAFF' || $status == 'ADMIN STAFF') {
+              if ($status == 'HR STAFF' || $status == 'ADMIN STAFF' || $status == 'MANAGER') {
                 echo '
 					<li class="nav-small-cap">
 						<i class="ti ti-dots nav-small-cap-icon fs-4"></i>

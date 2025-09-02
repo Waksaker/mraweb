@@ -146,7 +146,9 @@ if (mysqli_num_rows($result) > 0) {
 							<select class="form-control mb-1" name="status" id="status">
 								<option value="STAFF" <?php echo ($status == 'STAFF') ? 'selected' : ''; ?>>STAFF</option>
 								<option value="HR STAFF" <?php echo ($status == 'HR STAFF') ? 'selected' : ''; ?>>HR STAFF</option>
+								<option value="ADMIN STAFF" <?php echo ($status == 'ADMIN STAFF') ? 'selected' : ''; ?>>ADMIN STAFF</option>
 								<option value="LEADER STAFF" <?php echo ($status == 'LEADER STAFF') ? 'selected' : ''; ?>>LEADER STAFF</option>
+								<option value="MANAGER" <?php echo ($status == 'MANAGER') ? 'selected' : ''; ?>>MANAGER</option>
 							</select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>
