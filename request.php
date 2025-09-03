@@ -20,7 +20,7 @@ $status = $row['status'];
 			<?php
 				if($status=='STAFF'){
 			?>
-				<a href="" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Create Claim</a>
+				<a href="createreq.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Create Claim</a>
 			<?php
 				}
 			?>
