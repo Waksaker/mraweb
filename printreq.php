@@ -1,3 +1,31 @@
+<?php
+include('conn.php');
+if (!isset($_GET['name']) && !isset($_GET['date'])) exit();
+$name = $_GET['name'];
+$date = $_GET['date'];
+
+// untuk request
+$result = mysqli_query($conn, "SELECT * FROM `request` WHERE namestaff = '$name' AND 	dateapply = '$date'");
+if (mysqli_num_rows($result) < 0) exit();
+$row = mysqli_fetch_assoc($result);
+$appoiment = $row['appoiment'];
+$department = $row['department'];
+$supplirename = $row['supplirename'];
+$suppladderss = $row['suppladderss'];
+$attention = $row['attention'];
+$termpayment = $row['termpayment'];
+$payto = $row['payto'];
+$accno = $row['accno'];
+$bankname = $row['bankname'];
+$remark = $row['remark'];
+$signreq = $row['signreq'];
+$signmanager = $row['signmanager'];
+$datemanager = $row['datemanager'];
+$signacc = $row['signacc'];
+$dateacc = $row['dateacc'];
+$signdirector = $row['signdirector'];
+$datedirector = $row['datedirector'];
+?>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -73,24 +101,24 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 50%;"><h6>Staff Name:</h6></td>
-                            <td style="width: 50%;"><h6>Date:</h6></td>
+                            <td style="width: 50%;"><h6>Staff Name: <?php echo ($name) ? $name : ''; ?></h6></td>
+                            <td style="width: 50%;"><h6>Date: <?php echo ($date) ? $date : ''; ?></h6></td>
                         </tr>
                         <tr>
-                            <td><h6>Appointment:</h6></td>
-                            <td><h6>Department:</h6></td>
+                            <td><h6>Appointment: <?php echo ($appoiment) ? $appoiment : ''; ?></h6></td>
+                            <td><h6>Department: <?php echo ($department) ? $department : ''; ?></h6></td>
                         </tr>
                     </table>
 
                     <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
                         <tr>
-                             <td style="width: 50%;"><h6>Supplier Name:</h6></td>
+                             <td style="width: 50%;"><h6>Supplier Name: <?php echo ($supplirename) ? $supplirename : ''; ?></h6></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%;"><h6>Supplier Address:</h6></td>
+                            <td style="width: 50%;"><h6>Supplier Address: <?php echo ($suppladderss) ? $suppladderss : ''; ?></h6></td>
                         </tr>
                         <tr>
-                            <td style="width: 50%;"><h6>Attention:</h6></td>
+                            <td style="width: 50%;"><h6>Attention: <?php echo ($attention) ? $attention : ''; ?></h6></td>
                         </tr>
                     </table>
 
@@ -102,32 +130,49 @@
                             <th style="text-align: center;"><h5><b>Price per Unit (RM)</b></h5></th>
                             <th style="text-align: center;"><h5><b>Amount (RM)</b></h5></th>
                         </tr>
-                        <tr>
-                            <td style="text-align: center;">1.</td>
-                            <td style="text-align: center;">AIR</td>
-                            <td style="text-align: center;">1</td>
-                            <td style="text-align: center;">45.00</td>
-                            <td style="text-align: center;">45.00</td>
-                        </tr>
+                        <?php
+                            // untuk list request
+                            $index = 1;
+                            $result1 = mysqli_query($conn, "SELECT * FROM `list_request` WHERE name = '$name' AND date = '$date'");
+                            while ($row1 = mysqli_fetch_assoc($result1)) {
+                                ?>
+                                <tr>
+                                    <td style="text-align: center;"><?php echo ($index++); ?></td>
+                                    <td style="text-align: center;"><?php echo ($row1['descriptions']) ? $row1['descriptions'] : ''; ?></td>
+                                    <td style="text-align: center;"><?php echo ($row1['quantity']) ? $row1['quantity'] : ''; ?></td>
+                                    <td style="text-align: center;"><?php echo ($row1['price']) ? $row1['price'] : ''; ?></td>
+                                    <td style="text-align: center;"><?php echo ($row1['amount']) ? $row1['amount'] : ''; ?></td>
+                                </tr>
+                                <?php
+                            }
+                        ?>
                         <tr>
                             <td style="border-right: none;"></td>
                             <td style="border-left: none; border-right: none;"></td>
                             <td style="border-right: none; border-left: none;"></td>
                             <td style="text-align: right; border-left: none;">Total (RM)</td>
-                            <td style="text-align: center;">45.00</td>
+                            <td style="text-align: center;">
+                                <?php
+                                    $result2 = mysqli_query($conn, "SELECT SUM(amount) as amount FROM `list_request` WHERE name = '$name' AND date = '$date'");
+                                    if (mysqli_num_rows($result2) < 0) echo "00.00";
+                                    $row2 = mysqli_fetch_assoc($result2);
+                                    $amount = $row2['amount'];
+                                    echo "$amount";
+                                ?>
+                            </td>
                         </tr>
                     </table>
 
                     <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
                         <tr>
                             <td style="border-right: none;">
-                                <h6>Terms of Payment:</h6>
-                                <h6>Pay to:</h6>
-                                <h6>Terms of Payment:</h6>
-                                <h6>Terms of Payment:</h6>
+                                <h6>Terms of Payment: <?php echo ($termpayment) ? $termpayment : ''; ?></h6>
+                                <h6>Pay to: <?php echo ($payto) ? $payto : ''; ?></h6>
+                                <h6>Account No: <?php echo ($accno) ? $accno : ''; ?></h6>
+                                <h6>Bank Name: <?php echo ($bankname) ? $bankname : ''; ?></h6>
                                 <br>
                                 <br>
-                                <h6>Remarks:</h6>
+                                <h6>Remarks: <?php echo ($remark) ? $remark : ''; ?></h6>
                             </td>
                         </tr>
                     </table>
@@ -140,16 +185,20 @@
                             <td style="text-align: center;">Approved by Director</td>
                         </tr>
                         <tr>
-                            <td style="text-align: center; height: 80px;"></td>
+                            <td style="text-align: center; height: 80px;">
+                                <?php
+                                    echo '<img src="./image/' . $signreq . '" alt="" id="preview-img-sign">';
+                                ?>
+                            </td>
                             <td style="text-align: center; height: 80px;"></td>
                             <td style="text-align: center; height: 80px;"></td>
                             <td style="text-align: center; height: 80px;"></td>
                         </tr>
                         <tr>
-                            <td>Date:</td>
-                            <td>Date:</td>
-                            <td>Date:</td>
-                            <td>Date:</td>
+                            <td>Date: <?php echo ($date) ? $date : ''; ?></td>
+                            <td>Date: <?php echo ($datemanager) ? $datemanager : ''; ?></td>
+                            <td>Date: <?php echo ($dateacc) ? $dateacc : ''; ?></td>
+                            <td>Date: <?php echo ($datedirector) ? $datedirector : ''; ?></td>
                         </tr>
                     </table>
                 </div>

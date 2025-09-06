@@ -13,7 +13,7 @@
         <form name="createreq1" action="createreqaction.php" method="POST" enctype="multipart/form-data">
             <div class="customer_records">
                 <div class="row mb-3">
-                    <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>">
+                    <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>" style="display:none;">
                     <label for="datestart" class="col-sm-2 col-form-label">DATE :</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control mb-3" id="dateapply" name="dateapply">
@@ -41,7 +41,7 @@
 		        </div>
             </div>
             <div align="right">
-                <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="createreq1">SUBMIT</button>
+              <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="createreq1" onclick="return validate()">SUBMIT</button>
             </div>
         </form>
     </div>
@@ -85,6 +85,6 @@
         form.attention.focus();
         return false;
       }
-      return true; // allow submit
+      return true; // bagi submit terus
     }
   </script>

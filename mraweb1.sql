@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 06, 2025 at 05:38 AM
+-- Generation Time: Sep 06, 2025 at 09:53 AM
 -- Server version: 8.0.43-0ubuntu0.24.04.1
 -- PHP Version: 8.3.6
 
@@ -62,8 +62,16 @@ CREATE TABLE `list_request` (
   `descriptions` varchar(255) NOT NULL,
   `quantity` char(10) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `amount` varchar(10) NOT NULL
+  `amount` decimal(10,2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `list_request`
+--
+
+INSERT INTO `list_request` (`id`, `name`, `date`, `descriptions`, `quantity`, `price`, `amount`) VALUES
+(4, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'barang spepart', '2', 70.00, 140.00),
+(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'motor', '2', 100.00, 200.00);
 
 -- --------------------------------------------------------
 
@@ -328,11 +336,11 @@ CREATE TABLE `request` (
   `remark` varchar(255) NOT NULL,
   `signreq` varchar(255) NOT NULL,
   `signmanager` varchar(255) NOT NULL,
-  `datemanager` date NOT NULL,
+  `datemanager` varchar(10) DEFAULT NULL,
   `signacc` varchar(255) NOT NULL,
-  `dateacc` date NOT NULL,
+  `dateacc` varchar(10) DEFAULT NULL,
   `signdirector` varchar(255) NOT NULL,
-  `datedirector` date NOT NULL
+  `datedirector` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -340,8 +348,7 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06'),
-(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06');
+(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06');
 
 --
 -- Indexes for dumped tables
@@ -351,6 +358,12 @@ INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`
 -- Indexes for table `attandance`
 --
 ALTER TABLE `attandance`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_request`
+--
+ALTER TABLE `list_request`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -406,6 +419,12 @@ ALTER TABLE `attandance`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `list_request`
+--
+ALTER TABLE `list_request`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `mra_claims`
 --
 ALTER TABLE `mra_claims`
@@ -445,7 +464,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
