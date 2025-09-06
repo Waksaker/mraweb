@@ -9,7 +9,8 @@
             <h3>STEP 1</h3>
         </div>
         <br>
-        <form action="createreqaction.php" method="post" enctype="multipart/form-data">
+        <?php ?>
+        <form name="createreq1" action="createreqaction.php" method="POST" enctype="multipart/form-data">
             <div class="customer_records">
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>">
@@ -19,7 +20,7 @@
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">APPOINTMENT :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="appointment" name="appointment">
+                        <input type="text" class="form-control mb-3" id="appoiment" name="appoiment">
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DEPARTMENT :</label>
                     <div class="col-sm-4">
@@ -27,11 +28,11 @@
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">SUPPLIER NAME :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="supliername" name="supliername">
+                        <input type="text" class="form-control mb-3" id="supplirename" name="supplirename">
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">SUPPLIER ADDRESS :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="suplieraddress" name="suplieraddress">
+                        <input type="text" class="form-control mb-3" id="suppladderss" name="suppladderss">
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">ATTENTION :</label>
                     <div class="col-sm-4">
@@ -45,4 +46,45 @@
         </form>
     </div>
 </div>
-<?php include("./components/footer.php"); ?> 
+<?php include("./components/footer.php"); ?>
+<script>
+    function validate() {
+      form = document.createreq1;
+      if (form.name.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your name!', confirmButtonColor: '#1B95CF' });
+        form.name.focus();
+        return false;
+      }
+      else if (form.dateapply.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your date!', confirmButtonColor: '#1B95CF' });
+        form.dateapply.focus();
+        return false;
+      }
+      else if (form.appoiment.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your appointment!', confirmButtonColor: '#1B95CF' });
+        form.appoiment.focus();
+        return false;
+      }
+      else if (form.department.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your department!', confirmButtonColor: '#1B95CF' });
+        form.department.focus();
+        return false;
+      }
+      else if (form.supplirename.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your supplier name!', confirmButtonColor: '#1B95CF' });
+        form.supplirename.focus();
+        return false;
+      }
+      else if (form.suppladderss.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your supplier address!', confirmButtonColor: '#1B95CF' });
+        form.suppladderss.focus();
+        return false;
+      }
+      else if (form.attention.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your attention!', confirmButtonColor: '#1B95CF' });
+        form.attention.focus();
+        return false;
+      }
+      return true; // allow submit
+    }
+  </script>

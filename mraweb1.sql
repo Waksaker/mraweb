@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 05, 2025 at 04:26 PM
+-- Generation Time: Sep 06, 2025 at 05:38 AM
 -- Server version: 8.0.43-0ubuntu0.24.04.1
 -- PHP Version: 8.3.6
 
@@ -315,7 +315,7 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 CREATE TABLE `request` (
   `id` int NOT NULL,
   `namestaff` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `dateapply` date DEFAULT NULL,
+  `dateapply` date NOT NULL,
   `appoiment` varchar(255) NOT NULL,
   `department` varchar(255) NOT NULL,
   `supplirename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -334,6 +334,14 @@ CREATE TABLE `request` (
   `signdirector` varchar(255) NOT NULL,
   `datedirector` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`) VALUES
+(1, 'MOHAMAD FARISH SYAH DANIAL', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06'),
+(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06');
 
 --
 -- Indexes for dumped tables
@@ -382,6 +390,12 @@ ALTER TABLE `mra_wfh`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `request`
+--
+ALTER TABLE `request`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -425,6 +439,12 @@ ALTER TABLE `mra_staff`
 -- AUTO_INCREMENT for table `mra_wfh`
 --
 ALTER TABLE `mra_wfh`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `request`
+--
+ALTER TABLE `request`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

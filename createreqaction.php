@@ -2,23 +2,25 @@
 include("conn.php");
 
 if (isset($_POST['createreq1'])) {
-    $name = $_POST['name'];
+    $name = $_POST['name']; 
     $dateapply = $_POST['dateapply'];
-    $appointment = $_POST['appointment'];
+    $appoiment = $_POST['appoiment'];
     $department = $_POST['department'];
-    $supliername = $_POST['supliername'];
-    $suplieraddress = $_POST['suplieraddress'];
+    $supplirename = $_POST['supplirename'];
+    $suppladderss = $_POST['suppladderss'];
     $attention = $_POST['attention'];
 
-    $sql1 = "INSERT INTO request (
-            namestaff, dateapply, appoiment, department, suppliername, supplieraddress, attention,
-            termpayment, payto, accno, bankname, remark, signreq, signmanager, datemanager,
-            signacc, dateacc, signdirector, datedirector
-        ) VALUES (
-        '$name', '$dateapply', '$appointment', '$department', '$supliername', '$suplieraddress', '$attention',
-        NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$dateapply',
-        NULL, '$dateapply', NULL, '$dateapply'
-    )";
+    $sql1 = "
+       INSERT INTO `request`
+       (`namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
+       `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
+       `signacc`, `dateacc`, `signdirector`, `datedirector`) 
+        VALUES 
+       (
+            '$name', '$dateapply', '$appoiment', '$department', '$supplirename', '$suppladderss', '$attention',
+            'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$dateapply',
+            'NULL', '$dateapply', 'NULL', '$dateapply')
+    ";
 
     $result1 = mysqli_query($conn, $sql1);
 
