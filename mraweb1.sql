@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 06, 2025 at 09:53 AM
+-- Generation Time: Sep 07, 2025 at 02:29 PM
 -- Server version: 8.0.43-0ubuntu0.24.04.1
 -- PHP Version: 8.3.6
 
@@ -71,7 +71,9 @@ CREATE TABLE `list_request` (
 
 INSERT INTO `list_request` (`id`, `name`, `date`, `descriptions`, `quantity`, `price`, `amount`) VALUES
 (4, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'barang spepart', '2', 70.00, 140.00),
-(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'motor', '2', 100.00, 200.00);
+(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'motor', '2', 100.00, 200.00),
+(6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-08', 'AIR FILTER NAVARA', '1', 45.60, 45.60),
+(7, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-08', 'HOSE CLIP', '2', 5.00, 10.00);
 
 -- --------------------------------------------------------
 
@@ -285,10 +287,10 @@ CREATE TABLE `mra_staff` (
 INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `password`, `status`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`, `portfolio`) VALUES
 (3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', ''),
 (5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '01172259030', 'Maybank', '162107427034', '', '', ''),
-(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', '', 'CV Farish.pdf'),
+(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish.pdf'),
 (12, 'alin', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', 'mra123', 'HR STAFF', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
-(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'ADMIN STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD', ''),
-(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', '265285', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', '', 'LETILICA SDN BHD', '');
+(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'ADMIN STAFF', '0189178650', 'Maybank', '164221637324', 'signature_nurul.png', 'MRA GLOBAL SDN BHD', ''),
+(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'CEO', 'mra123', 'MANAGER', '01156640727', 'Bank Islam', '01032020736545', 'signature_amri.png', 'LETILICA SDN BHD', '');
 
 -- --------------------------------------------------------
 
@@ -341,17 +343,18 @@ CREATE TABLE `request` (
   `dateacc` varchar(10) DEFAULT NULL,
   `signdirector` varchar(255) NOT NULL,
   `datedirector` varchar(10) DEFAULT NULL,
-  `statusacc` int(11) NOT NULL,
-  `statusmana` int(11) NOT NULL,
-  `statusdirec` int(11) NOT NULL
+  `statusacc` int NOT NULL,
+  `statusmana` int NOT NULL,
+  `statusdirec` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `request`
 --
 
-INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '2025-09-06', 'NULL', '2025-09-06', 'NULL', '2025-09-06');
+INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) VALUES
+(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-06', 'test', 'test', 'test', 'test', 'test', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png\n', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1),
+(5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-08', 'Keperluan segera membawa barang masuk ke kem kluang', 'GEMAS', 'GEMAS MOTOR SERVICE', 'GEMAS NEGERI SEMBILAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'signature_amri.png', '2025-09-07', 'signature_nurul.png', '2025-09-07', 'NULL', '0000-00-00', 2, 2, 1);
 
 --
 -- Indexes for dumped tables
@@ -425,7 +428,7 @@ ALTER TABLE `attandance`
 -- AUTO_INCREMENT for table `list_request`
 --
 ALTER TABLE `list_request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mra_claims`
@@ -467,7 +470,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
