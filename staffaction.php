@@ -72,6 +72,7 @@ include('conn.php');
         $result = $stmt->execute();
         $stmt->close();
         if ($result === TRUE) {
+            // untuk window
             $ch = curl_init($scriptUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);

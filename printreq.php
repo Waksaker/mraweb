@@ -190,9 +190,21 @@ $datedirector = $row['datedirector'];
                                     echo '<img src="./image/' . $signreq . '" alt="" id="preview-img-sign">';
                                 ?>
                             </td>
-                            <td style="text-align: center; height: 80px;"></td>
-                            <td style="text-align: center; height: 80px;"></td>
-                            <td style="text-align: center; height: 80px;"></td>
+                            <td style="text-align: center; height: 80px;">
+                                <?php
+                                    echo '<img src="./image/' . $signmanager . '" alt="" id="preview-img-sign">';
+                                ?>
+                            </td>
+                            <td style="text-align: center; height: 80px;">
+                                <?php
+                                    echo '<img src="./image/' . $signacc . '" alt="" id="preview-img-sign">';
+                                ?>
+                            </td>
+                            <td style="text-align: center; height: 80px;">
+                                <?php
+                                    echo '<img src="./image/' . $signdirector . '" alt="" id="preview-img-sign">';
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>Date: <?php echo ($date) ? $date : ''; ?></td>

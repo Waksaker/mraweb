@@ -54,7 +54,10 @@
                 <h3>Add Staff</h3>
             </div>
             <br>
+            <!-- window -->
             <form name="addstaff" method="POST" action="staffaction.php">
+            <!-- server -->
+            <!-- <form name="addstaff" method="GET" action="staffaction1.php"> -->
                 <div class="customer_records">
                     <div class="row mb-3">
                         <input type="text" class="form-control mb-3" id="date" name="id" value="" style="display: none;">
@@ -115,11 +118,12 @@
                         <label for="datestart" class="col-sm-2 col-form-label">STATUS :</label>
                         <div class="col-sm-4">
                             <select name="status" id="status" class="form-control mb-3">
+                                <option value="">Please Choose</option>
                                 <option value="STAFF">STAFF</option>
-				<option value="HR STAFF">HR STAFF</option>
-				<option value="ADMIN STAFF">ADMIN STAFF</option>
-				<option value="LEADER STAFF">LEADER STAFF</option>
-				<option value="MANAGER">MANAGER</option>
+                				<option value="HR STAFF">HR STAFF</option>
+                				<option value="ADMIN STAFF">ADMIN STAFF</option>
+                				<option value="LEADER STAFF">LEADER STAFF</option>
+                				<option value="MANAGER">MANAGER</option>
                             </select>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>

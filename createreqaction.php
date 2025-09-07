@@ -80,5 +80,39 @@ if (isset($_POST['createreq1'])) {
     } else {
         die("Error: " . mysqli_error($conn));
     }
+} elseif (isset($_POST['editreq2mana'])) {
+    $namemana = $_POST['namemana'];
+    $name = $_POST['name'];
+    $date = $_POST['date'];
+    $statusmana = $_POST['statusmana'];
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+    $datetoday = date("Y-m-d");
+    $res = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$namemana'");
+    $row = mysqli_fetch_assoc($res);
+    $sign = $row['image'];
+    $res1 = mysqli_query($conn, "UPDATE `request` SET `signmanager` = '$sign', `datemanager` = '$datetoday', `statusmana` = '$statusmana' WHERE namestaff = '$name' AND dateapply = '$date'");
+    if ($res1) {
+        header("Location: request.php");
+        exit();
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
+} elseif (isset($_POST['editreq2admin'])) {
+    $nameadmin = $_POST['nameadmin'];
+    $name = $_POST['name'];
+    $date = $_POST['date'];
+    $statusadmin = $_POST['statusadmin'];
+    date_default_timezone_set("Asia/Kuala_Lumpur");
+    $datetoday = date("Y-m-d");
+    $res = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$nameadmin'");
+    $row = mysqli_fetch_assoc($res);
+    $sign = $row['image'];
+    $res1 = mysqli_query($conn, "UPDATE `request` SET `signacc` = '$sign', `dateacc` = '$datetoday', `statusacc` = '$statusadmin' WHERE namestaff = '$name' AND dateapply = '$date'");
+    if ($res1) {
+        header("Location: request.php");
+        exit();
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
 }
 ?>
