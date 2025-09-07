@@ -54,5 +54,31 @@ if (isset($_POST['createreq1'])) {
     } else {
         die("Error: " . mysqli_error($conn));
     }
+} elseif (isset($_POST['editreq1'])) {
+    $name = $_POST['name']; 
+    $dateapply = $_POST['dateapply'];
+    $appoiment = $_POST['appoiment'];
+    $department = $_POST['department'];
+    $supplirename = $_POST['supplirename'];
+    $suppladderss = $_POST['suppladderss'];
+    $attention = $_POST['attention'];
+    $id = $_POST['id'];
+
+    $s = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$name'");
+    $r = mysqli_fetch_assoc($s);
+    $sign = $r['image'];
+
+    $sql1 = "
+        UPDATE `request` SET `namestaff` = '$name', `dateapply` = '$dateapply', `appoiment`='$appoiment',`department`='$department',`supplirename`='$supplirename',`suppladderss`='$suppladderss',`attention`='$attention' WHERE id = '$id'
+    ";
+
+    $result1 = mysqli_query($conn, $sql1);
+
+    if ($result1) {
+        header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name));
+        exit();
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
 }
 ?>

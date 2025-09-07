@@ -44,7 +44,7 @@ $status = $row['status'];
 						<tbody>
 							<?php
 								$index = 1;
-								if ($status == "HR STAFF" || $status == "ADMIN STAFF") {
+								if ($status == "HR STAFF" || $status == "ADMIN STAFF" || $status = "MANAGER") {
 									$sql2 = "
 										SELECT 
 											`mra_claim`.`id` AS id,

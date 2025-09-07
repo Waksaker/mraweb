@@ -340,7 +340,10 @@ CREATE TABLE `request` (
   `signacc` varchar(255) NOT NULL,
   `dateacc` varchar(10) DEFAULT NULL,
   `signdirector` varchar(255) NOT NULL,
-  `datedirector` varchar(10) DEFAULT NULL
+  `datedirector` varchar(10) DEFAULT NULL,
+  `statusacc` int(11) NOT NULL,
+  `statusmana` int(11) NOT NULL,
+  `statusdirec` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
