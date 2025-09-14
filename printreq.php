@@ -207,10 +207,44 @@ $datedirector = $row['datedirector'];
                             </td>
                         </tr>
                         <tr>
-                            <td>Date: <?php echo ($date) ? $date : ''; ?></td>
-                            <td>Date: <?php echo ($datemanager) ? $datemanager : ''; ?></td>
-                            <td>Date: <?php echo ($dateacc) ? $dateacc : ''; ?></td>
-                            <td>Date: <?php echo ($datedirector) ? $datedirector : ''; ?></td>
+			    <td>Date: 
+				<?php 
+					if ($date != '0000-00-00') {
+						echo date('d/m/Y', strtotime($date));
+					} else {
+						echo "";
+					}
+				?>
+			    </td>
+			    <td>Date: 
+				<?php 
+					if ($datemanager != '0000-00-00') {
+						echo date('d/m/Y', strtotime($datemanager));
+					}else{
+						echo "";
+					}
+				?>
+			    </td>
+			    <td>Date: 
+				<?php  
+					if ($dateacc != '0000-00-00') {
+						echo date('d/m/Y', strtotime($dateacc));
+					} else {
+						echo "";
+					}
+				?>
+			    </td>
+			    <td>Date: 
+				<?php  
+					
+					if ($datedirector != '0000-00-00') {
+						echo date('d/m/Y', strtotime($datedirector));
+					} else {
+						echo "";
+					}
+				
+				?>
+			    </td>
                         </tr>
                     </table>
                 </div>

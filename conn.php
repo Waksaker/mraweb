@@ -1,7 +1,7 @@
 <?php
 
 $user = 'root';
-$password = '';
+$password = 'pulamek_2023';
 $database = 'mraweb';
 
 $conn = new mysqli('localhost', $user, $password, $database); 

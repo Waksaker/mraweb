@@ -65,7 +65,7 @@ $status = $row['status'];
 <?php include("components/header.php"); ?>
 <?php include("components/sidenav.php"); ?>
 <?php include("components/topnav.php"); ?>
-<?php 
+<?php
 	if ($status == "STAFF") {
 		include("components/welcome.php");
 	} elseif ($status == "HR STAFF" || $status == "ADMIN STAFF" || $status == "MANAGER") {
