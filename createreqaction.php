@@ -102,12 +102,17 @@ if (isset($_POST['createreq1'])) {
     $name = $_POST['name'];
     $date = $_POST['date'];
     $statusadmin = $_POST['statusadmin'];
+    $termpayment = $_POST['termpyment'];
+    $payto = $_POST['payto'];
+    $acc = $_POST['acc'];
+    $bank = $_POST['bank'];
+    $remarks = $_POST['remarks'];
     date_default_timezone_set("Asia/Kuala_Lumpur");
     $datetoday = date("Y-m-d");
     $res = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$nameadmin'");
     $row = mysqli_fetch_assoc($res);
     $sign = $row['image'];
-    $res1 = mysqli_query($conn, "UPDATE `request` SET `signacc` = '$sign', `dateacc` = '$datetoday', `statusacc` = '$statusadmin' WHERE namestaff = '$name' AND dateapply = '$date'");
+    $res1 = mysqli_query($conn, "UPDATE `request` SET `signacc` = '$sign', `dateacc` = '$datetoday', `statusacc` = '$statusadmin', `termpayment` = '$termpayment', `payto` = '$payto', `accno` = '$acc', `bankname` = '$bank', `remark` = '$remarks' WHERE namestaff = '$name' AND dateapply = '$date'");
     if ($res1) {
         header("Location: request.php");
         exit();

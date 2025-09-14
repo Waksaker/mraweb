@@ -105,7 +105,7 @@ $status = $row['status'];
 												<td><?php echo $maklumat; ?></td>
 												<td style="text-align: center;">
 													<a href="printreq.php?name=<?php echo $row['namestaff']; ?>&date=<?php echo $row['dateapply']; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-													<a href="" class="btn btn-primary">
+													<a href="editreq1.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">
 														<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 													</a>
 													<button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >

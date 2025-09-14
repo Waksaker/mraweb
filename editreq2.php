@@ -47,9 +47,9 @@
                     <form name="editreq2mana" action="createreqaction.php" method="POST" enctype="multipart/form-data">
                         <div class="customer_records">
                             <div class="row mb-3">
-                                <input type="text" class="form-control mb-3" id="namemana" name="namemana" value="<?php echo $name; ?>">
-                                <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>">
-                                <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>">
+                                <input type="text" class="form-control mb-3" id="namemana" name="namemana" value="<?php echo $name; ?>" style="display:none;">
+                                <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
+                                <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
                                 <label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
                                     <select class="form-control mb-1" name="statusmana" id="statusmana">
@@ -71,10 +71,20 @@
                     <form name="editreq2admin" action="createreqaction.php" method="POST" enctype="multipart/form-data">
                         <div class="customer_records">
                             <div class="row mb-3">
-                                <input type="text" class="form-control mb-3" id="nameadmin" name="nameadmin" value="<?php echo $name; ?>">
-                                <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>">
-                                <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>">
-                                <label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
+                                <input type="text" class="form-control mb-3" id="nameadmin" name="nameadmin" value="<?php echo $name; ?>" style="display:none;">
+                                <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display: none;">
+				<input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display: none;">
+				<label for="" class="col-sm-2 col-form-label">TERMS OF PAYMENT</label>
+				<input type="text" class="form-control mb-3" id="termpyment" name="termpyment">
+				<label for="" class="col-sm-2 col-form-label">PAY TO</label>
+				<input type="text" class="form-control mb-3" id="payto" name="payto">
+				<label for="" class="col-sm-2 col-form-label">ACCOUNT NO</label>
+				<input type="text" class="form-control mb-3" id="acc" name="acc">
+				<label for="" class="col-sm-2 col-form-label">BANK</label>
+				<input type="text" class="form-control mb-3" id="bank" name="bank">
+				<label for="" class="col-sm-2 col-form-label">REMARKS</label>
+				<input type="text" class="form-control mb-3" id="remarks" name="remarks">
+				<label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
                                     <select class="form-control mb-1" name="statusadmin" id="statusadmin">
                                         <option value="">Please Choose</option>
