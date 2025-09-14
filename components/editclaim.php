@@ -18,7 +18,7 @@ if ($_GET['id']) {
 	$ic = $row['ic'];
 	$status = $row['status'];
 	$folder = $row['folder'];
-  $id = $row['id'];
+	$id = $row['id'];
 	
 	$sql1 = "SELECT * FROM `mra_staff` WHERE name = '$name'";
 	$result1 = mysqli_query($conn, $sql1);
@@ -77,7 +77,20 @@ if ($_GET['id']) {
 					<?php
 				}
 			?>
-        </div>
+	</div>
+	<br>
+	<div class="row mb-3">
+		<h3>Claim Form</h3>
+	</div>
+	<div>
+		<?php
+			if ($folder != '') {
+		?>
+			<iframe src="./claim/<?php echo $folder; ?>" width="100%" height="600" style="border:0;"></iframe>	
+		<?php
+			}	 
+		?>
+	</div>
     </div>
     <div class="customer_records_dynamic"></div>
     <!-- <a for="plusinput" type="button" class="extra-fields-customer btn btn-primary mt-3" href="#">ADD MORE</a> -->
