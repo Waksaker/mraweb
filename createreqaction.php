@@ -74,20 +74,20 @@ if (isset($_POST['createreq1'])) {
     $result2 = mysqli_query($conn, $sql2);
 
     if ($result2) {
-        // echo '
-        //     <script>
-        //         Swal.fire({
-        //             text: "Submit Successful",
-        //             icon: "success"
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
-        //                 window.location = "createreq2.php?date=' . urlencode($date2) . '&name=' . urlencode($name2) . '";
-        //             } 
-        //         });
-        //     </script>
-        // ';
-        header("Location: createreq2.php?date=" . urlencode($date2) . "&name=" . urlencode($name2));
-        exit();
+        echo '
+            <script>
+                Swal.fire({
+                    text: "Submit Successful",
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "createreq2.php?date=' . urlencode($date2) . '&name=' . urlencode($name2) . '";
+                    } 
+                });
+            </script>
+        ';
+        // header("Location: createreq2.php?date=" . urlencode($date2) . "&name=" . urlencode($name2));
+        // exit();
     } else {
         die("Error: " . mysqli_error($conn));
     }
