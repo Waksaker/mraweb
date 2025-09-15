@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				<script>
 					Swal.fire({
 					text: "Submit Successfull",
-					icon: "warning"
+					icon: "success"
 					}).then((result) => {
 					/* Read more about isConfirmed, isDenied below */
 					if (result.isConfirmed) {

@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mra Global</title>
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <script src="assets/js/sweetalert2.min.js"></script>
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 include("conn.php");
 
@@ -29,6 +42,18 @@ if (isset($_POST['createreq1'])) {
     $result1 = mysqli_query($conn, $sql1);
 
     if ($result1) {
+        // echo '
+        //     <script>
+        //         Swal.fire({
+        //             text: "Submit Successful",
+        //             icon: "success"
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 window.location = "createreq2.php?date=' . urlencode($dateapply) . '&name=' . urlencode($name) . '";
+        //             } 
+        //         });
+        //     </script>
+        // ';
         header("Location: createreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name));
         exit();
     } else {
@@ -49,6 +74,18 @@ if (isset($_POST['createreq1'])) {
     $result2 = mysqli_query($conn, $sql2);
 
     if ($result2) {
+        // echo '
+        //     <script>
+        //         Swal.fire({
+        //             text: "Submit Successful",
+        //             icon: "success"
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 window.location = "createreq2.php?date=' . urlencode($date2) . '&name=' . urlencode($name2) . '";
+        //             } 
+        //         });
+        //     </script>
+        // ';
         header("Location: createreq2.php?date=" . urlencode($date2) . "&name=" . urlencode($name2));
         exit();
     } else {
@@ -75,6 +112,18 @@ if (isset($_POST['createreq1'])) {
     $result1 = mysqli_query($conn, $sql1);
 
     if ($result1) {
+        // echo '
+        //     <script>
+        //         Swal.fire({
+        //             text: "Submit Successful",
+        //             icon: "success"
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 window.location = "editreq2.php?date=' . urlencode($dateapply) . '&name=' . urlencode($name) . '";
+        //             } 
+        //         });
+        //     </script>
+        // ';
         header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name));
         exit();
     } else {
@@ -92,8 +141,20 @@ if (isset($_POST['createreq1'])) {
     $sign = $row['image'];
     $res1 = mysqli_query($conn, "UPDATE `request` SET `signmanager` = '$sign', `datemanager` = '$datetoday', `statusmana` = '$statusmana' WHERE namestaff = '$name' AND dateapply = '$date'");
     if ($res1) {
-        header("Location: request.php");
-        exit();
+        echo '
+            <script>
+                Swal.fire({
+                    text: "Submit Successful",
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "request.php";
+                    } 
+                });
+            </script>
+        ';
+        // header("Location: request.php");
+        // exit();
     } else {
         die("Error: " . mysqli_error($conn));
     }
@@ -114,8 +175,20 @@ if (isset($_POST['createreq1'])) {
     $sign = $row['image'];
     $res1 = mysqli_query($conn, "UPDATE `request` SET `signacc` = '$sign', `dateacc` = '$datetoday', `statusacc` = '$statusadmin', `termpayment` = '$termpayment', `payto` = '$payto', `accno` = '$acc', `bankname` = '$bank', `remark` = '$remarks' WHERE namestaff = '$name' AND dateapply = '$date'");
     if ($res1) {
-        header("Location: request.php");
-        exit();
+        echo '
+            <script>
+                Swal.fire({
+                    text: "Submit Successful",
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "request.php";
+                    } 
+                });
+            </script>
+        ';
+        // header("Location: request.php");
+        // exit();
     } else {
         die("Error: " . mysqli_error($conn));
     }
