@@ -1,3 +1,18 @@
+<?php
+include('conn.php');
+if (!isset($_GET['date']) || !isset($_GET['name'])) exit();
+$date = $_GET['date'];
+$name = $_GET['name'];
+$s = mysqli_query($conn, "SELECT * FROM `request` where namestaff = '$name' AND dateapply = '$date'");
+$row = mysqli_fetch_assoc($s);
+$statusmana = $row['statusmana'];
+$statusacc = $row['statusacc'];
+$trmnpay = $row['termpayment'];
+$payto = $row['payto'];
+$accno = $row['accno'];
+$bankname = $row['bankname'];
+$remarks = $row['remark'];
+?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
@@ -52,10 +67,11 @@
                                 <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
                                 <label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control mb-1" name="statusmana" id="statusmana">
-                                        <option value="">Please Choose</option>
-                                        <option value="2">APPROVED</option>
-                                        <option value="3">REJECTED</option>
+				    <select class="form-control mb-1" name="statusmana" id="statusmana">
+				        <option value="">Please Choose</option>
+				        <option value="1" <?php echo ($statusmana == '1') ? 'selected' : ''; ?>>PENDING</option>
+					<option value="2" <?php echo ($statusmana == '2') ? 'selected' : ''; ?>>APPROVED</option>
+					<option value="3" <?php echo ($statusmana == '3') ? 'selected' : ''; ?>>REJECTED</option>
                                     </select>
                                 </div>
                                 <div align="right">
@@ -75,21 +91,22 @@
                                 <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display: none;">
 				<input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display: none;">
 				<label for="" class="col-sm-2 col-form-label">TERMS OF PAYMENT</label>
-				<input type="text" class="form-control mb-3" id="termpyment" name="termpyment">
+				<input type="text" class="form-control mb-3" id="termpyment" name="termpyment" value="<?php echo $trmnpay; ?>">
 				<label for="" class="col-sm-2 col-form-label">PAY TO</label>
-				<input type="text" class="form-control mb-3" id="payto" name="payto">
+				<input type="text" class="form-control mb-3" id="payto" name="payto" value="<?php echo $payto; ?>">
 				<label for="" class="col-sm-2 col-form-label">ACCOUNT NO</label>
-				<input type="text" class="form-control mb-3" id="acc" name="acc">
+				<input type="text" class="form-control mb-3" id="acc" name="acc" value="<?php echo $accno; ?>">
 				<label for="" class="col-sm-2 col-form-label">BANK</label>
-				<input type="text" class="form-control mb-3" id="bank" name="bank">
+				<input type="text" class="form-control mb-3" id="bank" name="bank" value="<?php echo $bankname; ?>">
 				<label for="" class="col-sm-2 col-form-label">REMARKS</label>
-				<input type="text" class="form-control mb-3" id="remarks" name="remarks">
+				<input type="text" class="form-control mb-3" id="remarks" name="remarks" value="<?php echo $remarks; ?>">
 				<label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
                                     <select class="form-control mb-1" name="statusadmin" id="statusadmin">
-                                        <option value="">Please Choose</option>
-                                        <option value="2">APPROVED</option>
-                                        <option value="3">REJECTED</option>
+					<option value="">Please Choose</option>
+					<option value="1" <?php echo ($statusacc == "1") ? 'selected' : ''; ?>>PENDING</option>
+					<option value="2" <?php echo ($statusacc == "2") ? 'selected' : ''; ?>>APPROVED</option>
+					<option value="3" <?php echo ($statusacc == "3") ? 'selected' : ''; ?>>REJECTED</option>
                                     </select>
                                 </div>
                                 <div align="right">
