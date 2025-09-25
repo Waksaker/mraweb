@@ -27,13 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $namefile = $_FILES['namefile']['name'];
 	$tempfile = $_FILES['namefile']['tmp_name'];
     $noics = $_POST['noic'];
+    $excel = $_FILES['excel']['name'];
+    $tempexcel = $_FILES['excel']['tmp_name'];
 
     if ($namefile != '') {
-		$target_dir = "./claim/";
-		$target_file = $target_dir . basename($namefile);
+	    $target_pdf = "./claim/pdf/";
+	    $target_excel = "./claim/excel/";
+	    $target_file_pdf = $target_pdf . basename($namefile);
+	    $target_file_excel = $target_excel . basename($excel);
 		
-		if (move_uploaded_file($tempfile, $target_file)) {
-			$sql = "INSERT INTO `mra_claim` (`apply`, `tajuk`, `ic`, `status`, `folder`) VALUES ('$dates', '$title', '$noics', '1', '$namefile')";
+		if (move_uploaded_file($tempfile, $target_file_pdf) && move_uploaded_file($tempexcel, $target_file_excel)) {
+			$sql = "INSERT INTO `mra_claim` (`apply`, `tajuk`, `ic`, `status`, `folder`, `excel`) VALUES ('$dates', '$title', '$noics', '1', '$namefile', '$excel')";
 			
 			if (mysqli_query($conn, $sql)) {
 			

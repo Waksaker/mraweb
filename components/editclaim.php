@@ -19,6 +19,7 @@ if ($_GET['id']) {
 	$status = $row['status'];
 	$folder = $row['folder'];
 	$id = $row['id'];
+	$excel = $row['excel'];
 	
 	$sql1 = "SELECT * FROM `mra_staff` WHERE name = '$name'";
 	$result1 = mysqli_query($conn, $sql1);
@@ -46,23 +47,40 @@ if ($_GET['id']) {
                 <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $ic; ?>">
             </div>
             <input type="text" name="id" id="id" value="<?php echo "$id"; ?>" style="display: none;">
-			<?php
+	</div>
+	<div class="row mb-3">
+		<?php
 				if ($status1 == "STAFF") {
 					?>
-						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD FILE</label>
+						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD PDF</label>
 						<div class="col-sm-4">
-							<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
-							<sup><font style="color:red">*Please upload file</font></sup>
+							<input type="text" class="form-control mb-3" value="<?php echo $folder; ?>">
+							<input type="file" name="namefile" id="namefile" value="<?php echo $folder; ?>">
+							<sup><font style="color:red;">*Please upload pdf</font></sup> 
+						</div>
+						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD EXCEL</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control mb-3" value="<?php echo $excel; ?>">
+							<input type="file" name="excel" id="excel" value="<?php echo $excel; ?>">
+							<sup><font style="color:red;">*Please upload excel</font></sup>
 						</div>
 						<input type="text" name="namefile2" id="namefile2" value="<?php echo "$folder"; ?>" style="display: none;">
+						<input type="text" name="namefile3" id="namefile3" value="<?php echo "$excel"; ?>" style="display: none;">
 						<input type="text" name="status" id="status" value="<?php echo "$status"; ?>" style="display: none;">
 					<?php
 				} else {
 					?>
-						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD FILE</label>
+						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD PDF</label>
 						<div class="col-sm-4">
-							<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
-							<sup><font style="color:red">*Please upload file</font></sup>
+							<input type="text" class="form-control mb-3" value="<?php echo $folder; ?>">
+							<input type="file" name="namefile" id="namefile" value="<?php echo $folder; ?>">
+							<sup><font style="color:red;">*Please upload pdf</font></sup> 
+						</div>
+						<label for="dateend" class="col-sm-2 col-form-label">UPLOAD EXCEL</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control mb-3" value="<?php echo $excel; ?>">
+							<input type="file" name="excel" id="excel" value="<?php echo $excel; ?>">
+							<sup><font style="color:red;">*Please upload excel</font></sup>
 						</div>
 						<label for="noic" class="col-sm-2 col-form-label">STATUS</label>
 						<div class="col-sm-4">
@@ -74,22 +92,10 @@ if ($_GET['id']) {
 							</select>
 						</div>
 						<input type="text" name="namefile2" id="namefile2" value="<?php echo "$folder"; ?>" style="display: none;">
+						<input type="text" name="namefile3" id="namefile3" value="<?php echo "$excel"; ?>" style="display: none;">
 					<?php
 				}
 			?>
-	</div>
-	<br>
-	<div class="row mb-3">
-		<h3>Claim Form</h3>
-	</div>
-	<div>
-		<?php
-			if ($folder != '') {
-		?>
-			<iframe src="./claim/<?php echo $folder; ?>" width="100%" height="600" style="border:0;"></iframe>	
-		<?php
-			}	 
-		?>
 	</div>
     </div>
     <div class="customer_records_dynamic"></div>
@@ -128,6 +134,16 @@ if ($_GET['id']) {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in namefile2 No!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.focus();
+      return;
+    }
+  else if (form.namefile3.value == null || form.namefile3.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in namefile3 No!',
         confirmButtonColor: '#1B95CF'
       })
       form.focus();

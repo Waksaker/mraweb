@@ -36,12 +36,21 @@ $phoneno = $row['phoneno'];
                 <input type="text" class="form-control mb-1" id="title" name="title" maxlength="255">
                 <sup><font style="color:red">*Max character 255 only including space and break</font></sup>
             </div>
-			<label for="dateend" class="col-sm-2 col-form-label">UPLOAD FILE</label>
-            <div class="col-sm-4">
-				<input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
-                <sup><font style="color:red">*Please upload file</font></sup>
-            </div>
-        </div>
+	</div>
+	<div class="customer_records">
+    <div class="row mb-3">
+      <label for="dateend" class="col-sm-2 col-form-label">UPLOAD PDF</label>
+      <div class="col-sm-4">
+        <input type="file" name="namefile" id="namefile" value="<?php echo $namefile; ?>">
+        <sup><font style="color:red;">*Please upload pdf</font></sup> 
+      </div>
+      <label for="dateend" class="col-sm-2 col-form-label">UPLOAD EXCEL</label>
+      <div class="col-sm-4">
+        <input type="file" name="excel" id="excel" value="<?php echo $excel; ?>">
+        <sup><font style="color:red;">*Please upload excel</font></sup>
+      </div>
+    </div>
+	</div>
     </div>
     <div class="customer_records_dynamic"></div>
     <!-- <a for="plusinput" type="button" class="extra-fields-customer btn btn-primary mt-3" href="#">ADD MORE</a> -->
@@ -57,13 +66,20 @@ $phoneno = $row['phoneno'];
 	if (form.namefile.value == null || form.namefile.value=="") {
 		Swal.fire({
 			icon: 'warning',
-			text: 'Please upload in file!',
+			text: 'Please upload file claim pdf!',
 			confirmButtonColor: '#1B95CF'
 		})
 		form.namefile.focus();
 		return;
-    }
-	else if (form.date.value == null || form.date.value=="")
+	} else if (form.excel.value == null || form.excel.value=="") {
+		Swal.fire({
+			icon: 'warning',
+				text: 'Please upload file claim excel!',
+				confirmButtonColor: '#1B95CF',
+	})
+		form.excel.focus();
+		return;
+	} else if (form.date.value == null || form.date.value=="")
     {
       Swal.fire({
         icon: 'warning',
