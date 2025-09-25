@@ -53,6 +53,7 @@ $status = $row['status'];
 											`mra_claim`.`ic`AS ic,
 											`mra_claim`.`status` AS status,
 											`mra_claim`.`folder` AS folder,
+											`mra_claim`.`excel` AS excel,
 											`mra_staff`.`name` AS name
 										FROM 
 											`mra_claim`
@@ -67,6 +68,7 @@ $status = $row['status'];
 										$title = $row2['tajuk'];
 										$status = $row2['status'];
 										$folder = $row2['folder'];
+										$excel = $row2['excel'];
 										$claimid = $row2['id'];
 										?>
 											<tr>
@@ -88,25 +90,14 @@ $status = $row['status'];
 													?>
 												</td>
 												<td style="text-align: center;">
-													<?php
-														$ext = pathinfo($folder, PATHINFO_EXTENSION);
-
-														if (strtolower($ext) === 'pdf') {
-															?>
-																<!-- download pdf -->
-																<a href="claim/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
-																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-																</a>
-															<?php
-														} elseif (strtolower($ext) === 'xlsx') {
-															?>
-																<!-- Download excel -->
-																<a href="claim/<?php echo $folder; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
-																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-																</a>
-															<?php
-														}
-													?>
+													<!-- download pdf -->
+													<a href="claim/pdf/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
+														<img src="assets/images/pdf.png" alt="" style="width: 24px; height: 24px;">
+													</a>
+													<!-- Download excel -->
+													<a href="claim/excel/<?php echo $excel; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
+														<img src="assets/images/xls.png" alt="" style="width: 24px; height: 24px;">
+													</a>
 													<a href="editclaim.php?id=<?php echo $claimid; ?>" class="btn btn-primary">
 														<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 													</a>
@@ -126,6 +117,7 @@ $status = $row['status'];
 											`mra_claim`.`ic`AS ic,
 											`mra_claim`.`status` AS status,
 											`mra_claim`.`folder` AS folder,
+											`mra_claim`.`excel` AS excel,
 											`mra_staff`.`name` AS name
 										FROM 
 											`mra_claim`
@@ -141,6 +133,7 @@ $status = $row['status'];
 										$title = $row2['tajuk'];
 										$status = $row2['status'];
 										$folder = $row2['folder'];
+										$excel = $row2['excel'];
 										$claimid = $row2['id'];
 										?>
 											<tr>
@@ -162,25 +155,14 @@ $status = $row['status'];
 													?>
 												</td>
 												<td style="text-align: center;">
-													<?php
-														$ext = pathinfo($folder, PATHINFO_EXTENSION);
-
-														if (strtolower($ext) === 'pdf') {
-															?>
-																<!-- download pdf -->
-																<a href="claim/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
-																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-																</a>
-															<?php
-														} elseif (strtolower($ext) === 'xlsx') {
-															?>
-																<!-- Download excel -->
-																<a href="claim/<?php echo $folder; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
-																	<img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;">
-																</a>
-															<?php
-														}
-													?>
+													<!-- download pdf -->
+													<a href="claim/pdf/<?php echo $folder; ?>" target="_blank" class="btn btn-primary">
+														<img src="assets/images/pdf.png" alt="" style="width: 24px; height: 24px;">
+													</a>
+													<!-- Download excel -->
+													<a href="claim/excel/<?php echo $excel; ?>?v=<?php echo time(); ?>" class="btn btn-primary">
+														<img src="assets/images/xls.png" alt="" style="width: 24px; height: 24px;">
+													</a>
 													<a href="editclaim.php?id=<?php echo $claimid; ?>" class="btn btn-primary">
 														<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 													</a>
