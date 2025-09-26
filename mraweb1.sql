@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2025 at 01:06 PM
+-- Generation Time: Sep 26, 2025 at 02:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -83,6 +83,8 @@ CREATE TABLE `list_request` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `date` date NOT NULL,
+  `appoinment` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
   `descriptions` varchar(255) NOT NULL,
   `quantity` char(10) NOT NULL,
   `price` decimal(10,2) NOT NULL,
@@ -93,9 +95,9 @@ CREATE TABLE `list_request` (
 -- Dumping data for table `list_request`
 --
 
-INSERT INTO `list_request` (`id`, `name`, `date`, `descriptions`, `quantity`, `price`, `amount`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', 'barang spepart', '3', 60.00, 180.00),
-(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', 'motor target', '3', 100.00, 300.00);
+INSERT INTO `list_request` (`id`, `name`, `date`, `appoinment`, `link`, `descriptions`, `quantity`, `price`, `amount`) VALUES
+(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'barang spepart', '3', 60.00, 180.00),
+(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'motor target', '3', 100.00, 300.00);
 
 -- --------------------------------------------------------
 
@@ -120,7 +122,7 @@ CREATE TABLE `mra_claim` (
 
 INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `excel`, `updated`) VALUES
 (1, '2025-08-17', 'CLAIM BULAN 8', '000922012519', '1', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Aug 2025).pdf', '', '2025-09-02 04:22:40'),
-(6, '2025-09-25', 'CLAIM BULAN 9', '000922012519', '1', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Sep 2025).pdf', '', '2025-09-25 09:16:18');
+(6, '2025-09-25', 'CLAIM BULAN 9', '000922012519', '1', 'MOHAMAD FARISH(Sep 2025).pdf', 'MOHAMAD FARISH(Sep 2025).xlsx', '2025-09-26 03:57:24');
 
 -- --------------------------------------------------------
 
