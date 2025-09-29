@@ -54,7 +54,7 @@ if (isset($_POST['createreq1'])) {
         //         });
         //     </script>
         // ';
-        header("Location: createreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name));
+        header("Location: createreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&department=" . urlencode($department));
         exit();
     } else {
         die("Error: " . mysqli_error($conn));
@@ -66,9 +66,11 @@ if (isset($_POST['createreq1'])) {
     $quantity = $_POST['quantity'];
     $price = $_POST['price'];
     $amount = $price * $quantity;
+    $appoinment = $_POST['appoinment'];
+    $link = $_POST['link'];
 
     $sql2 = "
-        INSERT INTO `list_request`(`name`, `date`, `descriptions`, `quantity`, `price`, `amount`) VALUES ('$name2','$date2','$discriptions','$quantity','$price','$amount')
+        INSERT INTO `list_request`(`name`, `date`, `appoinment`, `link`, `descriptions`, `quantity`, `price`, `amount`) VALUES ('$name2','$date2','$appoinment','$link','$discriptions','$quantity','$price','$amount')
     ";
 
     $result2 = mysqli_query($conn, $sql2);

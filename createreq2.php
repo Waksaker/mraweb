@@ -13,11 +13,16 @@
             <div class="customer_records">
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
-                    <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+		    <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+		    <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>">
                     <label for="datestart" class="col-sm-2 col-form-label">DISCRIPTIONS :</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="discriptions" name="discriptions">
-                    </div>
+		    </div>
+		    <label for="datestart" class="col-sm-2 col-form-label">LINK SHOPEE PRODUK</label>
+		    <div class="col-sm-4">
+			<input type="text" class="form-control mb-3" id="link" name="link">
+		    </div>
                     <label class="col-sm-2 col-form-label">QUANTITY :</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="quantity" name="quantity">
@@ -42,7 +47,8 @@
             <thead class="bg-primary text-white">
                 <tr>
                     <th style="text-align: center;">NO</th>
-                    <th style="text-align: center;">Discriptions</th>
+		    <th style="text-align: center;">Discriptions</th>
+		    <th style="text-align: center;">Link</th>
                     <th style="text-align: center;">Quantity</th>
                     <th style="text-align: center;">Price</th>
                     <th style="text-align: center;">Amount</th>
