@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
 		    <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
-		    <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>">
+		    <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>" style="display:none;">
                     <label for="datestart" class="col-sm-2 col-form-label">DISCRIPTIONS :</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="discriptions" name="discriptions">
@@ -60,17 +60,19 @@
                     $index = 1;
                     $name = $_GET['name'];
                     $date = $_GET['date'];
-                    $sql = "SELECT * FROM `list_request` WHERE date = '$date' AND name = '$name'";
+                    $appoinment = $_GET['appoinment'];
+                    $sql = "SELECT * FROM `list_request` WHERE appoinment = '$appoinment' AND name = '$name'";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <tbody>
                             <tr>
                                 <td style="text-align: center;"><?php echo ($index++); ?></td>
-                                <td style="text-align: center;"><?php echo $row['descriptions'] ?></td>
-                                <td style="text-align: center;"><?php echo $row['quantity'] ?></td>
-                                <td style="text-align: center;"><?php echo $row['price'] ?></td>
-                                <td style="text-align: center;"><?php echo $row['amount'] ?></td>
+				                <td style="text-align: center;"><?php echo $row['descriptions']; ?></td>
+				                <td style="text-align: center"><?php echo $row['link']; ?></td>
+                                <td style="text-align: center;"><?php echo $row['quantity']; ?></td>
+                                <td style="text-align: center;"><?php echo $row['price']; ?></td>
+                                <td style="text-align: center;"><?php echo $row['amount']; ?></td>
                                 <td style="text-align: center;">
                                     <button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >
                                         <img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;">

@@ -17,7 +17,7 @@ include("conn.php");
 if (isset($_POST['createreq1'])) {
     $name = $_POST['name']; 
     $dateapply = $_POST['dateapply'];
-    $appoiment = $_POST['appoiment'];
+    $appoinment = $_POST['appoinment'];
     $department = $_POST['department'];
     $supplirename = $_POST['supplirename'];
     $suppladderss = $_POST['suppladderss'];
@@ -34,7 +34,7 @@ if (isset($_POST['createreq1'])) {
        `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) 
         VALUES 
        (
-            '$name', '$dateapply', '$appoiment', '$department', '$supplirename', '$suppladderss', '$attention',
+            '$name', '$dateapply', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
             'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$sign', 'NULL', '0000-00-00',
             'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1')
     ";
@@ -54,7 +54,7 @@ if (isset($_POST['createreq1'])) {
         //         });
         //     </script>
         // ';
-        header("Location: createreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&department=" . urlencode($department));
+        header("Location: createreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
         exit();
     } else {
         die("Error: " . mysqli_error($conn));
@@ -76,18 +76,18 @@ if (isset($_POST['createreq1'])) {
     $result2 = mysqli_query($conn, $sql2);
 
     if ($result2) {
-        echo '
+        echo "
             <script>
                 Swal.fire({
-                    text: "Submit Successful",
-                    icon: "success"
+                    text: 'Submit Successful',
+                    icon: 'success'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location = "createreq2.php?date=' . urlencode($date2) . '&name=' . urlencode($name2) . '";
+                        window.location = 'createreq2.php?date=" . urlencode($date2) . "&name=" . urlencode($name2) . "&appoinment=" . urlencode($appoinment) . "';
                     } 
                 });
             </script>
-        ';
+        ";
         // header("Location: createreq2.php?date=" . urlencode($date2) . "&name=" . urlencode($name2));
         // exit();
     } else {
@@ -96,7 +96,7 @@ if (isset($_POST['createreq1'])) {
 } elseif (isset($_POST['editreq1'])) {
     $name = $_POST['name']; 
     $dateapply = $_POST['dateapply'];
-    $appoiment = $_POST['appoiment'];
+    $appoinment = $_POST['appoinment'];
     $department = $_POST['department'];
     $supplirename = $_POST['supplirename'];
     $suppladderss = $_POST['suppladderss'];
@@ -108,7 +108,7 @@ if (isset($_POST['createreq1'])) {
     $sign = $r['image'];
 
     $sql1 = "
-        UPDATE `request` SET `namestaff` = '$name', `dateapply` = '$dateapply', `appoiment`='$appoiment',`department`='$department',`supplirename`='$supplirename',`suppladderss`='$suppladderss',`attention`='$attention' WHERE id = '$id'
+        UPDATE `request` SET `namestaff` = '$name', `dateapply` = '$dateapply', `appoiment`='$appoinment',`department`='$department',`supplirename`='$supplirename',`suppladderss`='$suppladderss',`attention`='$attention' WHERE id = '$id'
     ";
 
     $result1 = mysqli_query($conn, $sql1);
@@ -126,7 +126,52 @@ if (isset($_POST['createreq1'])) {
         //         });
         //     </script>
         // ';
-        header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name));
+        header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
+        exit();
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
+} elseif (isset($_POST['editreq2'])) {
+    $name = $_POST['name']; 
+    $dateapply = $_POST['dateapply'];
+    $appoinment = $_POST['appoinment'];
+    $department = $_POST['department'];
+    $supplirename = $_POST['supplirename'];
+    $suppladderss = $_POST['suppladderss'];
+    $attention = $_POST['attention'];
+
+    $s = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$name'");
+    $r = mysqli_fetch_assoc($s);
+    $sign = $r['image'];
+
+    $sql1 = "
+       INSERT INTO `request`
+       (`namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
+       `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
+       `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) 
+        VALUES 
+       (
+            '$name', '$dateapply', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
+            'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$sign', 'NULL', '0000-00-00',
+            'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1')
+    ";
+
+    $result1 = mysqli_query($conn, $sql1);
+
+    if ($result1) {
+        // echo '
+        //     <script>
+        //         Swal.fire({
+        //             text: "Submit Successful",
+        //             icon: "success"
+        //         }).then((result) => {
+        //             if (result.isConfirmed) {
+        //                 window.location = "createreq2.php?date=' . urlencode($dateapply) . '&name=' . urlencode($name) . '";
+        //             } 
+        //         });
+        //     </script>
+        // ';
+        header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
         exit();
     } else {
         die("Error: " . mysqli_error($conn));

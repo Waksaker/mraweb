@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2025 at 01:54 PM
+-- Generation Time: Sep 30, 2025 at 03:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -97,7 +97,10 @@ CREATE TABLE `list_request` (
 
 INSERT INTO `list_request` (`id`, `name`, `date`, `appoinment`, `link`, `descriptions`, `quantity`, `price`, `amount`) VALUES
 (1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'barang spepart', '3', 60.00, 180.00),
-(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'motor target', '3', 100.00, 300.00);
+(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'motor target', '3', 100.00, 300.00),
+(4, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'RASBERRY PI 5', '1', 10.00, 10.00),
+(5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'esp 32', '5', 35.00, 175.00),
+(6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', '', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'stimdeck', '2', 2000.00, 4000.00);
 
 -- --------------------------------------------------------
 
@@ -410,7 +413,8 @@ CREATE TABLE `request` (
 --
 
 INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', 'Keperluan segera membawa barang masuk ke kem kluang', 'GEMAS', 'GEMAS MOTOR SERVICE', 'GEMAS NEGERI SEMBILAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1);
+(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', 'Keperluan segera membawa barang masuk ke kem kluang', 'GEMAS', 'GEMAS MOTOR SERVICE', 'GEMAS NEGERI SEMBILAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1),
+(5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'WANGSA MAJU', 'SOFTWARE', 'WILAYAH PERSEKUTUAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -502,7 +506,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `list_request`
 --
 ALTER TABLE `list_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mra_claim`
@@ -550,7 +554,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

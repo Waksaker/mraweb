@@ -35,11 +35,16 @@ $remarks = $row['remark'];
                         <div class="customer_records">
                             <div class="row mb-3">
                                 <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
-                                <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+                        <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+                        <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>" style="display:none;">
                                 <label for="datestart" class="col-sm-2 col-form-label">DISCRIPTIONS :</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control mb-3" id="discriptions" name="discriptions">
-                                </div>
+                        </div>
+                        <label for="datestart" class="col-sm-2 col-form-label">LINK SHOPEE PRODUK</label>
+                        <div class="col-sm-4">
+                        <input type="text" class="form-control mb-3" id="link" name="link">
+                        </div>
                                 <label class="col-sm-2 col-form-label">QUANTITY :</label>
                                 <div class="col-sm-4">
                                     <input type="text" class="form-control mb-3" id="quantity" name="quantity">
@@ -65,6 +70,7 @@ $remarks = $row['remark'];
                                 <input type="text" class="form-control mb-3" id="namemana" name="namemana" value="<?php echo $name; ?>" style="display:none;">
                                 <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
                                 <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+                                <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>" style="display:none;">
                                 <label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
 				    <select class="form-control mb-1" name="statusmana" id="statusmana">
@@ -139,7 +145,8 @@ $remarks = $row['remark'];
                     $index = 1;
                     $name = $_GET['name'];
                     $date = $_GET['date'];
-                    $sql = "SELECT * FROM `list_request` WHERE date = '$date' AND name = '$name'";
+                    $appoinment = $_GET['appoinment'];
+                    $sql = "SELECT * FROM `list_request` WHERE appoinment = '$appoinment' AND name = '$name'";
                     $result = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_assoc($result)) {
                         ?>

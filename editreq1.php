@@ -35,7 +35,7 @@ $attention = $row['attention'];
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">APPOINTMENT :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="appoiment" name="appoiment" value="<?php echo $appoiment; ?>">
+                        <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo $appoiment; ?>">
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DEPARTMENT :</label>
                     <div class="col-sm-4">

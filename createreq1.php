@@ -20,7 +20,7 @@
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">APPOINTMENT :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="appoiment" name="appoiment">
+                        <input type="text" class="form-control mb-3" id="appoinment" name="appoinment">
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DEPARTMENT :</label>
                     <div class="col-sm-4">
