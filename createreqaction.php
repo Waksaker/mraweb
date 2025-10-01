@@ -133,46 +133,33 @@ if (isset($_POST['createreq1'])) {
     }
 } elseif (isset($_POST['editreq2'])) {
     $name = $_POST['name']; 
-    $dateapply = $_POST['dateapply'];
+    $date = $_POST['date'];
     $appoinment = $_POST['appoinment'];
-    $department = $_POST['department'];
-    $supplirename = $_POST['supplirename'];
-    $suppladderss = $_POST['suppladderss'];
-    $attention = $_POST['attention'];
+    $discriptions  = $_POST['discriptions'];
+    $link = $_POST['link'];
+    $quantity = $_POST['quantity'];
+    $price = $_POST['price'];
+    $amount = $price * $quantity;
 
-    $s = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$name'");
-    $r = mysqli_fetch_assoc($s);
-    $sign = $r['image'];
-
-    $sql1 = "
-       INSERT INTO `request`
-       (`namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
-       `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
-       `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) 
-        VALUES 
-       (
-            '$name', '$dateapply', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
-            'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$sign', 'NULL', '0000-00-00',
-            'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1')
-    ";
+    $sql1 = "INSERT INTO `list_request` (`name`,`date`,`appoinment`,`link`,`descriptions`,`quantity`,`price`,`amount`) VALUES ('$name','$date','$appoinment','$link','$discriptions','$quantity','$price','$amount')";
 
     $result1 = mysqli_query($conn, $sql1);
 
     if ($result1) {
-        // echo '
-        //     <script>
-        //         Swal.fire({
-        //             text: "Submit Successful",
-        //             icon: "success"
-        //         }).then((result) => {
-        //             if (result.isConfirmed) {
-        //                 window.location = "createreq2.php?date=' . urlencode($dateapply) . '&name=' . urlencode($name) . '";
-        //             } 
-        //         });
-        //     </script>
-        // ';
-        header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
-        exit();
+         echo '
+             <script>
+                 Swal.fire({
+                     text: "Submit Successful",
+                     icon: "success"
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         window.location = "editreq2.php?date=' . urlencode($date) . '&name=' . urlencode($name) . '&appoinment=' . urlencode($appoinment) . '";
+                     } 
+                 });
+             </script>
+         ';
+        //header("Location: editreq2.php?date=" . urlencode($dateapply) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
+        //exit();
     } else {
         die("Error: " . mysqli_error($conn));
     }

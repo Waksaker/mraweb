@@ -162,7 +162,7 @@ if (mysqli_num_rows($result) > 0) {
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>
                         <div class="col-sm-4">
-                        	<input type="text" class="form-control mb-1" value="<?php echo $syarikat; ?>" readonly>
+                        	<input type="text" class="form-control mb-1" name="syarikat" value="<?php echo $syarikat; ?>" readonly>
                         </div>
 		    </div>
             <br>
