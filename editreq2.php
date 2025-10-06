@@ -43,7 +43,7 @@ $remarks = $row['remark'];
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">LINK SHOPEE PRODUK</label>
                         <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="link" name="link">
+                            <input type="text" class="form-control mb-3" id="link" name="link">
                         </div>
                                 <label class="col-sm-2 col-form-label">QUANTITY :</label>
                                 <div class="col-sm-4">
@@ -73,11 +73,11 @@ $remarks = $row['remark'];
                                 <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>" style="display:none;">
                                 <label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
-				    <select class="form-control mb-1" name="statusmana" id="statusmana">
-				        <option value="">Please Choose</option>
-				        <option value="1" <?php echo ($statusmana == '1') ? 'selected' : ''; ?>>PENDING</option>
-					<option value="2" <?php echo ($statusmana == '2') ? 'selected' : ''; ?>>APPROVED</option>
-					<option value="3" <?php echo ($statusmana == '3') ? 'selected' : ''; ?>>REJECTED</option>
+                				    <select class="form-control mb-1" name="statusmana" id="statusmana">
+                				        <option value="">Please Choose</option>
+                				        <option value="1" <?php echo ($statusmana == '1') ? 'selected' : ''; ?>>PENDING</option>
+                    					<option value="2" <?php echo ($statusmana == '2') ? 'selected' : ''; ?>>APPROVED</option>
+                    					<option value="3" <?php echo ($statusmana == '3') ? 'selected' : ''; ?>>REJECTED</option>
                                     </select>
                                 </div>
                                 <div align="right">
@@ -89,30 +89,59 @@ $remarks = $row['remark'];
                     </form>
                 <?php
             } elseif ($status == 'ADMIN STAFF' || $status == 'HR STAFF') {
-                ?>
+		?>
+			        <form name="createreq2" action="createreqaction.php" method="POST" enctype="multipart/form-data">
+                        <div class="customer_records">
+                            <div class="row mb-3">
+                                <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display:none;">
+                        <input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display:none;">
+                        <input type="text" class="form-control mb-3" id="appoinment" name="appoinment" value="<?php echo ($_GET['appoinment'] ? $_GET['appoinment'] : ''); ?>" style="display:none;">
+                                <label for="datestart" class="col-sm-2 col-form-label">DISCRIPTIONS :</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mb-3" id="discriptions" name="discriptions">
+                        </div>
+                        <label for="datestart" class="col-sm-2 col-form-label">LINK SHOPEE PRODUK</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="link" name="link">
+                        </div>
+                                <label class="col-sm-2 col-form-label">QUANTITY :</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mb-3" id="quantity" name="quantity">
+                                </div>
+                                <label class="col-sm-2 col-form-label">PRICE :</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mb-3" id="price" name="price">
+                                </div>
+                                <div align="right">
+                                    <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="editreq2" onclick="return validate()">+</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </form>
                     <form name="editreq2admin" action="createreqaction.php" method="POST" enctype="multipart/form-data">
                         <div class="customer_records">
                             <div class="row mb-3">
                                 <input type="text" class="form-control mb-3" id="nameadmin" name="nameadmin" value="<?php echo $name; ?>" style="display:none;">
                                 <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo ($_GET['name'] ? $_GET['name'] : ''); ?>" style="display: none;">
-				<input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display: none;">
-				<label for="" class="col-sm-2 col-form-label">TERMS OF PAYMENT</label>
-				<input type="text" class="form-control mb-3" id="termpyment" name="termpyment" value="<?php echo $trmnpay; ?>">
-				<label for="" class="col-sm-2 col-form-label">PAY TO</label>
-				<input type="text" class="form-control mb-3" id="payto" name="payto" value="<?php echo $payto; ?>">
-				<label for="" class="col-sm-2 col-form-label">ACCOUNT NO</label>
-				<input type="text" class="form-control mb-3" id="acc" name="acc" value="<?php echo $accno; ?>">
-				<label for="" class="col-sm-2 col-form-label">BANK</label>
-				<input type="text" class="form-control mb-3" id="bank" name="bank" value="<?php echo $bankname; ?>">
-				<label for="" class="col-sm-2 col-form-label">REMARKS</label>
-				<input type="text" class="form-control mb-3" id="remarks" name="remarks" value="<?php echo $remarks; ?>">
-				<label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
+                				<input type="text" class="form-control mb-3" id="date" name="date" value="<?php echo ($_GET['date'] ? $_GET['date'] : ''); ?>" style="display: none;">
+                				<label for="" class="col-sm-2 col-form-label">TERMS OF PAYMENT</label>
+                				<input type="text" class="form-control mb-3" id="termpyment" name="termpyment" value="<?php echo $trmnpay; ?>">
+                				<label for="" class="col-sm-2 col-form-label">PAY TO</label>
+                				<input type="text" class="form-control mb-3" id="payto" name="payto" value="<?php echo $payto; ?>">
+                				<label for="" class="col-sm-2 col-form-label">ACCOUNT NO</label>
+                				<input type="text" class="form-control mb-3" id="acc" name="acc" value="<?php echo $accno; ?>">
+                				<label for="" class="col-sm-2 col-form-label">BANK</label>
+                				<input type="text" class="form-control mb-3" id="bank" name="bank" value="<?php echo $bankname; ?>">
+                				<label for="" class="col-sm-2 col-form-label">REMARKS</label>
+                				<input type="text" class="form-control mb-3" id="remarks" name="remarks" value="<?php echo $remarks; ?>">
+                				<label for="datestart" class="col-sm-2 col-form-label">YOUR OPTION :</label>
                                 <div class="col-sm-4">
                                     <select class="form-control mb-1" name="statusadmin" id="statusadmin">
-					<option value="">Please Choose</option>
-					<option value="1" <?php echo ($statusacc == "1") ? 'selected' : ''; ?>>PENDING</option>
-					<option value="2" <?php echo ($statusacc == "2") ? 'selected' : ''; ?>>APPROVED</option>
-					<option value="3" <?php echo ($statusacc == "3") ? 'selected' : ''; ?>>REJECTED</option>
+                    					<option value="">Please Choose</option>
+                    					<option value="1" <?php echo ($statusacc == "1") ? 'selected' : ''; ?>>PENDING</option>
+                    					<option value="2" <?php echo ($statusacc == "2") ? 'selected' : ''; ?>>APPROVED</option>
+                    					<option value="3" <?php echo ($statusacc == "3") ? 'selected' : ''; ?>>REJECTED</option>
                                     </select>
                                 </div>
                                 <div align="right">
@@ -157,10 +186,21 @@ $remarks = $row['remark'];
                                 <td style="text-align: center;"><?php echo $row['quantity'] ?></td>
                                 <td style="text-align: center;"><?php echo $row['price'] ?></td>
                                 <td style="text-align: center;"><?php echo $row['amount'] ?></td>
-                                <td style="text-align: center;">
-                                    <button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >
-                                        <img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;">
-                                    </button>
+				<td style="text-align: center;">
+					<?php
+			    			if($status=='STAFF'){
+			  		?> 				
+                                    		<button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >
+                                        		<img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;">
+				    		</button>
+					<?php
+						}elseif(){
+					?>
+						<button>
+						</button>
+					<?php
+						}
+					?>
                                 </td>
                             </tr>
                         </tbody>

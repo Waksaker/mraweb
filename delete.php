@@ -90,27 +90,34 @@ if (isset($_GET['date'])) {
 	}
 
 } elseif (isset($_GET['idcreatereq2'])) {
-	$createreq2 = $_GET['idcreatereq2'];
-	$s = mysqli_query($conn, "SELECT * FROM `list_request` WHERE id = '$createreq2'");
-	if (mysqli_num_rows($s) > 0) {
-		$row = mysqli_fetch_assoc($s);
-		$name = $row['name'];
-		$date = $row['date'];
-		$id = $row['id'];
-		mysqli_query($conn, "DELETE FROM `list_request` WHERE id = '$id'");
-		header("Location: createreq2.php?date=" . urlencode($date) . "&name=" . urlencode($name));
-        exit();
-	} else {
-		echo "TIADA DATA";
-	}
+	$idcreatereq2 = $_GET['idcreatereq2'];
+	$re=mysqli_query($conn,"SELECT * FROM `list_request` WHERE id = '$createreq2'");
+	$row=mysqli_fetch_assoc($re);
+	$name=$row['name'];
+	$date=$row['date'];
+	$appoinment=$row['appoinment'];
+	mysqli_query($conn, "DELETE FROM `list_request` WHERE id = '$idcreatereq2'");
+	header("Location: createreq2.php?date=" . urlencode($date) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
+	exit();
+} elseif(isset($_GET['ideditreq2')) {
+	$ideditreq2=$_GET['ideditreq2'];
+	$req=mysqli_query($conn,"SELECT * FROM `list_request` WHERE id = '$ideditreq2'");
+	$row=mysqli_fetch_assoc($req);
+	$name=$row['name'];
+	$date=$row['date'];
+	$appoinment=$row['appoinment'];
+	mysqli_query($conn, "DELETE FROM `list_request` WHERE id = '$ideditreq2'");
+	header("Location: editreq2.php?date=" . urlencode($date) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
+	exit();
 } elseif (isset($_GET['idreq'])) {
 	$idreq = $_GET['idreq'];
 	$s1 = mysqli_query($conn, "SELECT * FROM `request` WHERE id = '$idreq'");
 	$r1 = mysqli_fetch_assoc($s1);
 	$name = $r1['namestaff'];
 	$date = $r1['dateapply'];
-	mysqli_query($conn, "DELETE FROM `request` WHERE namestaff = '$name' AND dateapply = '$date'");
-	mysqli_query($conn, "DELETE FROM `list_request` WHERE name = '$name' AND date = '$date'");
+	$appoiment = $rl['appoiment'];
+	mysqli_query($conn, "DELETE FROM `request` WHERE namestaff = '$name' AND dateapply = '$date' AND appoiment='$appoiment'");
+	mysqli_query($conn, "DELETE FROM `list_request` WHERE name = '$name' AND date = '$date'ANDappoiment='$appoiment'");
 	header("Location: request.php");
 	exit();
 }

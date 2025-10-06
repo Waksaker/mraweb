@@ -18,7 +18,7 @@ $status = $row['status'];
 		<h5 class="card-title fw-semibold mb-4">Request</h5>
 		<div align="right">
 			<?php
-				if($status=='STAFF'){
+				if($status=='STAFF'||$status=='HR STAFF'){
 			?>
 				<a href="createreq1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Create Request</a>
 			<?php
@@ -187,6 +187,9 @@ $status = $row['status'];
 													<a href="editreq1.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">
 														<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 													</a>
+													<button type="button"class="btn btn-danger"onclick="test('<?php echo$row['id']; ?>')">
+														<img src="assets/images/Trash_Can.png" style="width:24px;height:24px;">
+													</button>
 												</td>
 											</tr>
 										</tbody>
@@ -208,10 +211,10 @@ $status = $row['status'];
 </script>
 <script type="text/javascript">
 	function test(idreq) {
-    	var result = confirm("Adakah anda ingin memadam data ini?");
+    		var result = confirm("Adakah anda ingin memadam data ini?");
 
-    	if (result) {
-    		window.location.href = "delete.php?idreq=" + idreq;
-    	}
+    		if (result) {
+    			window.location.href = "delete.php?idreq=" + idreq;
+    		}
   	}
 </script>
