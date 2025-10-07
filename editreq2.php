@@ -186,21 +186,10 @@ $remarks = $row['remark'];
                                 <td style="text-align: center;"><?php echo $row['quantity'] ?></td>
                                 <td style="text-align: center;"><?php echo $row['price'] ?></td>
                                 <td style="text-align: center;"><?php echo $row['amount'] ?></td>
-				<td style="text-align: center;">
-					<?php
-			    			if($status=='STAFF'){
-			  		?> 				
-                                    		<button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >
-                                        		<img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;">
-				    		</button>
-					<?php
-						}elseif(){
-					?>
-						<button>
-						</button>
-					<?php
-						}
-					?>
+				<td style="text-align: center;"> 				
+                                    	<button type="button" class="btn btn-danger" onclick="test('<?php echo $row['id']; ?>')" >
+                                        	<img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;">
+				    	</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -248,7 +237,7 @@ $remarks = $row['remark'];
     var result = confirm("Adakah anda ingin memadam data ini?");
 
     if (result) {
-      window.location.href = "delete.php?idcreatereq2=" + idcreatereq2;
+      window.location.href = "delete.php?ideditreq2=" + idcreatereq2;
     }
   }
 </script>

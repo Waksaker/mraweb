@@ -99,7 +99,7 @@ if (isset($_GET['date'])) {
 	mysqli_query($conn, "DELETE FROM `list_request` WHERE id = '$idcreatereq2'");
 	header("Location: createreq2.php?date=" . urlencode($date) . "&name=" . urlencode($name) . "&appoinment=" . urlencode($appoinment));
 	exit();
-} elseif(isset($_GET['ideditreq2')) {
+} elseif(isset($_GET['ideditreq2'])) {
 	$ideditreq2=$_GET['ideditreq2'];
 	$req=mysqli_query($conn,"SELECT * FROM `list_request` WHERE id = '$ideditreq2'");
 	$row=mysqli_fetch_assoc($req);

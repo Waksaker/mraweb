@@ -1,7 +1,7 @@
 <?php
 set_time_limit(0);
 error_reporting(E_NOTICE);
-include('/var/www/html/conn.php');
+include('conn.php');
 
 $name = $_SESSION['name'];
 $position = $_SESSION['position'];
@@ -44,9 +44,9 @@ $status = $row['status'];
 						<tbody>
 							<?php
 								$index = 1;
-								if ($status == "HR STAFF" || $status == "ADMIN STAFF" || $status = "MANAGER") {
-									$sql2 = "
-										SELECT 
+								if ($status == "HR STAFF" || $status == "ADMIN STAFF" || $status == "MANAGER") {
+									$sql1 = "
+										SELECT
 											`mra_claim`.`id` AS id,
 											`mra_claim`.`apply` AS apply,
 											`mra_claim`.`tajuk`AS tajuk,
@@ -55,21 +55,21 @@ $status = $row['status'];
 											`mra_claim`.`folder` AS folder,
 											`mra_claim`.`excel` AS excel,
 											`mra_staff`.`name` AS name
-										FROM 
+										FROM
 											`mra_claim`
-										LEFT JOIN 
+										LEFT JOIN
 											`mra_staff`
 										ON `mra_claim`.`ic` = `mra_staff`.`icno`
 									";
-									$result2 = mysqli_query($conn, $sql2);
-									while ($row2 = mysqli_fetch_assoc($result2)) {
-										$name = $row2['name'];
-										$tarikh = $row2['apply'];
-										$title = $row2['tajuk'];
-										$status = $row2['status'];
-										$folder = $row2['folder'];
-										$excel = $row2['excel'];
-										$claimid = $row2['id'];
+									$result1 = mysqli_query($conn, $sql1);
+									while ($row1 = mysqli_fetch_assoc($result1)) {
+										$name = $row1['name'];
+										$tarikh = $row1['apply'];
+										$title = $row1['tajuk'];
+										$status = $row1['status'];
+										$folder = $row1['folder'];
+										$excel = $row1['excel'];
+										$claimid = $row1['id'];
 										?>
 											<tr>
 												<td style="text-align: center;"><?php echo ($index++); ?></td>
@@ -173,7 +173,7 @@ $status = $row['status'];
 											</tr>
 										<?php
 									}
-								}							
+								}
 							?>
 						</tbody>
 					</table>

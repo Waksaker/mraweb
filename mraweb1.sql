@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2025 at 03:29 PM
+-- Generation Time: Oct 07, 2025 at 06:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -100,7 +100,9 @@ INSERT INTO `list_request` (`id`, `name`, `date`, `appoinment`, `link`, `descrip
 (2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', '', '', 'motor target', '3', 100.00, 300.00),
 (4, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'RASBERRY PI 5', '1', 10.00, 10.00),
 (5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'esp 32', '5', 35.00, 175.00),
-(6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', '', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'stimdeck', '2', 2000.00, 4000.00);
+(7, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'arduino pro mini', '5', 35.00, 175.00),
+(9, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'bateri', '2', 200.00, 400.00),
+(10, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'https://www.youtube.com/watch?v=5Q1f7a49-N8&t=3907s', 'stepdown board', '5', 20.00, 100.00);
 
 -- --------------------------------------------------------
 
@@ -125,7 +127,7 @@ CREATE TABLE `mra_claim` (
 
 INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `excel`, `updated`) VALUES
 (1, '2025-08-17', 'CLAIM BULAN 8', '000922012519', '1', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN(Aug 2025).pdf', '', '2025-09-02 04:22:40'),
-(6, '2025-09-25', 'CLAIM BULAN 9', '000922012519', '1', 'MOHAMAD FARISH(Sep 2025).pdf', 'MOHAMAD FARISH(Sep 2025).xlsx', '2025-09-26 03:57:24');
+(6, '2025-09-25', 'CLAIM BULAN 9', '000922012519', '1', 'MOHAMAD FARISH(Sep 2025) (1).pdf', 'MOHAMAD FARISH(Sep 2025) (1).xlsx', '2025-10-01 08:02:55');
 
 -- --------------------------------------------------------
 
@@ -343,9 +345,9 @@ CREATE TABLE `mra_staff` (
 --
 
 INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `password`, `status`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`, `portfolio`) VALUES
-(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', ''),
+(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', 'Ikhwan Darwish CV.pdf'),
 (5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', '01172259030', 'Maybank', '162107427034', '', '', ''),
-(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish.pdf'),
+(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish2.pdf'),
 (12, 'alin', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', '488753', 'HR STAFF', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
 (13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', '0189178650', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD', ''),
 (16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', '265285', 'STAFF', '01156640727', 'Bank Islam', '01032020736545', '', 'LETILICA SDN BHD', ''),
@@ -414,7 +416,7 @@ CREATE TABLE `request` (
 
 INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) VALUES
 (1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-07', 'Keperluan segera membawa barang masuk ke kem kluang', 'GEMAS', 'GEMAS MOTOR SERVICE', 'GEMAS NEGERI SEMBILAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1),
-(5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'WANGSA MAJU', 'SOFTWARE', 'WILAYAH PERSEKUTUAN', '-', 'NULL', 'NULL', 'NULL', 'NULL', 'NULL', 'signature.png', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 'NULL', '0000-00-00', 1, 1, 1);
+(5, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-09-30', 'keperluan trml', 'WANGSA MAJU', 'SOFTWARE', 'WILAYAH PERSEKUTUAN', '-', 'Test', 'Test', 'Test', 'MAY BANK', '-', 'signature.png', 'NULL', '0000-00-00', '', '2025-10-07', 'NULL', '0000-00-00', 2, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -506,7 +508,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `list_request`
 --
 ALTER TABLE `list_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `mra_claim`
@@ -554,7 +556,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
