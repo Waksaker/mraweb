@@ -13,6 +13,7 @@ $row = mysqli_fetch_array($result);
 $name2 = $row['name'];
 $position2 = $row['position'];
 $noic = $row['icno'];
+$status = $row['status'];
 ?>
 <div class="card">
   <div class="card-body">
@@ -32,62 +33,119 @@ $noic = $row['icno'];
             <th style="text-align: center;">Date End</th>
             <th style="text-align: center;">Days</th>
             <th style="text-align: center;">Purpose</th>
-			<th style="text-align: center;">Status</th>
+			      <th style="text-align: center;">Status</th>
             <th style="text-align: center;">#</th>
           </tr>
         </thead>
         <?php
-        $index = 1;
-        $sql = "SELECT * FROM mra_leave where noic = '$noic'"; // SQL with parameters
-        $result = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_array($result)) {
-          $leaveid = $row['leaveid'];
-          $dateapplyc = $row['dateapply'];
-          $dateapply =  date('d/m/Y', strtotime($dateapplyc));
-          $nameapply = $row['nameapply'];
-          $noic  = $row['noic'];
-          $position = $row['position'];
-          $datestartc = $row['datestart'];
-          $datestart =  date('d/m/Y', strtotime($datestartc));
-          $dateendc = $row['dateend'];
-          $dateend =  date('d/m/Y', strtotime($dateendc));
-          $daysleave = $row['daysleave'];
-          $purpose = $row['purpose'];
-          $contactno = $row['contactno'];
-          $matters = $row['matters'];
-			$status = $row['status'];
+          if ($status=='HR STAFF' || $status=='ADMIN STAFF') {
+            $index = 1;
+            $sql = "SELECT * FROM mra_leave";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $leaveid = $row['leaveid'];
+              $dateapplyc = $row['dateapply'];
+              $dateapply =  date('d/m/Y', strtotime($dateapplyc));
+              $nameapply = $row['nameapply'];
+              $noic  = $row['noic'];
+              $position = $row['position'];
+              $datestartc = $row['datestart'];
+              $datestart =  date('d/m/Y', strtotime($datestartc));
+              $dateendc = $row['dateend'];
+              $dateend =  date('d/m/Y', strtotime($dateendc));
+              $daysleave = $row['daysleave'];
+              $purpose = $row['purpose'];
+              $contactno = $row['contactno'];
+              $matters = $row['matters'];
+              $status = $row['status'];
+              ?>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;"><?php echo ($index++); ?></td>
+                    <td style="text-align: center;"><?php echo $dateapply; ?></td>
+                    <td style="text-align: center;"><?php echo $nameapply; ?></td>
+                    <td style="text-align: center;"><?php echo $position; ?></td>
+                    <td style="text-align: center;"><?php echo $datestart; ?></td>
+                    <td style="text-align: center;"><?php echo $dateend; ?></td>
+                    <td style="text-align: center;"><?php echo $daysleave; ?></td>
+                    <td style="text-align: center;"><?php echo $purpose; ?></td>
+                    <td style="text-align: center;">
+                      <?php 
+                        if ($status == "1") {
+                          echo "<span class='badge bg-secondary'>Pending</span>";
+                        } elseif ($status == "2") {
+                          echo "<span class='badge bg-success'>Approved</span>";
+                        } elseif ($status == "3") {
+                          echo "<span class='badge bg-warning'>Check Again</span>";
+                        } elseif ($status == "4") {
+                          echo "<span class='badge bg-danger'>Rejected</span>";
+                        }
+                      ?>
+                    </td>
+                    <td style="text-align: center;">
+                      <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
+                      <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a>
+                      <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
+                    </td>
+                  </tr>
+                </tbody>
+              <?php
+            }
+          } else {
+            $index = 1;
+            $sql = "SELECT * FROM mra_leave WHERE noic = '$noic'";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $leaveid = $row['leaveid'];
+              $dateapplyc = $row['dateapply'];
+              $dateapply =  date('d/m/Y', strtotime($dateapplyc));
+              $nameapply = $row['nameapply'];
+              $noic  = $row['noic'];
+              $position = $row['position'];
+              $datestartc = $row['datestart'];
+              $datestart =  date('d/m/Y', strtotime($datestartc));
+              $dateendc = $row['dateend'];
+              $dateend =  date('d/m/Y', strtotime($dateendc));
+              $daysleave = $row['daysleave'];
+              $purpose = $row['purpose'];
+              $contactno = $row['contactno'];
+              $matters = $row['matters'];
+              $status = $row['status'];
+              ?>
+                <tbody>
+                  <tr>
+                    <td style="text-align: center;"><?php echo ($index++); ?></td>
+                    <td style="text-align: center;"><?php echo $dateapply; ?></td>
+                    <td style="text-align: center;"><?php echo $nameapply; ?></td>
+                    <td style="text-align: center;"><?php echo $position; ?></td>
+                    <td style="text-align: center;"><?php echo $datestart; ?></td>
+                    <td style="text-align: center;"><?php echo $dateend; ?></td>
+                    <td style="text-align: center;"><?php echo $daysleave; ?></td>
+                    <td style="text-align: center;"><?php echo $purpose; ?></td>
+                    <td style="text-align: center;">
+                      <?php 
+                        if ($status == "1") {
+                          echo "<span class='badge bg-secondary'>Pending</span>";
+                        } elseif ($status == "2") {
+                          echo "<span class='badge bg-success'>Approved</span>";
+                        } elseif ($status == "3") {
+                          echo "<span class='badge bg-warning'>Check Again</span>";
+                        } elseif ($status == "4") {
+                          echo "<span class='badge bg-danger'>Rejected</span>";
+                        }
+                      ?>
+                    </td>
+                    <td style="text-align: center;">
+                      <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
+                      <!-- <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a> -->
+                      <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
+                    </td>
+                  </tr>
+                </tbody>
+              <?php
+            }
+          }
         ?>
-          <tbody>
-            <tr>
-              <td style="text-align: center;"><?php echo ($index++); ?></td>
-              <td style="text-align: center;"><?php echo $dateapply; ?></td>
-              <td style="text-align: center;"><?php echo $nameapply; ?></td>
-              <td style="text-align: center;"><?php echo $position; ?></td>
-              <td style="text-align: center;"><?php echo $datestart; ?></td>
-              <td style="text-align: center;"><?php echo $dateend; ?></td>
-              <td style="text-align: center;"><?php echo $daysleave; ?></td>
-              <td style="text-align: center;"><?php echo $purpose; ?></td>
-			  <td style="text-align: center;">
-				<?php 
-					if ($status == "1") {
-						echo "<span class='badge bg-secondary'>Pending</span>";
-					} elseif ($status == "2") {
-						echo "<span class='badge bg-success'>Approved</span>";
-					} elseif ($status == "3") {
-						echo "<span class='badge bg-warning'>Check Again</span>";
-					} elseif ($status == "4") {
-						echo "<span class='badge bg-danger'>Rejected</span>";
-					}
-				?>
-			  </td>
-              <td style="text-align: center;">
-                <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-                <!-- <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a> -->
-                <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
-              </td>
-            </tr>
-          </tbody>
-        <?php } ?>
       </table>
     </div>
   </div>

@@ -8,7 +8,7 @@
 <?php
 set_time_limit(0);
 error_reporting(E_NOTICE);
-include('/var/www/html/conn.php');
+include('conn.php');
 
 $name = $_SESSION['name'];
 $position = $_SESSION['position'];
@@ -29,6 +29,7 @@ $days = $row['daysleave'];
 $purpose = $row['purpose'];
 $contact = $row['contactno'];
 $matter = $row['matters'];
+$status = $row['status'];
 ?>
 <div class="card">
   <div class="card-body">
@@ -89,8 +90,8 @@ $matter = $row['matters'];
         </div>
         <div class="row mb-3">
             <label for="matter" class="col-sm-2 col-form-label">MATTERS</label>
-            <div class="col-sm-10">
-                <select class="form-select" id="matters" name="matters" value="<?php echo $matter; ?>">
+            <div class="col-sm-4">
+                <select class="form-select form-control mb-1" id="matters" name="matters" value="<?php echo $matter; ?>">
                     <option value="ANNUAL LEAVE">ANNUAL LEAVE</option>
                     <option value="MEDICAL LEAVE">MEDICAL LEAVE</option>
                     <option value="UNPAID LEAVE">UNPAID LEAVE</option>
@@ -100,7 +101,52 @@ $matter = $row['matters'];
                 </select>
             </div>
         </div>
-        <button type="button" class="btn btn-primary">SUBMIT</button>
+        <div class="row mb-3">
+            <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
+						<div class="col-sm-4">
+							<select class="form-select form-control mb-1" name="status" id="status">
+								<option value="1" <?php echo ($status == '1') ? 'selected' : ''; ?>>PENDING</option>
+								<option value="2" <?php echo ($status == '2') ? 'selected' : ''; ?>>APPROVED</option>
+								<option value="3" <?php echo ($status == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
+								<option value="4" <?php echo ($status == '4') ? 'selected' : ''; ?>>REJECTED</option>
+							</select>
+						</div>
+        </div>
+        <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>
+        <!-- <input type="submit" value="SUBMIT" class="btn btn-primary"> -->
       </form>
   </div>
 </div>
+<script>
+  function validateleave() 
+  {
+    kemaskinileave = document.kemaskinileave;
+    if	(kemaskinileave.status.value == null || kemaskinileave.status.value=="")
+    {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in status!',
+        confirmButtonColor: '#1B95CF'
+      })
+      kemaskinileave.status.focus();
+      return;
+    }
+    else
+    {
+      swal.fire({
+      text: "Please make sure everything is correct!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#1B95CF',
+      cancelButtonColor: '#BF000E',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+        kemaskinileave.submit();
+        }
+      })
+    }
+  }
+</script>
