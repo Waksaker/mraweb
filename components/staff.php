@@ -28,9 +28,9 @@ $date = $row1['outoffice'];
     <div class="card-body">
 		<h5 class="card-title fw-semibold mb-4">Staff</h5>
         <div align="right">
-          <a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a>
+        	<a href="addstaff.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Staff</a>
         </div>
-        <table id="example" class="display nowrap" style="width:100%">
+        <table id="allstaff" class="display nowrap" style="width:100%">
 			<thead class="bg-primary text-white">
 				<tr>
 					<th style="text-align: center;">No</th>
@@ -56,7 +56,7 @@ $date = $row1['outoffice'];
                             <strong>Bank Name:</strong> {$rowstaff['bank_name']}<br>
                             <strong>Account Number:</strong> {$rowstaff['acc_no']}<br>
                             <strong>Syarikat:</strong> {$rowstaff['syarikat']}<br>
-			    <strong>Portfolio:</strong>{$rowstaff['portfolio']}<br>
+			    			<strong>Portfolio:</strong>{$rowstaff['portfolio']}<br>
                         </div>
                     ";
                     $id = $rowstaff['id'];
@@ -83,48 +83,3 @@ $date = $row1['outoffice'];
         </table>
     </div>
 </div>
-<script type="text/javascript">
-  function deletestaff(id) {
-    var result = confirm("Adakah anda ingin memadam data ini?");
-
-    if (result) {
-      window.location.href = "delete.php?idstaff=" + id;
-    }
-  }
-</script>
-<script>
-  function send(id) {
-    console.log("Hantar");
-    xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        if (this.responseText)
-          Swal.fire({
-              text: 'Berjaya hantar.',
-              icon: 'success',
-              showCancelButton: false,
-              confirmButtonColor: '#F7E836',
-              confirmButtonText: 'Ok'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location = 'staff.php';
-              }
-          });
-        else
-          Swal.fire({
-              text: 'Gagal hantar.',
-              icon: 'warning',
-              showCancelButton: false,
-              confirmButtonColor: '#F7E836',
-              confirmButtonText: 'Ok'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location = 'staff.php';
-              }
-          });
-      }
-    };
-    xhttp.open("GET", "send.php?iduser=" + id, true);
-    xhttp.send();
-  }
-</script>

@@ -205,9 +205,14 @@ $status = $row['status'];
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-	new DataTable('#request', {
-		scrollX: true,
-	});
+    new DataTable('#request', {
+        scrollX: true,
+        // layout: {
+        //     topStart: {
+        //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        //     }
+        // }
+    });
 </script>
 <script type="text/javascript">
 	function test(idreq) {

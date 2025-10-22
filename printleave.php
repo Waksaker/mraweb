@@ -47,7 +47,7 @@ $syarikat = $row2['syarikat'];
             <?php include("printsection.php"); ?>
             </div>
             <div class="col-6">
-            <?php include("./components/printsection2.php"); ?>
+                <?php include("./components/printsection2.php"); ?>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ $status = $row['status'];
       <a href="applyleave.php?id=<?php echo base64_encode($noic); ?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Leave</a>
     </div>
     <div>
-      <table id="example" class="display nowrap" style="width:100%">
+      <table id="leave" class="display nowrap" style="width:100%">
         <thead class="bg-primary text-white">
           <tr>
             <th style="text-align: center;">No</th>
@@ -150,12 +150,3 @@ $status = $row['status'];
     </div>
   </div>
 </div>
-<script type="text/javascript">
-  function test(leaveid) {
-    var result = confirm("Adakah anda ingin memadam data ini?");
-
-    if (result) {
-      window.location.href = "delete.php?leaveid=" + leaveid;
-    }
-  }
-</script>

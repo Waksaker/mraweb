@@ -15,6 +15,9 @@ session_start();
   <link rel="stylesheet" href="assets/css/styles.min.css" />
   <link rel="stylesheet" href="assets/datatables/datatables.min.css" />
   <link rel="stylesheet" href="assets/css/sweetalert2.min.css" />
+
+  <link rel="stylesheet" href="assets/dataTables.dataTables.min.css">
+<script src="assets/dataTables.min.js"></script>
 </head>
 
 <body>
