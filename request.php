@@ -18,7 +18,7 @@ $status = $row['status'];
 		<h5 class="card-title fw-semibold mb-4">Request</h5>
 		<div align="right">
 			<?php
-				if($status=='STAFF'||$status=='HR STAFF'){
+				if($status=='STAFF'||$status=='HR STAFF'||$status=="LEADER STAFF"||$status=="ADMIN STAFF"){
 			?>
 				<a href="createreq1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Create Request</a>
 			<?php
@@ -37,7 +37,7 @@ $status = $row['status'];
 							</tr>
 						</thead>
 						<?php
-							if ($status == 'STAFF') {
+							if ($status == 'STAFF' || $status == "LEADER STAFF") {
 								$index = 1;
 								$sql = "SELECT * FROM `request` WHERE namestaff = '$name'";
 								$result = mysqli_query($conn, $sql);

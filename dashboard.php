@@ -66,7 +66,7 @@ $status = $row['status'];
 <?php include("components/sidenav.php"); ?>
 <?php include("components/topnav.php"); ?>
 <?php
-	if ($status == "STAFF") {
+	if ($status == "STAFF" || $status == "LEADER STAFF") {
 		include("components/welcome.php");
 	} elseif ($status == "HR STAFF" || $status == "ADMIN STAFF" || $status == "MANAGER") {
 		include("components/dashadmin.php");

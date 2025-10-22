@@ -120,7 +120,7 @@
                             <select name="status" id="status" class="form-control mb-3">
                                 <option value="">Please Choose</option>
                                 <option value="STAFF">STAFF</option>
-                				<option value="HR STAFF">HR STAFF</option>
+                			    <option value="HR STAFF">HR STAFF</option>
                 				<option value="ADMIN STAFF">ADMIN STAFF</option>
                 				<option value="LEADER STAFF">LEADER STAFF</option>
                 				<option value="MANAGER">MANAGER</option>
@@ -136,7 +136,7 @@
                             </select>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3" onClick="submitAddStaff()">UPDATE</button>
+                    <button type="button" class="btn btn-primary mt-3" onClick="submitAddStaff()">SUBMIT</button>
                 </div>
             </form>
         </div>
