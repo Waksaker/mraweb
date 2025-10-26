@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.1deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 07, 2025 at 06:43 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: 127.0.0.1:3306
+-- Generation Time: Oct 26, 2025 at 10:04 AM
+-- Server version: 8.0.43-0ubuntu0.24.04.1
+-- PHP Version: 8.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attandance` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `ic` char(14) NOT NULL,
-  `mac` char(20) NOT NULL,
-  `ip` char(20) NOT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `mac` char(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `ip` char(20) COLLATE utf8mb4_general_ci NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
-  `update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -56,12 +56,12 @@ INSERT INTO `attandance` (`id`, `name`, `ic`, `mac`, `ip`, `time`, `date`, `upda
 --
 
 CREATE TABLE `download` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `ic` char(14) NOT NULL,
-  `namesave` varchar(255) NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ic` char(14) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `namesave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -80,13 +80,13 @@ INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `up
 --
 
 CREATE TABLE `list_request` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `date` date NOT NULL,
-  `appoinment` varchar(255) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  `descriptions` varchar(255) NOT NULL,
-  `quantity` char(10) NOT NULL,
+  `appoinment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `descriptions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `quantity` char(10) COLLATE utf8mb4_general_ci NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -111,14 +111,14 @@ INSERT INTO `list_request` (`id`, `name`, `date`, `appoinment`, `link`, `descrip
 --
 
 CREATE TABLE `mra_claim` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `apply` date NOT NULL,
   `tajuk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ic` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `folder` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `excel` varchar(255) NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `excel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -136,12 +136,12 @@ INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `exce
 --
 
 CREATE TABLE `mra_claims` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `date` date NOT NULL,
-  `noic` varchar(14) NOT NULL,
-  `purpose` varchar(255) NOT NULL,
-  `details` varchar(255) NOT NULL,
-  `status` char(11) NOT NULL,
+  `noic` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `status` char(11) COLLATE utf8mb4_general_ci NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -229,40 +229,42 @@ INSERT INTO `mra_claims` (`id`, `date`, `noic`, `purpose`, `details`, `status`, 
 --
 
 CREATE TABLE `mra_leave` (
-  `leaveid` int(11) NOT NULL,
+  `leaveid` int NOT NULL,
   `dateapply` date DEFAULT NULL,
-  `nameapply` varchar(255) DEFAULT NULL,
-  `noic` varchar(14) DEFAULT NULL,
-  `position` varchar(100) DEFAULT NULL,
-  `status` char(11) NOT NULL,
+  `nameapply` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `noic` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` int NOT NULL,
   `datestart` date DEFAULT NULL,
   `dateend` date DEFAULT NULL,
-  `daysleave` varchar(5) DEFAULT NULL,
-  `purpose` varchar(100) DEFAULT NULL,
-  `contactno` varchar(14) DEFAULT NULL,
-  `matters` varchar(100) DEFAULT NULL
+  `daysleave` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `purpose` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contactno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `matters` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statsupport` int NOT NULL,
+  `statapprove` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mra_leave`
 --
 
-INSERT INTO `mra_leave` (`leaveid`, `dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`) VALUES
-(6, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-10-01', '2024-10-02', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(7, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-10-01', '2024-10-02', '2', 'Balik Kampung', '01156640727', 'MEDICAL LEAVE'),
-(8, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-09-28', '2024-09-28', '1', 'Balik Kampung', '01156640727', 'UNPAID LEAVE'),
-(9, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-09-28', '2024-09-28', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(11, '2024-09-30', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-10-01', '2024-10-02', '2', 'Balik Kampung Isteri', '01156640727', 'MEDICAL LEAVE'),
-(13, '2024-11-01', 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', 'COMPUTER ENGINEER', '1', '2024-11-01', '2024-11-02', '2', 'Balik Kampung', '01172259030', 'ANNUAL LEAVE'),
-(15, '2024-11-16', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-11-18', '2024-11-19', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(17, '2024-12-17', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2024-12-23', '2024-12-31', '7', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(19, '2025-02-18', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2025-02-18', '2025-02-19', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(24, '2025-03-26', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2025-03-27', '2025-03-28', '1', 'BALIK KAMPUNG', '01156640727', 'ANNUAL LEAVE'),
-(37, '2025-05-03', 'AZLIN', '0005654', 'HR', '1', '2025-05-05', '2025-05-06', '2', 'Balik Kampung', '017-6445413', 'ANNUAL LEAVE'),
-(39, '2025-05-04', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2025-05-07', '2025-05-08', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(42, '2025-08-12', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2025-08-13', '2025-08-14', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE'),
-(43, '2025-08-13', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'Admin Executive', '1', '2025-09-12', '2025-09-12', '1', 'FAMILY MATTERS', '0176445413', 'ANNUAL LEAVE'),
-(47, '2025-08-14', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', '1', '2025-08-29', '2025-08-29', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE');
+INSERT INTO `mra_leave` (`leaveid`, `dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`, `statsupport`, `statapprove`) VALUES
+(6, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-10-01', '2024-10-02', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(7, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-10-01', '2024-10-02', '2', 'Balik Kampung', '01156640727', 'MEDICAL LEAVE', 0, 0),
+(8, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-09-28', '2024-09-28', '1', 'Balik Kampung', '01156640727', 'UNPAID LEAVE', 0, 0),
+(9, '2024-09-27', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-09-28', '2024-09-28', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(11, '2024-09-30', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-10-01', '2024-10-02', '2', 'Balik Kampung Isteri', '01156640727', 'MEDICAL LEAVE', 0, 0),
+(13, '2024-11-01', 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', 'COMPUTER ENGINEER', 1, '2024-11-01', '2024-11-02', '2', 'Balik Kampung', '01172259030', 'ANNUAL LEAVE', 0, 0),
+(15, '2024-11-16', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-11-18', '2024-11-19', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(17, '2024-12-17', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2024-12-23', '2024-12-31', '7', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(19, '2025-02-18', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-02-18', '2025-02-19', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(24, '2025-03-26', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-03-27', '2025-03-28', '1', 'BALIK KAMPUNG', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(37, '2025-05-03', 'AZLIN', '0005654', 'HR', 1, '2025-05-05', '2025-05-06', '2', 'Balik Kampung', '017-6445413', 'ANNUAL LEAVE', 0, 0),
+(39, '2025-05-04', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-05-07', '2025-05-08', '2', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(42, '2025-08-12', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-08-13', '2025-08-14', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0),
+(43, '2025-08-13', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'Admin Executive', 1, '2025-09-12', '2025-09-12', '1', 'FAMILY MATTERS', '0176445413', 'ANNUAL LEAVE', 0, 0),
+(47, '2025-08-14', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-08-29', '2025-08-29', '1', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -271,12 +273,12 @@ INSERT INTO `mra_leave` (`leaveid`, `dateapply`, `nameapply`, `noic`, `position`
 --
 
 CREATE TABLE `mra_office` (
-  `id` int(11) NOT NULL,
-  `ic` char(14) NOT NULL,
+  `id` int NOT NULL,
+  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
   `inoffice` time NOT NULL,
   `outoffice` time DEFAULT NULL,
   `date_apply` date NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -294,14 +296,14 @@ INSERT INTO `mra_office` (`id`, `ic`, `inoffice`, `outoffice`, `date_apply`, `up
 --
 
 CREATE TABLE `mra_outstation` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `ic` char(14) NOT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
   `datestart` date NOT NULL,
-  `purpose` varchar(255) NOT NULL,
-  `details` varchar(255) NOT NULL,
+  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `dateapply` date NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -324,20 +326,20 @@ INSERT INTO `mra_outstation` (`id`, `name`, `ic`, `datestart`, `purpose`, `detai
 --
 
 CREATE TABLE `mra_staff` (
-  `id` int(11) NOT NULL,
-  `id_user` varchar(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `icno` varchar(14) DEFAULT NULL,
-  `position` varchar(100) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
-  `status` varchar(14) DEFAULT NULL,
-  `phoneno` varchar(14) DEFAULT NULL,
-  `bank_name` varchar(10) NOT NULL,
-  `acc_no` varchar(30) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `syarikat` varchar(255) NOT NULL,
-  `portfolio` varchar(50) NOT NULL
+  `id` int NOT NULL,
+  `id_user` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `icno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `password` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `status` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phoneno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bank_name` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `acc_no` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `syarikat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `portfolio` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -360,14 +362,14 @@ INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `
 --
 
 CREATE TABLE `mra_wfh` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `ic` char(14) NOT NULL,
-  `purpose` varchar(255) NOT NULL,
-  `details` varchar(255) NOT NULL,
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
+  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `datesign` date NOT NULL,
   `dateapply` date NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -385,29 +387,29 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 --
 
 CREATE TABLE `request` (
-  `id` int(11) NOT NULL,
-  `namestaff` varchar(255) NOT NULL,
+  `id` int NOT NULL,
+  `namestaff` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `dateapply` date NOT NULL,
-  `appoiment` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
-  `supplirename` varchar(255) NOT NULL,
-  `suppladderss` varchar(255) NOT NULL,
-  `attention` varchar(255) NOT NULL,
-  `termpayment` varchar(255) NOT NULL,
-  `payto` varchar(255) NOT NULL,
-  `accno` varchar(30) NOT NULL,
-  `bankname` varchar(10) NOT NULL,
-  `remark` varchar(255) NOT NULL,
-  `signreq` varchar(255) NOT NULL,
-  `signmanager` varchar(255) NOT NULL,
-  `datemanager` varchar(10) DEFAULT NULL,
-  `signacc` varchar(255) NOT NULL,
-  `dateacc` varchar(10) DEFAULT NULL,
-  `signdirector` varchar(255) NOT NULL,
-  `datedirector` varchar(10) DEFAULT NULL,
-  `statusacc` int(11) NOT NULL,
-  `statusmana` int(11) NOT NULL,
-  `statusdirec` int(11) NOT NULL
+  `appoiment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `department` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `supplirename` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `suppladderss` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `attention` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `termpayment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `payto` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `accno` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `bankname` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `remark` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `signreq` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `signmanager` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `datemanager` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `signacc` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `dateacc` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `signdirector` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `datedirector` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statusacc` int NOT NULL,
+  `statusmana` int NOT NULL,
+  `statusdirec` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -496,67 +498,67 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `attandance`
 --
 ALTER TABLE `attandance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `download`
 --
 ALTER TABLE `download`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `list_request`
 --
 ALTER TABLE `list_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `mra_claim`
 --
 ALTER TABLE `mra_claim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mra_claims`
 --
 ALTER TABLE `mra_claims`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `mra_leave`
 --
 ALTER TABLE `mra_leave`
-  MODIFY `leaveid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `leaveid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `mra_office`
 --
 ALTER TABLE `mra_office`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mra_outstation`
 --
 ALTER TABLE `mra_outstation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `mra_staff`
 --
 ALTER TABLE `mra_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `mra_wfh`
 --
 ALTER TABLE `mra_wfh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
