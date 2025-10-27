@@ -31,8 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $matters = $_POST['matters'];
     $id = $_POST['id'];
     $status = $_POST['status'];
+    $nameuser = $_POST['name'];
 
-    $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$status',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters' WHERE `leaveid` = '$id'"; 
+    $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$nameuser'");
+    $row = mysqli_fetch_assoc($result);
+    $statususer = $row['status'];
+
+    if ($statususer=="LEADER STAFF") {
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$status',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statsupport`='$status' WHERE `leaveid` = '$id'"; 
+    }elseif ($statususer=="MANAGER") {
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$status',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statapprove`='$status' WHERE `leaveid` = '$id'";
+    }
 
         if(mysqli_query($conn, $sqlinsert)){
             //echo "Rekod berjaya disimpan.";

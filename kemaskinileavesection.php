@@ -29,13 +29,19 @@ $days = $row['daysleave'];
 $purpose = $row['purpose'];
 $contact = $row['contactno'];
 $matter = $row['matters'];
-$status = $row['status'];
+$statsupport = $row['statsupport'];
+$statapprove = $row['statapprove'];
+
+$result2 = mysqli_query($conn, "SELECT status AS statusstaff FROM `mra_staff` WHERE name = '$name'");
+$row2 = mysqli_fetch_assoc($result2);
+$statusstaff = $row2['statusstaff'];
 ?>
 <div class="card">
   <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Annual Leave</h5>
     <form name="kemaskinileave" action="kemaskinileaveaction.php" method="post">
         <input type="text" name="id" value="<?php echo $id; ?>" style="display: none;">
+        <input type="text" name="name" value="<?php echo $name; ?>" style="display: none;">
         <div class="row mb-3">
           <label for="date" class="col-sm-2 col-form-label">DATE</label>
           <div class="col-sm-10">
@@ -103,14 +109,31 @@ $status = $row['status'];
         </div>
         <div class="row mb-3">
             <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
+			<?php 
+				if($statusstaff == "LEADER STAFF"){
+					?>
 						<div class="col-sm-4">
 							<select class="form-select form-control mb-1" name="status" id="status">
-								<option value="1" <?php echo ($status == '1') ? 'selected' : ''; ?>>PENDING</option>
-								<option value="2" <?php echo ($status == '2') ? 'selected' : ''; ?>>APPROVED</option>
-								<option value="3" <?php echo ($status == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
-								<option value="4" <?php echo ($status == '4') ? 'selected' : ''; ?>>REJECTED</option>
+								<option value="1" <?php echo ($statsupport == '1') ? 'selected' : ''; ?>>PENDING</option>
+								<option value="2" <?php echo ($statsupport == '2') ? 'selected' : ''; ?>>APPROVED</option>
+								<option value="3" <?php echo ($statsupport == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
+								<option value="4" <?php echo ($statsupport == '4') ? 'selected' : ''; ?>>REJECTED</option>
 							</select>
 						</div>
+					<?php	
+				}elseif($statusstaff == "MANAGER"){
+					?>
+						<div class="col-sm-4">
+							<select class="form-select form-control mb-1" name="status" id="status">
+								<option value="1" <?php echo ($statapprove == '1') ? 'selected' : ''; ?>>PENDING</option>
+								<option value="2" <?php echo ($statapprove == '2') ? 'selected' : ''; ?>>APPROVED</option>
+								<option value="3" <?php echo ($statapprove == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
+								<option value="4" <?php echo ($statapprove == '4') ? 'selected' : ''; ?>>REJECTED</option>
+							</select>
+						</div>
+					<?php
+				}
+			?>
         </div>
         <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>
         <!-- <input type="submit" value="SUBMIT" class="btn btn-primary"> -->
