@@ -115,9 +115,9 @@ if (isset($_GET['date'])) {
 	$r1 = mysqli_fetch_assoc($s1);
 	$name = $r1['namestaff'];
 	$date = $r1['dateapply'];
-	$appoiment = $rl['appoiment'];
+	$appoiment = $r1['appoiment'];
 	mysqli_query($conn, "DELETE FROM `request` WHERE namestaff = '$name' AND dateapply = '$date' AND appoiment='$appoiment'");
-	mysqli_query($conn, "DELETE FROM `list_request` WHERE name = '$name' AND date = '$date'ANDappoiment='$appoiment'");
+	mysqli_query($conn, "DELETE FROM `list_request` WHERE name = '$name' AND date = '$date'AND appoinment='$appoiment'");
 	header("Location: request.php");
 	exit();
 }

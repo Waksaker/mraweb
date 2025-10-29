@@ -216,10 +216,10 @@ $status = $row['status'];
 </script>
 <script type="text/javascript">
 	function test(idreq) {
-    		var result = confirm("Adakah anda ingin memadam data ini?");
+			var result = confirm("Adakah anda ingin memadam data ini?");
 
-    		if (result) {
-    			window.location.href = "delete.php?idreq=" + idreq;
-    		}
-  	}
+			if (result) {
+				window.location.href = "delete.php?idreq=" + idreq;
+			}
+	}
 </script>
