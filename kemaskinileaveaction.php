@@ -30,17 +30,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $contactno = $_POST['contactno'];
     $matters = $_POST['matters'];
     $id = $_POST['id'];
-    $status = $_POST['status'];
     $nameuser = $_POST['name'];
+    $statusleave = $_POST['statusleave'];
 
     $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$nameuser'");
     $row = mysqli_fetch_assoc($result);
     $statususer = $row['status'];
 
+    date_default_timezone_set('Asia/Kuala_Lumpur');
+    $date = date("Y-m-d");
+
     if ($statususer=="LEADER STAFF") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$status',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statsupport`='$status' WHERE `leaveid` = '$id'"; 
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statsupport`='$statusleave',`namesupport`='$nameuser',`datestatsupport`='$date' WHERE `leaveid` = '$id'"; 
     }elseif ($statususer=="MANAGER") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$status',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statapprove`='$status' WHERE `leaveid` = '$id'";
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statapprove`='$statusleave',`nameapprove`='$nameuser',`datestatapprove`='$date' WHERE `leaveid` = '$id'";
     }
 
         if(mysqli_query($conn, $sqlinsert)){

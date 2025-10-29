@@ -15,9 +15,12 @@ session_start();
   <link rel="stylesheet" href="assets/css/styles.min.css" />
   <link rel="stylesheet" href="assets/datatables/datatables.min.css" />
   <link rel="stylesheet" href="assets/css/sweetalert2.min.css" />
+  <!-- jQuery -->
+  <script src="assets/jquery-3.7.1.js"></script>
 
+  <!-- DataTables CSS & JS (versi jQuery) -->
   <link rel="stylesheet" href="assets/dataTables.dataTables.min.css">
-<script src="assets/dataTables.min.js"></script>
+  <script src="assets/dataTables.min.js"></script>
 </head>
 
 <body>

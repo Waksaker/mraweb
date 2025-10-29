@@ -9,7 +9,6 @@ $sql = "SELECT * FROM `mra_leave` where leaveid = '$id'"; // SQL with parameters
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 
-
 $dateapplyc = $row['dateapply'];
 $dateapply =  date('d/m/Y', strtotime($dateapplyc));
 $nameapply = $row['nameapply'];
@@ -22,7 +21,12 @@ $daysleave = $row['daysleave'];
 $purpose = $row['purpose'];
 $contactno = $row['contactno'];
 $matters = $row['matters'];
-
+$datestatsupport = $row['datestatsupport'];
+$datestatsupport1 =  date('d/m/Y', strtotime($datestatsupport));
+$datestatapprove = $row['datestatapprove'];
+$datestatapprove1 = date('d/m/Y', strtotime($datestatapprove));
+$namesupport = $row['namesupport'];
+$nameapprove = $row['nameapprove'];
 
 $sql1 = "SELECT * FROM `mra_staff` WHERE name = '$nameapply'";
 $result1 = mysqli_query($conn, $sql1);
@@ -30,6 +34,16 @@ $row1 = mysqli_fetch_assoc($result1);
 
 $sign = $row1['image'];
 $syarikat = $row1['syarikat'];
+
+$sql2 = "SELECT * FROM `mra_staff` WHERE name = '$namesupport'";
+$result2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_assoc($result2);
+$sign2 = $row2['image'];
+
+$sql3 = "SELECT * FROM `mra_staff` WHERE name = '$nameapprove'";
+$result3 = mysqli_query($conn, $sql3);
+$row3 = mysqli_fetch_assoc($result3);
+$sign3 = $row3['image'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -252,17 +266,31 @@ $syarikat = $row1['syarikat'];
         </tr>
         <tr>
             <td>
-                <img src="image/signature.png" alt="Signature">
+                <?php
+                    if ($sign!="") {
+                        echo "<img src='image/$sign' alt='Signature'>";
+                    }
+                ?>
                 <div class="signature-line"></div>
-                <div class="date-line">DATE: 14/08/2025</div>
+                <div class="date-line">DATE: <?php echo $dateapply; ?></div>
             </td>
             <td>
+                <?php
+                    if ($sign2!="") {
+                        echo "<img src='image/$sign2' alt='Signature'>";
+                    }
+                ?>
                 <div class="signature-line"></div>
-                <div class="date-line">DATE:</div>
+                <div class="date-line">DATE: <?php echo $datestatsupport1; ?></div>
             </td>
             <td>
+                <?php
+                    if ($sign3!="") {
+                        echo "<img src='image/$sign3' alt='Signature'>";
+                    }
+                ?>
                 <div class="signature-line"></div>
-                <div class="date-line">DATE:</div>
+                <div class="date-line">DATE: <?php echo $datestatapprove1; ?></div>
             </td>
         </tr>
     </table>

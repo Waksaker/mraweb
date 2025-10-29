@@ -109,31 +109,14 @@ $statusstaff = $row2['statusstaff'];
         </div>
         <div class="row mb-3">
             <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
-			<?php 
-				if($statusstaff == "LEADER STAFF"){
-					?>
-						<div class="col-sm-4">
-							<select class="form-select form-control mb-1" name="status" id="status">
+            <div class="col-sm-4">
+							<select class="form-select form-control mb-1" name="statusleave" id="statusleave">
 								<option value="1" <?php echo ($statsupport == '1') ? 'selected' : ''; ?>>PENDING</option>
 								<option value="2" <?php echo ($statsupport == '2') ? 'selected' : ''; ?>>APPROVED</option>
 								<option value="3" <?php echo ($statsupport == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
 								<option value="4" <?php echo ($statsupport == '4') ? 'selected' : ''; ?>>REJECTED</option>
 							</select>
 						</div>
-					<?php	
-				}elseif($statusstaff == "MANAGER"){
-					?>
-						<div class="col-sm-4">
-							<select class="form-select form-control mb-1" name="status" id="status">
-								<option value="1" <?php echo ($statapprove == '1') ? 'selected' : ''; ?>>PENDING</option>
-								<option value="2" <?php echo ($statapprove == '2') ? 'selected' : ''; ?>>APPROVED</option>
-								<option value="3" <?php echo ($statapprove == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
-								<option value="4" <?php echo ($statapprove == '4') ? 'selected' : ''; ?>>REJECTED</option>
-							</select>
-						</div>
-					<?php
-				}
-			?>
         </div>
         <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>
         <!-- <input type="submit" value="SUBMIT" class="btn btn-primary"> -->
@@ -144,18 +127,15 @@ $statusstaff = $row2['statusstaff'];
   function validateleave() 
   {
     kemaskinileave = document.kemaskinileave;
-    if	(kemaskinileave.status.value == null || kemaskinileave.status.value=="")
-    {
+    if	(kemaskinileave.statusleave.value == null || kemaskinileave.statusleave.value=="") {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in status!',
         confirmButtonColor: '#1B95CF'
       })
-      kemaskinileave.status.focus();
+      kemaskinileave.statusleave.focus();
       return;
-    }
-    else
-    {
+    } else {
       swal.fire({
       text: "Please make sure everything is correct!",
       icon: "warning",

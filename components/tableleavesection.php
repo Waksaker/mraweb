@@ -126,14 +126,16 @@ $statususer = $row['status'];
                     <td style="text-align: center;"><?php echo $purpose; ?></td>
                     <td style="text-align: center;">
                       <?php 
-                        if ($status == "1") {
+                        if ($statsupport == "1" && $statapprove == "1") {
                           echo "<span class='badge bg-secondary'>Pending</span>";
-                        } elseif ($status == "2") {
+                        } elseif ($statsupport == "2" && $statapprove == "2") {
                           echo "<span class='badge bg-success'>Approved</span>";
-                        } elseif ($status == "3") {
+                        } elseif ($statsupport == "3" && $statapprove == "3") {
                           echo "<span class='badge bg-warning'>Check Again</span>";
-                        } elseif ($status == "4") {
+                        } elseif ($statsupport == "4" && $statapprove == "4") {
                           echo "<span class='badge bg-danger'>Rejected</span>";
+                        } else {
+                          echo "<span class='badge bg-secondary'>Pending</span>";
                         }
                       ?>
                     </td>
@@ -179,14 +181,16 @@ $statususer = $row['status'];
                     <td style="text-align: center;"><?php echo $purpose; ?></td>
                     <td style="text-align: center;">
                       <?php 
-                        if ($status == "1") {
+                        if ($statsupport == "1" && $statapprove == "1") {
                           echo "<span class='badge bg-secondary'>Pending</span>";
-                        } elseif ($status == "2") {
+                        } elseif ($statsupport == "2" && $statapprove == "2") {
                           echo "<span class='badge bg-success'>Approved</span>";
-                        } elseif ($status == "3") {
+                        } elseif ($statsupport == "3" && $statapprove == "3") {
                           echo "<span class='badge bg-warning'>Check Again</span>";
-                        } elseif ($status == "4") {
+                        } elseif ($statsupport == "4" && $statapprove == "4") {
                           echo "<span class='badge bg-danger'>Rejected</span>";
+                        } else {
+                          echo "<span class='badge bg-secondary'>Pending</span>";
                         }
                       ?>
                     </td>
