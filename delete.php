@@ -9,7 +9,7 @@ if (isset($_GET['date'])) {
 	$result_sql1 = mysqli_query($conn, $sql1);
 
 	if ($result_sql1) {
-		header("Location: claim.php");
+		header("Location: claim1.php");
 		exit();
 	} else {
 		echo "Gagal delete semua claim";
@@ -120,4 +120,15 @@ if (isset($_GET['date'])) {
 	mysqli_query($conn, "DELETE FROM `list_request` WHERE name = '$name' AND date = '$date'AND appoinment='$appoiment'");
 	header("Location: request.php");
 	exit();
+} elseif (isset($_GET['idapplyclaim'])) {
+	$idapplyclaim = $_GET['idapplyclaim'];
+	$result = mysqli_query($conn, "SELECT * FROM `mra_claims` WHERE id = '$idapplyclaim'");
+	$row = mysqli_fetch_assoc($result);
+	$resit = $row['resit'];
+	$file_resit = "resitclaim/$resit";
+	if (file_exists($file_resit)) {
+		unlink($file_pdf)
+	} else {
+		echo "File tidak dijumpai";
+	}
 }

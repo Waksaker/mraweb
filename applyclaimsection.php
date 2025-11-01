@@ -20,7 +20,7 @@ $phoneno = $row['phoneno'];
 <div class="card">
   <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Claim</h5>
-    <form name="claim" action="claimaction" method="post">
+    <form name="claim" action="claimaction1.php" method="post">
         <div class="customer_records">
             <div class="row mb-3">
             <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
@@ -41,6 +41,10 @@ $phoneno = $row['phoneno'];
             <div class="col-sm-4">
                 <input type="text" class="form-control mb-1" id="amount" name="amount[]">
                 <sup><font style="color:red">*Without 00.00, just enter amount! eg: 25</font></sup>
+            </div>
+            <label for="dateend" class="col-sm-2 col-form-label">RESIT</label>
+            <div class="col-sm-4">
+                <input type="file" class="form-control mb-1" id="resit" name="resit">
             </div>
             <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
             <div class="col-sm-4">

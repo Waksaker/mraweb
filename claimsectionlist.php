@@ -21,6 +21,7 @@ $noic = $_POST['ic'];
             <th style="text-align: center;">Purpose</th>
             <th style="text-align: center;">Details</th>
             <th style="text-align: center;">Amounts</th>
+            <th style="text-align: center;">Resit</th>
 			<th style="text-align: center;">Status</th>
             <th style="text-align: center;">Action</th>
         </tr>
@@ -40,7 +41,7 @@ $noic = $_POST['ic'];
         $amount = $row['amount'];
 		$status = $row['status'];
         $name  = $row['name'];
-    
+        $resit = $row['resit'];
     ?>
     <tbody>
         <tr>
@@ -50,6 +51,7 @@ $noic = $_POST['ic'];
             <td style="text-align: center;"><?php echo $purpose; ?></td>
             <td style="text-align: center;"><?php echo $details; ?></td>
             <td style="text-align: center;"><?php echo $amount; ?></td>
+            <td style="text-align: center;"><?php echo $resit; ?></td>
 			<td style="text-align: center;">
 				<?php 
 					if ($status == "1") {
@@ -61,7 +63,9 @@ $noic = $_POST['ic'];
 					}
 				?>
 			</td>
-            <td style="text-align: center;"><button class="btn btn-danger" onclick="test1('<?php echo $id; ?>')"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px; height: 24px;"></button></td>
+            <td style="text-align: center;">
+                <button class="btn btn-danger" onclick="test1('<?php echo $id; ?>')"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px; height: 24px;"></button>
+            </td>
         </tr>
     </tbody>
     <?php } ?>
@@ -89,7 +93,7 @@ $noic = $_POST['ic'];
         var result1 = confirm("Are you sure you want to delete this data?");
 
         if (result1) {
-            window.location.href = "delete.php?id=" + no;
+            window.location.href = "delete.php?idapplyclaim=" + no;
         }
     }
 </script>

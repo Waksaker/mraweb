@@ -75,13 +75,21 @@ $status = $row['status'];
               <span class="hide-menu">CLAIM</span>
             </li>
             <li class="sidebar-item">
+              <a class="sidebar-link" href="claim1.php" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Apply Claim</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a class="sidebar-link" href="claim.php" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
-                <span class="hide-menu">Claim</span>
+                <span class="hide-menu">Upload claim file</span>
               </a>
-	    </li>
+            </li>
 
 		<li class="nav-small-cap">
 			<i class="ti ti-dots nav-small-cap-icon fs-4"></i>
