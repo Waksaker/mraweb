@@ -110,12 +110,12 @@ $statusstaff = $row2['statusstaff'];
         <div class="row mb-3">
             <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
             <div class="col-sm-4">
-							<select class="form-select form-control mb-1" name="statusleave" id="statusleave">
-								<option value="1" <?php echo ($statsupport == '1') ? 'selected' : ''; ?>>PENDING</option>
-								<option value="2" <?php echo ($statsupport == '2') ? 'selected' : ''; ?>>APPROVED</option>
-								<option value="3" <?php echo ($statsupport == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
-								<option value="4" <?php echo ($statsupport == '4') ? 'selected' : ''; ?>>REJECTED</option>
-							</select>
+              <select class="form-select form-control mb-1" name="statusleave" id="statusleave">
+                <option value="1">PENDING</option>
+                <option value="2">APPROVED</option>
+                <option value="3">CHECK AGAIN</option>
+                <option value="4">REJECTED</option>
+              </select>
 						</div>
         </div>
         <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>

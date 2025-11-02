@@ -45,6 +45,9 @@ $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 $sign3 = $row3['image'];
 ?>
+<?php
+echo "$datestatsupport";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -157,7 +160,7 @@ $sign3 = $row3['image'];
     /* Garisan tandatangan */
     .signature-line {
         border-top: 1.8px solid black;
-        width: 80%;
+        width: 100%;
         margin: 0 auto 4px auto;
         height: 2px;
     }
@@ -165,7 +168,7 @@ $sign3 = $row3['image'];
     /* Tarikh */
     .date-line {
         font-size: 12px;
-        text-align: center;
+        text-align: left;
         margin-top: 3px;
     }
 
@@ -266,31 +269,23 @@ $sign3 = $row3['image'];
         </tr>
         <tr>
             <td>
-                <?php
-                    if ($sign!="") {
-                        echo "<img src='image/$sign' alt='Signature'>";
-                    }
-                ?>
+                <?php if ($sign != "") echo "<img src='image/$sign' alt='Signature'>"; ?>
                 <div class="signature-line"></div>
                 <div class="date-line">DATE: <?php echo $dateapply; ?></div>
             </td>
             <td>
-                <?php
-                    if ($sign2!="") {
-                        echo "<img src='image/$sign2' alt='Signature'>";
-                    }
-                ?>
+                <?php if ($sign2 != "") echo "<img src='image/$sign2' alt='Signature'>"; ?>
                 <div class="signature-line"></div>
-                <div class="date-line">DATE: <?php echo $datestatsupport1; ?></div>
+                <div class="date-line">
+                    DATE: <?php echo ($datestatsupport != "") ? $datestatsupport1 : ""; ?>
+                </div>
             </td>
             <td>
-                <?php
-                    if ($sign3!="") {
-                        echo "<img src='image/$sign3' alt='Signature'>";
-                    }
-                ?>
+                <?php if ($sign3 != "") echo "<img src='image/$sign3' alt='Signature'>"; ?>
                 <div class="signature-line"></div>
-                <div class="date-line">DATE: <?php echo $datestatapprove1; ?></div>
+                <div class="date-line">
+                    DATE: <?php echo ($datestatapprove != "") ? $datestatapprove1 : ""; ?>
+                </div>
             </td>
         </tr>
     </table>

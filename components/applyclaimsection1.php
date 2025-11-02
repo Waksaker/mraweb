@@ -20,7 +20,7 @@ $phoneno = $row['phoneno'];
 <div class="card">
   <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Claim</h5>
-    <form name="applyclaim" action="applyclaimaction.php" method="post" enctype="multipart/form-data">
+    <form name="applyclaim" action="applyclaimaction.php" method="POST" enctype="multipart/form-data">
         <div class="customer_records">
             <div class="row mb-3">
                 <label for="datestart" class="col-sm-2 col-form-label">DATE</label>

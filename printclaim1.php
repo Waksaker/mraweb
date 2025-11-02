@@ -149,6 +149,7 @@ $syarikat = $rowp['syarikat'];
                 <th style="border: 2px solid; text-align: center; padding-bottom: 5px;">DATE</th>
                 <th style="border: 2px solid; text-align: center; padding-bottom: 5px;">PAID TO</th>
                 <th style="border: 2px solid; text-align: center; padding-bottom: 5px;">PURPOSE</th>
+                <th style="border: 2px solid; text-align: center; padding-bottom: 5px;">RESIT</th>
                 <th style="border: 2px solid; text-align: center; padding-bottom: 5px;">AMOUNTS</th>
                 </tr>
             </thead>
@@ -165,13 +166,20 @@ $syarikat = $rowp['syarikat'];
                 $details = $row['details'];
                 $amount = $row['amount'];
                 $name  = $row['name'];
-            
+                $resit = $row['resit'];
             ?>
             <tbody>
                 <tr>
                     <td style="border: 2px solid; text-align: center" width="15%"><?php echo $date; ?></td>
                     <td style="border: 2px solid; text-align: center" width="15%"></td>
                     <td style="border: 2px solid; text-align: center" width="50%"><?php echo $purpose; ?>(<?php echo $details; ?>)</td>
+                    <td style="border: 2px solid; text-align: center;" width="50%">
+                        <?php
+                            if ($resit != "") {
+                                echo "<img src='./resitclaim/" . $resit . "' style='max-width:150px; height:auto;'>";   
+                            }
+                        ?>
+                    </td>
                     <td style="border: 2px solid; text-align: center" width="10%" align="center"><?php echo number_format($amount,2); ?></td>
                 </tr>
             </tbody>
@@ -182,6 +190,8 @@ $syarikat = $rowp['syarikat'];
             $rowtotal = mysqli_fetch_array($resulttotal);
             $total_amount = $rowtotal['total_amount'];
             ?>
+        </table>
+        <table style="width:100%"> 
             <tfoot>
                 <tr>
                     <td width="10%"></td>

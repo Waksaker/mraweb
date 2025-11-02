@@ -113,6 +113,8 @@ $statususer = $row['status'];
               $contactno = $row['contactno'];
               $matters = $row['matters'];
               $status = $row['status'];
+              $statsupport = $row['statsupport'];
+              $statapprove = $row['statapprove'];
               ?>
                 <tbody>
                   <tr>
@@ -168,6 +170,8 @@ $statususer = $row['status'];
               $contactno = $row['contactno'];
               $matters = $row['matters'];
               $status = $row['status'];
+              $statsupport = $row['statsupport'];
+              $statapprove = $row['statapprove'];
               ?>
                 <tbody>
                   <tr>

@@ -125,10 +125,17 @@ if (isset($_GET['date'])) {
 	$result = mysqli_query($conn, "SELECT * FROM `mra_claims` WHERE id = '$idapplyclaim'");
 	$row = mysqli_fetch_assoc($result);
 	$resit = $row['resit'];
-	$file_resit = "resitclaim/$resit";
+	$file_resit = "/var/www/html/resitclaim/$resit";
 	if (file_exists($file_resit)) {
-		unlink($file_pdf)
+		if (unlink($file_resit)) {
+			mysqli_query($conn, "DELETE FROM `mra_claims` WHERE id = '$idapplyclaim'");
+			header("Location: claim1.php");
+			exit();		
+		}
 	} else {
+		mysqli_query($conn, "DELETE FROM `mra_claims` WHERE id = '$idapplyclaim'");
+		header("Location: claim1.php");
+		exit();	
 		echo "File tidak dijumpai";
 	}
 }
