@@ -79,7 +79,7 @@ $status = $row['status'];
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
-                <span class="hide-menu">Apply claim</span>
+                <span class="hide-menu">Claim</span>
               </a>
             </li>
 <!--             <li class="sidebar-item"> -->
