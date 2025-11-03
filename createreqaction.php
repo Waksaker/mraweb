@@ -16,6 +16,7 @@ include("conn.php");
 
 if (isset($_POST['createreq1'])) {
     $name = $_POST['name']; 
+    $refno=$_POST['refno'];
     $dateapply = $_POST['dateapply'];
     $appoinment = $_POST['appoinment'];
     $department = $_POST['department'];
@@ -31,12 +32,12 @@ if (isset($_POST['createreq1'])) {
        INSERT INTO `request`
        (`namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
        `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
-       `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`) 
+       `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`,`refno`) 
         VALUES 
        (
             '$name', '$dateapply', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
             'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$sign', 'NULL', '0000-00-00',
-            'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1')
+            'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1','$refno')
     ";
 
     $result1 = mysqli_query($conn, $sql1);

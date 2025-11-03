@@ -6,16 +6,18 @@ include('conn.php');
 $name = $_SESSION['name'];
 $position = $_SESSION['position'];
 
-$icno = base64_decode($_GET['id']);
-
-$sql = "SELECT * FROM mra_staff where name = '$name' and icno ='$icno'"; // SQL with parameters
-$result = mysqli_query($conn, $sql);
+$id = base64_decode($_GET['id']);
+$result = mysqli_query($conn, "SELECT * FROM mra_claims where id = '$id'");
 $row = mysqli_fetch_array($result);
 
-$name2 = $row['name'];
-$position2 = $row['position'];
-$noic = $row['icno'];
-$phoneno = $row['phoneno'];
+$dateapply = $row['date'];
+$noic = $row['noic'];
+$purpose = $row['purpose'];
+$details = $row['details'];
+$status = $row['status'];
+$resit = $row['resit'];
+$amount = $row['amount'];
+$datestart = $row['datestart'];
 ?>
 <style>
 .container-img {
@@ -65,26 +67,27 @@ $phoneno = $row['phoneno'];
 <div class="card">
   <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Claim</h5>
-    <form name="applyclaim" action="applyclaimaction.php" method="POST" enctype="multipart/form-data">
+    <form name="applyclaim" action="editapplyclaimaction.php" method="POST" enctype="multipart/form-data">
         <div class="customer_records">
             <div class="row mb-3">
+            	<input type="text" name="id" value="<?php echo $id;?>" style="display:none;">
                 <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control mb-3" id="date" name="date">
+                    <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $dateapply;?>">
                 </div>
                 <label for="dateend" class="col-sm-2 col-form-label">PURPOSE</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control mb-1" id="purpose" name="purpose" maxlength="255">
+                    <input type="text" class="form-control mb-1" id="purpose" name="purpose" maxlength="255" value="<?php echo $purpose; ?>">
                     <sup><font style="color:red">*Max character 255 only including space and break</font></sup>
                 </div>
                 <label for="dateend" class="col-sm-2 col-form-label">DETAILS</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control mb-1" id="details" name="details" maxlength="255">
+                    <input type="text" class="form-control mb-1" id="details" name="details" maxlength="255" value="<?php echo $details; ?>">
                     <sup><font style="color:red">*Max character 255 only including space and break</font></sup>
                 </div>
                 <label for="dateend" class="col-sm-2 col-form-label">AMOUNT</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control mb-1" id="amount" name="amount">
+                    <input type="text" class="form-control mb-1" id="amount" name="amount" value="<?php echo $amount; ?>">
                     <sup><font style="color:red">*Without 00.00, just enter amount! eg: 25</font></sup>
                 </div>
                 <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
@@ -96,11 +99,18 @@ $phoneno = $row['phoneno'];
             	<label for="dateend" class="col-sm-2 col-form-label">RESIT</label>
                 <div class="col-sm-4">
                     <input type="file" class="form-control mb-1" id="resit" name="resit" onchange="previewImageResit(event)">
+                    <input type="text" name="resit1" value="<?php echo $resit; ?>" style="display: none;">
                 </div>
                 <div class="container-img">
                     <label for="input-file" id="drop-area">
                         <div id="img-view">
-                            <img alt="" id="preview-img-sign">
+                        	<?php 
+                        	if ($resit!="") {
+                        	   echo '<img src="./resitclaim/' . $resit . '" alt="" id="preview-img-sign">';
+                        	} else {
+                        	   echo '<img alt="" id="preview-img-sign">';
+                        	}
+                        	?>
                         </div>
                     </label>
                 </div>

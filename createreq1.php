@@ -14,6 +14,10 @@
             <div class="customer_records">
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>" style="display:none;">
+                    <label for="datestart" class="col-sm-2 col-form-label">REF NO</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control mb-3" id="refno" name="refno">
+                    </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DATE :</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control mb-3" id="dateapply" name="dateapply">
@@ -53,6 +57,11 @@
       if (form.name.value.trim() == "") {
         Swal.fire({ icon: 'warning', text: 'Please fill in your name!', confirmButtonColor: '#1B95CF' });
         form.name.focus();
+        return false;
+      }
+      else if (form.refno.value.trim() == "") {
+        Swal.fire({ icon: 'warning', text: 'Please fill in your ref no!', confirmButtonColor: '#1B95CF' });
+        form.refno.focus();
         return false;
       }
       else if (form.dateapply.value.trim() == "") {

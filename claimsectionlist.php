@@ -64,6 +64,9 @@ $noic = $_POST['ic'];
 				?>
 			</td>
             <td style="text-align: center;">
+                <a href="editapplyclaim1.php?id=<?php echo base64_encode($id); ?>" class="btn btn-primary">
+                    <img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
+                </a>
                 <button class="btn btn-danger" onclick="test1('<?php echo $id; ?>')"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px; height: 24px;"></button>
             </td>
         </tr>

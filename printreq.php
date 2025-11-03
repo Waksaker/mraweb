@@ -25,6 +25,7 @@ $signacc = $row['signacc'];
 $dateacc = $row['dateacc'];
 $signdirector = $row['signdirector'];
 $datedirector = $row['datedirector'];
+$refno=$row['refno'];
 ?>
 <html>
 <head>
@@ -90,7 +91,7 @@ $datedirector = $row['datedirector'];
                     
                     <table style="margin-right: -100px; float: right;">
                         <tr>
-                            <td style="text-align: right; border: none;"><h6><b>Ref No: RQF (GMS)-MRA2302004</b></h6></td>
+                            <td style="text-align: right; border: none;"><h6><b>Ref No: <?php echo $refno;?></b></h6></td>
                         </tr>
                     </table>
 

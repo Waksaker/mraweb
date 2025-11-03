@@ -12,6 +12,7 @@ $department = $row['department'];
 $supplirename = $row['supplirename'];
 $suppladderss = $row['suppladderss'];
 $attention = $row['attention'];
+$refno=$row['refno'];
 ?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
@@ -29,6 +30,10 @@ $attention = $row['attention'];
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="id" name="id" value="<?php echo $id; ?>" style="display: none;">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name_staff; ?>" style="display: none;">
+                    <label for="datestart" class="col-sm-2 col-form-label">REF NO</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control mb-3" id="refno" name="refno" value="<?php echo $refno;?>">
+                    </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DATE :</label>
                     <div class="col-sm-4">
                         <input type="date" class="form-control mb-3" id="dateapply" name="dateapply" value="<?php echo $date; ?>">

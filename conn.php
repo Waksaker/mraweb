@@ -1,7 +1,7 @@
 <?php
 
-$user = 'mraserver';
-$password = 'mraglobal2525';
+$user = 'root';
+$password = '';
 $database = 'mraweb';
 
 $conn = new mysqli('localhost', $user, $password, $database); 
