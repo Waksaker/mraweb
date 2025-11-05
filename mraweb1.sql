@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2025 at 09:22 AM
+-- Generation Time: Nov 05, 2025 at 01:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -72,6 +72,22 @@ CREATE TABLE `download` (
 INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `updated_at`) VALUES
 (1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'garam madu', 'bhXL4B00j3Q.mp3', '2025-03-27 23:01:35', '2025-03-27 23:01:35'),
 (6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'Rindu Semalam', 'OXqZXTQUlso.mp3', '2025-04-09 23:06:51', '2025-04-09 23:06:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_quotation`
+--
+
+CREATE TABLE `list_quotation` (
+  `id` int(11) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `hours` int(255) DEFAULT NULL,
+  `x` text NOT NULL,
+  `manhour` decimal(10,2) NOT NULL,
+  `manhourcost` decimal(10,2) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -363,6 +379,27 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quotation`
+--
+
+CREATE TABLE `quotation` (
+  `id` int(11) NOT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `qtnno` varchar(255) DEFAULT NULL,
+  `date` date NOT NULL,
+  `page` int(11) DEFAULT NULL,
+  `project` varchar(255) DEFAULT NULL,
+  `contractno` varchar(100) DEFAULT NULL,
+  `nodaftar` varchar(100) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `signmana` varchar(100) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `request`
 --
 
@@ -418,6 +455,12 @@ ALTER TABLE `download`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `list_quotation`
+--
+ALTER TABLE `list_quotation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `list_request`
 --
 ALTER TABLE `list_request`
@@ -466,6 +509,12 @@ ALTER TABLE `mra_wfh`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `quotation`
+--
+ALTER TABLE `quotation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
@@ -486,6 +535,12 @@ ALTER TABLE `attandance`
 --
 ALTER TABLE `download`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `list_quotation`
+--
+ALTER TABLE `list_quotation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `list_request`
@@ -534,6 +589,12 @@ ALTER TABLE `mra_staff`
 --
 ALTER TABLE `mra_wfh`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `quotation`
+--
+ALTER TABLE `quotation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `request`

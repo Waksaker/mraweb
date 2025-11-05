@@ -4,11 +4,10 @@
 <?php include("./components/name.php"); ?>
 <div class="card">
     <div class="card-body">
-		<h5 class="card-title fw-semibold mb-4">Quotation</h5>
-        <div align="right">
-        	<a href="createquotation1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Quotation</a>
+		<h5 class="card-title fw-semibold mb-4">Create Quotation</h5>
+        <div align="center">
+        	<h3>STEP 2</h3>
         </div>
-        
     </div>
 </div>
 <?php include("./components/footer.php"); ?>
