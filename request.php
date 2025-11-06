@@ -31,8 +31,8 @@ $status = $row['status'];
 					<table id="request" class="display nowrap" style="width:100%">
 						<thead class="bg-primary text-white">
 							<tr>
-								<th style="text-align: center;">NO</th>
-								<th style="text-align: center;">MAKLUMAT</th>
+								<th style="text-align: center;">No</th>
+								<th style="text-align: center;">Maklumat</th>
 								<th style="text-align: center;">#</th>
 							</tr>
 						</thead>

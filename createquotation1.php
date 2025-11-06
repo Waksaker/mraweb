@@ -13,6 +13,12 @@
         	<div class="customer_records">
                 <div class="row mb-3">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>" style="display:none;">
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control mb-4" id="location" name="location">
+                        
+                        </textarea>
+                    </div>
                     <label for="datestart" class="col-sm-2 col-form-label">QTN NO:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="qtnno" name="qtnno">
@@ -27,7 +33,7 @@
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">PROJECT :</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="project" name="project">
+                        <textarea class="form-control mb-4" id="project" name="project"></textarea>
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">CONTRACT NO :</label>
                     <div class="col-sm-4">
@@ -39,20 +45,16 @@
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">REMARKS :</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control mb-4" id="remarks" name="remarks">
-                        
-                        </textarea>
+                        <textarea class="form-control mb-4" id="remarks" name="remarks"></textarea>
                     </div>
-                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
+                    <label for="datestart" class="col-sm-2 col-form-label">SPARE PART COST(as attached) :</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control mb-4" id="location" name="location">
-                        
-                        </textarea>
+                        <input type="text" class="form-control mb-3" id="sparepartcost" name="sparepartcost">
                     </div>
 		        </div>
             </div>
             <div align="right">
-              <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="createquo1" onclick="return validate()">SUBMIT</button>
+              <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="createquo1" onclick="return validate()">Submit</button>
             </div>
         </form>
     </div>

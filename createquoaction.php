@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mra Global</title>
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <script src="assets/js/sweetalert2.min.js"></script>
+</head>
+<body>
+    
+</body>
+</html>
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include("conn.php");
+
+if (isset($_POST['createquo1'])) {
+    $name = $_POST['name'];
+    $qtnno = $_POST['qtnno'];
+    $date = $_POST['date'];
+    $page = $_POST['page'];
+    $project = $_POST['project'];
+    $contractno = $_POST['contractno'];
+    $registerno = $_POST['registerno'];
+    $remarks = $_POST['remarks'];
+    $location = $_POST['location'];
+    $sparepartcost=$_POST['sparepartcost'];
+    
+    $sql = "INSERT INTO `quotation`(`namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`)
+VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$registerno','$remarks','$sparepartcost','','')";
+    $result=mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location: createquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
+        exit();
+    }
+} elseif (isset($_POST['createquo2'])) {
+    $name1 = $_POST['name'];
+    $date1 = $_POST['date'];
+    $qtnno1 = $_POST['qtnno'];
+    $description = $_POST['description'];
+    $hours = $_POST['hours'];
+    $manhour = $_POST['manhour'];
+    $manhourcost = $manhour * $hours;
+    $sql="
+        INSERT INTO `list_quotation`(`name`, `date`, `qtnno`, `description`, `hours`, `manhour`, `manhourcost`) VALUES ('$name1','$date1','$qtnno1','$description','$hours','$manhour','$manhourcost')
+    ";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo "
+            <script>
+                Swal.fire({
+                    text: 'Submit Successful',
+                    icon: 'success'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'createquotation2.php?date=" . base64_encode($date1) . "&name=" . base64_encode($name1) . "&qtnno=" . base64_encode($qtnno1) . "';
+                    }
+                });
+            </script>
+        ";
+    } else {
+        die("Error: " . mysqli_error($conn));
+    }
+}
+?>

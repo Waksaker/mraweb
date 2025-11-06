@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2025 at 01:20 PM
+-- Generation Time: Nov 06, 2025 at 01:28 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -81,13 +81,23 @@ INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `up
 
 CREATE TABLE `list_quotation` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `qtnno` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `hours` int(255) DEFAULT NULL,
-  `x` text NOT NULL,
-  `manhour` decimal(10,2) NOT NULL,
-  `manhourcost` decimal(10,2) NOT NULL,
+  `hours` int(11) DEFAULT NULL,
+  `manhour` decimal(10,2) DEFAULT NULL,
+  `manhourcost` decimal(10,2) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `list_quotation`
+--
+
+INSERT INTO `list_quotation` (`id`, `name`, `date`, `qtnno`, `description`, `hours`, `manhour`, `manhourcost`, `updated_at`) VALUES
+(1, 'AZLIN NATASHA BINTI AZAHAR', '2025-11-06', 'dgdsgsd', 'asdfsafa', 2, 150.00, 300.00, '2025-11-06 12:09:56'),
+(3, 'AZLIN NATASHA BINTI AZAHAR', '2025-11-06', 'asfasfasf', 'sadshg', 2, 150.00, 300.00, '2025-11-06 12:26:56');
 
 -- --------------------------------------------------------
 
@@ -384,6 +394,7 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 
 CREATE TABLE `quotation` (
   `id` int(11) NOT NULL,
+  `namecreate` varchar(255) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
   `qtnno` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
@@ -392,10 +403,19 @@ CREATE TABLE `quotation` (
   `contractno` varchar(100) DEFAULT NULL,
   `nodaftar` varchar(100) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
+  `sparepartcost` decimal(10,2) DEFAULT NULL,
   `signmana` varchar(100) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`id`, `namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`, `created_at`) VALUES
+(1, 'AZLIN NATASHA BINTI AZAHAR', '                        dsgsdgsdgghisdhgisdghdhghisdhsdgsdg\r\n                        ', 'dgdsgsd', '2025-11-06', 2, 'sdgdgsdgsd', 'dgsgsdgsd', 'gsdgsdg', 'sdgsdg', 7463.20, '', '', '2025-11-06 12:09:49'),
+(2, 'AZLIN NATASHA BINTI AZAHAR', '                        fgaiugfiashgfiai sdfasfa asfasfas\r\n                        ', 'asfasfasf', '2025-11-06', 1, 'asfsaf', 'asfsa', 'fsafas', 'asfsa', 9370.20, '', '', '2025-11-06 12:25:45');
 
 -- --------------------------------------------------------
 
@@ -540,7 +560,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `list_quotation`
 --
 ALTER TABLE `list_quotation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `list_request`
@@ -594,7 +614,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request`

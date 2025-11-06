@@ -138,4 +138,14 @@ if (isset($_GET['date'])) {
 		exit();	
 		echo "File tidak dijumpai";
 	}
+} elseif (isset($_GET['idcreatequo2'])) {
+    $idcreatequo2 = $_GET['idcreatequo2'];
+    $result=mysqli_query($conn, "SELECT * FROM `list_quotation` WHERE id = '$idcreatequo2'");
+    $row=mysqli_fetch_assoc($result);
+    $qtnno=$row['qtnno'];
+    $name=$row['name'];
+    $date=$row['date'];
+    mysqli_query($conn, "DELETE FROM `list_quotation` WHERE id = '$idcreatequo2'");
+    header("Location: createquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
+    exit();
 }
