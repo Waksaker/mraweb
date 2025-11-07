@@ -63,7 +63,7 @@ $status = $row['status'];
 								<td style="text-align: center;"><?php echo $maklumat;?></td>
 								<td style="text-align: center;">
 									<a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-									<a href="" class="btn btn-primary">
+									<a href="editquotation1.php" class="btn btn-primary">
 										<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 									</a>
 									<button type="button"class="btn btn-danger"onclick="">
@@ -88,7 +88,7 @@ $status = $row['status'];
 										<div><strong>DATE: </strong> {$row['date']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>PAGE: </strong> {$row['pages']}</div>
+										<div><strong>PAGE: </strong> {$row['page']}</div>
 										<div><strong>PROJECT: </strong> {$row['project']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
@@ -107,7 +107,7 @@ $status = $row['status'];
 									<td style="text-align: center;"><?php echo $maklumat;?></td>
 									<td style="text-align: center;">
 										<a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-										<a href="" class="btn btn-primary">
+										<a href="editquotation1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary">
 											<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 										</a>
 										<button type="button"class="btn btn-danger"onclick="">

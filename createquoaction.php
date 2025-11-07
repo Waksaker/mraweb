@@ -63,5 +63,23 @@ VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$
     } else {
         die("Error: " . mysqli_error($conn));
     }
+} elseif (isset($_POST['editquo1'])) {
+    $name = $_POST['name'];
+    $qtnno = $_POST['qtnno'];
+    $date = $_POST['date'];
+    $page = $_POST['page'];
+    $project = $_POST['project'];
+    $contractno = $_POST['contractno'];
+    $registerno = $_POST['registerno'];
+    $remarks = $_POST['remarks'];
+    $location = $_POST['location'];
+    $sparepartcost=$_POST['sparepartcost'];
+    $id = $_POST['id'];
+    $sql = "UPDATE `quotation` SET `namecreate`='$name',`alamat`='location',`qtnno`='$qtnno',`date`='$date',`page`='$page',`project`='$project',`contractno`='$contractno',`nodaftar`='$registerno',`remarks`='$remarks',`sparepartcost`='$sparepartcost' WHERE id = '$id'";
+    $result=mysqli_query($conn, $sql);
+    if ($result) {
+        header("Location: editquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
+        exit();
+    }
 }
 ?>
