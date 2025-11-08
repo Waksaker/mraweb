@@ -1,3 +1,14 @@
+<?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include("conn.php");
+
+if (!isset($_GET['id'])) exit();
+$id = $_GET['id'];
+$result = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$id'");
+$row = mysqli_fetch_assoc($result);
+$alamat = $row['alamat'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,11 +100,12 @@
 	<table>
 		<tr>
 			<td style="border: 2px solid black">
-				<h6><strong>KUMPULAN JURUTERA, ELEKTRIK DAN JENTERA</strong></h6>
-				<h6><strong>MARKAS PEMERINTAHAN LOGISTIK TENTERA DARAT</strong></h6>
-				<h6><strong>KEM IMPHAL, JALAN PADANG TEMBAK</strong></h6>
-				<h6><strong>50634 KUALA LUMPUR</strong></h6>
-				<h6><strong>ATTN:KETUA KUMPULAN</strong></h6>
+				<h6><strong><?php echo $alamat; ?></strong></h6>
+<!-- 				<h6><strong>KUMPULAN JURUTERA, ELEKTRIK DAN JENTERA</strong></h6> -->
+<!-- 				<h6><strong>MARKAS PEMERINTAHAN LOGISTIK TENTERA DARAT</strong></h6> -->
+<!-- 				<h6><strong>KEM IMPHAL, JALAN PADANG TEMBAK</strong></h6> -->
+<!-- 				<h6><strong>50634 KUALA LUMPUR</strong></h6> -->
+<!-- 				<h6><strong>ATTN:KETUA KUMPULAN</strong></h6> -->
 			</td>
 			<td style="width: 100px;"></td>
 			<td style="text-align: left;">

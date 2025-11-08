@@ -15,9 +15,7 @@
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>" style="display:none;">
                     <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control mb-4" id="location" name="location">
-                        
-                        </textarea>
+                        <textarea class="form-control mb-4" id="location" name="location" oninput="this.value = this.value.toUpperCase();"></textarea>
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">QTN NO:</label>
                     <div class="col-sm-4">

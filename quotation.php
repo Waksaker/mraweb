@@ -73,7 +73,7 @@ $status = $row['status'];
 								<td style="text-align: center;"><?php echo ($index++)?></td>
 								<td style="text-align: center;"><?php echo $maklumat;?></td>
 								<td style="text-align: center;">
-									<a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
+									<a href="printquotation.php?id=<?php echo $row['id']; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
 									<a href="editquotation1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary">
 										<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 									</a>
@@ -129,7 +129,7 @@ $status = $row['status'];
 									<td style="text-align: center;"><?php echo ($index++)?></td>
 									<td style="text-align: center;"><?php echo $maklumat;?></td>
 									<td style="text-align: center;">
-										<a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
+										<a href="printquotation.php?id=<?php echo $row['id']; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
 										<a href="editquotation1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary">
 											<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 										</a>

@@ -22,7 +22,7 @@ $row=mysqli_fetch_assoc($result);
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $row['namecreate']; ?>" style="display:none;">
                     <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control mb-4" id="location" name="location"><?php echo $row['alamat'];?></textarea>
+                        <textarea class="form-control mb-4" id="location" name="location" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat'];?></textarea>
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">QTN NO:</label>
                     <div class="col-sm-4">
