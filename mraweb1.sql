@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2025 at 01:28 PM
+-- Generation Time: Nov 08, 2025 at 10:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -406,6 +406,7 @@ CREATE TABLE `quotation` (
   `sparepartcost` decimal(10,2) DEFAULT NULL,
   `signmana` varchar(100) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `status` char(5) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -413,9 +414,9 @@ CREATE TABLE `quotation` (
 -- Dumping data for table `quotation`
 --
 
-INSERT INTO `quotation` (`id`, `namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`, `created_at`) VALUES
-(1, 'AZLIN NATASHA BINTI AZAHAR', '                        dsgsdgsdgghisdhgisdghdhghisdhsdgsdg\r\n                        ', 'dgdsgsd', '2025-11-06', 2, 'sdgdgsdgsd', 'dgsgsdgsd', 'gsdgsdg', 'sdgsdg', 7463.20, '', '', '2025-11-06 12:09:49'),
-(2, 'AZLIN NATASHA BINTI AZAHAR', '                        fgaiugfiashgfiai sdfasfa asfasfas\r\n                        ', 'asfasfasf', '2025-11-06', 1, 'asfsaf', 'asfsa', 'fsafas', 'asfsa', 9370.20, '', '', '2025-11-06 12:25:45');
+INSERT INTO `quotation` (`id`, `namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`, `status`, `created_at`) VALUES
+(1, 'AZLIN NATASHA BINTI AZAHAR', 'location', 'dgdsgsd', '2025-11-06', 2, 'sdgdgsdgsd', 'dgsgsdgsd', 'gsdgsdg', 'sdgsdg', 7463.20, '', '', NULL, '2025-11-08 02:48:14'),
+(2, 'AZLIN NATASHA BINTI AZAHAR', 'iuasgfg aisugfiuas asiugfiuaws asofghoas oashf asf', 'asfasfasf', '2025-11-06', 1, 'asfsaf', 'asfsa', 'fsafas', 'asfsa', 9370.20, '', '', NULL, '2025-11-08 05:46:58');
 
 -- --------------------------------------------------------
 

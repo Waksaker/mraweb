@@ -18,8 +18,8 @@ $row=mysqli_fetch_assoc($result);
         <form name="editquo1" action="createquoaction.php" method="POST" enctype="multipart/form-data">
         	<div class="customer_records">
                 <div class="row mb-3">
-                    <input type="text" id="id" name="id" value="<?php echo $row['id'];?>" style="display: none;">
-                    <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name; ?>" style="display:none;">
+                    <input type="text" id="id" name="id" value="<?php echo $row['id'];?>" style="display:none;">
+                    <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $row['namecreate']; ?>" style="display:none;">
                     <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
                     <div class="col-sm-4">
                         <textarea class="form-control mb-4" id="location" name="location"><?php echo $row['alamat'];?></textarea>

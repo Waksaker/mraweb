@@ -28,8 +28,8 @@ if (isset($_POST['createquo1'])) {
     $location = $_POST['location'];
     $sparepartcost=$_POST['sparepartcost'];
     
-    $sql = "INSERT INTO `quotation`(`namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`)
-VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$registerno','$remarks','$sparepartcost','','')";
+    $sql = "INSERT INTO `quotation`(`namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`,`status`)
+VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$registerno','$remarks','$sparepartcost','','','1')";
     $result=mysqli_query($conn, $sql);
     if ($result) {
         header("Location: createquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
@@ -75,11 +75,41 @@ VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$
     $location = $_POST['location'];
     $sparepartcost=$_POST['sparepartcost'];
     $id = $_POST['id'];
-    $sql = "UPDATE `quotation` SET `namecreate`='$name',`alamat`='location',`qtnno`='$qtnno',`date`='$date',`page`='$page',`project`='$project',`contractno`='$contractno',`nodaftar`='$registerno',`remarks`='$remarks',`sparepartcost`='$sparepartcost' WHERE id = '$id'";
+    $sql = "UPDATE `quotation` SET `alamat`='$location',`qtnno`='$qtnno',`date`='$date',`page`='$page',`project`='$project',`contractno`='$contractno',`nodaftar`='$registerno',`remarks`='$remarks',`sparepartcost`='$sparepartcost' WHERE id = '$id'";
     $result=mysqli_query($conn, $sql);
     if ($result) {
         header("Location: editquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
         exit();
+    }
+} elseif (isset($_POST['editquo2'])) {
+    $name1 = $_POST['name'];
+    $date1 = $_POST['date'];
+    $qtnno1 = $_POST['qtnno'];
+    
+    $statmana = $_POST['statmana'];
+    $namemana = $_POST['name1'];
+
+    $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$namemana'");
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['name'];
+    $sign = $row['image'];
+    
+    $result2=mysqli_query($conn, "UPDATE `quotation` SET `signmana`='$sign',`name`='$name',`status`='$statmana' WHERE `namecreate`='$name1' AND `qtnno`='$qtnno1' AND `date`='$date1'");
+    if ($result2) {
+        echo "
+            <script>
+                Swal.fire({
+                    text: 'Submit Successful',
+                    icon: 'success'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = 'quotation.php';
+                    }
+                });
+            </script>
+        ";
+    }else{
+        echo "GAGAL";
     }
 }
 ?>

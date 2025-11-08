@@ -28,11 +28,19 @@ $status = $row['status'];
         	</thead>
         	<tbody>
         		<?php
-				echo "$status";
 					if ($status == "MANAGER") {
 						$index=1;
 						$result=mysqli_query($conn, "SELECT * FROM `quotation`");
 						while ($row=mysqli_fetch_assoc($result)) {
+						    if ($row['status'] == '1') {
+						        $statusmana = "<span class='badge bg-secondary'>Pending</span>";
+						    } elseif ($row['status'] == '2') {
+						        $statusmana = "<span class='badge bg-success'>Approved</span>";
+						    } elseif ($row['status'] == '3') {
+						        $statusmana = "<span class='badge bg-danger'>Rejected</span>";
+						    } else {
+						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
+						    }
 							$maklumat="
 								<div>
 									<div style='display: flex; justify-content: space-between;'>
@@ -55,6 +63,9 @@ $status = $row['status'];
 										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
 										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
 									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
+									</div>
 								</div>
 							";
 						?>
@@ -63,10 +74,10 @@ $status = $row['status'];
 								<td style="text-align: center;"><?php echo $maklumat;?></td>
 								<td style="text-align: center;">
 									<a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-									<a href="editquotation1.php" class="btn btn-primary">
+									<a href="editquotation1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary">
 										<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 									</a>
-									<button type="button"class="btn btn-danger"onclick="">
+									<button type="button"class="btn btn-danger"onclick="test('<?php echo $row['id']; ?>')">
 										<img src="assets/images/Trash_Can.png" style="width:24px;height:24px;">
 									</button>
 								</td>
@@ -76,7 +87,16 @@ $status = $row['status'];
 					} else {
 						$index=1;
 						$result=mysqli_query($conn, "SELECT * FROM `quotation` WHERE namecreate = '$name'");
-						while ($row=mysqli_fetch_assoc($result)) {
+						while ($row = mysqli_fetch_assoc($result)) {
+						    if ($row['status'] == '1') {
+						        $statusmana = "<span class='badge bg-secondary'>Pending</span>";
+						    } elseif ($row['status'] == '2') {
+						        $statusmana = "<span class='badge bg-success'>Approved</span>";
+						    } elseif ($row['status'] == '3') {
+						        $statusmana = "<span class='badge bg-danger'>Rejected</span>";
+						    } else {
+						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
+						    }
 							$maklumat="
 								<div>
 									<div style='display: flex; justify-content: space-between;'>
@@ -99,6 +119,9 @@ $status = $row['status'];
 										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
 										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
 									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+                                        <div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
+                                    </div>
 								</div>
 							";
 							?>
@@ -110,7 +133,7 @@ $status = $row['status'];
 										<a href="editquotation1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary">
 											<img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
 										</a>
-										<button type="button"class="btn btn-danger"onclick="">
+										<button type="button"class="btn btn-danger"onclick="test('<?php echo $row['id']; ?>')">
 											<img src="assets/images/Trash_Can.png" style="width:24px;height:24px;">
 										</button>
 									</td>
@@ -133,4 +156,13 @@ $status = $row['status'];
         //     }
         // }
     });
+</script>
+<script type="text/javascript">
+  function test(idquotation) {
+    var result = confirm("Adakah anda ingin memadam data ini?");
+
+    if (result) {
+      window.location.href = "delete.php?idquotation=" + idquotation;
+    }
+  }
 </script>

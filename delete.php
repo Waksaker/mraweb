@@ -148,4 +148,15 @@ if (isset($_GET['date'])) {
     mysqli_query($conn, "DELETE FROM `list_quotation` WHERE id = '$idcreatequo2'");
     header("Location: createquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
     exit();
+} elseif (isset($_GET['idquotation'])) {
+    $idquotation = $_GET['idquotation'];
+    $quo1 = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$idquotation'");
+    $row = mysqli_fetch_assoc($quo1);
+    $name = $row['namecreate'];
+    $qtnno = $row['qtnno'];
+    $date = $row['date'];
+    mysqli_query($conn, "DELETE FROM `quotation` WHERE namecreate = '$name' AND date = '$date' AND qtnno='$qtnno'");
+    mysqli_query($conn, "DELETE FROM `list_quotation` WHERE name = '$name' AND date = '$date' AND qtnno='$qtnno'");
+    header("Location: quotation.php");
+    exit();
 }
