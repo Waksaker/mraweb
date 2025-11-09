@@ -40,15 +40,15 @@ $maintotal=$manhour+$sparepart;
                         <input type="text" class="form-control mb-3" id="name" name="name1" value="<?php echo ($name ? $name : ''); ?>" style="display: none;">
                         <label for="datestart" class="col-sm-2 col-form-label">TOTAL MAN HOURS :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-3" name="" id="" value="<?php echo $manhour; ?>">
+                            <input type="text" class="form-control mb-3" name="" id="" value="<?php echo $manhour; ?>" readonly>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">SPARE PART COST (as attached) :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-3" id="hours" name="hours" value="<?php echo $sparepart; ?>">
+                            <input type="text" class="form-control mb-3" id="hours" name="hours" value="<?php echo $sparepart; ?>" readonly>
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">MAIN TOTAL :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-3" id="manhour" name="manhour" value="<?php echo number_format($maintotal, 2, '.', ''); ?>">
+                            <input type="text" class="form-control mb-3" id="manhour" name="manhour" value="<?php echo number_format($maintotal, 2, '.', ''); ?>" readonly>
                         </div>
                     </div>
                 </div>

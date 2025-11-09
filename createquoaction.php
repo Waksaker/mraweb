@@ -17,6 +17,12 @@ ini_set('display_errors', 1);
 include("conn.php");
 
 if (isset($_POST['createquo1'])) {
+    $location1 = $_POST['location1'];
+    $location2 = $_POST['location2'];
+    $location3 = $_POST['location3'];
+    $location4 = $_POST['location4'];
+    $location5 = $_POST['location5'];
+    
     $name = $_POST['name'];
     $qtnno = $_POST['qtnno'];
     $date = $_POST['date'];
@@ -25,11 +31,10 @@ if (isset($_POST['createquo1'])) {
     $contractno = $_POST['contractno'];
     $registerno = $_POST['registerno'];
     $remarks = $_POST['remarks'];
-    $location = $_POST['location'];
     $sparepartcost=$_POST['sparepartcost'];
     
-    $sql = "INSERT INTO `quotation`(`namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`,`status`)
-VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$registerno','$remarks','$sparepartcost','','','1')";
+    $sql = "INSERT INTO `quotation`(`namecreate`, `alamat1`, `alamat2`, `alamat3`, `alamat4`, `alamat5`,`qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`,`status`)
+VALUES ('$name','$location1','$location2','$location3','$location4','$location5','$qtnno','$date','$page','$project','$contractno','$registerno','$remarks','$sparepartcost','','','1')";
     $result=mysqli_query($conn, $sql);
     if ($result) {
         header("Location: createquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));
@@ -64,6 +69,12 @@ VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$
         die("Error: " . mysqli_error($conn));
     }
 } elseif (isset($_POST['editquo1'])) {
+    $location1 = $_POST['location1'];
+    $location2 = $_POST['location2'];
+    $location3 = $_POST['location3'];
+    $location4 = $_POST['location4'];
+    $location5 = $_POST['location5'];
+    
     $name = $_POST['name'];
     $qtnno = $_POST['qtnno'];
     $date = $_POST['date'];
@@ -72,10 +83,9 @@ VALUES ('$name','$location','$qtnno','$date','$page','$project','$contractno','$
     $contractno = $_POST['contractno'];
     $registerno = $_POST['registerno'];
     $remarks = $_POST['remarks'];
-    $location = $_POST['location'];
     $sparepartcost=$_POST['sparepartcost'];
     $id = $_POST['id'];
-    $sql = "UPDATE `quotation` SET `alamat`='$location',`qtnno`='$qtnno',`date`='$date',`page`='$page',`project`='$project',`contractno`='$contractno',`nodaftar`='$registerno',`remarks`='$remarks',`sparepartcost`='$sparepartcost' WHERE id = '$id'";
+    $sql = "UPDATE `quotation` SET `alamat1`='$location1',`alamat2`='$location2',`alamat3`='$location3',`alamat4`='$location4',`alamat5`='$location5',`qtnno`='$qtnno',`date`='$date',`page`='$page',`project`='$project',`contractno`='$contractno',`nodaftar`='$registerno',`remarks`='$remarks',`sparepartcost`='$sparepartcost' WHERE id = '$id'";
     $result=mysqli_query($conn, $sql);
     if ($result) {
         header("Location: editquotation2.php?date=" . base64_encode($date) . "&name=" . base64_encode($name) . "&qtnno=" . base64_encode($qtnno));

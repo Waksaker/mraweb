@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2025 at 10:46 AM
+-- Generation Time: Nov 09, 2025 at 04:17 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -97,7 +97,10 @@ CREATE TABLE `list_quotation` (
 
 INSERT INTO `list_quotation` (`id`, `name`, `date`, `qtnno`, `description`, `hours`, `manhour`, `manhourcost`, `updated_at`) VALUES
 (1, 'AZLIN NATASHA BINTI AZAHAR', '2025-11-06', 'dgdsgsd', 'asdfsafa', 2, 150.00, 300.00, '2025-11-06 12:09:56'),
-(3, 'AZLIN NATASHA BINTI AZAHAR', '2025-11-06', 'asfasfasf', 'sadshg', 2, 150.00, 300.00, '2025-11-06 12:26:56');
+(3, 'AZLIN NATASHA BINTI AZAHAR', '2025-11-06', 'asfasfasf', 'sadshg', 2, 150.00, 300.00, '2025-11-06 12:26:56'),
+(5, 'NURUL SYUHADAH', '2025-11-09', 'QYN-6543', 'sfs', 2, 150.00, 300.00, '2025-11-09 03:13:22'),
+(6, 'NURUL SYUHADAH', '2025-11-09', 'QYN-6543', 'hsaiu saufsa ', 4, 150.00, 600.00, '2025-11-09 03:13:36'),
+(7, 'NURUL SYUHADAH', '2025-11-09', 'QYN-6543', 'af efe efqe ', 4, 150.20, 600.80, '2025-11-09 03:13:50');
 
 -- --------------------------------------------------------
 
@@ -395,7 +398,11 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 CREATE TABLE `quotation` (
   `id` int(11) NOT NULL,
   `namecreate` varchar(255) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
+  `alamat1` varchar(255) DEFAULT NULL,
+  `alamat2` varchar(255) DEFAULT NULL,
+  `alamat3` varchar(255) DEFAULT NULL,
+  `alamat4` varchar(255) DEFAULT NULL,
+  `alamat5` varchar(255) DEFAULT NULL,
   `qtnno` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
   `page` int(11) DEFAULT NULL,
@@ -414,9 +421,10 @@ CREATE TABLE `quotation` (
 -- Dumping data for table `quotation`
 --
 
-INSERT INTO `quotation` (`id`, `namecreate`, `alamat`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`, `status`, `created_at`) VALUES
-(1, 'AZLIN NATASHA BINTI AZAHAR', 'location', 'dgdsgsd', '2025-11-06', 2, 'sdgdgsdgsd', 'dgsgsdgsd', 'gsdgsdg', 'sdgsdg', 7463.20, '', '', NULL, '2025-11-08 02:48:14'),
-(2, 'AZLIN NATASHA BINTI AZAHAR', 'iuasgfg aisugfiuas asiugfiuaws asofghoas oashf asf', 'asfasfasf', '2025-11-06', 1, 'asfsaf', 'asfsa', 'fsafas', 'asfsa', 9370.20, '', '', NULL, '2025-11-08 05:46:58');
+INSERT INTO `quotation` (`id`, `namecreate`, `alamat1`, `alamat2`, `alamat3`, `alamat4`, `alamat5`, `qtnno`, `date`, `page`, `project`, `contractno`, `nodaftar`, `remarks`, `sparepartcost`, `signmana`, `name`, `status`, `created_at`) VALUES
+(1, 'AZLIN NATASHA BINTI AZAHAR', 'NO 6 JALAN PERWIRA', 'KAMPUNG MELAYU', 'KANGKAR BAHRU', '83700 YONG PENG', 'JOHOR', 'dgdsgsd', '2025-11-06', 2, 'sdgdgsdgsd', 'dgsgsdgsd', 'gsdgsdg', 'sdgsdg', 7463.20, 'badrul_sign.png', 'BADRUL', '2', '2025-11-09 03:09:23'),
+(2, 'AZLIN NATASHA BINTI AZAHAR', 'iuasgfg aisugfiuas asiugfiuaws asofghoas oashf asf', NULL, NULL, NULL, NULL, 'asfasfasf', '2025-11-06', 1, 'asfsaf', 'asfsa', 'fsafas', 'asfsa', 9370.20, 'badrul_sign.png', 'BADRUL', '3', '2025-11-09 01:42:14'),
+(3, 'NURUL SYUHADAH', 'NO 6 JALAN PERIWRA', 'KAMPUNG MELAYU', 'KANGKAR BAHRU', '83700 YONG PENG', 'JOHOR', 'QYN-6543', '2025-11-09', 2, 'TRML ', '76253', 'TRML-2653', '-', 7620.50, 'badrul_sign.png', 'BADRUL', '2', '2025-11-09 03:14:37');
 
 -- --------------------------------------------------------
 
@@ -561,7 +569,7 @@ ALTER TABLE `download`
 -- AUTO_INCREMENT for table `list_quotation`
 --
 ALTER TABLE `list_quotation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `list_request`
@@ -615,7 +623,7 @@ ALTER TABLE `mra_wfh`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request`

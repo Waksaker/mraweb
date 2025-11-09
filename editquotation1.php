@@ -20,10 +20,30 @@ $row=mysqli_fetch_assoc($result);
                 <div class="row mb-3">
                     <input type="text" id="id" name="id" value="<?php echo $row['id'];?>" style="display:none;">
                     <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $row['namecreate']; ?>" style="display:none;">
-                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION :</label>
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION 1 :</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control mb-4" id="location" name="location" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat'];?></textarea>
+                        <textarea class="form-control mb-4" id="location1" name="location1" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat1'];?></textarea>
                     </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION 2 :</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control mb-4" id="location2" name="location2" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat2'];?></textarea>
+                    </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION 3 :</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control mb-4" id="location3" name="location3" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat3'];?></textarea>
+                    </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION 4 :</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control mb-4" id="location4" name="location4" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat4'];?></textarea>
+                    </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">LOCATION 5 :</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control mb-4" id="location5" name="location5" oninput="this.value = this.value.toUpperCase();"><?php echo $row['alamat5'];?></textarea>
+                    </div>
+		        </div>
+            </div>
+        	<div class="customer_records">
+                <div class="row mb-3">
                     <label for="datestart" class="col-sm-2 col-form-label">QTN NO:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="qtnno" name="qtnno" value="<?php echo $row['qtnno'];?>">
