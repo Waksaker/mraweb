@@ -7,6 +7,36 @@ if (!isset($_GET['id'])) exit();
 $id = $_GET['id'];
 $result = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$id'");
 $row = mysqli_fetch_assoc($result);
+$d = date('d', strtotime($row['date']));
+$month = date('m', strtotime($row['date']));
+if ($month == '01') {
+    $m = "Jan";
+} else if ($month == '02') {
+    $m = "Feb";
+} else if ($month == '03') {
+    $m = "Mac";
+} else if ($month == '04') {
+    $m = "Apr";
+} else if ($month == '05') {
+    $m = "Mei";
+} else if ($month == '06') {
+    $m = "Jun";
+} else if ($month == '07') {
+    $m = "Jul";
+} else if ($month == '08') {
+    $m = "Ogos";
+} else if ($month == '09') {
+    $m = "Sep";
+} else if ($month == '10') {
+    $m = "Okt";
+} else if ($month == '11') {
+    $m = "Nov";
+} else if ($month == '12') {
+    $m = "Dis";
+}
+$y=date('y', strtotime($row['date']));
+$date = $d . " " . $m . " " . $y;
+$page= 1 . " of " . $row['page'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,61 +67,23 @@ $row = mysqli_fetch_assoc($result);
             padding: 5px;
             vertical-align: top;
         }
-        .signature-section {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-            margin-top: 200px;
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-        }
-    
-        .signature-section td {
-    width: 50%;
-    vertical-align: top;
-    padding: 10px;
 }
-    
-        /* Tajuk (APPLICANT / SUPPORT / APPROVE) */
-        .signature-section tr:first-child td {
-            font-weight: bold;
-            padding-bottom: 10px;
-        }
-    
-        /* Gaya gambar tandatangan */
-        .signature-section img {
-            width: 150px;         /* saiz tandatangan */
-            height: auto;
-            display: block;
-            margin: 0 auto 5px auto; /* tengah + jarak bawah */
-            object-fit: contain;  /* supaya tak terpotong */
-        }
-    
-        /* Garisan tandatangan */
-        .signature-line {
-            border-top: 1px solid black;
-            margin-top: 40px;
-            display: flex;
-            justify-content: flex-end; /* teks ke sebelah kanan */
-            align-items: center;
-            height: 20px;
-        }
-    
-        /* Tarikh */
-        .date-line {
-            font-size: 12px;
-            text-align: left;
-            margin-top: 3px;
-        }
-        .signature-line h6 {
-    margin: 0;
-    font-weight: normal;
-    font-size: 13px;
-    text-align: right;
-}
+        .signature-section { width: 100%; border-collapse: collapse; text-align: center; margin-top: 200px; font-family: Arial, sans-serif; font-size: 13px; } 
+        .signature-section td { width: 50%; vertical-align: top; padding: 10px; } /* Tajuk (APPLICANT / SUPPORT / APPROVE) */ 
+        .signature-section tr:first-child td { font-weight: bold; padding-bottom: 10px; } /* Gaya gambar tandatangan */ 
+        .signature-section img { width: 150px; /* saiz tandatangan */ height: auto; display: block; margin: 0 auto 5px auto; /* tengah + jarak bawah */ object-fit: contain; /* supaya tak terpotong */ } /* Garisan tandatangan */ 
+        .signature-line { border-top: 1px solid black; margin-top: 40px; display: flex; justify-content: flex-end; /* teks ke sebelah kanan */ align-items: center; height: 20px; } /* Tarikh */ 
+        .date-line { font-size: 12px; text-align: left; margin-top: 3px; } 
+        .signature-line h6 { margin: 0; font-weight: normal; font-size: 13px; text-align: right; } 
+        img { max-width: 200px; /* Control saiz logo */ display: block; margin: auto; /* Center gambar dalam cell */ }
 	</style>
 </head>
 <body onload="window.print()">
+	<!-- HEADER IMAGE -->
+    <div style="text-align:center; margin-bottom:10px;">
+        <img src="assets/images/mra_header.png" alt="MRA Global Header" style="width:100%; max-width:900px;">
+    </div>
+    
 	<div class="title">
 		<h1>Quotation</h1>
 	</div>
@@ -111,17 +103,17 @@ $row = mysqli_fetch_assoc($result);
                     <tr>
                         <td>Qtn No</td>
                         <td>:</td>
-                        <td><strong>QTN-24027</strong></td>
+                        <td><strong><?php echo $row['qtnno'] ? $row['qtnno'] : '';?></strong></td>
                     </tr>
                     <tr>
                         <td>Date</td>
                         <td>:</td>
-                        <td><strong>22 Okt 24</strong></td>
+                        <td><strong><?php echo $date ? $date : '';?></strong></td>
                     </tr>
                     <tr>
                         <td>Page</td>
                         <td>:</td>
-                        <td><strong>1 of 1</strong></td>
+                        <td><strong><?php echo $page ? $page : '';?></strong></td>
                     </tr>
                 </table>
 			</td>
@@ -131,12 +123,12 @@ $row = mysqli_fetch_assoc($result);
 	<div>
 		<h6>Project:</h6>
 		<h6>
-			<strong>PEROLEHAN PERKHIDMATAN SENGGARAAN DAN MEMBEKALKAN ALAT GANTI SISTEM RADAR AMARAN TEMPATAN 3D/32 KEPADA RADAR 1001 DAN RADAR 1002 SECARA KOMPREHENSIF UNTUK TENTERA DARAT</strong>
+			<strong><?php echo $row['project'] ? $row['project'] : '';?></strong>
 		</h6>
 	</div>
 	<br>
 	<div>
-		<h6>Contract No: <strong>KP/PERO1B/T300/2021/OE.Jil.3 bertarikh 3 Januari 2024</strong></h6>
+		<h6>Contract No: <strong><?php echo $row['contractno'] ? $row['contractno'] : '';?></strong></h6>
 	</div>
 	<br>
 	<div>
@@ -144,7 +136,7 @@ $row = mysqli_fetch_assoc($result);
 	</div>
 	<br>
 	<div>
-		<strong>4. KPR NOMBOR DAFTAR ZC 1437 : SPEEDOMETER</strong>
+		<strong><?php echo $row['nodaftar'] ? $row['nodaftar'] : '';?></strong>
 	</div>
 	<br>
 	<table style="border-collapse: collapse; width: 100%;">
@@ -164,20 +156,39 @@ $row = mysqli_fetch_assoc($result);
             <th style="border:2px solid black;">(e)</th>
             <th style="border:2px solid black;">(f)</th>
         </tr>
-        <tr>
-            <td style="text-align:center; border:2px solid black;">1</td>
-            <td style="border:2px solid black;">Membuat diagnose dan mengenalpasti kerosakan</td>
-            <td style="text-align:center; border:2px solid black;">2</td>
-            <td style="text-align:center; border:2px solid black;">X</td>
-            <td style="text-align:center; border:2px solid black;">150.00</td>
-            <td style="text-align:right; border:2px solid black;">300.00</td>
-        </tr>
+        <?php
+            $index = 1;
+            $name = $row['namecreate'];
+            $date = $row['date'];
+            $qtnno = $row['qtnno'];
+            $result1 = mysqli_query($conn, "SELECT * FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+            while ($row1=mysqli_fetch_assoc($result1)) {
+         ?>
+         	<tr>
+                <td style="text-align:center; border:2px solid black;"><?php echo ($index++);?></td>
+                <td style="border:2px solid black;"><?php echo $row1['description'] ? $row1['description'] : '';?></td>
+                <td style="text-align:center; border:2px solid black;"><?php echo $row1['hours'] ? $row1['hours'] : '';?></td>
+                <td style="text-align:center; border:2px solid black;">X</td>
+                <td style="text-align:center; border:2px solid black;"><?php echo $row1['manhour'] ? $row1['manhour'] : '';?></td>
+                <td style="text-align:right; border:2px solid black;"><?php echo $row1['manhourcost'] ? $row1['manhourcost'] : '';?></td>
+            </tr>
+         <?php
+            }
+        ?>
         <tr>
             <td colspan="5" style="text-align:left; padding:3px 5px; border:2px solid black;">
                 <strong>Total Man Hours</strong>
             </td>
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
-                <strong>300.00</strong>
+                <?php 
+                    $index = 1;
+                    $result2 = mysqli_query($conn, "SELECT SUM(manhourcost) AS manhourcost FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+                    while ($row2=mysqli_fetch_assoc($result2)) {
+                        $manhourcost = $row2['manhourcost'];
+                        $manhourcost1 = number_format($row2['manhourcost'], 2, '.', ',');
+                        echo "<strong>$manhourcost1</strong>";
+                    }
+                ?>
             </td>
         </tr>
         <tr>
@@ -185,7 +196,11 @@ $row = mysqli_fetch_assoc($result);
                 <strong>Spare Part Cost (as attached)</strong>
             </td>
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
-                <strong>400.00</strong>
+                <strong>
+                	<?php 
+                	   echo number_format($row['sparepartcost'], 2, '.', ',');
+                	?>
+                </strong>
             </td>
         </tr>
         <tr style="background-color: yellow;">
@@ -193,18 +208,23 @@ $row = mysqli_fetch_assoc($result);
                 <strong>Main Total</strong>
             </td>
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
-                <strong>700.00</strong>
+                <strong>
+                <?php
+                    $total = $manhourcost + $row['sparepartcost'];
+                    echo number_format($total, 2, '.', ',');
+                ?>
+                </strong>
             </td>
         </tr>
     </table>
 	<br>
 	<div>
-		<h6>Ringgit Malaysia: <strong><?php echo numberToWordsEnglish(70000.00);?></strong></h6>
+		<h6>Ringgit Malaysia: <strong><?php echo numberToWordsEnglish($total);?></strong></h6>
 	</div>
 	<br>
 	<div>
 		<h6><strong>REMARKS:</strong></h6>
-		<h6>We hope our quotation is favouravle to you and we are looking forward to receive your valued orders. If you require further clarification, please do not hesitate to contact us.</h6>
+		<h6><?php echo $row['remarks'] ? $row['remarks'] : '';?></h6>
 	</div>
 	<br>
 	<table class="signature-section">
@@ -212,38 +232,39 @@ $row = mysqli_fetch_assoc($result);
             <td><h6>Best regards,</h6></td>
             <td><h6>We Comfirm the order by accepting the terms</h6></td>
         </tr>
-        <tr>
             <td>
-                <img src='' alt='Signature'>
+                <img src='image/<?php echo $row['signmana'] ? $row['signmana'] : '';?>' alt='Signature'>
                 <div class="signature-line"></div>
-                <div class="date-line"><strong>Nor Fazlina Binti Yahaya</strong></div>
+                <div class="date-line"><strong><?php echo $row['name'] ? $row['name'] : '';?></strong></div>
                 <div class="date-line">Managing Director</div>
             </td>
             <td>
-                <br>
-                <div class="signature-line"><h6>chop & sign</h6></div>
-                <div class="date-line">Verified by: </div>
-                <div class="date-line">Date: </div>
+            	<br>
+                <img src="image/chop_placeholder.png" alt="Signature Placeholder" style="opacity:0;"> <!-- untuk balance tinggi -->
+                <div class="signature-line"><h6>Chop & Sign</h6></div>
+                <div class="date-line">Verified by:</div>
+                <div class="date-line">Date:</div>
             </td>
         </tr>
     </table>
 </body>
 <?php
-function numberToWordsEnglish($num)
+function numberToWordsEnglish($total)
 {
-    $ones = array("", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", 
-                  "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", 
-                  "Eighteen", "Nineteen");
-    $tens = array("", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety");
-    $thousands = array("", "Thousand", "Million", "Billion");
+    $ones = array("", "ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", 
+                  "ELEVEN", "TWELVE", "THIRTEEN", "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", 
+                  "EIGHTEEN", "NINETEEN");
+    $tens = array("", "", "TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY");
+    $thousands = array("", "THOUSAND", "MILLION", "BILLION");
 
-    if ($num == 0) return "Zero Ringgit Only";
+    if ($total == 0) return "Zero Ringgit Only";
 
-    $numStr = number_format($num, 2, '.', '');
+    $numStr = number_format($total, 2, '.', '');
     $parts = explode('.', $numStr);
     $ringgit = intval($parts[0]);
     $sen = intval($parts[1]);
 
+    // ---- convert ringgit part ----
     $ringgitWords = "";
     $group = 0;
 
@@ -253,7 +274,7 @@ function numberToWordsEnglish($num)
             $chunkWords = "";
 
             if ($chunk > 99) {
-                $chunkWords .= $ones[intval($chunk / 100)] . " Hundred ";
+                $chunkWords .= $ones[intval($chunk / 100)] . " HUNDRED ";
                 $chunk = $chunk % 100;
             }
 
@@ -273,15 +294,24 @@ function numberToWordsEnglish($num)
         $group++;
     }
 
-    $result = trim($ringgitWords) . " Ringgit";
+    $result = trim($ringgitWords) . " ";
 
+    // ---- convert sen part ----
     if ($sen > 0) {
-        $result .= " and " . $sen . " Sen";
+        $senWords = "";
+        if ($sen < 20) {
+            $senWords = $ones[$sen];
+        } else {
+            $senWords = $tens[intval($sen / 10)];
+            if ($sen % 10 > 0) {
+                $senWords .= " " . $ones[$sen % 10];
+            }
+        }
+        $result .= " AND " . trim($senWords) . " SEN";
     }
 
-    $result .= " Only";
+    $result .= " ONLY";
 
     return ucwords(trim($result));
 }
-
 ?>

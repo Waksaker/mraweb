@@ -41,27 +41,38 @@ $status = $row['status'];
 						    } else {
 						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
 						    }
+						    $alamat = $row['alamat1'] . ' ' . $row['alamat2'] . ' ' . $row['alamat3'] . ' ' . $row['alamat4'] . ' ' . $row['alamat5'];
 							$maklumat="
 								<div>
 									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>NAME: </strong> {$row['namecreate']}<br></div>
-										<div><strong>LOCATION: </strong> {$row['alamat']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>LOCATION: </strong> {$alamat}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>QTN NO: </strong> {$row['qtnno']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
 										<div><strong>DATE: </strong> {$row['date']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>PAGE: </strong> {$row['pages']}</div>
 										<div><strong>PROJECT: </strong> {$row['project']}</div>
 									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
-										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>PAGE: </strong> {$row['page']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
+										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
+									</div>
+									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
 									</div>
                                     <div style='display: flex; justify-content: space-between;'>
 										<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
@@ -97,31 +108,42 @@ $status = $row['status'];
 						    } else {
 						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
 						    }
+						    $alamat = $row['alamat1'] . ' ' . $row['alamat2'] . ' ' . $row['alamat3'] . ' ' . $row['alamat4'] . ' ' . $row['alamat5'];
 							$maklumat="
 								<div>
 									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>NAME: </strong> {$row['namecreate']}<br></div>
-										<div><strong>LOCATION: </strong> {$row['alamat']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>LOCATION: </strong> {$alamat}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>QTN NO: </strong> {$row['qtnno']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
 										<div><strong>DATE: </strong> {$row['date']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>PAGE: </strong> {$row['page']}</div>
 										<div><strong>PROJECT: </strong> {$row['project']}</div>
 									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
-										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>PAGE: </strong> {$row['page']}</div>
 									</div>
 									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
+										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
+									</div>
+									<div style='display: flex; justify-content: space-between;'>
 										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
 									</div>
                                     <div style='display: flex; justify-content: space-between;'>
-                                        <div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-                                    </div>
+										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
+									</div>
+                                    <div style='display: flex; justify-content: space-between;'>
+										<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
+									</div>
 								</div>
 							";
 							?>

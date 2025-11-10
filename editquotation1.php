@@ -46,11 +46,11 @@ $row=mysqli_fetch_assoc($result);
                 <div class="row mb-3">
                     <label for="datestart" class="col-sm-2 col-form-label">QTN NO:</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="qtnno" name="qtnno" value="<?php echo $row['qtnno'];?>">
+                        <input type="text" class="form-control mb-3" id="qtnno" name="qtnno" value="<?php echo $row['qtnno'];?>" readonly>
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">DATE :</label>
                     <div class="col-sm-4">
-                        <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $row['date'];?>">
+                        <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $row['date'];?>" readonly>
                     </div>
                     <label for="datestart" class="col-sm-2 col-form-label">PAGE :</label>
                     <div class="col-sm-4">
