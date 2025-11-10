@@ -47,6 +47,17 @@ $page= 1 . " of " . $row['page'];
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 <head>
 	<style>
+        @page {
+        size: A4;
+        margin: 300mm;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        position: relative;
+        min-height: 200vh;
+        margin: 0;
+        padding-bottom: 150px; /* ruang untuk footer */
+    }
 	   .title h1{
 	       text-align: right;
 	   }
@@ -72,15 +83,37 @@ $page= 1 . " of " . $row['page'];
         .signature-section tr:first-child td { font-weight: bold; padding-bottom: 10px; } /* Gaya gambar tandatangan */ 
         .signature-section img { width: 150px; /* saiz tandatangan */ height: auto; display: block; margin: 0 auto 5px auto; /* tengah + jarak bawah */ object-fit: contain; /* supaya tak terpotong */ } /* Garisan tandatangan */ 
         .signature-line { border-top: 1px solid black; margin-top: 40px; display: flex; justify-content: flex-end; /* teks ke sebelah kanan */ align-items: center; height: 20px; } /* Tarikh */ 
-        .date-line { font-size: 12px; text-align: left; margin-top: 3px; } 
+        .date-line { font-size: 12px; text-align: left; margin-top: 4px; }
         .signature-line h6 { margin: 0; font-weight: normal; font-size: 13px; text-align: right; } 
-        img { max-width: 200px; /* Control saiz logo */ display: block; margin: auto; /* Center gambar dalam cell */ }
+        img { max-width: 200px; display: block; margin: auto;}
+        /* --- Footer Tetap di Bawah Setiap Halaman --- */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size: 10pt;
+            border-top: 1px solid #000;
+            padding: 5px 20px;
+        }
+
+        .footer table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .footer td {
+            width: 33%;
+            vertical-align: top;
+            padding: 0 5px;
+            text-align: left;
+        }
 	</style>
 </head>
 <body onload="window.print()">
 	<!-- HEADER IMAGE -->
-    <div style="text-align:center; margin-bottom:10px;">
-        <img src="assets/images/mra_header.png" alt="MRA Global Header" style="width:100%; max-width:900px;">
+    <div style="text-align:center; margin-bottom:150px;">
+        <img src="assets/images/mra_header.png" alt="MRA Global Header" style="width:200%; max-width:950px;">
     </div>
     
 	<div class="title">
@@ -226,26 +259,54 @@ $page= 1 . " of " . $row['page'];
 		<h6><?php echo $row['remarks'] ? $row['remarks'] : '';?></h6>
 	</div>
 	<br>
-	<table class="signature-section">
+    <br>
+    <br>
+	<!-- Seksyen tandatangan -->
+    <table class="signature-section">
         <tr>
             <td><h6>Best regards,</h6></td>
-            <td><h6>We Comfirm the order by accepting the terms</h6></td>
+            <td><h6>We Confirm the order by accepting the terms</h6></td>
         </tr>
+        <tr>
             <td>
-                <img src='image/<?php echo $row['signmana'] ? $row['signmana'] : '';?>' alt='Signature'>
+                <img src="image/<?php echo $row['signmana'] ? $row['signmana'] : '';?>" alt="Signature" style="width: 200px;">
                 <div class="signature-line"></div>
                 <div class="date-line"><strong><?php echo $row['name'] ? $row['name'] : '';?></strong></div>
                 <div class="date-line">Managing Director</div>
             </td>
             <td>
-            	<br>
-                <img src="image/chop_placeholder.png" alt="Signature Placeholder" style="opacity:0;"> <!-- untuk balance tinggi -->
+                <br>
+                <br>
+                <img src="image/chop_placeholder.png" alt="Signature Placeholder" style="opacity:0;">
                 <div class="signature-line"><h6>Chop & Sign</h6></div>
                 <div class="date-line">Verified by:</div>
                 <div class="date-line">Date:</div>
             </td>
         </tr>
     </table>
+
+    <!-- Footer -->
+    <div class="footer">
+        <table>
+            <tr>
+                <td>
+                    <strong>HEAD OFFICE :</strong><br>
+                    15-06 & 15-07 PLAZA 138, JALAN AMPANG,<br>
+                    50450 KUALA LUMPUR, MALAYSIA
+                </td>
+                <td>
+                    <strong>BRANCH OFFICE :</strong><br>
+                    NO 20, 20-1, JALAN PUSAT KOMERSIAL PERWIRA GEMAS,<br>
+                    73400 GEMAS, NEGERI SEMBILAN, MALAYSIA
+                </td>
+                <td>
+                    <strong>BRANCH OFFICE :</strong><br>
+                    23A, LALUAN INDUSTRI 1, KAWASAN PERINDUSTRIAN<br>
+                    RINGAN SIPUTEH, 31560 PUSING, PERAK, MALAYSIA
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 <?php
 function numberToWordsEnglish($total)
