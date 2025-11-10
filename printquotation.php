@@ -67,7 +67,6 @@ $page= 1 . " of " . $row['page'];
             padding: 5px;
             vertical-align: top;
         }
-}
         .signature-section { width: 100%; border-collapse: collapse; text-align: center; margin-top: 200px; font-family: Arial, sans-serif; font-size: 13px; } 
         .signature-section td { width: 50%; vertical-align: top; padding: 10px; } /* Tajuk (APPLICANT / SUPPORT / APPROVE) */ 
         .signature-section tr:first-child td { font-weight: bold; padding-bottom: 10px; } /* Gaya gambar tandatangan */ 
