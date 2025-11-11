@@ -80,7 +80,7 @@
                         </div>
                         <label for="dateend" class="col-sm-2 col-form-label">POSITION :</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="position" name="position" value="">
+                            <input type="text" class="form-control mb-1" id="position" name="position" value="" oninput="this.value = this.value.toUpperCase();">
                         </div>
                         <label for="datestart" class="col-sm-2 col-form-label">PHONE NUMBER :</label>
                         <div class="col-sm-4">
