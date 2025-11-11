@@ -37,6 +37,9 @@ if ($month == '01') {
 $y=date('y', strtotime($row['date']));
 $date = $d . " " . $m . " " . $y;
 $page= 1 . " of " . $row['page'];
+$name = $row['namecreate'];
+$date = $row['date'];
+$qtnno = $row['qtnno'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,7 +81,7 @@ $page= 1 . " of " . $row['page'];
             padding: 5px;
             vertical-align: top;
         }
-        .signature-section { width: 100%; border-collapse: collapse; text-align: center; margin-top: 200px; font-family: Arial, sans-serif; font-size: 13px; } 
+        .signature-section { width: 100%; border-collapse: collapse; text-align: center; margin-top: 100px; font-family: Arial, sans-serif; font-size: 13px; } 
         .signature-section td { width: 50%; vertical-align: top; padding: 10px; } /* Tajuk (APPLICANT / SUPPORT / APPROVE) */ 
         .signature-section tr:first-child td { font-weight: bold; padding-bottom: 10px; } /* Gaya gambar tandatangan */ 
         .signature-section img { width: 150px; /* saiz tandatangan */ height: auto; display: block; margin: 0 auto 5px auto; /* tengah + jarak bawah */ object-fit: contain; /* supaya tak terpotong */ } /* Garisan tandatangan */ 
@@ -108,14 +111,35 @@ $page= 1 . " of " . $row['page'];
             padding: 0 5px;
             text-align: left;
         }
+
+        /* ===== HEADER (Atas setiap halaman) ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    padding: 10px 0;
+}
+
+.header img {
+    width: 100%;
+    max-width: 950px;
+}
 	</style>
 </head>
 <body onload="window.print()">
 	<!-- HEADER IMAGE -->
-    <div style="text-align:center; margin-bottom:150px;">
-        <img src="assets/images/mra_header.png" alt="MRA Global Header" style="width:200%; max-width:950px;">
+    <div class="header">
+        <img src="assets/images/mra_header.png" alt="MRA Global Header">
     </div>
-    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 	<div class="title">
 		<h1>Quotation</h1>
 	</div>
@@ -171,6 +195,44 @@ $page= 1 . " of " . $row['page'];
 		<strong><?php echo $row['nodaftar'] ? $row['nodaftar'] : '';?></strong>
 	</div>
 	<br>
+	<?php
+    	$r = mysqli_query($conn, "SELECT COUNT(*) AS total_row FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+    	$row = mysqli_fetch_assoc($r);
+    	$count = $row['total_row'];
+//     	echo $count;
+    	if ($count == '2') {
+    ?>
+    	<br>
+    <?php 
+    	} elseif ($count >= '3') {
+    ?>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    <?php 
+    	}
+    ?>
 	<table style="border-collapse: collapse; width: 100%;">
         <tr style="background-color: yellow; text-align:center;">
             <th style="padding:3px; width:5%; border:2px solid black;">Ser</th>
@@ -190,9 +252,9 @@ $page= 1 . " of " . $row['page'];
         </tr>
         <?php
             $index = 1;
-            $name = $row['namecreate'];
-            $date = $row['date'];
-            $qtnno = $row['qtnno'];
+//             $name = $row['namecreate'];
+//             $date = $row['date'];
+//             $qtnno = $row['qtnno'];
             $result1 = mysqli_query($conn, "SELECT * FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
             while ($row1=mysqli_fetch_assoc($result1)) {
          ?>
@@ -213,7 +275,6 @@ $page= 1 . " of " . $row['page'];
             </td>
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
                 <?php 
-                    $index = 1;
                     $result2 = mysqli_query($conn, "SELECT SUM(manhourcost) AS manhourcost FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
                     while ($row2=mysqli_fetch_assoc($result2)) {
                         $manhourcost = $row2['manhourcost'];
@@ -229,8 +290,11 @@ $page= 1 . " of " . $row['page'];
             </td>
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
                 <strong>
-                	<?php 
-                	   echo number_format($row['sparepartcost'], 2, '.', ',');
+                	<?php
+                    	$result = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$id'");
+                    	$row3 = mysqli_fetch_assoc($result);
+                    	$sparepartcost = $row3['sparepartcost'];
+                    	echo number_format($sparepartcost, 2, '.', ',');
                 	?>
                 </strong>
             </td>
@@ -242,25 +306,110 @@ $page= 1 . " of " . $row['page'];
             <td style="text-align:right; padding:3px 5px; border:2px solid black;">
                 <strong>
                 <?php
-                    $total = $manhourcost + $row['sparepartcost'];
+                $total = $manhourcost + $sparepartcost;
                     echo number_format($total, 2, '.', ',');
                 ?>
                 </strong>
             </td>
         </tr>
     </table>
-	<br>
+    <?php 
+        $r = mysqli_query($conn, "SELECT COUNT(*) AS total_row FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+        $row = mysqli_fetch_assoc($r);
+        $count = $row['total_row'];
+        if ($count == '2') {
+    ?>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+		<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    <?php 
+        } elseif ($count >= '3') {
+    ?>
+    	<br>
+    	<br>
+    <?php 
+        }
+    ?>
+	
 	<div>
 		<h6>Ringgit Malaysia: <strong><?php echo numberToWordsEnglish($total);?></strong></h6>
 	</div>
-	<br>
+	
+	<?php 
+        $r = mysqli_query($conn, "SELECT COUNT(*) AS total_row FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+        $row = mysqli_fetch_assoc($r);
+        $count = $row['total_row'];
+        if ($count == '1') {
+    ?>
+    	<br>
+    	<br>
+    <?php 
+        } elseif ($count >= '3') {
+    ?>
+    	<br>
+    	<br>
+    <?php 
+        }
+    ?>
+	
 	<div>
 		<h6><strong>REMARKS:</strong></h6>
-		<h6><?php echo $row['remarks'] ? $row['remarks'] : '';?></h6>
+		<h6>
+			<?php
+            	$result = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$id'");
+            	$row3 = mysqli_fetch_assoc($result);
+            	$remarks = $row3['remarks'];
+            	echo $remarks;
+        	?>
+		</h6>
 	</div>
-	<br>
-    <br>
-    <br>
+	
+	<?php 
+        $r = mysqli_query($conn, "SELECT COUNT(*) AS total_row FROM `list_quotation` WHERE name = '$name' AND DATE(date) = '$date' AND qtnno = '$qtnno'");
+        $row = mysqli_fetch_assoc($r);
+        $count = $row['total_row'];
+        if ($count == '2') {
+    ?>
+    	<br>
+    <?php 
+        } elseif ($count >= '3') {
+    ?>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    	<br>
+    <?php 
+        }
+    ?>
+	
 	<!-- Seksyen tandatangan -->
     <table class="signature-section">
         <tr>
@@ -269,9 +418,36 @@ $page= 1 . " of " . $row['page'];
         </tr>
         <tr>
             <td>
-                <img src="image/<?php echo $row['signmana'] ? $row['signmana'] : '';?>" alt="Signature" style="width: 200px;">
+                <?php
+                    $result = mysqli_query($conn, "SELECT * FROM `quotation` WHERE id = '$id'");
+                    $row = mysqli_fetch_assoc($result);
+                    $sign = $row['signmana'];
+                    if ($sign != '') {
+                ?>
+                    <img src="image/<?php echo $row['signmana'] ? $row['signmana'] : '';?>" alt="Signature" style="width: 200px;">
+                <?php
+                    } else {
+                ?>
+                    <br>
+                    <br>
+                    <br>
+                <?php
+                    }
+                ?>
                 <div class="signature-line"></div>
-                <div class="date-line"><strong><?php echo $row['name'] ? $row['name'] : '';?></strong></div>
+                <?php 
+                    $namemana = $row['name'];
+                    if ($namemana != '') {
+                ?>
+                	<div class="date-line"><strong><?php echo $row['name'] ? $row['name'] : '';?></strong></div>
+                <?php 
+                    } else {
+                ?>
+                	<br>
+                <?php 
+                    }
+                ?>
+                
                 <div class="date-line">Managing Director</div>
             </td>
             <td>
