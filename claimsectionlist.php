@@ -2,16 +2,33 @@
 set_time_limit(0);
 //error_reporting(E_NOTICE);
 include('conn.php');
-
-$year = $_POST['tahun'];
-$month = $_POST['bulan'];
-$noic = $_POST['ic'];
-
+?>
+<?php
+if (isset($_POST['name']) && $_POST['name'] != '') {
+    $name = $_POST['name'];
+    $year = $_POST['tahun'];
+    $month = $_POST['bulan'];
+    $result = mysqli_query($conn, "SELECT * FROM mra_staff where name = '$name'");
+    $row1 = mysqli_fetch_assoc($result);
+    $noic1 = $row1['icno'];
+?>
+<div class="mt-3" align="right">
+    <a href="printclaim1.php?id=<?php echo base64_encode($noic1); ?>&month=<?php echo $month; ?>&year=<?php echo $year; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24;"></a>
+    <button href="" class="btn btn-warning" onclick="test('<?php echo $month; ?>')">Delete All</button>
+</div>
+<?php
+} else {
+    $year = $_POST['tahun'];
+    $month = $_POST['bulan'];
+    $noic = $_POST['ic'];
 ?>
 <div class="mt-3" align="right">
     <a href="printclaim1.php?id=<?php echo base64_encode($noic); ?>&month=<?php echo $month; ?>&year=<?php echo $year; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24;"></a>
     <button href="" class="btn btn-warning" onclick="test('<?php echo $month; ?>')">Delete All</button>
 </div>
+<?php
+}
+?>
 <table id="claim" class="display nowrap" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>
@@ -28,7 +45,55 @@ $noic = $_POST['ic'];
     </thead>
     <?php
     $index = 1;
-    $sql = "SELECT * FROM mra_staff, mra_claims where icno = '$noic' and icno = noic and YEAR(date) = $year AND MONTH(date) = $month"; // SQL with parameters
+    if (isset($_POST['name']) && $_POST['name'] != '') {
+        $name = $_POST['name'];
+        $year = $_POST['tahun'];
+        $month = $_POST['bulan'];
+        $sql = "
+            SELECT 
+                claim.id AS id,
+                claim.date AS date,
+                claim.noic AS noic,
+                claim.purpose AS purpose,
+                claim.details AS details,
+                claim.amount AS amount,
+                claim.status AS status,
+                staff.name AS name,
+                claim.resit AS resit
+            FROM 
+                `mra_claims` AS claim
+            LEFT JOIN
+                `mra_staff` AS staff
+            ON
+                claim.noic = staff.icno
+            WHERE
+                staff.name = '$name' and YEAR(claim.date) = '$year' AND MONTH(claim.date) = '$month' AND staff.status != 'MANAGER'
+        ";
+    } else {
+        $year = $_POST['tahun'];
+        $month = $_POST['bulan'];
+        $noic = $_POST['ic'];
+        $sql = "
+            SELECT 
+                claim.id AS id,
+                claim.date AS date,
+                claim.noic AS noic,
+                claim.purpose AS purpose,
+                claim.details AS details,
+                claim.amount AS amount,
+                claim.status AS status,
+                staff.name AS name,
+                claim.resit AS resit
+            FROM 
+                `mra_claims` AS claim
+            LEFT JOIN
+                `mra_staff` AS staff
+            ON
+                claim.noic = staff.icno
+            WHERE
+                claim.noic = '$noic' and YEAR(claim.date) = '$year' AND MONTH(claim.date) = '$month' AND staff.status != 'MANAGER'
+        ";
+    }
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_array($result))
     {

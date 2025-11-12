@@ -12,6 +12,8 @@
 		val2 = $('#bulan').val();
         val3 = $('#ic').val();
 
+        // console.log(val, val2, val3);
+
 		$('#spinner-border3').show();
 		$('#list').hide();
 		$('#statistik').hide();
@@ -19,6 +21,31 @@
 			type: "POST",
 			url: "claimsectionlist.php",
 			data: {"tahun": val,"bulan": val2,"ic": val3},
+			success: function(data){
+				$('#spinner-border3').hide();
+				$("#list").show().html(data).fadeIn('fast');
+			}
+		});
+	}
+	
+</script>
+<script>
+	function getClaim1(val,val2,val3) {
+		
+    val = $('#tahun').val();
+		val2 = $('#bulan').val();
+    val3 = $('#ic').val();
+    val4 = $('#name').val();
+
+    console.log(val, val2, val3, val4);
+
+		$('#spinner-border3').show();
+		$('#list').hide();
+		$('#statistik').hide();
+		$.ajax({
+			type: "POST",
+			url: "claimsectionlist.php",
+			data: {"tahun": val,"bulan": val2,"ic": val3,"name": val4},
 			success: function(data){
 				$('#spinner-border3').hide();
 				$("#list").show().html(data).fadeIn('fast');
