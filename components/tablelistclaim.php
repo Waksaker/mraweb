@@ -1,3 +1,52 @@
+<?php
+$sql_jan = "SELECT status AS status_jan FROM `mra_claim` WHERE MONTH(apply) = '01' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_jan = mysqli_query($conn, $sql_jan);
+$row_jan = mysqli_fetch_assoc($result_jan) ?? ['sum_jan' => 0];
+
+$sql_feb = "SELECT status AS status_feb FROM `mra_claim` WHERE MONTH(apply) = '02' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_feb = mysqli_query($conn, $sql_feb);
+$row_feb = mysqli_fetch_assoc($result_feb);
+
+$sql_mar = "SELECT status AS status_mar FROM `mra_claim` WHERE MONTH(apply) = '03' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_mar = mysqli_query($conn, $sql_mar);
+$row_mar = mysqli_fetch_assoc($result_mar);
+
+$sql_apr = "SELECT status AS status_apr FROM `mra_claim` WHERE MONTH(apply) = '04' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_apr = mysqli_query($conn, $sql_apr);   
+$row_apr = mysqli_fetch_assoc($result_apr);
+
+$sql_may = "SELECT status AS status_may FROM `mra_claim` WHERE MONTH(apply) = '05' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_may = mysqli_query($conn, $sql_may);   
+$row_may = mysqli_fetch_assoc($result_may);
+
+$sql_jun = "SELECT status AS status_jun FROM `mra_claim` WHERE MONTH(apply) = '06' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_jun = mysqli_query($conn, $sql_jun);
+$row_jun = mysqli_fetch_assoc($result_jun);
+
+$sql_jul = "SELECT status AS status_jul FROM `mra_claim` WHERE MONTH(apply) = '07' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_jul = mysqli_query($conn, $sql_jul);
+$row_jul = mysqli_fetch_assoc($result_jul);
+
+$sql_aug = "SELECT status AS status_aug FROM `mra_claim` WHERE MONTH(apply) = '08' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_aug = mysqli_query($conn, $sql_aug);
+$row_aug = mysqli_fetch_assoc($result_aug);
+
+$sql_sep = "SELECT status AS status_sep FROM `mra_claim` WHERE MONTH(apply) = '09' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_sep = mysqli_query($conn, $sql_sep);
+$row_sep = mysqli_fetch_assoc($result_sep);
+
+$sql_oct = "SELECT status AS status_oct FROM `mra_claim` WHERE MONTH(apply) = '10' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_oct = mysqli_query($conn, $sql_oct);
+$row_oct = mysqli_fetch_assoc($result_oct);
+
+$sql_nov = "SELECT status AS status_nov FROM `mra_claim` WHERE MONTH(apply) = '11' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_nov = mysqli_query($conn, $sql_nov);
+$row_nov = mysqli_fetch_assoc($result_nov);
+
+$sql_dec = "SELECT status AS status_dec FROM `mra_claim` WHERE MONTH(apply) = '12' AND ic = '$noic' AND YEAR(apply) = '$Year_now'";
+$result_dec = mysqli_query($conn, $sql_dec);
+$row_dec = mysqli_fetch_assoc($result_dec);
+?>
 <table id="claim" class="display nowrap" style="width:100%">
 	<thead>
 		<tr>

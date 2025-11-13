@@ -25,7 +25,7 @@ $status = $row['status'];
             <a href="applyclaim1.php?id=<?php echo base64_encode($noic); ?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Claim</a>
         </div>
         <?php
-            if ($status=='STAFF') {
+            if ($status=='STAFF' || $status=='LEADER STAFF') {
         ?>
             <div class="row">
                 <div class="col-md-12">
