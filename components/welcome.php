@@ -13,7 +13,6 @@ $row = mysqli_fetch_array($result);
 $name2 = $row['name'];
 $position2 = $row['position'];
 $noic = $row['icno'];
-
 $Date_now=date('D, M d, Y H:i:s');
 $Year_now = date('Y',strtotime($Date_now));
 $sql_annual = "SELECT count(*) as annual FROM `mra_leave` WHERE noic = '$noic' AND matters = 'ANNUAL LEAVE'";
