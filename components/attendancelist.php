@@ -8,7 +8,6 @@ $noic = $_POST['ic'];
 $kehadiran = $_POST['kehadiran'];
 date_default_timezone_set("Asia/Kuala_Lumpur");
 $today = date("Y-m-d");
-echo $today;
 
 if ($kehadiran == 'office') {
     echo '
