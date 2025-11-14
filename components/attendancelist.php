@@ -6,9 +6,15 @@ $year = $_POST['tahun'];
 $month = $_POST['bulan'];
 $noic = $_POST['ic'];
 $kehadiran = $_POST['kehadiran'];
+date_default_timezone_set("Asia/Kuala_Lumpur");
+$today = date("Y-m-d");
+echo $today;
 
 if ($kehadiran == 'office') {
     echo '
+    <div class="mt-3" align="right">
+        <a href="" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24;"></a>
+    </div>
     <table id="attendance" class="display nowrap" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>
@@ -25,7 +31,7 @@ if ($kehadiran == 'office') {
 
     $index = 1;
     $sql = "
-        SELECT 
+       SELECT 
         mra_office.id as id, 
         mra_staff.name,
         mra_office.ic as ic, 
@@ -36,8 +42,7 @@ if ($kehadiran == 'office') {
         FROM mra_office
         LEFT JOIN mra_staff 
         ON mra_office.ic = mra_staff.icno
-        WHERE mra_staff.icno = '$noic' 
-        AND YEAR(mra_office.date_apply) = '$year' 
+        WHERE YEAR(mra_office.date_apply) = '$year' 
         AND MONTH(mra_office.date_apply) = '$month'
     ";
     $result = mysqli_query($conn, $sql);
@@ -91,13 +96,7 @@ if ($kehadiran == 'office') {
 
     $index = 1;
     $sql = "
-        SELECT * 
-        FROM mra_staff
-        LEFT JOIN mra_outstation
-        ON mra_staff.icno = mra_outstation.ic
-                    WHERE mra_staff.icno = '$noic' 
-                    AND YEAR(mra_outstation.datestart) = '$year' 
-                    AND MONTH(mra_outstation.datestart) = '$month'
+        SELECT * FROM `mra_outstation` WHERE YEAR(dateapply) = '$year' AND MONTH(dateapply) = '$month'
     ";
     $result = mysqli_query($conn, $sql);
 
@@ -156,8 +155,7 @@ if ($kehadiran == 'office') {
         FROM mra_staff
         LEFT JOIN mra_wfh
         ON mra_staff.icno = mra_wfh.ic
-                    WHERE mra_staff.icno = '$noic' 
-                    AND YEAR(mra_wfh.datesign) = '$year' 
+                    WHERE YEAR(mra_wfh.datesign) = '$year' 
                     AND MONTH(mra_wfh.datesign) = '$month'
     ";
     $result = mysqli_query($conn, $sql);

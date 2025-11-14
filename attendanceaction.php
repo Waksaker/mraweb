@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "INSERT INTO `mra_outstation` (name, ic, datestart, purpose, details, dateapply) VALUES ('$name_staff', '$ic_user', '$datestart', '$purpose_outstation', '$details_outstation', '$date')";
         $result = $conn->query($sql);
 
-        $sqlclaim = "INSERT INTO mra_claims (date, purpose, details, amount, noic) VALUES ('$datestart', '$purpose_outstation', '$details_outstation', '$amount', '$ic_user')";
+        $sqlclaim = "INSERT INTO mra_claims (date, purpose, details, amount, noic, status) VALUES ('$datestart', '$purpose_outstation', '$details_outstation', '$amount', '$ic_user', '1')";
         $resultclaim = $conn->query($sqlclaim);
 
         if ($result === true && $resultclaim === true) {
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         } else {
             if ($inout == "in") {
-                $sql = "INSERT INTO `mra_office` (`ic`, `inoffice`, `date_apply`) VALUES ('$ic_user', '$officetime', '$officedate')";
+                $sql = "INSERT INTO `mra_office` (`ic`, `inoffice`, `outoffice`, `date_apply`) VALUES ('$ic_user', '$officetime', '00:00:00', '$officedate')";
                 $result = $conn->query($sql);
 
                 if ($result) {

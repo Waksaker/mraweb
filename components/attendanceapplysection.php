@@ -20,7 +20,7 @@ $phoneno = $row['phoneno'];
 $status = $row['status'];
 
 $nameList = []; // Simpan semua nama dalam array
-$sql2 = "SELECT name FROM `mra_staff`";
+$sql2 = "SELECT name FROM `mra_staff` WHERE status != 'MANAGER'";
 $result2 = $conn->query($sql2);
 
 while ($row2 = $result2->fetch_assoc()) {

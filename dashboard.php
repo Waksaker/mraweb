@@ -104,6 +104,16 @@ $status = $row['status'];
     });
 </script>
 <script>
+    new DataTable('#stafflist', {
+        scrollX: true,
+        // layout: {
+        //     topStart: {
+        //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        //     }
+        // }
+    });
+</script>
+<script>
 	function getClaim(val,val2,val3) {
 		
         val = $('#tahun').val();

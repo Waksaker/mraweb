@@ -12,6 +12,8 @@
         val3 = $('#ic').val();
 		val4 = $('#kehadiran').val();
 
+		console.log(val, val2, val3, val4);
+
 		$('#spinner-border3').show();
 		$('#list').hide();
 		$('#statistik').hide();
