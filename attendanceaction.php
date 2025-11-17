@@ -12,193 +12,48 @@
 </body>
 </html>
 <?php
-set_time_limit(0);
-//error_reporting(E_NOTICE);
 include('conn.php');
+date_default_timezone_set("Asia/Kuala_Lumpur");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name_staff = isset($_POST['name_staff']) ? $_POST['name_staff'] : '';
-    $date = isset($_POST['date']) ? $_POST['date'] : '';
-    $present = isset($_POST['present']) ? $_POST['present'] : '';
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['idpresent'], $_GET['statusattan'], $_GET['ic'])) {
+    $idpresent = base64_decode($_GET['idpresent']);
+    $statusattan = base64_decode($_GET['statusattan']);
+    $ic = base64_decode($_GET['ic']);
+    $datetoday = date("Y-m-d");
+    $time_out = date("H:i:s");
 
-    // outstation
-    $datestart = isset($_POST['datestart']) ? $_POST['datestart'] : ''; // Elak Undefined Index
-    $purpose_outstation = isset($_POST['purpose_outstation']) ? $_POST['purpose_outstation'] : '';
-    $details_outstation = isset($_POST['details_outstation']) ? $_POST['details_outstation'] : '';
-    $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
-
-    // wfh
-    $purpose_wfh = isset($_POST['purpose_wfh']) ? $_POST['purpose_wfh'] : '';
-    $details_wfh = isset($_POST['details_wfh']) ? $_POST['details_wfh'] : '';
-    $datesign = isset($_POST['datesign']) ? $_POST['datesign'] : '';
-    
-    //office
-    $inout = isset($_POST['inout']) ? $_POST['inout'] : '';
-    $officetime = isset($_POST['timeoffice']) ? $_POST['timeoffice'] : '';
-    $officedate = isset($_POST['dateoffice']) ? $_POST['dateoffice'] : '';
-    
-    $sql_ic = "SELECT `icno` FROM `mra_staff` WHERE `name` = '$name_staff'";
-    $result_ic = $conn->query($sql_ic);
-    $row_ic = $result_ic->fetch_assoc();
-    $ic_user = $row_ic['icno'];
-
-    $sql_office = "SELECT * FROM `mra_office` WHERE `ic` = '$ic_user' AND `date_apply` = '$officedate'";
-    $result_office = mysqli_query($conn, $sql_office);
-    
-    if ($present == 'outstation') {
-        $sql = "INSERT INTO `mra_outstation` (name, ic, datestart, purpose, details, dateapply) VALUES ('$name_staff', '$ic_user', '$datestart', '$purpose_outstation', '$details_outstation', '$date')";
-        $result = $conn->query($sql);
-
-        $sqlclaim = "INSERT INTO mra_claims (date, purpose, details, amount, noic, status) VALUES ('$datestart', '$purpose_outstation', '$details_outstation', '$amount', '$ic_user', '1')";
-        $resultclaim = $conn->query($sqlclaim);
-
-        if ($result === true && $resultclaim === true) {
-            echo '
-                <script>
-                    Swal.fire({
-                    text: "Submit Successfull",
-                    icon: "warning"
-                    }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        window.location = "attandance.php";
-                        } 
-                    });
-                </script>
-            ';
-        } else {
-            echo "GAGAL: " . $conn->error;
-        }
-    } elseif ($present == 'wfh') {
-        $sql = "INSERT INTO `mra_wfh`(`name`, `ic`, `purpose`, `details`, `datesign`, `dateapply`) VALUES ('$name_staff','$ic_user','$purpose_wfh','$details_wfh','$datesign','$date')";
-        $result = $conn->query($sql);
-        if ($result === true) {
-            echo '
-                <script>
-                    Swal.fire({
-                    text: "Submit Successfull",
-                    icon: "warning"
-                    }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        window.location = "attandance.php";
-                        } 
-                    });
-                </script>
-            ';
-        } else {
-            echo "GAGAL: " . $conn->error;
-        }
-    } elseif ($present == 'office') {
-        if (mysqli_num_rows($result_office) > 0) {
-            if ($inout == 'in') {
-                echo '
-                    <script>
-                        Swal.fire({
-                        text: "Submit Successfull",
-                        icon: "success"
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location = "attandance.php";
-                            } 
-                        });
-                    </script>
-                ';
-            } elseif ($inout == 'out') {
-                $sql = "UPDATE `mra_office` SET `outoffice` = '$officetime' WHERE `ic` = '$ic_user' AND `date_apply` = '$officedate'";
-                $result = $conn->query($sql);
-
-                if ($result) {
-                    echo '
-                        <script>
-                            Swal.fire({
-                            text: "Submit Successfull",
-                            icon: "success"
-                            }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                window.location = "attandance.php";
-                                } 
-                            });
-                        </script>
-                    ';
-                } else {
-                    echo '
-                        <script>
-                            Swal.fire({
-                            text: "Submit Faile",
-                            icon: "error"
-                            }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                window.location = "attandance.php";
-                                } 
-                            });
-                        </script>
-                    ';
-                }
-            }
-        } else {
-            if ($inout == "in") {
-                $sql = "INSERT INTO `mra_office` (`ic`, `inoffice`, `outoffice`, `date_apply`) VALUES ('$ic_user', '$officetime', '00:00:00', '$officedate')";
-                $result = $conn->query($sql);
-
-                if ($result) {
-                    echo '
-                        <script>
-                            Swal.fire({
-                            text: "Submit Successfull",
-                            icon: "success"
-                            }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                window.location = "attandance.php";
-                                } 
-                            });
-                        </script>
-                    ';
-                } else {
-                    echo '
-                        <script>
-                            Swal.fire({
-                            text: "Submit Faile",
-                            icon: "error"
-                            }).then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
-                            if (result.isConfirmed) {
-                                window.location = "attandance.php";
-                                } 
-                            });
-                        </script>
-                    ';
-                }
-            } elseif ($inout == "out") {
-                echo '
-                    <script>
-                        Swal.fire({
-                        text: "Please reset your presence information.",
-                        icon: "warning"
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location = "attandance.php";
-                            } 
-                        });
-                    </script>
-                ';
-            }
-        }
+    if ($statusattan == 'hadir') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2',`dateattan`='$datetoday',`timein`='$time_out' WHERE id = '$idpresent'");
+        $result2 = mysqli_query($conn, "INSERT INTO `mra_office` (`ic`, `statattan`, `inoffice`, `outoffice`, `date_apply`) VALUES ('$ic','in office','$time_out', '00:00:00', '$datetoday')");
+    } elseif ($statusattan == 'tidak hadir') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timeout`='$time_out' WHERE id = '$idpresent'");
+        $result2 = mysqli_query($conn, "UPDATE `mra_office` SET `outoffice` = '$time_out' WHERE `ic` = '$ic' AND `date_apply` = '$datetoday'");
     }
-    
+
+    if ($result1 && $result2) {
+        echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+    } else {
+        echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $date = $_POST['date'];
+    $purpose = mysqli_real_escape_string($conn, $_POST['purpose']);
+    $details = mysqli_real_escape_string($conn, $_POST['details']);
+    $noic = $_POST['noic'];
+    $amount = $_POST['amount'];
+    $datetoday = date("Y-m-d");
+
+    $result1 = mysqli_query($conn, "INSERT INTO `mra_outstation`(`name`,`ic`,`datestart`,`purpose`,`details`,`dateapply`,`amount`) VALUES ('$name','$noic','$date','$purpose','$details','$datetoday','$amount')");
+    $result2 = mysqli_query($conn, "INSERT INTO `mra_claims` (`date`,`noic`,`purpose`,`details`,`status`,`amount`) VALUES ('$date','$noic','$purpose','$details','1','$amount')");
+    $result3 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='3' WHERE icno = '$noic'");
+
+    if ($result1 && $result2 && $result3) {
+        echo "<script>Swal.fire('Update outstation Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+    } else {
+        echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
 }
 ?>
-<!-- <script>
-    Swal.fire({
-    text: "Submit Successfull",
-    icon: "warning"
-    }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-        window.location = "attandance.php";
-        } 
-    });
-</script> -->

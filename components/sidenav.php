@@ -151,12 +151,23 @@ $status = $row['status'];
                     <span class="hide-menu">Staff</span>
                     </a>
                   </li>
+                ';
+              }
+            ?>
+
+            <?php 
+              if ($status == 'HR STAFF' || $status == 'ADMIN STAFF' || $status == 'MANAGER') {
+                echo '
+                  <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">ATTENDANCE</span>
+                  </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="attandance.php" aria-expanded="false">
+                    <a class="sidebar-link" href="inoffice.php" aria-expanded="false">
                     <span>
                       <i class="ti ti-article"></i>
                     </span>
-                    <span class="hide-menu">Attendance</span>
+                    <span class="hide-menu">Present</span>
                     </a>
                   </li>
                 ';
