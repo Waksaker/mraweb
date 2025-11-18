@@ -56,4 +56,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
         echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
+    $datetoday = date("Y-m-d");
+    $result1=mysqli_query($conn, "UPDATE `mra_staff` SET statattan = '1',dateattan = '$datetoday',timein = '00:00:00',timeout = '00:00:00'");
+    if ($result1) {
+        echo "<script>Swal.fire('Update date and time Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+    } else {
+        echo "<script>Swal.fire('Update date and time Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
+    
+}
 ?>

@@ -2,6 +2,7 @@
 set_time_limit(0);
 error_reporting(E_NOTICE);
 include('conn.php');
+date_default_timezone_set("Asia/Kuala_Lumpur");
 
 $icno = base64_decode($_GET['idoutstation']);
 
@@ -13,6 +14,7 @@ $nameoutstation = $row['name'];
 $position2 = $row['position'];
 $icoutstation = $row['icno'];
 $phoneno = $row['phoneno'];
+$datetoday = date("Y-m-d");
 ?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
@@ -26,7 +28,7 @@ $phoneno = $row['phoneno'];
           <div class="row mb-3">
               <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
               <div class="col-sm-4">
-                  <input type="date" class="form-control mb-3" id="date" name="date">
+                  <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
               </div>
               <label for="dateend" class="col-sm-2 col-form-label">PURPOSE</label>
               <div class="col-sm-4">
