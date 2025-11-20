@@ -68,9 +68,10 @@ $phoneno = $row['phoneno'];
     <form name="applyclaim" action="applyclaimaction.php" method="POST" enctype="multipart/form-data">
         <div class="customer_records">
             <div class="row mb-3">
-                <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
+                <label for="dateend" class="col-sm-2 col-form-label">DATE</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control mb-3" id="date" name="date">
+                    <input type="date" class="form-control mb-1" id="date" name="date">
+                    <sup><font style="color:red">Please fill the date</font></sup>
                 </div>
                 <label for="dateend" class="col-sm-2 col-form-label">PURPOSE</label>
                 <div class="col-sm-4">
@@ -96,6 +97,7 @@ $phoneno = $row['phoneno'];
             	<label for="dateend" class="col-sm-2 col-form-label">RESIT</label>
                 <div class="col-sm-4">
                     <input type="file" class="form-control mb-1" id="resit" name="resit" onchange="previewImageResit(event)">
+                    <sup><font style="color:red">Please fill the resit</font></sup>
                 </div>
                 <div class="container-img">
                     <label for="input-file" id="drop-area">

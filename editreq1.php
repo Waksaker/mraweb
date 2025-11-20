@@ -13,6 +13,7 @@ $supplirename = $row['supplirename'];
 $suppladderss = $row['suppladderss'];
 $attention = $row['attention'];
 $refno=$row['refno'];
+$syarikat = $row['syarikat'];
 ?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
@@ -57,6 +58,13 @@ $refno=$row['refno'];
                     <label for="datestart" class="col-sm-2 col-form-label">ATTENTION :</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="attention" name="attention" value="<?php echo $attention; ?>">
+                    </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>
+                    <div class="col-sm-4">
+                        <select class="form-control mb-1" name="syarikat" id="syarikat">
+                            <option value="MRA GLOBAL SDN BHD" <?php echo ($syarikat == 'MRA GLOBAL SDN BHD') ? 'selected' : ''; ?>>MRA GLOBAL SDN BHD</option>
+                            <option value="MIM DEFENSE SDN BHD" <?php echo ($syarikat == 'MIM DEFENSE SDN BHD') ? 'selected' : ''; ?>>MIM DEFENSE SDN BHD</option>
+                        </select>
                     </div>
                 </div>
             </div>

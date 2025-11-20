@@ -42,6 +42,14 @@
                     <div class="col-sm-4">
                         <input type="text" class="form-control mb-3" id="attention" name="attention">
                     </div>
+                    <label for="datestart" class="col-sm-2 col-form-label">SYARIKAT :</label>
+                    <div class="col-sm-4">
+                        <select class="form-control mb-1" name="syarikat" id="syarikat">
+                            <option value="">Please Choose</option>
+                            <option value="MRA GLOBAL SDN BHD">MRA GLOBAL SDN BHD</option>
+                            <option value="MIM DEFENSE SDN BHD">MIM DEFENSE SDN BHD</option>
+                        </select>
+                    </div>
 		        </div>
             </div>
             <div align="right">

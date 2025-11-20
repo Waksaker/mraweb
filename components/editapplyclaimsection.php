@@ -71,9 +71,10 @@ $datestart = $row['datestart'];
         <div class="customer_records">
             <div class="row mb-3">
             	<input type="text" name="id" value="<?php echo $id;?>" style="display:none;">
-                <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
+                <label for="dateend" class="col-sm-2 col-form-label">DATE</label>
                 <div class="col-sm-4">
-                    <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $dateapply;?>">
+                    <input type="date" class="form-control mb-1" id="date" name="date" value="<?php echo $dateapply;?>">
+                    <sup><font style="color:red">Please fill the date</font></sup>
                 </div>
                 <label for="dateend" class="col-sm-2 col-form-label">PURPOSE</label>
                 <div class="col-sm-4">
@@ -100,6 +101,7 @@ $datestart = $row['datestart'];
                 <div class="col-sm-4">
                     <input type="file" class="form-control mb-1" id="resit" name="resit" onchange="previewImageResit(event)">
                     <input type="text" name="resit1" value="<?php echo $resit; ?>" style="display: none;">
+                    <sup><font style="color:red">Please fill the resit</font></sup>
                 </div>
                 <div class="container-img">
                     <label for="input-file" id="drop-area">

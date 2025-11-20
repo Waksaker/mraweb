@@ -113,7 +113,7 @@ $refno=$row['refno'];
 
                     <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
                         <tr>
-                             <td style="width: 50%;"><h6>Supplier Name: <?php echo ($supplirename) ? $supplirename : ''; ?></h6></td>
+                            <td style="width: 50%;"><h6>Supplier Name: <?php echo ($supplirename) ? $supplirename : ''; ?></h6></td>
                         </tr>
                         <tr>
                             <td style="width: 50%;"><h6>Supplier Address: <?php echo ($suppladderss) ? $suppladderss : ''; ?></h6></td>

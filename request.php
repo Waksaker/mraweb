@@ -32,7 +32,7 @@ $status = $row['status'];
 						<thead class="bg-primary text-white">
 							<tr>
 								<th style="text-align: center;">No</th>
-								<th style="text-align: center;">Maklumat</th>
+								<th style="text-align: center;">Information</th>
 								<th style="text-align: center;">#</th>
 							</tr>
 						</thead>
@@ -92,10 +92,13 @@ $status = $row['status'];
 												<div><strong>REMARK: </strong> {$row['remark']}</div>
 											</div>
 											<div style='display: flex; justify-content: space-between;'>
+												<div><strong>COMPANY: </strong> {$row['syarikat']}</div>
 												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-												<div><strong>STATUS ACCOUNTING: </strong> {$statusacc}</div>
 											</div>
-											<strong>STATUS DIRECTOR: </strong> {$statusdirec}<br>
+											<div style='display: flex; justify-content: space-between;'>
+												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
+												<div><strong>STATUS MANAGER: </strong> {$statusdirec}</div>
+											</div>
 										</div>
 									";
 									?>
@@ -171,10 +174,13 @@ $status = $row['status'];
 												<div><strong>REMARK: </strong> {$row['remark']}</div>
 											</div>
 											<div style='display: flex; justify-content: space-between;'>
+												<div><strong>COMPANY: </strong> {$row['syarikat']}</div>
 												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-												<div><strong>STATUS ACCOUNTING: </strong> {$statusacc}</div>
 											</div>
-											<strong>STATUS DIRECTOR: </strong> {$statusdirec}<br>
+											<div style='display: flex; justify-content: space-between;'>
+												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
+												<div><strong>STATUS MANAGER: </strong> {$statusdirec}</div>
+											</div>
 										</div>
 									";
 									?>

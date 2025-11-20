@@ -23,6 +23,7 @@ if (isset($_POST['createreq1'])) {
     $supplirename = $_POST['supplirename'];
     $suppladderss = $_POST['suppladderss'];
     $attention = $_POST['attention'];
+    $syarikat = $_POST['syarikat'];
 
     $s = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$name'");
     $r = mysqli_fetch_assoc($s);
@@ -30,12 +31,12 @@ if (isset($_POST['createreq1'])) {
 
     $sql1 = "
        INSERT INTO `request`
-       (`namestaff`, `dateapply`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
+       (`namestaff`, `dateapply`,`syarikat` `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
        `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
        `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`,`refno`) 
         VALUES 
        (
-            '$name', '$dateapply', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
+            '$name', '$dateapply', '$syarikat', '$appoinment', '$department', '$supplirename', '$suppladderss', '$attention',
             'NULL', 'NULL', 'NULL', 'NULL', 'NULL', '$sign', 'NULL', '0000-00-00',
             'NULL', '0000-00-00', 'NULL', '0000-00-00', '1', '1', '1','$refno')
     ";
@@ -103,13 +104,14 @@ if (isset($_POST['createreq1'])) {
     $suppladderss = $_POST['suppladderss'];
     $attention = $_POST['attention'];
     $id = $_POST['id'];
+    $syarikat = $_POST['syarikat'];
 
     $s = mysqli_query($conn, "SELECT image FROM `mra_staff` WHERE name = '$name'");
     $r = mysqli_fetch_assoc($s);
     $sign = $r['image'];
 
     $sql1 = "
-        UPDATE `request` SET `namestaff` = '$name', `dateapply` = '$dateapply', `appoiment`='$appoinment',`department`='$department',`supplirename`='$supplirename',`suppladderss`='$suppladderss',`attention`='$attention' WHERE id = '$id'
+        UPDATE `request` SET `namestaff` = '$name', `dateapply` = '$dateapply', `syarikat`='$syarikat', `appoiment`='$appoinment',`department`='$department',`supplirename`='$supplirename',`suppladderss`='$suppladderss',`attention`='$attention' WHERE id = '$id'
     ";
 
     $result1 = mysqli_query($conn, $sql1);
