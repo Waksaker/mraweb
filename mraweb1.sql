@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2025 at 01:31 AM
+-- Generation Time: Nov 20, 2025 at 01:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -247,7 +247,8 @@ INSERT INTO `mra_claims` (`id`, `date`, `noic`, `purpose`, `details`, `status`, 
 (110, '2025-11-12', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
 (111, '2025-11-13', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
 (113, '2025-11-17', '000922012519', 'TRIP MEMPAGA', 'LAPANG SASAR 200 METER', '1', '', 40.00),
-(118, '2025-11-18', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00);
+(118, '2025-11-18', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
+(120, '2025-11-20', '980203565340', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00);
 
 -- --------------------------------------------------------
 
@@ -298,6 +299,7 @@ CREATE TABLE `mra_office` (
   `inoffice` time DEFAULT NULL,
   `outoffice` time DEFAULT NULL,
   `date_apply` date DEFAULT NULL,
+  `reason` varchar(255) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -305,12 +307,14 @@ CREATE TABLE `mra_office` (
 -- Dumping data for table `mra_office`
 --
 
-INSERT INTO `mra_office` (`id`, `ic`, `statattan`, `inoffice`, `outoffice`, `date_apply`, `updated_at`) VALUES
-(1, '01051710717', 'in office', '10:45:35', '20:57:42', '2025-11-17', '2025-11-17 12:57:42'),
-(2, '01051710717', 'in office', '20:55:27', '20:57:42', '2025-11-17', '2025-11-17 12:57:42'),
-(3, '01051710717', 'in office', '20:55:56', '20:57:42', '2025-11-17', '2025-11-17 12:57:42'),
-(4, '01051710717', 'in office', '20:57:33', '20:57:42', '2025-11-17', '2025-11-17 12:57:42'),
-(5, '01051710717', 'in office', '21:31:13', '21:31:15', '2025-11-18', '2025-11-18 13:31:15');
+INSERT INTO `mra_office` (`id`, `ic`, `statattan`, `inoffice`, `outoffice`, `date_apply`, `reason`, `updated_at`) VALUES
+(1, '01051710717', 'in office', '10:45:35', '20:57:42', '2025-11-17', NULL, '2025-11-17 12:57:42'),
+(2, '01051710717', 'in office', '20:55:27', '20:57:42', '2025-11-17', NULL, '2025-11-17 12:57:42'),
+(3, '01051710717', 'in office', '20:55:56', '20:57:42', '2025-11-17', NULL, '2025-11-17 12:57:42'),
+(4, '01051710717', 'in office', '20:57:33', '20:57:42', '2025-11-17', NULL, '2025-11-17 12:57:42'),
+(5, '01051710717', 'in office', '21:31:13', '21:31:15', '2025-11-18', NULL, '2025-11-18 13:31:15'),
+(6, '000922012519', 'in office', '11:47:07', '20:28:15', '2025-11-20', NULL, '2025-11-20 12:28:15'),
+(7, '001221140176', 'in office', '16:01:49', '20:28:17', '2025-11-20', NULL, '2025-11-20 12:28:17');
 
 -- --------------------------------------------------------
 
@@ -337,7 +341,8 @@ CREATE TABLE `mra_outstation` (
 INSERT INTO `mra_outstation` (`id`, `name`, `ic`, `datestart`, `purpose`, `details`, `dateapply`, `amount`, `updated_at`) VALUES
 (1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-18', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-17', 40.00, '2025-11-17 13:37:03'),
 (2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-19', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-18', 40.00, '2025-11-18 10:01:46'),
-(3, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-18', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-18', 40.00, '2025-11-18 13:30:59');
+(3, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-18', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-18', 40.00, '2025-11-18 13:30:59'),
+(4, 'AZLIN NATASHA BINTI AZAHAR', '980203565340', '2025-11-20', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-20', 40.00, '2025-11-20 03:50:13');
 
 -- --------------------------------------------------------
 
@@ -371,13 +376,13 @@ CREATE TABLE `mra_staff` (
 --
 
 INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `password`, `status`, `statattan`, `dateattan`, `timein`, `timeout`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`, `portfolio`) VALUES
-(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', 'Ikhwan Darwish CV.pdf'),
-(5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '01172259030', 'Maybank', '162107427034', '', '', ''),
-(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish2.pdf'),
-(12, 'AZLINNATASHA', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', 'mra123', 'HR STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
-(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '0189178650', 'Maybank', '164221637324', 'signature_nurul.png', 'MRA GLOBAL SDN BHD', ''),
-(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', 'mra123', 'LEADER STAFF', 1, '2025-11-18', '00:00:00', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature_amri.png', 'LETILICA SDN BHD', ''),
-(17, 'bad', 'BADRUL', 'farishtukiman@gmail.com', '000922014523', 'CEO', 'mra123', 'MANAGER', 1, '2025-11-18', '00:00:00', '00:00:00', '01156640727', '', '01032020733453', 'badrul_sign.png', 'LETILICA SDN BHD', '');
+(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-11-20', '00:00:00', '00:00:00', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', 'Ikhwan Darwish CV.pdf'),
+(5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-11-20', '00:00:00', '00:00:00', '01172259030', 'Maybank', '162107427034', '', '', ''),
+(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', 1, '2025-11-20', '11:47:07', '20:28:15', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish2.pdf'),
+(12, 'AZLINNATASHA', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', 'mra123', 'HR STAFF', 3, '2025-11-20', '00:00:00', '00:00:00', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
+(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', 1, '2025-11-20', '16:01:49', '20:28:17', '0189178650', 'Maybank', '164221637324', 'signature_nurul.png', 'MRA GLOBAL SDN BHD', ''),
+(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', 'mra123', 'LEADER STAFF', 1, '2025-11-20', '00:00:00', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature_amri.png', 'LETILICA SDN BHD', ''),
+(17, 'bad', 'BADRUL', 'farishtukiman@gmail.com', '000922014523', 'CEO', 'mra123', 'MANAGER', 1, '2025-11-20', '00:00:00', '00:00:00', '01156640727', '', '01032020733453', 'badrul_sign.png', 'LETILICA SDN BHD', '');
 
 -- --------------------------------------------------------
 
@@ -482,7 +487,7 @@ CREATE TABLE `request` (
 
 INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `syarikat`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`, `refno`) VALUES
 (10, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '2025-10-29', NULL, 'Job TRML', 'WANGSA MAJU', 'SOFTWARE', 'WILAYAH PERSEKUTUAN', '-', 'Test', 'Test', 'Test', 'Test', 'Test', 'signature.png', 'badrul_sign.png', '2025-10-29', 'signature_nurul.png', '2025-11-03', 'NULL', '0000-00-00', 2, 2, 1, 'RQF (GMS)-MRA2302004'),
-(8, 'NURUL SYUHADAH', '2025-10-28', NULL, 'JOB TRML', 'PERAK', 'WAH SING ENT', '-', '-', 'ONLINE BANKING', 'WAH SING ENT', '12456789', 'MAYBANK', 'MRA GLOBAL', '', 'NULL', '0000-00-00', 'signature_nurul.png', '2025-11-03', 'NULL', '0000-00-00', 1, 1, 1, 'RQF (GMS)-MRA2302004');
+(8, 'NURUL SYUHADAH', '2025-10-28', 'LETILICA SDN BHD', 'JOB TRML', 'PERAK', 'WAH SING ENT', '-', '-', 'ONLINE BANKING', 'WAH SING ENT', '12456789', 'MAYBANK', 'MRA GLOBAL', '', 'NULL', '0000-00-00', 'signature_nurul.png', '2025-11-20', 'NULL', '0000-00-00', 1, 1, 1, 'RQF (GMS)-MRA2302004');
 
 --
 -- Indexes for dumped tables
@@ -604,7 +609,7 @@ ALTER TABLE `mra_claim`
 -- AUTO_INCREMENT for table `mra_claims`
 --
 ALTER TABLE `mra_claims`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `mra_leave`
@@ -616,13 +621,13 @@ ALTER TABLE `mra_leave`
 -- AUTO_INCREMENT for table `mra_office`
 --
 ALTER TABLE `mra_office`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mra_outstation`
 --
 ALTER TABLE `mra_outstation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `mra_staff`
