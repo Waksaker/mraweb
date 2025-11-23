@@ -113,7 +113,7 @@ $qtnno = $row['qtnno'];
         }
 
         /* ===== HEADER (Atas setiap halaman) ===== */
-.header {
+/* .header {
     position: fixed;
     top: 0;
     left: 0;
@@ -126,20 +126,20 @@ $qtnno = $row['qtnno'];
 .header img {
     width: 100%;
     max-width: 950px;
-}
+} */
 	</style>
 </head>
 <body onload="window.print()">
 	<!-- HEADER IMAGE -->
-    <div class="header">
+    <!-- <div class="header">
         <img src="assets/images/mra_header.png" alt="MRA Global Header">
-    </div>
+    </div> -->
+    <!-- <br>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <br>
+    <br> -->
 	<div class="title">
 		<h1>Quotation</h1>
 	</div>
@@ -206,6 +206,7 @@ $qtnno = $row['qtnno'];
     <?php 
     	} elseif ($count >= '3') {
     ?>
+    	<!-- <br>
     	<br>
     	<br>
     	<br>
@@ -228,8 +229,7 @@ $qtnno = $row['qtnno'];
     	<br>
     	<br>
     	<br>
-    	<br>
-    	<br>
+    	<br> -->
     <?php 
     	}
     ?>
@@ -385,6 +385,7 @@ $qtnno = $row['qtnno'];
     <?php 
         } elseif ($count >= '3') {
     ?>
+    	<!-- <br>
     	<br>
     	<br>
     	<br>
@@ -404,8 +405,7 @@ $qtnno = $row['qtnno'];
     	<br>
     	<br>
     	<br>
-    	<br>
-    	<br>
+    	<br> -->
     <?php 
         }
     ?>
@@ -462,7 +462,7 @@ $qtnno = $row['qtnno'];
     </table>
 
     <!-- Footer -->
-    <div class="footer">
+    <!-- <div class="footer">
         <table>
             <tr>
                 <td>
@@ -482,7 +482,7 @@ $qtnno = $row['qtnno'];
                 </td>
             </tr>
         </table>
-    </div>
+    </div> -->
 </body>
 <?php
 function numberToWordsEnglish($total)

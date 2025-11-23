@@ -26,6 +26,7 @@ $dateacc = $row['dateacc'];
 $signdirector = $row['signdirector'];
 $datedirector = $row['datedirector'];
 $refno=$row['refno'];
+$syarikat=$row['syarikat'];
 ?>
 <html>
 <head>
@@ -75,18 +76,39 @@ $refno=$row['refno'];
             <div class="col-12">
                 <div class="container">
                     <table style="margin-right: -100px; float: right;  width: 145%; border: 1px solid black;  border-collapse: collapse;">
-                        <tr>
-                            <td style="width: 40%; text-align: center;">
-                                <img src="assets/images/logos/mra.PNG" alt="Logo">
-                                <h5>MRA GLOBAL SDN BHD.</h5>
-                            </td>
-                            <td style="width: 160%;">
-                                <h5>MRA GLOBAL SDN BHD</h5>
-                                <h6>No.23A, Laluan Industri 1, Kawasan Perindustrian Ringan Siputeh</h6>
-                                <h6>31560 Siputeh, Perak Darul Ridzuan</h6>
-                                <h6>Tel: 05-3666166</h6>
-                            </td>
-                        </tr>
+                        <?php
+                            if ($syarikat == "MIM DEFENSE SDN BHD") {
+                        ?>
+                            <tr>
+                                <td style="width: 40%; text-align: center;">
+                                    <img src="assets/images/logos/mim.png" alt="Logo">
+                                    <h5>MIM DEFENSE SDN BHD.</h5>
+                                </td>
+                                <td style="width: 160%;">
+                                    <h5>MIM DEFENSE SDN BHD</h5>
+                                    <h6>21-1, Jalan Wangsa Delima 2A, Pusat Bandar Wangsa Maju,</h6>
+                                    <h6>53300 Kuala Lumpur, W.P Kuala Lumpur</h6>
+                                    <!-- <h6>Tel: 05-3666166</h6> -->
+                                </td>
+                            </tr>
+                        <?php
+                            } elseif ($syarikat == "MRA GLOBAL SDN BHD") {
+                        ?>
+                            <tr>
+                                <td style="width: 40%; text-align: center;">
+                                    <img src="assets/images/logos/mra.PNG" alt="Logo">
+                                    <h5>MRA GLOBAL SDN BHD.</h5>
+                                </td>
+                                <td style="width: 160%;">
+                                    <h5>MRA GLOBAL SDN BHD</h5>
+                                    <h6>No.23A, Laluan Industri 1, Kawasan Perindustrian Ringan Siputeh</h6>
+                                    <h6>31560 Siputeh, Perak Darul Ridzuan</h6>
+                                    <h6>Tel: 05-3666166</h6>
+                                </td>
+                            </tr>
+                        <?php
+                            }
+                        ?>
                     </table>
                     
                     <table style="margin-right: -100px; float: right;">
