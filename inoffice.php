@@ -65,7 +65,7 @@
             <?php
                 }
             ?>
-		</div>
+        </div>
         <table  id="office" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">
                 <tr>
@@ -79,7 +79,6 @@
                     <th style="text-align: center;">Action</th>
                 </tr>
             </thead>
-            <tbody>
                 <?php 
                     $index = 1;
                     $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE status != 'MANAGER'");
@@ -108,14 +107,20 @@
                                 if ($row['statattan'] == '1') {
                             ?>
                                 <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply1');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
                             <?php
                                 } elseif ($row['statattan'] == '2') {
                             ?>
-                                <a href="attendanceaction.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('tidak hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-success"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('tidak hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-success"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply2');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
+                            <?php
+                                } elseif ($row['statattan'] == '3') {
+                            ?>
+                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('update');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
                             <?php
                                 }
                             ?>
-                            <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>   
                         </td>
                     </tr>
                 <?php

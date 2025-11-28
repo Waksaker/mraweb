@@ -15,25 +15,39 @@
 include('conn.php');
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['idpresent'], $_GET['statusattan'], $_GET['ic'])) {
-    $idpresent = base64_decode($_GET['idpresent']);
-    $statusattan = base64_decode($_GET['statusattan']);
-    $ic = base64_decode($_GET['ic']);
-    $datetoday = date("Y-m-d");
-    $time_out = date("H:i:s");
-
-    if ($statusattan == 'hadir') {
-        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2',`dateattan`='$datetoday',`timein`='$time_out' WHERE id = '$idpresent'");
-        $result2 = mysqli_query($conn, "INSERT INTO `mra_office` (`ic`, `statattan`, `inoffice`, `outoffice`, `date_apply`) VALUES ('$ic','in office','$time_out', '00:00:00', '$datetoday')");
-    } elseif ($statusattan == 'tidak hadir') {
-        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timeout`='$time_out' WHERE id = '$idpresent'");
-        $result2 = mysqli_query($conn, "UPDATE `mra_office` SET `outoffice` = '$time_out' WHERE `ic` = '$ic' AND `date_apply` = '$datetoday'");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyinoffice'])) {
+    $timein = $_POST['timein'];
+    $timeout = $_POST['timeout'];
+    $date = $_POST['date'];
+    $noic = $_POST['noic'];
+    $name = $_POST['name'];
+    $reason = $_POST['reason'];
+    if ($timein != '00:00:00' && $timeout == '00:00:00') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
+        $result2 = mysqli_query($conn, "INSERT INTO `attandance`(`name`, `ic`, `timein`, `timeout`, `date`, `reason`) VALUES ('$name','$noic','$timein','00:00:00','$date','$reason')");
+        if ($result1 && $result2) {
+            echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+        } else {
+            echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+        }
+    } elseif ($timein != '00:00:00' && $timeout != '00:00:00') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
+        $result2 = mysqli_query($conn, "UPDATE `attandance` SET `timeout`='$timeout' WHERE `ic` = '$noic' AND `date` = '$date'");
+        if ($result1 && $result2) {
+            echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+        } else {
+            echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+        }
     }
+}
 
-    if ($result1 && $result2) {
-        echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
+    $datetoday = date("Y-m-d");
+    $result1=mysqli_query($conn, "UPDATE `mra_staff` SET statattan = '1',dateattan = '$datetoday',timein = '00:00:00',timeout = '00:00:00'");
+    if ($result1) {
+        echo "<script>Swal.fire('Update date and time Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
     } else {
-        echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+        echo "<script>Swal.fire('Update date and time Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
 }
 
@@ -55,16 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
     } else {
         echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
-    $datetoday = date("Y-m-d");
-    $result1=mysqli_query($conn, "UPDATE `mra_staff` SET statattan = '1',dateattan = '$datetoday',timein = '00:00:00',timeout = '00:00:00'");
-    if ($result1) {
-        echo "<script>Swal.fire('Update date and time Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
-    } else {
-        echo "<script>Swal.fire('Update date and time Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
-    }
-    
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation2'])) {
+	
 }
 ?>
