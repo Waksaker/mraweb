@@ -69,7 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
     } else {
         echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation2'])) {
-	
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation2'])) {
+    $name = $_POST['name'];
+    $date = $_POST['date'];
+    $purpose = $_POST['purpose'];
+    $details = ['details'];
+    $ic = ['noic'];
+    $amount = ['amount'];
+    $datetoday = date("Y-m-d");
+    $result
 }
 ?>
