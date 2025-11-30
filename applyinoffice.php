@@ -27,62 +27,129 @@ if (mysqli_num_rows($result2) > 0) {
 <?php include("./components/name.php"); ?>
 <div class="card">
     <div class="card-body">
+        <?php
+            echo $statusattan;
+        ?>
         <h5 class="card-title fw-semibold mb-4">Apply in office</h5>
-        <form name="applyinoffice" action="attendanceaction.php" method="POST" enctype="multipart/form-data">
-            <div class="customer_records">
-                <div class="row mb-3">
-                    <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
-                    <div class="col-sm-4">
-                        <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
-                    </div>
-                    <?php
-                        if ($timein == "00:00:00" && $timeout == "00:00:00") {
-                    ?>
-                        <label for="dateend" class="col-sm-2 col-form-label">TIME IN</label>
+        <?php
+            if ($statusattan == 'hadir' || $statusattan == 'tidak hadir') {
+        ?>
+            <form name="applyinoffice" action="attendanceaction.php" method="POST" enctype="multipart/form-data">
+                <div class="customer_records">
+                    <div class="row mb-3">
+                        <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $time?>">
+                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
                         </div>
-                        <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME OUT</label>
-                        <div class="col-sm-4" style="display: none;">
-                            <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="00:00:00">
-                        </div>
+                        <?php
+                            if ($timein == "00:00:00" && $timeout == "00:00:00") {
+                        ?>
+                            <label for="dateend" class="col-sm-2 col-form-label">TIME IN</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $time?>">
+                            </div>
+                            <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME OUT</label>
+                            <div class="col-sm-4" style="display: none;">
+                                <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="00:00:00">
+                            </div>
 
-                    <?php
-                        } elseif ($timein != "00:00:00" && $timeout == "00:00:00") {
-                    ?>
-                        <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME IN</label>
-                        <div class="col-sm-4" style="display: none;">
-                            <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $timein ? $timein : '';?>">
-                        </div>
-                        <label for="dateend" class="col-sm-2 col-form-label">TIME OUT</label>
+                        <?php
+                            } elseif ($timein != "00:00:00" && $timeout == "00:00:00") {
+                        ?>
+                            <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME IN</label>
+                            <div class="col-sm-4" style="display: none;">
+                                <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $timein ? $timein : '';?>">
+                            </div>
+                            <label for="dateend" class="col-sm-2 col-form-label">TIME OUT</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="<?php echo $time?>">
+                            </div>
+                        <?php
+                            }
+                        ?>
+                        
+                        <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="<?php echo $time?>">
+                            <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $ic; ?>">
                         </div>
-                    <?php
-                        }
-                    ?>
-                    
-                    <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $ic; ?>">
+                        <label for="noic" class="col-sm-2 col-form-label">NAME</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name3; ?>">
+                        </div>
                     </div>
-                    <label for="noic" class="col-sm-2 col-form-label">NAME</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name3; ?>">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="dateend" class="col-sm-2 col-form-label">REASON</label>
-                    <div class="col-sm-4">
-                        <textarea name="reason" id="reason" class="form-control mb-3"><?php echo $reason ? $reason : '';?></textarea>
+                    <div class="row mb-3">
+                        <label for="dateend" class="col-sm-2 col-form-label">REASON</label>
+                        <div class="col-sm-4">
+                            <textarea name="reason" id="reason" class="form-control mb-3"><?php echo $reason ? $reason : '';?></textarea>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="customer_records_dynamic"></div>
-            <!-- <a for="plusinput" type="button" class="extra-fields-customer btn btn-primary mt-3" href="#">ADD MORE</a> -->
-            <br>
-            <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="applyinoffice">SUBMIT</button>
-        </form>
+                <div class="customer_records_dynamic"></div>
+                <!-- <a for="plusinput" type="button" class="extra-fields-customer btn btn-primary mt-3" href="#">ADD MORE</a> -->
+                <br>
+                <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="applyinoffice">SUBMIT</button>
+            </form>
+        <?php
+            } elseif ($statusattan == 'updatehadir') {
+        ?>
+                <form name="applyinoffice1" action="attendanceaction.php" method="POST" enctype="multipart/form-data">
+                <div class="customer_records">
+                    <div class="row mb-3">
+                        <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
+                        <div class="col-sm-4">
+                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
+                        </div>
+                        <?php
+                            if ($timein == "00:00:00" && $timeout == "00:00:00") {
+                        ?>
+                            <label for="dateend" class="col-sm-2 col-form-label">TIME IN</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $time?>">
+                            </div>
+                            <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME OUT</label>
+                            <div class="col-sm-4" style="display: none;">
+                                <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="00:00:00">
+                            </div>
+
+                        <?php
+                            } elseif ($timein != "00:00:00" && $timeout == "00:00:00") {
+                        ?>
+                            <label for="dateend" class="col-sm-2 col-form-label" style="display: none;">TIME IN</label>
+                            <div class="col-sm-4" style="display: none;">
+                                <input type="text" class="form-control mb-1" id="timein" name="timein" value="<?php echo $timein ? $timein : '';?>">
+                            </div>
+                            <label for="dateend" class="col-sm-2 col-form-label">TIME OUT</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control mb-1" id="timeout" name="timeout" value="<?php echo $time?>">
+                            </div>
+                        <?php
+                            }
+                        ?>
+                        
+                        <label for="noic" class="col-sm-2 col-form-label">NO IC</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="noic" name="noic" value="<?php echo $ic; ?>">
+                        </div>
+                        <label for="noic" class="col-sm-2 col-form-label">NAME</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control mb-3" id="name" name="name" value="<?php echo $name3; ?>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="dateend" class="col-sm-2 col-form-label">REASON</label>
+                        <div class="col-sm-4">
+                            <textarea name="reason" id="reason" class="form-control mb-3"><?php echo $reason ? $reason : '';?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="customer_records_dynamic"></div>
+                <!-- <a for="plusinput" type="button" class="extra-fields-customer btn btn-primary mt-3" href="#">ADD MORE</a> -->
+                <br>
+                <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="applyinoffice">SUBMIT</button>
+            </form>
+        <?php
+            }
+        ?>
     </div>
 </div>
 <?php include("./components/footer.php"); ?>

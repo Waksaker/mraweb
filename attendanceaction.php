@@ -41,6 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyinoffice'])) {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyinoffice1'])) {
+    $timein = $_POST['timein'];
+    $timeout = $_POST['timeout'];
+    $date = $_POST['date'];
+    $noic = $_POST['noic'];
+    $name = $_POST['name'];
+    $reason = $_POST['reason'];
+    $result = mysqli_query($conn, "DELETE FROM `mra_outstation` WHERE ic = '$noic' AND dateapply = '$date'");
+    $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
+    $result2 = mysqli_query($conn, "INSERT INTO `attandance`(`name`, `ic`, `timein`, `timeout`, `date`, `reason`) VALUES ('$name','$noic','$timein','00:00:00','$date','$reason')");
+    $result3 = mysqli_query($conn, "DELETE FROM `mra_claims` WHERE noic = '$noic' AND date = '$date'");
+    if ($result && $result1 && $result2 && $result3) {
+        echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+    } else {
+        echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
     $datetoday = date("Y-m-d");
     $result1=mysqli_query($conn, "UPDATE `mra_staff` SET statattan = '1',dateattan = '$datetoday',timein = '00:00:00',timeout = '00:00:00'");
@@ -75,10 +93,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation2'])) {
     $name = $_POST['name'];
     $date = $_POST['date'];
     $purpose = $_POST['purpose'];
-    $details = ['details'];
-    $ic = ['noic'];
-    $amount = ['amount'];
+    $details = $_POST['details'];
+    $noic = $_POST['noic'];
+    $amount = $_POST['amount'];
     $datetoday = date("Y-m-d");
-    $result
+    $result = mysqli_query($conn, "DELETE FROM `attandance` WHERE ic = '$noic' AND date = '$date'");
+    $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='3', `timein`='00:00:00', `timeout`='00:00:00' WHERE `icno` = '$noic'");
+    $result2 = mysqli_query($conn, "INSERT INTO `mra_outstation`
+    (`name`,`ic`,`datestart`,`purpose`,`details`,`dateapply`,`amount`) 
+    VALUES ('$name','$noic','$date','$purpose','$details','$datetoday','$amount')");
+
+    $result3 = mysqli_query($conn, "INSERT INTO `mra_claims` 
+    (`date`,`noic`,`purpose`,`details`,`status`,`amount`) 
+    VALUES ('$date','$noic','$purpose','$details','1','$amount')");
+
+    if ($result && $result1 && $result2 && $result3) {
+        echo "<script>Swal.fire('Update inoffice to outstation Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+    } else {
+        echo "<script>Swal.fire('Update inoffice to outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
 }
 ?>

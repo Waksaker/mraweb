@@ -116,7 +116,7 @@
                             <?php
                                 } elseif ($row['statattan'] == '3') {
                             ?>
-                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('updatehadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
                                 <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('update');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
                             <?php
                                 }
