@@ -27,9 +27,6 @@ if (mysqli_num_rows($result2) > 0) {
 <?php include("./components/name.php"); ?>
 <div class="card">
     <div class="card-body">
-        <?php
-            echo $statusattan;
-        ?>
         <h5 class="card-title fw-semibold mb-4">Apply in office</h5>
         <?php
             if ($statusattan == 'hadir' || $statusattan == 'tidak hadir') {

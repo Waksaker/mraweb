@@ -16,6 +16,7 @@ session_start();
 set_time_limit(0);
 //error_reporting(E_NOTICE);
 include('conn.php');
+date_default_timezone_set('Asia/Kuala_Lumpur');
 
     // Rawat input pengguna
     $iduser = htmlspecialchars($_POST['iduser']);
@@ -30,6 +31,10 @@ include('conn.php');
     $status       = htmlspecialchars($_POST['status']);
     $syarikat     = htmlspecialchars($_POST['syarikat']);
     $fungsi       = htmlspecialchars($_POST['fungsi']);
+    $statattan    = '1';
+    $timein       = '00:00:00';
+    $timeout      = '00:00:00';
+    $dateattan    = date('Y-m-d');
 
     // Jana password raw & hashed
     $random_pass  = rand(100000, 999999);
@@ -66,9 +71,9 @@ include('conn.php');
     // Fungsi Tambah Staff
     if ($fungsi === "addstaff") {
         $stmt = $conn->prepare("INSERT INTO mra_staff 
-            (id_user, name, email, icno, position, password, status, phoneno, bank_name, syarikat, acc_no) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssssss",$iduser, $nameuser, $emailuser, $icuser, $positionuser, $random_pass, $status, $phoneuser, $bankuser, $syarikat, $accuser);
+            (id_user, name, email, icno, position, password, status, statattan, dateattan, timein, timeout, phoneno, bank_name, syarikat, acc_no) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssssssssssss",$iduser, $nameuser, $emailuser, $icuser, $positionuser, $random_pass, $status, $statattan, $dateattan, $timein, $timeout, $phoneuser, $bankuser, $syarikat, $accuser);
         $result = $stmt->execute();
         $stmt->close();
         if ($result === TRUE) {

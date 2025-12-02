@@ -138,6 +138,82 @@
       })
     }
   }
+
+  function validateleave1() {
+    form = document.leave1;
+    if (form.dateapply.value == null || form.dateapply.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Date!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.dateapply.focus();
+      return;
+    } else if (form.nameapply.value == null || form.nameapply.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Name!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.nameapply.focus();
+      return;
+    } else if (form.datestart.value == null || form.datestart.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Date Start!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.datestart.focus();
+      return;
+    } else if (form.dateend.value == null || form.dateend.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Date End!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.dateend.focus();
+      return;
+    } else if (form.daysleave.value == null || form.daysleave.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Days!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.days.focus();
+      return;
+    } else if (form.purpose.value == null || form.purpose.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Purpose!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.purpose.focus();
+      return;
+    } else if (form.matters.value == null || form.matters.value == "") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in Matters!',
+        confirmButtonColor: '#1B95CF'
+      })
+      form.matters.focus();
+      return;
+    } else {
+      swal.fire({
+        text: "Please make sure everything is correct!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: '#1B95CF',
+        cancelButtonColor: '#BF000E',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          form.submit();
+        }
+      })
+    }
+  }
 </script>
 </body>
 

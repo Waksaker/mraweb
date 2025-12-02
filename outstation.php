@@ -44,9 +44,6 @@ if ($fungsi=='apply1') {
 <?php include("./components/name.php"); ?>
 <div class="card">
   <div class="card-body">
-    <?php
-      echo $fungsi;
-    ?>
     <h5 class="card-title fw-semibold mb-4">Outstation</h5>
     <?php
       if ($fungsi=='apply1') {

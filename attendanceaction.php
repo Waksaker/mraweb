@@ -67,6 +67,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
     } else {
         echo "<script>Swal.fire('Update date and time Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['ic']) && isset($_GET['reset'])) {
+	$ic = base64_decode($_GET['ic']);
+	$reset = base64_decode($_GET['reset']);
+	$datetoday = date("Y-m-d");
+	echo "$reset";
+	switch ($reset) {
+    		case "resetinoffice":
+        		$result = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+        		$result1 = mysqli_query($conn, "DELETE FROM `attandance` WHERE ic = '$ic' AND date = '$datetoday'");
+        		if ($result && $result1) {
+            			echo "<script>
+                    			Swal.fire('Reset in office success', 'Success', 'success')
+                    			.then(()=>window.location='inoffice.php');
+                  		     </script>";
+        		} else {
+            			echo "<script>
+                    			Swal.fire('Reset in office failed', 'Error', 'error')
+                    			.then(()=>window.location='inoffice.php');
+                  		      </script>";
+        		}
+    		break;
+		case "resetoutstation":
+			$result = mysqli_query($conn, "DELETE FROM `mra_outstation` WHERE ic = '$ic' AND dateapply = '$datetoday'");
+			$result1 = mysqli_query($conn, "DELETE FROM `mra_claims` WHERE date = '$datetoday' AND noic = '$ic'");
+			$result2 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+			if ($result && $result1 && $result2) {
+				echo "<script>
+					Swal.fire('Reset outstation success', 'Success', 'success')
+     					 .then(()=>window.location='inoffice.php');
+				      </script>";
+			} else {
+				echo "<script>
+				      	Swal.fire('Reset outstation file', 'Error', 'error')
+					 .then(()=>window.location='inoffice.php');
+				      </script>";
+			}
+		break;
+		default:
+			echo "<script>
+				Swal.fire('Fail reset', 'Error', 'error')
+				 .then(()=>window.location='inoffice.php');
+			      </script>";
+	}	
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
@@ -86,31 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
         echo "<script>Swal.fire('Update outstation Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
     } else {
         echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation2'])) {
-    $name = $_POST['name'];
-    $date = $_POST['date'];
-    $purpose = $_POST['purpose'];
-    $details = $_POST['details'];
-    $noic = $_POST['noic'];
-    $amount = $_POST['amount'];
-    $datetoday = date("Y-m-d");
-    $result = mysqli_query($conn, "DELETE FROM `attandance` WHERE ic = '$noic' AND date = '$date'");
-    $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='3', `timein`='00:00:00', `timeout`='00:00:00' WHERE `icno` = '$noic'");
-    $result2 = mysqli_query($conn, "INSERT INTO `mra_outstation`
-    (`name`,`ic`,`datestart`,`purpose`,`details`,`dateapply`,`amount`) 
-    VALUES ('$name','$noic','$date','$purpose','$details','$datetoday','$amount')");
-
-    $result3 = mysqli_query($conn, "INSERT INTO `mra_claims` 
-    (`date`,`noic`,`purpose`,`details`,`status`,`amount`) 
-    VALUES ('$date','$noic','$purpose','$details','1','$amount')");
-
-    if ($result && $result1 && $result2 && $result3) {
-        echo "<script>Swal.fire('Update inoffice to outstation Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
-    } else {
-        echo "<script>Swal.fire('Update inoffice to outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
 }
 ?>

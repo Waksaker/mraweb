@@ -18,6 +18,7 @@ set_time_limit(0);
 //error_reporting(E_NOTICE);
 include('conn.php');
 
+if (isset($_POST['leave'])) {
 $date = $_POST['dateapply'];
 $name = $_POST['nameapply'];
 $noic = $_POST['noic'];
@@ -81,5 +82,42 @@ if(mysqli_query($conn, $sqlinsert)){
     }
 // Close connection
 mysqli_close($conn);
+} elseif (isset($_POST['leave1'])) {
+$dateapply = $_POST['dateapply'];
+$nameapply = $_POST['nameapply'];
+$datestart = $_POST['datestart'];
+$dateend = $_POST['dateend'];
+$daysleave = $_POST['daysleave'];
+$purpose = $_POST['purpose'];
+$matters = $_POST['matters'];
 
+$result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$nameapply'");
+$row=mysqli_fetch_assoc($result);
+$ic = $row['icno'];
+$position = $row['position'];
+$phoneno = $row['phoneno'];
+
+$insert="INSERT INTO `mra_leave` (`dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`) VALUES ('$dateapply','$nameapply','$ic','$position','1','$datestart','$dateend','$daysleave','$purpose','$phoneno','$matters')";
+if (mysqli_query($conn, $insert)) {
+?>
+<script>
+    Swal.fire({
+        text: "Submit Successfull.",
+        icon: "success",
+        showCancelButton: false,
+        confirmButtonColor: '#F7E836',
+        confirmButtonText: 'Ok'
+    }).then((result) => {
+        if (result.isConfirmed) {
+        window.location="leave.php";
+        }
+    })
+</script>
+<?php
+    } else {
+        echo "ERROR: Record cannot be submit $insert. " . mysqli_error($conn);
+    }
+    // Close connection
+    mysqli_close($conn);
+}
 ?>
