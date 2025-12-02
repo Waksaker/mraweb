@@ -71,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
 	$ic = base64_decode($_GET['ic']);
 	$reset = base64_decode($_GET['reset']);
 	$datetoday = date("Y-m-d");
-	echo "$reset";
 	switch ($reset) {
     		case "resetinoffice":
         		$result = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
