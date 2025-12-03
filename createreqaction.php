@@ -31,7 +31,7 @@ if (isset($_POST['createreq1'])) {
 
     $sql1 = "
        INSERT INTO `request`
-       (`namestaff`, `dateapply`,`syarikat` `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
+       (`namestaff`, `dateapply`,`syarikat`, `appoiment`, `department`, `supplirename`, `suppladderss`, `attention`, 
        `termpayment`, `payto`, `accno`, `bankname`, `remark`, `signreq`, `signmanager`, `datemanager`, 
        `signacc`, `dateacc`, `signdirector`, `datedirector`, `statusacc`, `statusmana`, `statusdirec`,`refno`) 
         VALUES 
