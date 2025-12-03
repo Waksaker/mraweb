@@ -22,7 +22,6 @@ $row = mysqli_fetch_array($result);
 $name2 = $row['nameapply'];
 $position2 = $row['position'];
 $noic = $row['noic'];
-$position = $row['position'];
 $dateapply = $row['datestart'];
 $until = $row['dateend'];
 $days = $row['daysleave'];
@@ -51,19 +50,19 @@ $statusstaff = $row2['statusstaff'];
         <div class="row mb-3">
           <label for="name" class="col-sm-2 col-form-label">NAME</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="nameapply" name="nameapply" value="<?php echo $name2; ?>" readonly>
+            <input type="text" class="form-control" id="nameapply" name="nameapply" value="<?php echo $name2; ?>">
           </div>
         </div>
         <div class="row mb-3">
             <label for="noic" class="col-sm-2 col-form-label">IC NUMBER</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="noic" name="noic" value="<?php echo $noic; ?>" readonly>
+              <input type="text" class="form-control" id="noic" name="noic" value="<?php echo $noic; ?>">
             </div>
         </div>
         <div class="row mb-3">
             <label for="position" class="col-sm-2 col-form-label">POSITION</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="position" name="position" value="<?php echo $position2; ?>" readonly>
+              <input type="text" class="form-control" id="position" name="position" value="<?php echo $position2; ?>">
             </div>
         </div>
         <div class="row mb-3">
@@ -79,7 +78,7 @@ $statusstaff = $row2['statusstaff'];
         <div class="row mb-3">
             <label for="days" class="col-sm-2 col-form-label">DAYS</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="daysleave" name="daysleave" readonly value="<?php echo $days; ?>">
+              <input type="text" class="form-control" id="daysleave" name="daysleave" value="<?php echo $days; ?>">
             </div>
         </div>
         <div class="row mb-3">
@@ -107,7 +106,10 @@ $statusstaff = $row2['statusstaff'];
                 </select>
             </div>
         </div>
-        <div class="row mb-3">
+        <?php
+          if ($statusstaff == 'ADMIN STAFF' || $statusstaff == 'HR STAFF' || $statusstaff == 'STAFF') {
+        ?>
+          <div class="row mb-3" style="display: none;">
             <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
             <div class="col-sm-4">
               <select class="form-select form-control mb-1" name="statusleave" id="statusleave">
@@ -116,8 +118,25 @@ $statusstaff = $row2['statusstaff'];
                 <option value="3">CHECK AGAIN</option>
                 <option value="4">REJECTED</option>
               </select>
-						</div>
-        </div>
+            </div>
+          </div>
+        <?php
+          } elseif ($statusstaff == 'LEADER STAFF' || $statusstaff == 'MANAGER') {
+        ?>
+          <div class="row mb-3">
+            <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
+            <div class="col-sm-4">
+              <select class="form-select form-control mb-1" name="statusleave" id="statusleave">
+                <option value="1">PENDING</option>
+                <option value="2">APPROVED</option>
+                <option value="3">CHECK AGAIN</option>
+                <option value="4">REJECTED</option>
+              </select>
+            </div>
+          </div>
+        <?php
+          }
+        ?>
         <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>
         <!-- <input type="submit" value="SUBMIT" class="btn btn-primary"> -->
       </form>

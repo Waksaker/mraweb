@@ -105,16 +105,39 @@ if ($bulan == '01') {
                                 }
                             ?>
                         </tbody>
-                    </table>
-                    <br>
-                    <br>
-                    <h1>Outstation</h1>
-                    <table>
+		    </table>
+
+                    <div style="clear: both;"></div>
+
+                    <h1 style="text-align: center; margin-top: 150px;"><u>Outstation</u></h1>
+
+                    <table style="margin-right: -100px; float: right;  width: 145%; border: 1px solid black;  border-collapse: collapse;">
                         <thead>
                             <tr>
-                                <th></th>
+				<th>No</th>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Purpose</th>
                             </tr>
-                        </thead>
+			</thead>
+			<tbody>
+			    <?php
+				$index1 = 1;
+				$result1=mysqli_query($conn, "SELECT * FROM `mra_outstation` WHERE MONTH(datestart) = '$bulan' AND YEAR(datestart) = '$tahun'");
+				while ($row1=mysqli_fetch_assoc($result1)) {
+			    ?>
+				<tr>
+				    <td><?php echo ($index1++);?></td>
+				    <td><?php echo $row1['name'];?></td>
+				    <td><?php echo $row1['datestart'];?></td>
+				    <td>
+					<?php echo $row1['purpose'];?>(<?php echo $row1['details'];?>)
+				    </td>	
+				</tr>	
+  			    <?php
+				}
+			    ?>
+			</tbody>
                     </table>
                 </div>
             </div>

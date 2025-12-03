@@ -44,28 +44,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statsupport`='$statusleave',`namesupport`='$nameuser',`datestatsupport`='$date' WHERE `leaveid` = '$id'"; 
     }elseif ($statususer=="MANAGER") {
         $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statapprove`='$statusleave',`nameapprove`='$nameuser',`datestatapprove`='$date' WHERE `leaveid` = '$id'";
+    }elseif ($statususer == "ADMIN STAFF" || $statususer == "HR STAFF" || $statususer == "STAFF") {
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters' WHERE `leaveid` = '$id'";
     }
 
-        if(mysqli_query($conn, $sqlinsert)){
-            //echo "Rekod berjaya disimpan.";
-        ?>
-        <script>
-            Swal.fire({
-                text: "Submit Successfull.",
-                icon: "success",
-                showCancelButton: false,
-                confirmButtonColor: '#F7E836',
-                confirmButtonText: 'Ok'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                window.location="leave.php";
-                }
-            })
-        </script>
-        <?php
-            } else {
-                echo "ERROR: Record cannot be submit $sqlinsert. " . mysqli_error($conn);
-            }
+        if(mysqli_query($conn, $sqlinsert)) {
+            echo "
+                <script>
+                    Swal.fire({
+                        text: 'Submit Successfull.',
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonColor: '#F7E836',
+                        confirmButtonText: 'Ok'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        window.location='leave.php';
+                        }
+                    })
+                </script>
+            ";
+        } else {
+            echo "ERROR: Record cannot be submit $sqlinsert. " . mysqli_error($conn);
+        }
         // Close connection
         mysqli_close($conn);
 }

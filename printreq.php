@@ -189,12 +189,14 @@ $syarikat=$row['syarikat'];
 		    <?php
 		    	$r=mysqli_query($conn, "SELECT COUNT(*) AS total FROM `list_request` WHERE name = '$name' AND date = '$date'");
 			$row3=mysqli_fetch_assoc($r);
-			switch ($row3['total'])
+			switch ($row3['total']) {
 				case "1":
-					
+					echo '<table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 50px;">';
+				break;
+				default:
+					echo "Error";
+			}	
                     ?>
-
-                    <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 50px;">
 
                     <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse; margin-bottom: 20px;">
                         <tr>

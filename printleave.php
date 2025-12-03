@@ -27,6 +27,8 @@ $datestatapprove = $row['datestatapprove'];
 $datestatapprove1 = date('d/m/Y', strtotime($datestatapprove));
 $namesupport = $row['namesupport'];
 $nameapprove = $row['nameapprove'];
+$statsupport = $row['statsupport'];
+$statapprove = $row['statapprove'];
 
 $sql1 = "SELECT * FROM `mra_staff` WHERE name = '$nameapply'";
 $result1 = mysqli_query($conn, $sql1);
@@ -44,9 +46,6 @@ $sql3 = "SELECT * FROM `mra_staff` WHERE name = '$nameapprove'";
 $result3 = mysqli_query($conn, $sql3);
 $row3 = mysqli_fetch_assoc($result3);
 $sign3 = $row3['image'];
-?>
-<?php
-echo "$datestatsupport";
 ?>
 <!DOCTYPE html>
 <html>
@@ -269,22 +268,28 @@ echo "$datestatsupport";
         </tr>
         <tr>
             <td>
-                <?php if ($sign != "") echo "<img src='image/$sign' alt='Signature'>"; ?>
+		<?php 
+			if ($sign != "") { 
+			    echo "<img src='image/$sign' alt='Signature'>";
+			} else {
+			    echo "<br><br><br>";
+			}	
+		?>
                 <div class="signature-line"></div>
                 <div class="date-line">DATE: <?php echo $dateapply; ?></div>
             </td>
             <td>
-                <?php if ($sign2 != "") echo "<img src='image/$sign2' alt='Signature'>"; ?>
+		<?php if ($sign2 != "" && $statsupport == "2") echo "<img src='image/$sign2' alt='Signature'>";?>
                 <div class="signature-line"></div>
                 <div class="date-line">
-                    DATE: <?php echo ($datestatsupport != "") ? $datestatsupport1 : ""; ?>
+                    DATE: <?php echo ($datestatsupport != "" && $statsupport == "2") ? $datestatsupport1 : "";?>
                 </div>
             </td>
             <td>
-                <?php if ($sign3 != "") echo "<img src='image/$sign3' alt='Signature'>"; ?>
+                <?php if ($sign3 != "" && $statapprove == "2") echo "<img src='image/$sign3' alt='Signature'>";?>
                 <div class="signature-line"></div>
                 <div class="date-line">
-                    DATE: <?php echo ($datestatapprove != "") ? $datestatapprove1 : ""; ?>
+                    DATE: <?php echo ($datestatapprove != "" && $statapprove == "2") ? $datestatapprove1 : "";?>
                 </div>
             </td>
         </tr>

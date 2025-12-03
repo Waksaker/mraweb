@@ -87,6 +87,7 @@ $statususer = $row['status'];
                     </td>
                     <td style="text-align: center;">
                       <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
+		                  <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
                       <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
                     </td>
                   </tr>
@@ -200,7 +201,7 @@ $statususer = $row['status'];
                     </td>
                     <td style="text-align: center;">
                       <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24; height: 24px;"></a>
-                      <!-- <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a> -->
+                      <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-secondary"><img src="assets/images/Pencil.png" alt="" style="width: 24px;  height: 24px;"></a>
                       <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
                     </td>
                   </tr>
