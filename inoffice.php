@@ -10,37 +10,7 @@
                 <div class="form-group row">
                 <h1 class="col-sm-4 col-form-label">Please Choose</h1>
                 <div class="col-sm-4">
-                    <select class="form-control" name="tahun" id="tahun"  value=''>
-                        <?php
-                            $Date_now=date('D, M d, Y H:i:s');
-                            $Year_now = date('Y',strtotime($Date_now));
-                            $tahunmin = $Year_now;
-                            $tahunmax = 2024;
-
-                            while ($tahunmin >= $tahunmax)
-                            {
-                                echo "<option value='".$tahunmin."'".$s.">".$tahunmin."</option>";
-                                $tahunmin--;
-                            }
-                        ?>
-                    </select>
-                </div>
-                <div class="col-sm-4">
-                    <select class="form-control" name="bulan" id="bulan"  onChange="openPrintPage(this.value);">
-                        <option value="" style="text-transform: uppercase"><?php echo 'Please Choose...' ?></option>
-                        <option value='01'>JANUARY</option>
-                        <option value='02'>FEBRUARY</option>
-                        <option value='03'>MARCH</option>
-                        <option value='04'>APRIL</option>
-                        <option value='05'>MAY</option>
-                        <option value='06'>JUNE</option>
-                        <option value='07'>JULY</option>
-                        <option value='08'>AUGUST</option>
-                        <option value='09'>SEPTEMBER</option>
-                        <option value='10'>OCTOBER</option>
-                        <option value='11'>NOVEMBER</option>
-                        <option value='12'>DECEMBER</option>
-                    </select>
+                    <input type="date" class="form-control" id="date" onchange="date()">
                 </div>
                 </div>
             </div>
@@ -71,7 +41,6 @@
                 <tr>
                     <th style="text-align: center;">No</th>
                     <th style="text-align: center;">Name</th>
-                    <th style="text-align: center;">Position</th>
                     <th style="text-align: center;">Status</th>
                     <th style="text-align: center;">Date</th>
                     <th style="text-align: center;">Time In</th>
@@ -87,7 +56,6 @@
                     <tr>
                         <td style="text-align: center;"><?php echo ($index++);?></td>
                         <td><?php echo $row['name'] ? $row['name'] : '';?></td>
-                        <td><?php echo $row['status'] ? $row['status'] : '';?></td>
                         <td style="text-align: center;">
                             <?php 
 				switch ($row['statattan']) {
@@ -99,6 +67,9 @@
 						break;
 					case "3":
 						echo "<span class='badge bg-success'>Outstation Present</span>";
+						break;
+					case "4":
+						echo "<span class='badge bg-danger'>Holiday</span>";
 						break;
 					default:
 						echo "NULL";
@@ -113,8 +84,9 @@
                                 if ($row['statattan'] == '1') {
                             ?>
                                 <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
-                                <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply1');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
-                            <?php
+				<a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply1');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
+				<a href="notpresent.php?idnotpresent=<?php echo base64_encode($row['id']);?>" class="btn btn-danger"><img src="assets/images/close.png" alt="" style="width: 24px; height: 24px;"></a>
+<?php
                                 } elseif ($row['statattan'] == '2') {
                             ?>
                                 <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('tidak hadir');?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-success"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>	
@@ -124,7 +96,11 @@
                             ?>
 				    <a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetoutstation')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>
                             <?php
-                            }
+				}  elseif ($row['statattan'] == '4') {
+			    ?>
+				    <a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetnotpresent')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>	
+			    <?php
+				}
                             ?>
                         </td>
                     </tr>
@@ -142,17 +118,12 @@
     });
 </script>
 <script>
-	function openPrintPage(bulan) {
-        tahun = $('#tahun').val();
-        
-        if (bulan !== "") {
-            let bulanencoded = btoa(bulan);
-            let tahunencoded = btoa(tahun);
-
-            let url = "printattandance.php?bulan=" + bulanencoded + "&tahun=" + tahunencoded;
-
-            window.open(url, "_blank");
-        }
+function date() {
+    let date = document.getElementById("date").value;
+    if (date !== "") {
+        let dateencode = btoa(date);
+	let url = "printattandance.php?date=" + dateencode;
+	window.open(url, "_blank");
     }
-	
+}
 </script>

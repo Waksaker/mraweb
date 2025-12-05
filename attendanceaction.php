@@ -100,7 +100,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
 				echo "<script>
 				      	Swal.fire('Reset outstation file', 'Error', 'error')
 					 .then(()=>window.location='inoffice.php');
-				      </script>";
+               			      </script>";
+			}
+		break;
+		case "resetnotpresent":
+			$result=mysqli_query($conn, "DELETE FROM `notpresent` WHERE ic = '$ic' AND date = '$datetoday'");
+			$result1=mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+			if($result&&$result1){
+				echo "<script>Swal.fire('Reset not present success','Success','success').then(()=>window.location='inoffice.php');</script>";
+			}else{
+				echo "<script>Swal.fire('Reset not present failed','Error','error').then(()=>window.location='inoffice.php');</script>";
 			}
 		break;
 		default:
@@ -128,6 +137,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
         echo "<script>Swal.fire('Update outstation Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
     } else {
         echo "<script>Swal.fire('Update outstation Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+    }
+}
+
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notpresent'])){
+    $date=$_POST['date'];
+    $name=$_POST['name'];
+    $ic=$_POST['ic'];
+    $matter=$_POST['matter'];
+    $reason=$_POST['reason'];
+    $result=mysqli_query($conn, "INSERT INTO `notpresent` (`name`,`ic`,`date`,`matter`,`reason`) VALUES ('$name','$ic','$date','$matter','$reason')");
+    $result1=mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='4',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+    if($result&&$result1){
+        echo "<script>Swal.fire('Update not present success','Success','success').then(()=>window.location='inoffice.php');</script>";
+    }else{
+        echo "<script>Swal.fire('Update not present failed','error','error').then(()=>window.location='inoffice.php');</script>";
     }
 }
 ?>

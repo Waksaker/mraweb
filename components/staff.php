@@ -18,7 +18,7 @@ $name2 = $row['name'];
 $position2 = $row['position'];
 $noic = $row['icno'];
 
-$sql1 = "SELECT * FROM `mra_office` WHERE `date_apply` = '$tarikh'";
+$sql1 = "SELECT * FROM `attandance` WHERE `date` = '$tarikh'";
 $result1 = $conn->query($sql1);
 $row1 = $result1->fetch_assoc();
 
@@ -78,8 +78,8 @@ $date = $row1['outoffice'];
 		<button type="button" onclick="deletestaff('<?php echo $id ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
 					</td>
 				</tr>
-			</tbody>  
-			<?php } ?> 	
+			</tbody>
+			<?php } ?>
         </table>
     </div>
 </div>

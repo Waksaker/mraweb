@@ -32,6 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
     $nameuser = $_POST['name'];
     $statusleave = $_POST['statusleave'];
+    $mc = $_FILES['mc']['name'] ?? '';
+    $tempmc = $_FILES['mc']['tmp_name'] ?? '';
+    $mc1 = $_POST['mc1'];
+
+    // upload file
+    $target_mc = "./mc/";
+    $file_mc="mc/$mc1";
+    $target_file_mc = $target_mc . basename($mc);
 
     $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$nameuser'");
     $row = mysqli_fetch_assoc($result);
@@ -41,11 +49,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = date("Y-m-d");
 
     if ($statususer=="LEADER STAFF") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statsupport`='$statusleave',`namesupport`='$nameuser',`datestatsupport`='$date' WHERE `leaveid` = '$id'"; 
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`mc`='$mc1',`statsupport`='$statusleave',`namesupport`='$nameuser',`datestatsupport`='$date' WHERE `leaveid` = '$id'";
     }elseif ($statususer=="MANAGER") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`statapprove`='$statusleave',`nameapprove`='$nameuser',`datestatapprove`='$date' WHERE `leaveid` = '$id'";
+        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`mc`='$mc1',`statapprove`='$statusleave',`nameapprove`='$nameuser',`datestatapprove`='$date' WHERE `leaveid` = '$id'";
     }elseif ($statususer == "ADMIN STAFF" || $statususer == "HR STAFF" || $statususer == "STAFF") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters' WHERE `leaveid` = '$id'";
+        // Jika upload mc baru
+        if ($mc != "") {
+
+            if (!empty($mc1) && file_exists("mc/$mc1") && !is_dir("mc/$mc1")) {
+                unlink("mc/$mc1");
+            }
+
+            if (move_uploaded_file($tempmc, $target_file_mc)) {
+                $sqlinsert = "UPDATE `mra_leave` SET 
+                    `dateapply`='$date',
+                    `nameapply`='$name',
+                    `noic`='$noic',
+                    `position`='$position',
+                    `status`='$statusleave',
+                    `datestart`='$datestart',
+                    `dateend`='$dateend',
+                    `daysleave`='$days',
+                    `purpose`='$purpose',
+                    `contactno`='$contactno',
+                    `matters`='$matters',
+                    `mc`='$mc'
+                WHERE `leaveid`='$id'";
+            } else {
+                echo "<script>Swal.fire('Failed upload mc','Error','error').then(()=>window.location='leave.php');</script>";
+                exit;
+            }
+
+        } else {
+
+            // Jika MC lama masih digunakan (tiada upload baru)
+            $sqlinsert = "UPDATE `mra_leave` SET 
+                `dateapply`='$date',
+                `nameapply`='$name',
+                `noic`='$noic',
+                `position`='$position',
+                `status`='$statusleave',
+                `datestart`='$datestart',
+                `dateend`='$dateend',
+                `daysleave`='$days',
+                `purpose`='$purpose',
+                `contactno`='$contactno',
+                `matters`='$matters',
+                `mc`='$mc1'
+            WHERE `leaveid`='$id'";
+        }
     }
 
         if(mysqli_query($conn, $sqlinsert)) {

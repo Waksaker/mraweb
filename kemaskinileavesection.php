@@ -30,15 +30,61 @@ $contact = $row['contactno'];
 $matter = $row['matters'];
 $statsupport = $row['statsupport'];
 $statapprove = $row['statapprove'];
+$mc=$row['mc'];
 
 $result2 = mysqli_query($conn, "SELECT status AS statusstaff FROM `mra_staff` WHERE name = '$name'");
 $row2 = mysqli_fetch_assoc($result2);
 $statusstaff = $row2['statusstaff'];
 ?>
+<style>
+.container-img {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    /* align-content: center;
+    justify-content: center; */
+    align-items: center;
+}
+
+#drop-area {
+    width: 500px;
+    height: 300px;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+#img-view {
+    width: 100%;
+    height: 100%;
+    border-radius: 23px;
+    border: 2px dashed lightgrey;
+    background: whitesmoke;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* penting untuk elak overflow image */
+}
+
+#img-view img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* atau 'cover' jika nak penuh */
+    border-radius: 15px;
+}
+
+#img-view h3, #img-view p {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+</style>
 <div class="card">
   <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Annual Leave</h5>
-    <form name="kemaskinileave" action="kemaskinileaveaction.php" method="post">
+    <form name="kemaskinileave" action="kemaskinileaveaction.php" method="post" enctype="multipart/form-data">
         <input type="text" name="id" value="<?php echo $id; ?>" style="display: none;">
         <input type="text" name="name" value="<?php echo $name; ?>" style="display: none;">
         <div class="row mb-3">
@@ -96,13 +142,13 @@ $statusstaff = $row2['statusstaff'];
         <div class="row mb-3">
             <label for="matter" class="col-sm-2 col-form-label">MATTERS</label>
             <div class="col-sm-4">
-                <select class="form-select form-control mb-1" id="matters" name="matters" value="<?php echo $matter; ?>">
-                    <option value="ANNUAL LEAVE">ANNUAL LEAVE</option>
-                    <option value="MEDICAL LEAVE">MEDICAL LEAVE</option>
-                    <option value="UNPAID LEAVE">UNPAID LEAVE</option>
-                    <option value="METERNITY LEAVE">METERNITY LEAVE</option>
-                    <option value="HOSPITALITY LEAVE">HOSPITALITY LEAVE</option>
-                    <option value="EMERGENCY LEAVE">EMERGENCY LEAVE</option>
+                <select class="form-select form-control mb-1" id="matters" name="matters">
+              		<option value="ANNUAL LEAVE" <?php echo ($matter == 'ANNUAL LEAVE') ? 'selected' : '';?>>ANNUAL LEAVE</option>
+              		<option value="MEDICAL LEAVE" <?php echo ($matter == 'MEDICAL LEAVE') ? 'selected' : '';?>>MEDICAL LEAVE</option>
+              		<option value="UNPAID LEAVE" <?php echo ($matter == 'UNPAID LEAVE') ? 'selected' : '';?>>UNPAID LEAVE</option>
+              		<option value="METERNITY LEAVE" <?php echo ($matter == 'METERNITY LEAVE') ? 'selected' : '';?>>METERNITY LEAVE</option>
+              		<option value="HOSPITALITY LEAVE" <?php echo ($matter == 'HOSPITALITY LEAVE') ? 'selected' : '';?>>HOSPITALITY LEAVE</option>
+              		<option value="EMERGENCY LEAVE" <?php echo ($matter == 'EMERGENCY LEAVE') ? 'selected' : ''; ?>>EMERGENCY LEAVE</option>
                 </select>
             </div>
         </div>
@@ -120,6 +166,33 @@ $statusstaff = $row2['statusstaff'];
               </select>
             </div>
           </div>
+          <?php
+            if ($matter == 'MEDICAL LEAVE') {
+          ?>
+            <div class="row mb-3">
+              <label for="dateend" class="col-sm-2 col-form-label">MC</label>
+                <div class="col-sm-4">
+                  <input type="file" class="form-control mb-1" id="mc" name="mc" onchange="previewImageMc(event)">
+                  <input type="text" name="mc1" value="<?php echo $mc; ?>" style="display: none;">
+                  <sup><font style="color:red">Please fill the resit</font></sup>
+                </div>
+                <div class="container-img">
+                  <label for="input-file" id="drop-area">
+                      <div id="img-view">
+                        <?php 
+                        if ($mc!="") {
+                           echo '<img src="./mc/' . $mc . '" alt="" id="preview-img-sign">';
+                        } else {
+                           echo '<img alt="" id="preview-img-sign">';
+                        }
+                        ?>
+                      </div>
+                  </label>
+                </div>
+            </div>
+          <?php
+            }
+          ?>
         <?php
           } elseif ($statusstaff == 'LEADER STAFF' || $statusstaff == 'MANAGER') {
         ?>
@@ -127,10 +200,10 @@ $statusstaff = $row2['statusstaff'];
             <label for="noic" class="col-sm-2 col-form-label">STATUS</label>
             <div class="col-sm-4">
               <select class="form-select form-control mb-1" name="statusleave" id="statusleave">
-                <option value="1">PENDING</option>
-                <option value="2">APPROVED</option>
-                <option value="3">CHECK AGAIN</option>
-                <option value="4">REJECTED</option>
+      	      <option value="1" <?php echo ($statsupport == '1' && $statapprove == '1') ? 'selected' : '';?>>PENDING</option>
+      	      <option value="2" <?php echo ($statsupport == '2' && $statapprove == '2') ? 'selected' : '';?>>APPROVED</option>
+      	      <option value="3" <?php echo ($statsupport == '3' && $statapprove == '3') ? 'selected' : '';?>>CHECK AGAIN</option>
+      	      <option value="4" <?php echo ($statsupport == '4' && $statapprove == '4') ? 'selected' : '';?>>REJECTED</option>
               </select>
             </div>
           </div>
@@ -171,4 +244,29 @@ $statusstaff = $row2['statusstaff'];
       })
     }
   }
+</script>
+<script>
+function previewImageMc(event) {
+    const input = event.target;
+    const preview = document.getElementById('preview-img-sign');
+
+
+    // Check if a file was selected
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        // Once the image is read, set it as the source of the preview image
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block'; // Show the image
+
+            // Hide the text and subtext once the image is displayed
+            // uploadText.style.display = 'none';
+            // uploadSubtext.style.display = 'none';
+        }
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>

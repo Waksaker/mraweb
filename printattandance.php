@@ -1,34 +1,7 @@
 <?php
 include('conn.php');
-if (!isset($_GET['bulan']) && !isset($_GET['tahun'])) exit();
-$bulan = base64_decode($_GET['bulan']);
-$tahun = base64_decode($_GET['tahun']);
-
-if ($bulan == '01') {
-    $month3 = "January";
-} else if ($bulan == '02') {
-    $month3 = "February";
-} else if ($bulan == '03') {
-    $month3 = "March";
-} else if ($bulan == '04') {
-    $month3 = "April";
-} else if ($bulan == '05') {
-    $month3 = "May";
-} else if ($bulan == '06') {
-    $month3 = "June";
-} else if ($bulan == '07') {
-    $month3 = "July";
-} else if ($bulan == '08') {
-    $month3 = "August";
-} else if ($bulan == '09') {
-    $month3 = "September";
-} else if ($bulan == '10') {
-    $month3 = "October";
-} else if ($bulan == '11') {
-    $month3 = "November";
-} else if ($bulan == '12') {
-    $month3 = "December";
-}
+if (!isset($_GET['date'])) exit();
+$date = base64_decode($_GET['date']);
 ?>
 <html>
 <head>
@@ -57,11 +30,11 @@ if ($bulan == '01') {
         <div class="row">
             <div class="col-12">
                 <div class="container">
-                    <h1 style="text-align: center;"><u>List of Attendance Reports for <?php echo $month3?></u></h1>
+                    <h1 style="text-align: center;"><u>List of Attendance Reports for <?php echo $date?></u></h1>
                     <br>
                     <br>
                     <h1 style="text-align: center;"><u>In Office</u></h1>
-                    <table style="margin-right: -100px; float: right;  width: 145%; border: 1px solid black;  border-collapse: collapse;">
+                    <table style="margin-right: -100px; float: right;  width: 145%; border: 1px solid black;">
                         <thead>
                             <tr>
                                 <th style="text-align: center;">No</th>
@@ -74,23 +47,7 @@ if ($bulan == '01') {
                         <tbody>
                             <?php
                                 $index = 1;
-                                $sql = "
-                                    SELECT 
-                                        staff.name as name,
-                                        office.date_apply as date,
-                                        office.inoffice as timein,
-                                        office.outoffice as timeout
-                                    FROM 
-                                        `mra_office` as office
-                                    LEFT JOIN
-                                        `mra_staff` as staff
-                                    ON
-                                        office.ic = staff.icno
-                                    WHERE
-                                        MONTH(date_apply) = '$bulan'
-                                    AND 
-                                        YEAR(date_apply) = '$tahun'
-                                ";
+                                $sql = "SELECT * FROM `attandance` WHERE date = '$date'";
                                 $result = mysqli_query($conn, $sql);
                                 while ($row = mysqli_fetch_assoc($result)) {
                             ?>
@@ -105,39 +62,68 @@ if ($bulan == '01') {
                                 }
                             ?>
                         </tbody>
-		    </table>
+                    </table>
 
-                    <div style="clear: both;"></div>
-
-                    <h1 style="text-align: center; margin-top: 150px;"><u>Outstation</u></h1>
+                    <h1 style="text-align: center; margin-top: 50px;"><u>Outstation</u></h1>
 
                     <table style="margin-right: -100px; float: right;  width: 145%; border: 1px solid black;  border-collapse: collapse;">
                         <thead>
                             <tr>
-				<th>No</th>
-				<th>Name</th>
-				<th>Date</th>
-				<th>Purpose</th>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Purpose</th>
                             </tr>
-			</thead>
-			<tbody>
-			    <?php
-				$index1 = 1;
-				$result1=mysqli_query($conn, "SELECT * FROM `mra_outstation` WHERE MONTH(datestart) = '$bulan' AND YEAR(datestart) = '$tahun'");
-				while ($row1=mysqli_fetch_assoc($result1)) {
-			    ?>
-				<tr>
-				    <td><?php echo ($index1++);?></td>
-				    <td><?php echo $row1['name'];?></td>
-				    <td><?php echo $row1['datestart'];?></td>
-				    <td>
-					<?php echo $row1['purpose'];?>(<?php echo $row1['details'];?>)
-				    </td>	
-				</tr>	
-  			    <?php
-				}
-			    ?>
-			</tbody>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $index1 = 1;
+                            $result1=mysqli_query($conn, "SELECT * FROM `mra_outstation` WHERE datestart = '$date'");
+                            while ($row1=mysqli_fetch_assoc($result1)) {
+                            ?>
+                            <tr>
+                                <td><?php echo ($index1++);?></td>
+                                <td><?php echo $row1['name'];?></td>
+                                <td><?php echo $row1['datestart'];?></td>
+                                <td>
+                                <?php echo $row1['purpose'];?>(<?php echo $row1['details'];?>)
+                                </td>
+                            </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                    
+                    <h1 style="text-align: center; margin-top: 50px;"><u>Not Present</u></h1>
+                    
+                    <table style="margin-right: -100px; float: right; width: 145%; border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>date</th>
+                                <th>Matter</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $index2 = 1;
+                                $result2=mysqli_query($conn, "SELECT * FROM `notpresent` WHERE date = '$date'");
+                                    while ($row2=mysqli_fetch_assoc($result2)) {
+                                        ?>
+                                            <tr>
+                                                <td><?php echo ($index2++);?></td>
+                                                <td><?php echo $row2['name'] ? $row2['name'] : '';?></td>
+                                                <td><?php echo $row2['date'] ? $row2['date'] : '';?></td>
+                                                <td><?php echo $row2['matter'] ? $row2['matter'] : '';?></td>
+                                                <td><?php echo $row2['reason'] ? $row2['reason'] : '';?></td>
+                                            </tr>
+                                        <?php
+                                    }
+                            ?>
+                        </tbody>
                     </table>
                 </div>
             </div>

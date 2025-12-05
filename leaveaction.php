@@ -46,7 +46,9 @@ $sqlinsert="INSERT INTO mra_leave
     daysleave,
     purpose,
     contactno,
-    matters)
+    matters,
+    statsupport,
+    statapprove)
     VALUES 
     ('$date',
     '$name',
@@ -58,7 +60,9 @@ $sqlinsert="INSERT INTO mra_leave
     '$days',
     '$purpose',
     '$contactno',
-    '$matters')"; 
+    '$matters',
+    '1',
+    '1')"; 
 
 if(mysqli_query($conn, $sqlinsert)){
     //echo "Rekod berjaya disimpan.";
@@ -97,7 +101,7 @@ $ic = $row['icno'];
 $position = $row['position'];
 $phoneno = $row['phoneno'];
 
-$insert="INSERT INTO `mra_leave` (`dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`) VALUES ('$dateapply','$nameapply','$ic','$position','1','$datestart','$dateend','$daysleave','$purpose','$phoneno','$matters')";
+$insert="INSERT INTO `mra_leave` (`dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`, `statsupport`, `statapprove`) VALUES ('$dateapply','$nameapply','$ic','$position','1','$datestart','$dateend','$daysleave','$purpose','$phoneno','$matters','1','1')";
 if (mysqli_query($conn, $insert)) {
 ?>
 <script>
