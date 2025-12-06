@@ -13,6 +13,7 @@ $row = mysqli_fetch_assoc($result);
 $name3 = $row['name'];
 $timein = $row['timein'];
 $timeout = $row['timeout'];
+$dateattan = $row['dateattan'];
 
 $result2 = mysqli_query($conn, "SELECT * FROM `attandance` WHERE ic = '$ic' AND date = '$datetoday'");
 if (mysqli_num_rows($result2) > 0) {
@@ -36,7 +37,7 @@ if (mysqli_num_rows($result2) > 0) {
                     <div class="row mb-3">
                         <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
+                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $dateattan;?>">
                         </div>
                         <?php
                             if ($timein == "00:00:00" && $timeout == "00:00:00") {
@@ -94,7 +95,7 @@ if (mysqli_num_rows($result2) > 0) {
                     <div class="row mb-3">
                         <label for="datestart" class="col-sm-2 col-form-label">DATE</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $datetoday;?>">
+                            <input type="date" class="form-control mb-3" id="date" name="date" value="<?php echo $dateattan?>">
                         </div>
                         <?php
                             if ($timein == "00:00:00" && $timeout == "00:00:00") {

@@ -15,10 +15,10 @@
 <?php 
 session_start();
 set_time_limit(0);
-//error_reporting(E_NOTICE);
+error_reporting(E_NOTICE);
 include('conn.php');
 
-if (isset($_POST['leave'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leave'])) {
 $date = $_POST['dateapply'];
 $name = $_POST['nameapply'];
 $noic = $_POST['noic'];
@@ -86,7 +86,7 @@ if(mysqli_query($conn, $sqlinsert)){
     }
 // Close connection
 mysqli_close($conn);
-} elseif (isset($_POST['leave1'])) {
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leave1'])) {
 $dateapply = $_POST['dateapply'];
 $nameapply = $_POST['nameapply'];
 $datestart = $_POST['datestart'];
@@ -96,7 +96,7 @@ $purpose = $_POST['purpose'];
 $matters = $_POST['matters'];
 
 $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$nameapply'");
-$row=mysqli_fetch_assoc($result);
+$row = mysqli_fetch_assoc($result);
 $ic = $row['icno'];
 $position = $row['position'];
 $phoneno = $row['phoneno'];

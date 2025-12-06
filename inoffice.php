@@ -21,20 +21,7 @@
     <div class="card-body">
 		<h5 class="card-title fw-semibold mb-4">Present in office</h5>
         <div align="right">
-            <?php
-                date_default_timezone_set("Asia/Kuala_Lumpur");
-                $datetoday = date("Y-m-d");
-                $result = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE dateattan != '$datetoday'");
-                if (mysqli_num_rows($result) > 0) {
-            ?>
-                <a href="attendanceaction.php?updatedate=<?php echo base64_encode('updatedate')?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Update date</a>
-            <?php
-                } else {
-            ?>
-                
-            <?php
-                }
-            ?>
+	    <a href="attendanceaction.php?updatedate=<?php echo base64_encode('updatedate')?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Update</a>
         </div>
         <table  id="office" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">

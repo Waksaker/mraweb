@@ -7,8 +7,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_var($_POST['iduser'], FILTER_SANITIZE_STRING);
-    $katalaluan = filter_var($_POST['katalaluan'], FILTER_SANITIZE_STRING);
+    $email = $_POST['iduser'];
+    $katalaluan = $_POST['katalaluan'];
 
     if ($email != '' && $katalaluan != '') {
         // Gunakan prepared statement untuk keamanan
