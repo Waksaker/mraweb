@@ -16,8 +16,8 @@ $icno1=$row['icno'];
 <div class="card">
     <div class="card-body">
 	<h5 class="card-title fw-semibold mb-4">Not present</h5>
-	<form action="attendanceaction.php" method="POST">
-	    <input type="text" name="notpresent" style="display: none;">
+	<form name="formnotpresent" action="attendanceaction.php" method="POST">
+	    <input type="text" name="notpresent_value" style="display: none;">
 	    <div class="customer_records">
 		<div class="row mb-3">
 		    <label class="col-sm-2 col-form-label">DATE</label>
@@ -43,16 +43,57 @@ $icno1=$row['icno'];
 			    <option value="HOSPITALITY LEAVE">HOSPITALITY LEAVE</option>
 			    <option VALUE="EMERGENCY LEAVE">EMERGENCY LEAVE</option>
 			    <option value="OTHERS">OTHERS</option>
-		        </select>
+		    	</select>
 		    </div>
-		    <label class="col-sm-2 col-form-label">REASON</label>
+		    <label class="col-sm-2 col-form-label">PURPOSE</label>
 		    <div class="col-sm-4">
-		        <textarea class="form-control mb-3" name="reason" id="reason"></textarea>
+		        <textarea class="form-control mb-3" name="purpose" id="purpose"></textarea>
 		    </div>
 		</div>
 	    </div>
 
-	    <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">SUBMIT</button>
+	    <button type="button" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" onClick="validateapplynotpresent()">SUBMIT</button>
 	</form>
     </div>
 </div>
+<?php include("components/footer.php"); ?>
+<script>
+	function validateapplynotpresent() {
+		let form = document.formnotpresent;
+
+		if (form.matter.value == "") {
+			Swal.fire({
+				icon: 'warning',
+				text: 'Please fill in matter!',
+				confirmButtonColor: '#1B95CF'
+			});
+			form.matter.focus();
+			return;
+		}
+
+		if (form.purpose.value == "") {
+			Swal.fire({
+				icon: 'warning',
+				text: 'Please fill in Purpose!',
+				confirmButtonColor: '#1B95CF'
+			});
+			form.purpose.focus();
+			return;
+		}
+
+		Swal.fire({
+			text: "Please make sure everything is correct!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: '#1B95CF',
+			cancelButtonColor: '#BF000E',
+			confirmButtonText: 'Yes',
+			cancelButtonText: 'No',
+			reverseButtons: true,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				form.submit();
+			}
+		});
+	}
+</script>

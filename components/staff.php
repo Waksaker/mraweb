@@ -18,11 +18,11 @@ $name2 = $row['name'];
 $position2 = $row['position'];
 $noic = $row['icno'];
 
-$sql1 = "SELECT * FROM `attandance` WHERE `date` = '$tarikh'";
-$result1 = $conn->query($sql1);
-$row1 = $result1->fetch_assoc();
+// $sql1 = "SELECT * FROM `attandance` WHERE `date` = '$tarikh'";
+// $result1 = $conn->query($sql1);
+// $row1 = $result1->fetch_assoc();
 
-$date = $row1['outoffice'];
+// $date = $row1['outoffice'];
 ?>
 <div class="card">
     <div class="card-body">

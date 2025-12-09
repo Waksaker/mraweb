@@ -3,7 +3,7 @@
     <?php include("components/topnav.php"); ?>
     <?php include("components/name.php"); ?>
     <?php include("components/applyclaimsection1.php"); ?>
-<?php include("components/footer.php"); ?> 
+<?php include("components/footer.php"); ?>
 
 <script>
   $(document).ready(function() {
@@ -59,14 +59,6 @@
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in amount!',
-        confirmButtonColor: '#1B95CF'
-      })
-      form.amount.focus();
-      return;
-    } else if (form.resit.value == null || form.resit.value == "") {
-      Swal.fire({
-        icon: 'warning',
-        text: 'Please fill in resit!',
         confirmButtonColor: '#1B95CF'
       })
       form.amount.focus();

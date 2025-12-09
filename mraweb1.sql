@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1deb3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 06, 2025 at 09:29 AM
--- Server version: 8.0.43-0ubuntu0.24.04.2
--- PHP Version: 8.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Dec 09, 2025 at 04:10 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,34 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attandance`
+-- Table structure for table `attendance`
 --
 
-CREATE TABLE `attandance` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `ic` char(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `timein` time DEFAULT NULL,
-  `timeout` time DEFAULT NULL,
+CREATE TABLE `attendance` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `ic` varchar(14) DEFAULT NULL,
+  `position` varchar(20) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `attandance`
---
-
-INSERT INTO `attandance` (`id`, `name`, `ic`, `timein`, `timeout`, `date`, `reason`, `update`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '15:12:46', '00:00:00', '2025-11-24', 'Hujan', '2025-11-24 07:12:52'),
-(3, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '08:14:26', '00:00:00', '2025-11-25', '', '2025-11-25 00:14:43'),
-(4, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '07:31:24', '00:00:00', '2025-11-26', '', '2025-11-25 23:31:27'),
-(5, 'AZLIN NATASHA BINTI AZAHAR', '980203565340', '17:40:09', '21:01:04', '2025-11-26', 'hujan', '2025-11-26 13:01:05'),
-(6, 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', '10:59:34', '00:00:00', '2025-11-27', '', '2025-11-27 02:59:35'),
-(7, 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', '07:48:06', '00:00:00', '2025-11-28', '', '2025-11-27 23:48:08'),
-(9, 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', '08:01:53', '00:00:00', '2025-12-01', '', '2025-12-01 00:01:54'),
-(15, 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', '20:41:55', '22:18:22', '2025-12-03', '', '2025-12-03 14:18:24'),
-(16, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '08:12:55', '00:00:00', '2025-12-04', '', '2025-12-04 00:12:57');
+  `status` varchar(15) DEFAULT NULL,
+  `time_in` time DEFAULT NULL,
+  `time_out` time DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `location` int(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -60,63 +47,56 @@ INSERT INTO `attandance` (`id`, `name`, `ic`, `timein`, `timeout`, `date`, `reas
 --
 
 CREATE TABLE `dateleave` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `ic` varchar(14) NOT NULL,
+  `status` varchar(255) DEFAULT NULL,
   `dateleave` date NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `updated` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dateleave`
 --
 
-INSERT INTO `dateleave` (`id`, `ic`, `dateleave`, `updated`) VALUES
-(1, '001221140176', '2025-11-05', '2025-12-06 09:23:48'),
-(2, '001221140176', '2025-11-06', '2025-12-06 09:23:48'),
-(3, '000922012519', '2025-11-13', '2025-12-06 09:23:48'),
-(4, '980203565340', '2026-01-26', '2025-12-06 09:23:48'),
-(5, '980203565340', '2026-01-27', '2025-12-06 09:23:48'),
-(6, '980203565340', '2026-01-28', '2025-12-06 09:23:48'),
-(7, '980203565340', '2026-01-29', '2025-12-06 09:23:48'),
-(8, '980203565340', '2026-01-30', '2025-12-06 09:23:48'),
-(9, '980203565340', '2026-01-31', '2025-12-06 09:23:48'),
-(10, '980203565340', '2026-02-01', '2025-12-06 09:23:48'),
-(11, '980203565340', '2026-02-02', '2025-12-06 09:23:48'),
-(12, '980203565340', '2026-02-03', '2025-12-06 09:23:48'),
-(13, '980203565340', '2026-02-04', '2025-12-06 09:23:48'),
-(14, '980203565340', '2026-02-05', '2025-12-06 09:23:48'),
-(15, '980203565340', '2026-02-06', '2025-12-06 09:23:48'),
-(16, '000922012519', '2025-12-06', '2025-12-06 09:23:48'),
-(17, '000922012519', '2025-12-07', '2025-12-06 09:23:48'),
-(18, '000922012519', '2025-12-08', '2025-12-06 09:23:48'),
-(19, '000922012519', '2025-12-09', '2025-12-06 09:23:48'),
-(20, '000922012519', '2025-12-10', '2025-12-06 09:23:48'),
-(21, '000922012519', '2025-12-11', '2025-12-06 09:23:48'),
-(22, '000922012519', '2025-12-12', '2025-12-06 09:23:48');
+INSERT INTO `dateleave` (`id`, `ic`, `status`, `dateleave`, `updated`) VALUES
+(1, '001221140176', NULL, '2025-11-05', '2025-12-08 00:54:42'),
+(2, '001221140176', NULL, '2025-11-06', '2025-12-08 00:54:42'),
+(3, '000922012519', NULL, '2025-11-13', '2025-12-08 00:54:42'),
+(4, '980203565340', NULL, '2026-01-26', '2025-12-08 00:54:42'),
+(5, '980203565340', NULL, '2026-01-27', '2025-12-08 00:54:42'),
+(6, '980203565340', NULL, '2026-01-28', '2025-12-08 00:54:42'),
+(7, '980203565340', NULL, '2026-01-29', '2025-12-08 00:54:42'),
+(8, '980203565340', NULL, '2026-01-30', '2025-12-08 00:54:42'),
+(9, '980203565340', NULL, '2026-01-31', '2025-12-08 00:54:42'),
+(10, '980203565340', NULL, '2026-02-01', '2025-12-08 00:54:42'),
+(11, '980203565340', NULL, '2026-02-02', '2025-12-08 00:54:42'),
+(12, '980203565340', NULL, '2026-02-03', '2025-12-08 00:54:42'),
+(13, '980203565340', NULL, '2026-02-04', '2025-12-08 00:54:42'),
+(14, '980203565340', NULL, '2026-02-05', '2025-12-08 00:54:42'),
+(15, '980203565340', NULL, '2026-02-06', '2025-12-08 00:54:42'),
+(16, '000922012519', NULL, '2025-12-06', '2025-12-08 00:54:42'),
+(17, '000922012519', NULL, '2025-12-07', '2025-12-08 00:54:42'),
+(18, '000922012519', NULL, '2025-12-08', '2025-12-08 00:54:42'),
+(19, '000922012519', NULL, '2025-12-09', '2025-12-08 00:54:42'),
+(20, '000922012519', NULL, '2025-12-10', '2025-12-08 00:54:42'),
+(21, '000922012519', NULL, '2025-12-11', '2025-12-08 00:54:42'),
+(22, '000922012519', NULL, '2025-12-12', '2025-12-08 00:54:42');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `download`
+-- Table structure for table `document`
 --
 
-CREATE TABLE `download` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ic` char(14) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `namesave` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+CREATE TABLE `document` (
+  `id` int(11) NOT NULL,
+  `namcretae` varchar(255) NOT NULL,
+  `ic` varchar(14) NOT NULL,
+  `namprojek` varchar(255) NOT NULL,
+  `lponum` varchar(20) NOT NULL,
+  `document` varchar(255) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `download`
---
-
-INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `updated_at`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'garam madu', 'bhXL4B00j3Q.mp3', '2025-03-27 23:01:35', '2025-03-27 23:01:35'),
-(6, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'Rindu Semalam', 'OXqZXTQUlso.mp3', '2025-04-09 23:06:51', '2025-04-09 23:06:51');
 
 -- --------------------------------------------------------
 
@@ -125,15 +105,15 @@ INSERT INTO `download` (`id`, `name`, `ic`, `namesave`, `url`, `created_at`, `up
 --
 
 CREATE TABLE `list_quotation` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `qtnno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `hours` int DEFAULT NULL,
+  `qtnno` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `hours` int(11) DEFAULT NULL,
   `manhour` decimal(10,2) DEFAULT NULL,
   `manhourcost` decimal(10,2) DEFAULT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -155,13 +135,13 @@ INSERT INTO `list_quotation` (`id`, `name`, `date`, `qtnno`, `description`, `hou
 --
 
 CREATE TABLE `list_request` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `appoinment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `descriptions` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `quantity` char(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `appoinment` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `descriptions` varchar(255) NOT NULL,
+  `quantity` char(10) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -182,14 +162,14 @@ INSERT INTO `list_request` (`id`, `name`, `date`, `appoinment`, `link`, `descrip
 --
 
 CREATE TABLE `mra_claim` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `apply` date NOT NULL,
   `tajuk` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ic` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `folder` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `excel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `excel` varchar(255) NOT NULL,
+  `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -207,13 +187,13 @@ INSERT INTO `mra_claim` (`id`, `apply`, `tajuk`, `ic`, `status`, `folder`, `exce
 --
 
 CREATE TABLE `mra_claims` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `noic` varchar(14) COLLATE utf8mb4_general_ci NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` char(11) COLLATE utf8mb4_general_ci NOT NULL,
-  `resit` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `noic` varchar(14) NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  `details` varchar(255) NOT NULL,
+  `status` char(11) NOT NULL,
+  `resit` varchar(255) NOT NULL,
   `amount` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -293,7 +273,9 @@ INSERT INTO `mra_claims` (`id`, `date`, `noic`, `purpose`, `details`, `status`, 
 (120, '2025-11-20', '980203565340', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
 (121, '2025-11-25', '970218095135', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
 (122, '2025-11-26', '970218095135', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
-(128, '2025-12-03', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00);
+(128, '2025-12-03', '000922012519', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
+(129, '2025-12-10', '001221140176', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00),
+(133, '2025-12-09', '01051710717', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '1', '', 40.00);
 
 -- --------------------------------------------------------
 
@@ -302,24 +284,24 @@ INSERT INTO `mra_claims` (`id`, `date`, `noic`, `purpose`, `details`, `status`, 
 --
 
 CREATE TABLE `mra_leave` (
-  `leaveid` int NOT NULL,
+  `leaveid` int(11) NOT NULL,
   `dateapply` date DEFAULT NULL,
-  `nameapply` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `noic` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` int NOT NULL,
+  `nameapply` varchar(255) DEFAULT NULL,
+  `noic` varchar(14) DEFAULT NULL,
+  `position` varchar(100) DEFAULT NULL,
+  `status` int(11) NOT NULL,
   `datestart` date DEFAULT NULL,
   `dateend` date DEFAULT NULL,
-  `daysleave` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `purpose` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `contactno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `matters` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `mc` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `statsupport` int NOT NULL,
-  `namesupport` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `daysleave` varchar(5) DEFAULT NULL,
+  `purpose` varchar(100) DEFAULT NULL,
+  `contactno` varchar(14) DEFAULT NULL,
+  `matters` varchar(100) DEFAULT NULL,
+  `mc` varchar(255) DEFAULT NULL,
+  `statsupport` int(11) NOT NULL,
+  `namesupport` varchar(255) DEFAULT NULL,
   `datestatsupport` date DEFAULT NULL,
-  `statapprove` int NOT NULL,
-  `nameapprove` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `statapprove` int(11) NOT NULL,
+  `nameapprove` varchar(255) DEFAULT NULL,
   `datestatapprove` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -331,38 +313,9 @@ INSERT INTO `mra_leave` (`leaveid`, `dateapply`, `nameapply`, `noic`, `position`
 (51, '2025-11-05', 'NURUL SYUHADAH', '001221140176', 'ADMIN', 1, '2025-11-05', '2025-11-06', '1', 'Balik Kampung', '0189178650', 'ANNUAL LEAVE', NULL, 0, '', NULL, 0, '', NULL),
 (52, '2025-12-03', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-11-13', '2025-11-13', '1', 'cuti', '01156640727', 'ANNUAL LEAVE', NULL, 0, '', NULL, 0, '', NULL),
 (53, '2025-12-03', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'Admin Executive', 1, '2026-01-26', '2026-02-06', '10 ', 'UMRAH AZLIN NATASHA', '0176445413', 'ANNUAL LEAVE', NULL, 2, 'AMRI BIN YAHYA', '2025-12-03', 0, '', NULL),
-(60, '2025-12-06', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-12-06', '2025-12-12', '7', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', NULL, 1, NULL, NULL, 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `mra_outstation`
---
-
-CREATE TABLE `mra_outstation` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
-  `datestart` date NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `dateapply` date NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `mra_outstation`
---
-
-INSERT INTO `mra_outstation` (`id`, `name`, `ic`, `datestart`, `purpose`, `details`, `dateapply`, `amount`, `updated_at`) VALUES
-(1, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-18', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-17', 40.00, '2025-11-17 13:37:03'),
-(2, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-19', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-18', 40.00, '2025-11-18 10:01:46'),
-(3, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-11-18', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-18', 40.00, '2025-11-18 13:30:59'),
-(4, 'AZLIN NATASHA BINTI AZAHAR', '980203565340', '2025-11-20', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-20', 40.00, '2025-11-20 03:50:13'),
-(5, 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', '2025-11-25', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-25', 40.00, '2025-11-25 00:08:38'),
-(6, 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', '2025-11-26', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-11-26', 40.00, '2025-11-25 23:32:24'),
-(11, 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', '2025-12-03', 'TRIP MERSING', 'LAPANG SASAR 600 METER', '2025-12-03', 40.00, '2025-12-03 11:55:08');
+(60, '2025-12-06', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', '000922012519', 'SOFTWARE ENGINEER', 1, '2025-12-06', '2025-12-12', '7', 'Balik Kampung', '01156640727', 'ANNUAL LEAVE', NULL, 1, NULL, NULL, 1, NULL, NULL),
+(62, '2025-12-08', 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', 'COMPUTER ENGINEER', 1, '2025-12-08', '2025-12-08', '1', 'demam', '0125948508', 'MEDICAL LEAVE', NULL, 1, NULL, NULL, 1, NULL, NULL),
+(63, '2025-12-09', 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', 'COMPUTER ENGINEER', 1, '2025-12-09', '2025-12-09', '1', 'Test', '01172259030', 'MEDICAL LEAVE', NULL, 1, NULL, NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -371,24 +324,24 @@ INSERT INTO `mra_outstation` (`id`, `name`, `ic`, `datestart`, `purpose`, `detai
 --
 
 CREATE TABLE `mra_staff` (
-  `id` int NOT NULL,
-  `id_user` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `icno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `position` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `status` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `statattan` int DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `id_user` varchar(20) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `icno` varchar(14) DEFAULT NULL,
+  `position` varchar(100) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `status` varchar(14) DEFAULT NULL,
+  `statattan` int(11) DEFAULT NULL,
   `dateattan` date DEFAULT NULL,
   `timein` time DEFAULT NULL,
   `timeout` time DEFAULT NULL,
-  `phoneno` varchar(14) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `bank_name` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `acc_no` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `syarikat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `portfolio` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `phoneno` varchar(14) DEFAULT NULL,
+  `bank_name` varchar(10) NOT NULL,
+  `acc_no` varchar(30) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `syarikat` varchar(255) NOT NULL,
+  `portfolio` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -396,14 +349,14 @@ CREATE TABLE `mra_staff` (
 --
 
 INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `password`, `status`, `statattan`, `dateattan`, `timein`, `timeout`, `phoneno`, `bank_name`, `acc_no`, `image`, `syarikat`, `portfolio`) VALUES
-(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', 'Ikhwan Darwish CV.pdf'),
-(5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '01172259030', 'Maybank', '162107427034', '', '', ''),
-(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', 2, '2025-12-04', '08:12:55', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish2.pdf'),
-(12, 'AZLINNATASHA', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', 'mra123', 'HR STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
-(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '0189178650', 'Maybank', '164221637324', 'signature_nurul.png', 'MRA GLOBAL SDN BHD', ''),
-(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', 'mra123', 'LEADER STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature_amri.png', 'LETILICA SDN BHD', ''),
-(17, 'bad', 'BADRUL', 'farishtukiman@gmail.com', '000922014523', 'CEO', 'mra123', 'MANAGER', 1, '2025-12-04', '00:00:00', '00:00:00', '01156640727', '', '01032020733453', 'badrul_sign.png', 'LETILICA SDN BHD', ''),
-(19, 'aizam', 'AIZAM', 'muhdaizam2003@gmail.com', '000922019836', 'SOFTWARE ENGINEER', '449610', 'STAFF', 1, '2025-12-04', '00:00:00', '00:00:00', '0188705012', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD', '');
+(3, 'wish', 'IKHWAN DARWISH BIN AHMAD JAIDI', 'ikhwan.awish@gmail.com', '01051710717', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 3, '2025-12-09', '00:00:00', '00:00:00', '0125948508', 'Maybank', '162870151398', 'wish.png', 'LETILICA SDN BHD', 'Ikhwan Darwish CV.pdf'),
+(5, 'fendy', 'MOHAMMAD AFFENDY BIN MOHD ASRI', 'mohammadaffendyasri@gmail.com', '970218095135', 'COMPUTER ENGINEER', 'mra123', 'STAFF', 4, '2025-12-09', '00:00:00', '00:00:00', '01172259030', 'Maybank', '162107427034', '', '', ''),
+(6, 'farish', 'MOHAMAD FARISH SYAH DANIAL BIN TUKIMAN', 'farishtukiman@gmail.com', '000922012519', 'SOFTWARE ENGINEER', 'wak@2519', 'STAFF', 2, '2025-12-09', '07:24:38', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature.png', 'LETILICA SDN BHD', 'CV Farish2.pdf'),
+(12, 'AZLINNATASHA', 'AZLIN NATASHA BINTI AZAHAR', 'azlinnatasha8@gmail.com', '980203565340', 'Admin Executive', 'mra123', 'HR STAFF', 1, '2025-12-09', '00:00:00', '00:00:00', '0176445413', 'Maybank', '162200182861', '', 'MIM DEFENSE SDN BHD', ''),
+(13, 'nuyull', 'NURUL SYUHADAH', 'nurulsyuhadaaa21@gmail.com', '001221140176', 'ADMIN', 'MRA123', 'HR STAFF', 1, '2025-12-09', '00:00:00', '00:00:00', '0189178650', 'Maybank', '164221637324', 'signature_nurul.png', 'MRA GLOBAL SDN BHD', ''),
+(16, 'amri', 'AMRI BIN YAHYA', 'farishtukiman@gmail.com', '000922019851', 'SOFTWARE ENGINEER', 'mra123', 'LEADER STAFF', 1, '2025-12-09', '00:00:00', '00:00:00', '01156640727', 'Bank Islam', '01032020736545', 'signature_amri.png', 'LETILICA SDN BHD', ''),
+(17, 'bad', 'BADRUL', 'farishtukiman@gmail.com', '000922014523', 'CEO', 'mra123', 'MANAGER', 1, '2025-12-09', '00:00:00', '00:00:00', '01156640727', '', '01032020733453', 'badrul_sign.png', 'LETILICA SDN BHD', ''),
+(19, 'aizam', 'AIZAM', 'muhdaizam2003@gmail.com', '000922019836', 'SOFTWARE ENGINEER', '449610', 'STAFF', 1, '2025-12-09', '00:00:00', '00:00:00', '0188705012', 'Maybank', '164221637324', '', 'MRA GLOBAL SDN BHD', '');
 
 -- --------------------------------------------------------
 
@@ -412,14 +365,14 @@ INSERT INTO `mra_staff` (`id`, `id_user`, `name`, `email`, `icno`, `position`, `
 --
 
 CREATE TABLE `mra_wfh` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `ic` char(14) COLLATE utf8mb4_general_ci NOT NULL,
-  `purpose` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `details` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `ic` char(14) NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  `details` varchar(255) NOT NULL,
   `datesign` date NOT NULL,
   `dateapply` date NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -438,13 +391,46 @@ INSERT INTO `mra_wfh` (`id`, `name`, `ic`, `purpose`, `details`, `datesign`, `da
 --
 
 CREATE TABLE `notpresent` (
-  `id` int NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ic` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `ic` varchar(14) NOT NULL,
   `date` date DEFAULT NULL,
-  `matter` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `matter` varchar(20) NOT NULL,
+  `reason` varchar(255) NOT NULL,
+  `status` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notpresent`
+--
+
+INSERT INTO `notpresent` (`id`, `name`, `ic`, `date`, `matter`, `reason`, `status`, `updated_at`) VALUES
+(3, 'IKHWAN DARWISH BIN AHMAD JAIDI', '01051710717', '2025-12-08', 'MEDICAL LEAVE', 'demam', NULL, '2025-12-08 08:23:22'),
+(4, 'MOHAMMAD AFFENDY BIN MOHD ASRI', '970218095135', '2025-12-09', 'MEDICAL LEAVE', 'Test', NULL, '2025-12-08 23:18:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projek`
+--
+
+CREATE TABLE `projek` (
+  `id` int(11) NOT NULL,
+  `namecreate` varchar(15) DEFAULT NULL,
+  `ic` varchar(14) DEFAULT NULL,
+  `syarikat` varchar(20) DEFAULT NULL,
+  `lponum` varchar(20) DEFAULT NULL,
+  `stardate` datetime DEFAULT NULL,
+  `duedate` datetime DEFAULT NULL,
+  `pembaikan` varchar(255) DEFAULT NULL,
+  `payment` decimal(10,2) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `invoice` varchar(255) DEFAULT NULL,
+  `invoicedoc` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `bildate` varchar(10) DEFAULT NULL,
+  `catatan` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -454,25 +440,25 @@ CREATE TABLE `notpresent` (
 --
 
 CREATE TABLE `quotation` (
-  `id` int NOT NULL,
-  `namecreate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat4` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `alamat5` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `qtnno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `namecreate` varchar(255) DEFAULT NULL,
+  `alamat1` varchar(255) DEFAULT NULL,
+  `alamat2` varchar(255) DEFAULT NULL,
+  `alamat3` varchar(255) DEFAULT NULL,
+  `alamat4` varchar(255) DEFAULT NULL,
+  `alamat5` varchar(255) DEFAULT NULL,
+  `qtnno` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
-  `page` int DEFAULT NULL,
-  `project` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contractno` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nodaftar` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `page` int(11) DEFAULT NULL,
+  `project` varchar(255) DEFAULT NULL,
+  `contractno` varchar(100) DEFAULT NULL,
+  `nodaftar` varchar(100) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
   `sparepartcost` decimal(10,2) DEFAULT NULL,
-  `signmana` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` char(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `signmana` varchar(100) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` char(5) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -491,31 +477,31 @@ INSERT INTO `quotation` (`id`, `namecreate`, `alamat1`, `alamat2`, `alamat3`, `a
 --
 
 CREATE TABLE `request` (
-  `id` int NOT NULL,
-  `namestaff` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `namestaff` varchar(255) NOT NULL,
   `dateapply` date NOT NULL,
-  `syarikat` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `appoiment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `department` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `supplirename` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `suppladderss` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `attention` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `termpayment` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `payto` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `accno` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
-  `bankname` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
-  `remark` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `signreq` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `signmanager` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `datemanager` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `signacc` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `dateacc` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `signdirector` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `datedirector` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `statusacc` int NOT NULL,
-  `statusmana` int NOT NULL,
-  `statusdirec` int NOT NULL,
-  `refno` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `syarikat` varchar(255) DEFAULT NULL,
+  `appoiment` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `supplirename` varchar(255) NOT NULL,
+  `suppladderss` varchar(255) NOT NULL,
+  `attention` varchar(255) NOT NULL,
+  `termpayment` varchar(255) NOT NULL,
+  `payto` varchar(255) NOT NULL,
+  `accno` varchar(30) NOT NULL,
+  `bankname` varchar(10) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `signreq` varchar(255) NOT NULL,
+  `signmanager` varchar(255) NOT NULL,
+  `datemanager` varchar(10) DEFAULT NULL,
+  `signacc` varchar(255) NOT NULL,
+  `dateacc` varchar(10) DEFAULT NULL,
+  `signdirector` varchar(255) NOT NULL,
+  `datedirector` varchar(10) DEFAULT NULL,
+  `statusacc` int(11) NOT NULL,
+  `statusmana` int(11) NOT NULL,
+  `statusdirec` int(11) NOT NULL,
+  `refno` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -531,9 +517,9 @@ INSERT INTO `request` (`id`, `namestaff`, `dateapply`, `syarikat`, `appoiment`, 
 --
 
 --
--- Indexes for table `attandance`
+-- Indexes for table `attendance`
 --
-ALTER TABLE `attandance`
+ALTER TABLE `attendance`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -543,9 +529,9 @@ ALTER TABLE `dateleave`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `download`
+-- Indexes for table `document`
 --
-ALTER TABLE `download`
+ALTER TABLE `document`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -579,12 +565,6 @@ ALTER TABLE `mra_leave`
   ADD PRIMARY KEY (`leaveid`);
 
 --
--- Indexes for table `mra_outstation`
---
-ALTER TABLE `mra_outstation`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `mra_staff`
 --
 ALTER TABLE `mra_staff`
@@ -600,6 +580,12 @@ ALTER TABLE `mra_wfh`
 -- Indexes for table `notpresent`
 --
 ALTER TABLE `notpresent`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `projek`
+--
+ALTER TABLE `projek`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -619,88 +605,88 @@ ALTER TABLE `request`
 --
 
 --
--- AUTO_INCREMENT for table `attandance`
+-- AUTO_INCREMENT for table `attendance`
 --
-ALTER TABLE `attandance`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+ALTER TABLE `attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dateleave`
 --
 ALTER TABLE `dateleave`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `download`
+-- AUTO_INCREMENT for table `document`
 --
-ALTER TABLE `download`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `document`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `list_quotation`
 --
 ALTER TABLE `list_quotation`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `list_request`
 --
 ALTER TABLE `list_request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `mra_claim`
 --
 ALTER TABLE `mra_claim`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mra_claims`
 --
 ALTER TABLE `mra_claims`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `mra_leave`
 --
 ALTER TABLE `mra_leave`
-  MODIFY `leaveid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
---
--- AUTO_INCREMENT for table `mra_outstation`
---
-ALTER TABLE `mra_outstation`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `leaveid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `mra_staff`
 --
 ALTER TABLE `mra_staff`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `mra_wfh`
 --
 ALTER TABLE `mra_wfh`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `notpresent`
 --
 ALTER TABLE `notpresent`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `projek`
+--
+ALTER TABLE `projek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -15,80 +15,74 @@
 include('conn.php');
 date_default_timezone_set("Asia/Kuala_Lumpur");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyinoffice'])) {
-    $timein = $_POST['timein'];
-    $timeout = $_POST['timeout'];
-    $date = $_POST['date'];
-    $noic = $_POST['noic'];
-    $name = $_POST['name'];
-    $reason = $_POST['reason'];
-    if ($timein != '00:00:00' && $timeout == '00:00:00') {
-        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
-        $result2 = mysqli_query($conn, "INSERT INTO `attandance`(`name`, `ic`, `timein`, `timeout`, `date`, `reason`) VALUES ('$name','$noic','$timein','00:00:00','$date','$reason')");
+if (isset($_GET['idpresent']) && isset($_GET['statusattan'])) {
+    $id = base64_decode($_GET['idpresent']);
+    $statattan = base64_decode($_GET['statusattan']);
+    $time = date("H:i:s");
+    $result=mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE id = '$id'");
+    $row=mysqli_fetch_assoc($result);
+    $date = $row['dateattan'];
+    $icno = $row['icno'];
+    $name = $row['name'];
+    if ($statattan == 'masuk') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2', `dateattan`='$date', `timein`='$time' WHERE `id`='$id'");
+        $result2 = mysqli_query($conn, "INSERT INTO `attandance`(`name`, `ic`, `timein`, `timeout`, `date`) VALUES ('$name','$icno','$time','00:00:00','$date')");
         if ($result1 && $result2) {
-            echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+            echo '<script>Swal.fire("Update in office success.","Success","success").then(()=>window.location="inoffice.php");</script>';
         } else {
-            echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+            echo '<script>Swal.fire("Update in office failed","Error","error").then(()=>window.locatio="inoffice.php");</script>';
         }
-    } elseif ($timein != '00:00:00' && $timeout != '00:00:00') {
-        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
-        $result2 = mysqli_query($conn, "UPDATE `attandance` SET `timeout`='$timeout' WHERE `ic` = '$noic' AND `date` = '$date'");
+    } elseif ($statattan == 'balik') {
+        $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1', `dateattan`='$date', `timeout`='$time' WHERE `id`='$id'");
+        $result2 = mysqli_query($conn, "UPDATE `attandance` SET `timeout`='$time' WHERE `ic` = '$icno' AND `date` = '$date'");
         if ($result1 && $result2) {
-            echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
+            echo '<script>Swal.fire("Update in office success.","Success","success").then(()=>window.location="inoffice.php");</script>';
         } else {
-            echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+            echo '<script>Swal.fire("Update in office failed","Error","error").then(()=>window.locatio="inoffice.php");</script>';
         }
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['applyinoffice1'])) {
-    $timein = $_POST['timein'];
-    $timeout = $_POST['timeout'];
-    $date = $_POST['date'];
-    $noic = $_POST['noic'];
-    $name = $_POST['name'];
-    $reason = $_POST['reason'];
-    $result = mysqli_query($conn, "DELETE FROM `mra_outstation` WHERE ic = '$noic' AND dateapply = '$date'");
-    $result1 = mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='2', `dateattan`='$date', `timein`='$timein', `timeout`='$timeout' WHERE `icno`='$noic'");
-    $result2 = mysqli_query($conn, "INSERT INTO `attandance`(`name`, `ic`, `timein`, `timeout`, `date`, `reason`) VALUES ('$name','$noic','$timein','00:00:00','$date','$reason')");
-    $result3 = mysqli_query($conn, "DELETE FROM `mra_claims` WHERE noic = '$noic' AND date = '$date'");
-    if ($result && $result1 && $result2 && $result3) {
-        echo "<script>Swal.fire('Update present Successful','Success','success').then(()=>window.location='inoffice.php');</script>";
-    } else {
-        echo "<script>Swal.fire('Update present Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
-    }
-}
+// if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
+//     $datetoday = date("Y-m-d");
+//     $result=mysqli_query($conn, "TRUNCATE TABLE dateleave");
+//     if(!$result) exit("Error truncate");
+//     $result1 = mysqli_query($conn, "SELECT * FROM `mra_leave`");
+//     while ($row = mysqli_fetch_assoc($result1)) {
+//         // Convert string → DateTime object
+//         $datestart = new DateTime($row['datestart']);
+//         $dateend   = new DateTime($row['dateend']);
+//         $noic = $row['noic'];
+//         // Tambah 1 hari
+//         $dateend->modify('+1 day');
+//         while ($datestart < $dateend) {
+//             $tarikhsebenar = $datestart->format('Y-m-d');
+//             $result2=mysqli_query($conn, "INSERT INTO `dateleave`(`ic`,`dateleave`) VALUES ('$noic','$tarikhsebenar')");
+//             if(!$result2)exit("Error insert");            
+//             // Move next day
+//             $datestart->modify('+1 day');
+//         }
+//     }
+//     $result3=mysqli_query($conn, "SELECT * FROM `dateleave` WHERE dateleave = '$datetoday'");
+//     while($row1=mysqli_fetch_assoc($result3)){
+//         $ic = $row1['ic'];
+// 	$result4=mysqli_query($conn,"UPDATE `mra_staff` SET `statattan`='4',`dateattan`='$datetoday',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+// 	$result5=mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`dateattan`='$datetoday',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno != '$ic'");
+// 	if($result4&&$result5){
+// 	    echo "<script>Swal.fire('Update date success','Success','success').then(()=>window.location='inoffice.php');</script>";
+// 	}else{
+// 	    echo "<script>Swal.fire('Update date Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
+// 	}
+//     }
+// } 
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
     $datetoday = date("Y-m-d");
-    $result=mysqli_query($conn, "TRUNCATE TABLE dateleave");
-    if(!$result) exit("Error truncate");
-    $result1 = mysqli_query($conn, "SELECT * FROM `mra_leave`");
-    while ($row = mysqli_fetch_assoc($result1)) {
-        // Convert string → DateTime object
-        $datestart = new DateTime($row['datestart']);
-        $dateend   = new DateTime($row['dateend']);
-        $noic = $row['noic'];
-        // Tambah 1 hari
-        $dateend->modify('+1 day');
-        while ($datestart < $dateend) {
-            $tarikhsebenar = $datestart->format('Y-m-d');
-            $result2=mysqli_query($conn, "INSERT INTO `dateleave`(`ic`,`dateleave`) VALUES ('$noic','$tarikhsebenar')");
-            if(!$result2)exit("Error insert");            
-            // Move next day
-            $datestart->modify('+1 day');
-        }
-    }
-    $result3=mysqli_query($conn, "SELECT * FROM `dateleave` WHERE dateleave = '$datetoday'");
-    while($row1=mysqli_fetch_assoc($result3)){
-        $ic = $row1['ic'];
-	$result4=mysqli_query($conn,"UPDATE `mra_staff` SET `statattan`='4',`dateattan`='$datetoday',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
-	$result5=mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='1',`dateattan`='$datetoday',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno != '$ic'");
-	if($result4&&$result5){
-	    echo "<script>Swal.fire('Update date success','Success','success').then(()=>window.location='inoffice.php');</script>";
-	}else{
-	    echo "<script>Swal.fire('Update date Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
-	}
+    $result=mysqli_query($conn,"UPDATE `mra_staff` SET `statattan`='1',`dateattan`='$datetoday',`timein`='00:00:00',`timeout`='00:00:00'");
+    if($result){
+        echo "<script>Swal.fire('Update date success','Success','success').then(()=>window.location='inoffice.php');</script>";
+    }else{
+        echo "<script>Swal.fire('Update date Failed','Error','error').then(()=>window.location='inoffice.php');</script>";
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['ic']) && isset($_GET['reset'])) {
 	$ic = base64_decode($_GET['ic']);
@@ -117,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['updatedate'])) {
 			if ($result && $result1 && $result2) {
 				echo "<script>
 					Swal.fire('Reset outstation success', 'Success', 'success')
-     					 .then(()=>window.location='inoffice.php');
+     					.then(()=>window.location='inoffice.php');
 				      </script>";
 			} else {
 				echo "<script>
@@ -163,14 +157,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['outstation'])) {
     }
 }
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notpresent'])){
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notpresent_value'])){
     $date=$_POST['date'];
     $name=$_POST['name'];
     $ic=$_POST['ic'];
-    $matter=$_POST['matter'];
-    $reason=$_POST['reason'];
-    $result=mysqli_query($conn, "INSERT INTO `notpresent` (`name`,`ic`,`date`,`matter`,`reason`) VALUES ('$name','$ic','$date','$matter','$reason')");
+    $matters=$_POST['matter'];
+    $purpose=$_POST['purpose'];
+    $res=mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE icno = '$ic'");
+    $row=mysqli_fetch_assoc($res);
+    $position = $row['position'];
+    $status = $row['status'];
+    $phoneno = $row['phoneno'];
+    $result=mysqli_query($conn, "INSERT INTO `notpresent` (`name`,`ic`,`date`,`matter`,`reason`) VALUES ('$name','$ic','$date','$matters','$purpose')");
     $result1=mysqli_query($conn, "UPDATE `mra_staff` SET `statattan`='4',`timein`='00:00:00',`timeout`='00:00:00' WHERE icno = '$ic'");
+    $result2=mysqli_query($conn, "INSERT INTO `mra_leave` (`dateapply`, `nameapply`, `noic`, `position`, `status`, `datestart`, `dateend`, `daysleave`, `purpose`, `contactno`, `matters`, `statsupport`, `statapprove`) VALUES ('$date','$name','$ic','$position','1','$date','$date','1','$purpose','$phoneno','$matters','1','1')");
     if($result&&$result1){
         echo "<script>Swal.fire('Update not present success','Success','success').then(()=>window.location='inoffice.php');</script>";
     }else{

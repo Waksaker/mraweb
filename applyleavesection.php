@@ -164,7 +164,9 @@ $status = $row['status'];
               </select>
           </div>
       </div>
-      <button type="button" class="btn btn-primary" onClick="validateleave1()">SUBMIT</button>
+      <div align="right">
+        <button type="button" class="btn btn-primary" onClick="validateleave1()">SUBMIT</button>
+      </div>
     </form>
     <?php
     }

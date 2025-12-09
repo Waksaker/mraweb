@@ -136,7 +136,9 @@
                             </select>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3" onClick="submitAddStaff()">SUBMIT</button>
+                    <div align="right">
+                        <button type="button" class="btn btn-primary mt-3" onClick="submitAddStaff()">SUBMIT</button>
+                    </div>
                 </div>
             </form>
         </div>

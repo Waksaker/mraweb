@@ -97,7 +97,7 @@ $phoneno = $row['phoneno'];
             	<label for="dateend" class="col-sm-2 col-form-label">RESIT</label>
                 <div class="col-sm-4">
                     <input type="file" class="form-control mb-1" id="resit" name="resit" onchange="previewImageResit(event)">
-                    <sup><font style="color:red">Please fill the resit</font></sup>
+                    <!-- <sup><font style="color:red">Please fill the resit</font></sup> -->
                 </div>
                 <div class="container-img">
                     <label for="input-file" id="drop-area">

@@ -21,7 +21,16 @@
     <div class="card-body">
 		<h5 class="card-title fw-semibold mb-4">Present in office</h5>
         <div align="right">
-	    <a href="attendanceaction.php?updatedate=<?php echo base64_encode('updatedate')?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Update</a>
+        <?php
+            date_default_timezone_set("Asia/Kuala_Lumpur");
+            $datetoday = date('Y-m-d');
+            $res=mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE `dateattan` = '$datetoday'");
+            if (mysqli_num_rows($res) > 0) {
+                
+            } else {
+                echo '<a href="attendanceaction.php?updatedate=' . base64_encode("updatedate") . ' " class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Update</a>';
+            }
+        ?>
         </div>
         <table  id="office" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">
@@ -44,23 +53,23 @@
                         <td style="text-align: center;"><?php echo ($index++);?></td>
                         <td><?php echo $row['name'] ? $row['name'] : '';?></td>
                         <td style="text-align: center;">
-                            <?php 
-				switch ($row['statattan']) {
-					case "1":
-						echo "<span class='badge bg-danger'>Not present</span>";
-						break;
-					case "2":
-						echo "<span class='badge bg-success'>Present</span>";
-						break;
-					case "3":
-						echo "<span class='badge bg-success'>Outstation Present</span>";
-						break;
-					case "4":
-						echo "<span class='badge bg-danger'>Holiday</span>";
-						break;
-					default:
-						echo "NULL";
-				}
+                            <?php
+                                switch ($row['statattan']) {
+                                    case "1":
+                                        echo "<span class='badge bg-danger'>Not present</span>";
+                                        break;
+                                    case "2":
+                                        echo "<span class='badge bg-success'>Present</span>";
+                                        break;
+                                    case "3":
+                                        echo "<span class='badge bg-success'>Outstation Present</span>";
+                                        break;
+                                    case "4":
+                                        echo "<span class='badge bg-danger'>Holiday</span>";
+                                        break;
+                                    default:
+                                        echo "NULL";
+                                }
                             ?>
                         </td>
                         <td style="text-align: center;"><?php echo $row['dateattan'] ? $row['dateattan'] : 'NULL';?></td>
@@ -70,18 +79,18 @@
                             <?php
                                 if ($row['statattan'] == '1') {
                             ?>
-                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('hadir')?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
-				<a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply1');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
-				<a href="notpresent.php?idnotpresent=<?php echo base64_encode($row['id']);?>" class="btn btn-danger"><img src="assets/images/close.png" alt="" style="width: 24px; height: 24px;"></a>
-<?php
+                                <a href="attendanceaction.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('masuk')?>" class="btn btn-danger"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="outstation.php?idoutstation=<?php echo base64_encode($row['icno']);?>&funtion=<?php echo base64_encode('apply1');?>" class="btn btn-primary"><img src="assets/images/travel.png" alt="" style="width: 24px;  height: 24px;"></a>
+                                <a href="notpresent.php?idnotpresent=<?php echo base64_encode($row['id']);?>" class="btn btn-danger"><img src="assets/images/close.png" alt="" style="width: 24px; height: 24px;"></a>
+                            <?php
                                 } elseif ($row['statattan'] == '2') {
                             ?>
-                                <a href="applyinoffice.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('tidak hadir');?>&ic=<?php echo base64_encode($row['icno']);?>" class="btn btn-success"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>	
-				<a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetinoffice')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>
+                                <a href="attendanceaction.php?idpresent=<?php echo base64_encode($row['id']);?>&statusattan=<?php echo base64_encode('balik');?>" class="btn btn-success"><img src="assets/images/clockin.png" alt="" style="width: 24px;  height: 24px;"></a>	
+                                <a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetinoffice')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>
                             <?php
                                 } elseif ($row['statattan'] == '3') {
                             ?>
-				    <a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetoutstation')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>
+				                <a href="attendanceaction.php?ic=<?php echo base64_encode($row['icno']);?>&reset=<?php echo base64_encode('resetoutstation')?>" class="btn btn-danger"><img src="assets/images/reset.png" alt="" style="width: 24px; height: 24px;"></a>
                             <?php
 				}  elseif ($row['statattan'] == '4') {
 			    ?>
