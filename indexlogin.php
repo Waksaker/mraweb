@@ -34,11 +34,11 @@
             <div class="card mb-0">
               <div class="card-body">
                 <a href="" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                  <!-- <div class="text-center mb-3">
+                  <div class="text-center mb-3">
                     <img src="assets/images/logos/mra.png" width="100" style="margin: 0 10px;" alt="Logo 1">
                     <img src="assets/images/logos/letilica.png" width="50" style="margin: 0 10px;" alt="Logo 2">
                     <img src="assets/images/logos/mim.png" width="50" style="margin: 0 10px;" alt="Logo 3">
-                  </div> -->
+                  </div>
                   <h3><b>Sign In</b></h3>
                 </a>
                 <form name="login" action="loginaction.php" method="post">

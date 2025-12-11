@@ -9,7 +9,7 @@ $func = base64_decode($_GET['func']);
 <div class="card ">
 	<div class="card-body">
 	<div class="col">
-		<h5 class="card-title fw-semibold mb-4">Apply Project</h5>
+		<h5 class="card-title fw-semibold mb-4">Apply Job</h5>
 	</div>
 	<div align="center">
 		<h3>STEP 1</h3>
@@ -24,7 +24,7 @@ $func = base64_decode($_GET['func']);
 		if ($func == 'apply') {
 	?>
 		<form name="applyprojek1" action="projekaction.php" method="POST">
-			<input type="text" name="apply1" id="apply1" value="apply1" style="display: none;">
+			<input type="text" name="apply" id="apply" value="apply1" style="display: none;">
 			<div class="customer_records">
 				<div class="row mb-3">
 					<label for="" class="col-sm-2 col-form-label">NAME CREATE :</label>
@@ -41,6 +41,15 @@ $func = base64_decode($_GET['func']);
 					</div>
 				</div>
 				<div class="row mb-3">
+					<label for="" class="col-sm-2 col-form-label">COMPANY :</label>
+                        <div class="col-sm-4">
+                            <select class="form-control mb-1" name="syarikat" id="syarikat">
+                                <option value="">Please Choose</option>
+                                <option value="MRA GLOBAL SDN BHD">MRA GLOBAL SDN BHD</option>
+                                <option value="LETILICA SDN BHD">LETILICA SDN BHD</option>
+                                <option value="MIM DEFENSE SDN BHD">MIM DEFENSE SDN BHD</option>
+                            </select>
+                        </div>
 					<label for="" class="col-sm-2 col-form-label">NAME PROJECT :</label>
 					<div class="col-sm-4">
 						<input type="text" name="namepro" id="namepro" class="form-control mb-3">

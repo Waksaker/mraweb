@@ -46,7 +46,7 @@
         <table id="tablelistid" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th style="text-align: center;">NO</th>
+                    <th style="text-align: center;">No</th>
 		    <th style="text-align: center;">Discriptions</th>
 		    <th style="text-align: center;">Link</th>
                     <th style="text-align: center;">Quantity</th>

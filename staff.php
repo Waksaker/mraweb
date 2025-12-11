@@ -9,7 +9,7 @@
 </script>
 <script type="text/javascript">
   function deletestaff(id) {
-    var result = confirm("Adakah anda ingin memadam data ini?");
+    var result = confirm("Are you sure you want to delete this data?");
 
     if (result) {
       window.location.href = "delete.php?idstaff=" + id;
