@@ -25,7 +25,7 @@ if (isset($_POST['syarikat'])) {
 				<td><?php echo $row['syarikat'];?></td>
 				<td><?php echo $row['namepro'];?></td>
 				<td>
-					<a href="" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
+					<a href="editprojek1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
 					<a href="showprojek.php?idshow=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;"></a>
 					<a href="" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px; height: 24px;"></a>
 				</td>

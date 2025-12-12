@@ -30,9 +30,21 @@ $namecreate=$row['name'];
                 <input type="text" name="ic" id="" value="<?php echo $ic;?>" style="display: none;">
                 <input type="text" name="namepro" id="" value="<?php echo $namepro;?>" style="display: none;">
                 <input type="text" name="namecreate" id="" value="<?php echo $namecreate;?>" style="display: none;">
-                <input type="text" name="lponum" id="" value="<?php echo $lponum;?>" style="display: none;">
                 <div class="customer_records">
                     <div class="row mb-3">
+                        <label for="" class="col-sm-2 col-form-label">LPO NUMBER</label>
+                        <div class="col-sm-4">
+                            <select name="lponum" id="lponum" class="form-control mb-1">
+                                <option value="">Please Choose</option>
+                                <?php
+                                    $res=mysqli_query($conn, "SELECT * FROM `projek` WHERE `nameprojek` = '$namepro'");
+                                    while ($row=mysqli_fetch_assoc($res)) {
+                                        $lponum=$row['lponum'];
+                                        echo '<option value="' . $lponum . '">' . $lponum . '</option>';
+                                    }
+                                ?>
+                            </select>
+                        </div>
                         <label for="" class="col-sm-2 col-form-label">DOCUMENT</label>
                         <div class="col-sm-4">
                             <input type="file" class="form-control mb-1" name="document" id="document">
@@ -97,7 +109,15 @@ $namecreate=$row['name'];
     function apply3() {
         const form = document.applyprojek3;
 
-        if (form.document.value == "" || form.document.value == null) {
+        if (form.lponum.value == "" || form.lponum.value == null) {
+            Swal.fire({
+                icon: 'warning',
+                text: 'Please fill in name LPO number!',
+                confirmButtonColor: '#1B95CF'
+            })
+            form.lponum.focus();
+            return false;
+        } else if (form.document.value == "" || form.document.value == null) {
             Swal.fire({
                 icon: 'warning',
                 text: 'Please fill in name document!',

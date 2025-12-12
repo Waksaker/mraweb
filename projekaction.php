@@ -84,13 +84,14 @@ if (isset($_POST['apply'])) {
         $ic = $_POST['ic'];
         $namepro = $_POST['namepro'];
         $namecreate = $_POST['namecreate'];
+        $lponum = $_POST['lponum'];
         $document = $_FILES['document']['name'];
         $document_temp = $_FILES['document']['tmp_name'];
 
         $target_dir = "./document/";
         $target_file = $target_dir . basename($document);
         if (move_uploaded_file($document_temp, $target_file)) {
-            $res = mysqli_query($conn, "INSERT INTO `document`(`namcretae`, `ic`, `datecreate`, `namprojek`, `document`) VALUES ('$namecreate','$ic','$date','$namepro','$document')");
+            $res = mysqli_query($conn, "INSERT INTO `document`(`namcretae`, `ic`, `lponum`, `datecreate`, `namprojek`, `document`) VALUES ('$namecreate','$ic','$lponum','$date','$namepro','$document')");
             if ($res) {
                 echo "
                     <script>
