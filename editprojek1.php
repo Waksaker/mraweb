@@ -15,18 +15,20 @@ $id = base64_decode($_GET['id']);
 		<h3>STEP 1</h3>
 	</div>
 	<br>
-	<?php echo $id;?>
 	<?php
 		$res = mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE name = '$name'");
 		$r=mysqli_fetch_assoc($res);
 		$ic=$r['icno'];
 		date_default_timezone_set('Asia/Kuala_Lumpur');
 		$date=date("Y/m/d");
-
 		$res1 = mysqli_query($conn, "SELECT * FROM `projekname` WHERE `id` = '$id'");
+		$row1 = mysqli_fetch_assoc($res1);
+		$syarikat = $row1['syarikat'];
+		$namepro = $row1['namepro'];
 	?>
 	<form name="editprojek1" action="editprojekaction.php" method="POST">
-		<input type="text" name="apply" id="apply" value="apply1" style="display: none;">
+		<input type="text" name="editprojek1" id="editprojek1" value="editprojek1" style="display: none;">
+		<input type="text" name="id" value="<?php echo $id;?>" style="display: none;">
 		<div class="customer_records">
 			<div class="row mb-3">
 				<label for="" class="col-sm-2 col-form-label">NAME CREATE :</label>
@@ -47,14 +49,14 @@ $id = base64_decode($_GET['id']);
 					<div class="col-sm-4">
 						<select class="form-control mb-1" name="syarikat" id="syarikat">
 							<option value="">Please Choose</option>
-							<option value="MRA GLOBAL SDN BHD">MRA GLOBAL SDN BHD</option>
-							<option value="LETILICA SDN BHD">LETILICA SDN BHD</option>
-							<option value="MIM DEFENSE SDN BHD">MIM DEFENSE SDN BHD</option>
+							<option value="MRA GLOBAL SDN BHD" <?php echo ($syarikat == 'MRA GLOBAL SDN BHD') ? 'selected' : ''; ?>>MRA GLOBAL SDN BHD</option>
+							<option value="LETILICA SDN BHD" <?php echo ($syarikat == 'LETILICA SDN BHD') ? 'selected' : ''; ?>>LETILICA SDN BHD</option>
+							<option value="MIM DEFENSE SDN BHD" <?php echo ($syarikat == 'MIM DEFENSE SDN BHD') ? 'selected' : ''; ?>>MIM DEFENSE SDN BHD</option>
 						</select>
 					</div>
 				<label for="" class="col-sm-2 col-form-label">NAME PROJECT :</label>
 				<div class="col-sm-4">
-					<input type="text" name="namepro" id="namepro" class="form-control mb-3">
+					<input type="text" name="namepro" id="namepro" class="form-control mb-3" value="<?php echo $namepro;?>">
 				</div>
 			</div>
 		</div>
@@ -66,7 +68,7 @@ $id = base64_decode($_GET['id']);
 <?php include("./components/footer.php"); ?>
 <script>
 	function validate1() {
-		const form1 = document.applyprojek1;
+		const form1 = document.editprojek1;
 		
 		if(form1.namepro.value == null || form1.namepro.value == ""){
 			Swal.fire({
@@ -75,6 +77,14 @@ $id = base64_decode($_GET['id']);
 				confirmButtonColor: '#1B95CF'
 			})
 			form1.namepro.focus();
+			return false;
+		} else if(form1.syarikat.value == null || form1.syarikat.value == ""){
+			Swal.fire({
+				icon: 'warning',
+				text: 'Please fill in name project!',
+				confirmButtonColor: '#1B95CF'
+			})
+			form1.syarikat.focus();
 			return false;
 		} else {
 			Swal.fire({
