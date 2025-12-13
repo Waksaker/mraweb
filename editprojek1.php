@@ -9,10 +9,10 @@ $id = base64_decode($_GET['id']);
 <div class="card ">
 	<div class="card-body">
 	<div class="col">
-		<h5 class="card-title fw-semibold mb-4">Apply Job</h5>
+		<h5 class="card-title fw-semibold mb-4">Edit Job</h5>
 	</div>
 	<div align="center">
-		<h3>STEP 1</h3>
+		<h3>APPLY STEP 1</h3>
 	</div>
 	<br>
 	<?php
@@ -25,10 +25,11 @@ $id = base64_decode($_GET['id']);
 		$row1 = mysqli_fetch_assoc($res1);
 		$syarikat = $row1['syarikat'];
 		$namepro = $row1['namepro'];
+        $rendom = $row1['rendom'];
 	?>
-	<form name="editprojek1" action="editprojekaction.php" method="POST">
-		<input type="text" name="editprojek1" id="editprojek1" value="editprojek1" style="display: none;">
-		<input type="text" name="id" value="<?php echo $id;?>" style="display: none;">
+	<form name="editprojek1" action="projekaction.php" method="POST">
+		<input type="text" name="editprojek" id="editprojek1" value="editprojek1" style="display: none;">
+		<input type="text" name="rendom" value="<?php echo $rendom;?>" style="display: none;">
 		<div class="customer_records">
 			<div class="row mb-3">
 				<label for="" class="col-sm-2 col-form-label">NAME CREATE :</label>

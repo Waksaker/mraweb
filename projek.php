@@ -6,7 +6,7 @@
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Project</h5>
         <div align="right">
-            <a href="applyprojek1.php?func=<?php echo base64_encode('apply')?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Project</a>
+            <a href="applyprojek1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Project</a>
         </div>
         <div class="row">
 			<div class="col-md-12">

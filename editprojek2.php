@@ -1,12 +1,12 @@
 <?php
-include('conn.php');
-if(!isset($_GET['rendom']) || !isset($_GET['ic'])) exit("Not Found");
-$rendom=base64_decode($_GET['rendom']);
-$ic=base64_decode($_GET['ic']);
-$res1 = mysqli_query($conn, "SELECT * FROM `projekname` WHERE rendom = '$rendom'");
-$row1=mysqli_fetch_assoc($res1);
-$namecreate=$row1['name'];
-$syarikat=$row1['syarikat'];
+include ('conn.php');
+if (!isset($_GET['rendom'])) exit("Not Found");
+$rendom = base64_decode($_GET['rendom']);
+$res = mysqli_query($conn, "SELECT * FROM `projekname` WHERE `rendom` = '$rendom'");
+$row = mysqli_fetch_assoc($res);
+$namecreate = $row['name'];
+$ic = $row['ic'];
+$syarikat = $row['syarikat'];
 ?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
@@ -14,15 +14,17 @@ $syarikat=$row1['syarikat'];
 <?php include("./components/name.php"); ?>
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title fw-semibold mb-4">Apply Job</h5>
+        <div class="col">
+            <h5 class="card-title fw-semibold mb-4">Edit Job</h5>
+        </div>
         <div align="center">
-            <h3>APPLY STEP 2</h3>
+            <h3>EDIT STEP 2</h3>
         </div>
         <br>
-        <form name="applyprojek2" action="projekaction.php" method="POST" enctype="multipart/form-data">
+        <form name="formeditprojek2" action="projekaction.php" method="POST" enctype="multipart/form-data">
             <div class="customer_record">
                 <div class="row mb-3">
-                    <input type="text" name="apply" value="apply2" style="display: none;">
+                    <input type="text" name="editprojek" value="editprojek2" style="display: none;">
                     <input type="text" name="rendom" value="<?php echo $rendom;?>" style="display: none">
                     <input type="text" name="namecreate" value="<?php echo $namecreate;?>" style="display: none;">
                     <input type="text" name="ic1" value="<?php echo "$ic";?>" style="display: none">
@@ -82,7 +84,7 @@ $syarikat=$row1['syarikat'];
                 </div>
             </div>
             <div align="right">
-                <a href="applyprojek3.php?rendom=<?php echo base64_encode($rendom);?>&ic=<?php echo base64_encode($ic);?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">SUBMIT</a>
+                <a href="editprojek3.php?rendom=<?php echo base64_encode($rendom);?>" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">SUBMIT</a>
                 <button type="submit" class="btn btn-primary py-8 fs-4 mb-4 rounded-2" name="" onclick="return validate2()">+</button>
             </div>
         </form>
@@ -90,87 +92,101 @@ $syarikat=$row1['syarikat'];
 </div>
 <div class="card">
     <div class="card-body">
-        <table id="tablelistprojek" class="display nowrap" style="width:100%">
+        <table id="edittablelistprojek" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">
-                <tr>
-                    <th>No</th>
-                    <th>Company</th>
-                    <th>LPO Number</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Repaire</th>
-                    <th>Payment</th>
-                    <th>Price</th>
-                    <th>Invoice</th>
-                    <th>Status</th>
-                    <th>Bil Date</th>
-                    <th>Note</th>
-                    <th>#</th>
-                </tr>
+            <tr>
+                <th>No</th>
+                <th>Company</th>
+                <th>LPO Number</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Repaire</th>
+                <th>Payment</th>
+                <th>Price</th>
+                <th>Invoice</th>
+                <th>Status</th>
+                <th>Bil Date</th>
+                <th>Note</th>
+                <th>#</th>
+            </tr>
             </thead>
             <tbody>
+            <?php
+            $index = 1;
+            $result = mysqli_query($conn, "SELECT * FROM `projek` WHERE `rendom`='$rendom'");
+            while ($row=mysqli_fetch_assoc($result)) {
+                ?>
+                <tr>
+                    <td><?php echo ($index++);?></td>
+                    <td><?php echo $row['syarikat'];?></td>
+                    <td><?php echo $row['lponum'];?></td>
+                    <td>
+                        <?php
+                            $star = new DateTime($row['stardate']);
+                            echo $star->format('d/m/Y');
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            $due = new DateTime($row['duedate']);
+                            echo $due->format('d/m/Y');
+                        ?>
+                    </td>
+                    <td><?php echo $row['pembaikan'];?></td>
+                    <td><?php echo number_format($row['payment'], 2, ',', '.'); ?></td>
+                    <td><?php echo number_format($row['price'], 2, ',', '.'); ?></td>
+                    <td>
+                        <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
+                    </td>
+                    <td>
+                        <?php
+                        $status = $row['status'];
+                        switch ($status) {
+                            case "1":
+                                echo "<span style='color:#0d6efd'>Repair in progress</span>";
+                                break;
+                            case "2":
+                                echo "<span style='color: #fd7e14;'>Pending spepart</span>";
+                                break;
+                            case "3":
+                                echo "<span style='color: #ffc107;'>Pending payment</span>";
+                                break;
+                            case "4":
+                                echo "<span style='color: #6f42c1;'>Pending claim</span>";
+                                break;
+                            case "5":
+                                echo "<span style='color: #198754;'>Settle</span>";
+                                break;
+                            default:
+                                echo "Error status";
+                        }
+                        ?>
+                    </td>
+                    <td><?php echo $row['bildate'];?></td>
+                    <td><?php echo $row['catatan'];?></td>
+                    <td>
+                        <a href="kemasprojek.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/Pencil.png" style="height: 24px; width: 24px;"></a>
+                        <button type="button" onclick="deleteprojek2('deleteeditprojek','<?php echo $row['id'];?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" style="width: 24px; height: 24px;"></button>
+                    </td>
+                </tr>
                 <?php
-                $index = 1;
-                $result = mysqli_query($conn, "SELECT * FROM `projek` WHERE `rendom`='$rendom' AND `syarikat`='$syarikat'");
-                while ($row=mysqli_fetch_assoc($result)) {
-                    ?>
-                    <tr>
-                        <td><?php echo ($index++);?></td>
-                        <td><?php echo $row['syarikat'];?></td>
-                        <td><?php echo $row['lponum'];?></td>
-                        <td><?php echo $row['stardate'];?></td>
-                        <td><?php echo $row['duedate'];?></td>
-                        <td><?php echo $row['pembaikan'];?></td>
-                        <td><?php echo number_format($row['payment'], 2, ',', '.'); ?></td>
-                        <td><?php echo number_format($row['price'], 2, ',', '.'); ?></td>
-                        <td>
-                            <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
-                        </td>
-                        <td>
-                            <?php
-                            $status = $row['status'];
-                            switch ($status) {
-                                case "1":
-                                    echo "<span style='color:#0d6efd'>Repair in progress</span>";
-                                    break;
-                                case "2":
-                                    echo "<span style='color: #fd7e14;'>Pending spepart</span>";
-                                    break;
-                                case "3":
-                                    echo "<span style='color: #ffc107;'>Pending payment</span>";
-                                    break;
-                                case "4":
-                                    echo "<span style='color: #6f42c1;'>Pending claim</span>";
-                                    break;
-                                case "5":
-                                    echo "<span style='color: #198754;'>Settle</span>";
-                                    break;
-                                default:
-                                    echo "Error status";
-                            }
-                            ?>
-                        </td>
-                        <td><?php echo $row['bildate'];?></td>
-                        <td><?php echo $row['catatan'];?></td>
-                        <td>
-                            <a href="delete.php" class=""></a>
-                        </td>
-                    </tr>
-                    <?php
-                } ?>
+            } ?>
             </tbody>
         </table>
     </div>
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#tablelistprojek', {
-        scrollX: true
-    });
+    function deleteprojek2(func, id) {
+        var result = confirm("Are you sure you want to delete this data?");
+        if (result) {
+            window.location = "projekaction.php?apply=" + btoa(func) + "&id=" + btoa(id);
+        }
+    }
 </script>
 <script>
     function validate2() {
-        const form2 = document.applyprojek2;
+        const form2 = document.formeditprojek2;
 
         if (form2.datestart.value == null || form2.datestart.value == "") {
             Swal.fire({
@@ -272,7 +288,7 @@ $syarikat=$row1['syarikat'];
     }
 </script>
 <script>
-    new DataTable('#projek2table', {
+    new DataTable('#edittablelistprojek', {
         scrollX: true
     });
 </script>

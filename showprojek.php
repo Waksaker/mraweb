@@ -4,7 +4,7 @@ if(!isset($_GET['idshow'])) exit("Not Found");
 $id = base64_decode($_GET['idshow']);
 $re=mysqli_query($conn, "SELECT * FROM `projekname` WHERE id = '$id'");
 $row = mysqli_fetch_assoc($re);
-$syarikat = $row['syarikat'];
+$rendom = $row['rendom'];
 $namepro = $row['namepro'];
 ?>
 <?php include("./components/header.php"); ?>
@@ -23,117 +23,124 @@ $namepro = $row['namepro'];
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">List information project</h5>
-        <table id="showprojek" class="display nowrap" style="width:100%">
+        <table id="tablelistprojek1" class="display nowrap" style="width:100%">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th>No</th>
-                    <th>Company</th>
-                    <th>LPO Number</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Repire</th>
-                    <th>Payment</th>
-                    <th>Price</th>
-                    <th>Invoice</th>
-                    <th>Status</th>
-                    <th>Bil Date</th>
-                    <th>Note</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $index = 1;
-                    $res=mysqli_query($conn, "SELECT * FROM `projek` WHERE `nameprojek` = '$namepro' AND `syarikat` = '$syarikat'");
-                    while ($row=mysqli_fetch_assoc($res)) {
-                ?>
-                    <tr>
-                        <td><?php echo ($index++);?></td>
-                        <td><?php echo $row['syarikat'];?></td>
-                        <td><?php echo $row['lponum'];?></td>
-                        <td>
-                            <?php
-                                $star = new DateTime($row['stardate']);
-                                echo $star->format('Y/m/d');
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                                $end = new DateTime($row['duedate']);
-                                echo $end->format('Y/m/d');
-                            ?>
-                        </td>
-                        <td><?php echo $row['pembaikan'];?></td>
-                        <td><?php echo number_format($row['payment'], 2, ',', '.');?></td>
-                        <td><?php echo number_format($row['price'], 2, ',', '.');?></td>
-                        <td>
-                            <a href="./invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
-                        </td>
-                        <td>
-                            <?php  
-                                $status = $row['status'];
-                                switch ($status) {
-                                    case "1":
-                                        echo "<span style='color:#0d6efd'>Repair in progress</span>";
-                                        break;
-                                    case "2":
-                                        echo "<span style='color: #fd7e14;'>Pending spepart</span>";
-                                        break;
-                                    case "3":
-                                        echo "<span style='color: #ffc107;'>Pending payment</span>";
-                                        break;
-                                    case "4":
-                                        echo "<span style='color: #6f42c1;'>Pending claim</span>";
-                                        break;
-                                    case "5":
-                                        echo "<span style='color: #198754;'>Settle</span>";
-                                        break;
-                                    default:
-                                        echo "Error status";
-                                }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                                $bildate = $row['bildate'];
-                                echo "$bildate Days";
-                            ?>
-                        </td>
-                        <td><?php echo $row['catatan'];?></td>
-                    </tr>
-                <?php
-                    }
-                ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title fw-semibold mb-4">List Document</h5>
-         <table id="documenrprojek" class="display nowrap" style="width:100%">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>No</th>
-                    <th>LPO Number</th>
-                    <th>Name Projek</th>
-                    <th>Document</th>
+                    <th style="text-align: center;">No</th>
+                    <th style="text-align: center;">Company</th>
+                    <th style="text-align: center;">LPO Number</th>
+                    <th style="text-align: center;">Start Date</th>
+                    <th style="text-align: center;">End Date</th>
+                    <th style="text-align: center;">Repair</th>
+                    <th style="text-align: center;">Payment</th>
+                    <th style="text-align: center;">Price</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: center;">Bil Date</th>
+                    <th style="text-align: center;">Note</th>
+                    <th style="text-align: center;">Invoice</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                     $index1 = 1;
-                    $res1=mysqli_query($conn, "SELECT * FROM `document` WHERE `namprojek` = '$namepro'");
-                    while ($row1=mysqli_fetch_assoc($res1)) {
+                    $re=mysqli_query($conn, "SELECT * FROM `projek` WHERE rendom = '$rendom'");
+                    while ($row1 = mysqli_fetch_assoc($re)) {
+                        ?>
+                            <tr>
+                                <td><?php echo ($index1++)?></td>
+                                <td><?php echo $row1['syarikat'];?></td>
+                                <td><?php echo $row1['lponum'];?></td>
+                                <td>
+                                    <?php
+                                        $startdate = new DateTime($row1['stardate']);
+                                        echo $startdate->format('d/m/Y');
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $enddate = new DateTime($row1['duedate']);
+                                        echo $enddate->format('d/m/Y');
+                                    ?>
+                                </td>
+                                <td><?php echo $row1['pembaikan'];?></td>
+                                <td><?php echo $row1['payment'];?></td>
+                                <td><?php echo $row1['price'];?></td>
+                                <?php
+                                switch ($row1['status']) {
+                                    case '1':
+                                        echo '<td style="background-color: #0d6efd; color: #0c0c0c; text-align: center"><b>Repaire in progress</b></td>';
+                                        break;
+                                    case '2':
+                                        echo '<td style="background-color: #fd7e14; color: #0c0c0c; text-align: center"><b>Pending spepart</b></td>';
+                                        break;
+                                    case '3':
+                                        echo '<td style="background-color: #dc3545; color: #0c0c0c; text-align: center"><b>Pending payment</b></td>';
+                                        break;
+                                    case '4':
+                                        echo '<td style="background-color: #ffc107; color: #0c0c0c; text-align: center"><b>Pending claim</b></td>';
+                                        break;
+                                    case '5':
+                                        echo '<td style="background-color: #198754; color: #0c0c0c; text-align: center"><b>Settle</b></td>';
+                                        break;
+                                    default:
+                                        echo '<td>NULL</td>';
+                                }
+                                ?>
+                                <?php
+                                if ($row1['bildate'] > 30) {
+                                    echo '<td style="background-color: #198754; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                } elseif ($row1['bildate'] < 30) {
+                                    echo '<td style="background-color: #ffc107; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                } elseif ($row1['bildate'] < 14) {
+                                    echo '<td style="background-color: #fd7e14; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                } elseif ($row1['bildate'] == 0) {
+                                    echo '<td style="background-color: #dc3545; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                }
+                                ?>
+                                <td style="color: #0c0c0c; text-align: center">
+                                    <?php echo $row1['catatan'];?>
+                                </td>
+                                <td>
+                                    <a href="invoice/<?php echo $row1['invoicedoc'];?>" download="<?php echo $row1['invoice'];?>" class="btn btn-primary"><img src="assets/images/file.png" style="height: 24px; width: 24px;"></a>
+                                    <a href="invoice/<?php echo $row1['invoicedoc'];?>" target="_blank" class="btn btn-primary"><img src="assets/images/eye.png" style="height: 24px; width: 24px;"></a>
+                                </td>
+                            </tr>
+                    <?php
+                    }
                 ?>
-                    <tr>
-                        <td><?php echo ($index1++);?></td>
-                        <td><?php echo $row1['lponum'];?></td>
-                        <td><?php echo $row1['namprojek'];?></td>
-                        <td>
-                            <a href="./document/<?php echo $row1['document'];?>" target="_blank"><?php echo $row1['document'];?></a>
-                        </td>
-                    </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">List Document</h5>
+        <table id="tablelistdocument" class="display nowrap" style="width:100%">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th style="text-align: center;">No</th>
+                    <th style="text-align: center;">Repair</th>
+                    <th style="text-align: center;">LPO Number</th>
+                    <th style="text-align: center;">Document</th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
+                    $index2 = 1;
+                    $re1 = mysqli_query($conn, "SELECT * FROM `document` WHERE rendom = '$rendom'");
+                    while ($row2 = mysqli_fetch_assoc($re1)) {
+                        ?>
+                            <tr>
+                                <td><?php echo ($index2);?></td>
+                                <td><?php echo $row2['pembaikan'];?></td>
+                                <td><?php echo $row2['lponum'];?></td>
+                                <td>
+                                    <a href="document/<?php echo $row2['document'];?>" download="<?php echo $row2['document'];?>" class="btn btn-primary"><img src="assets/images/file.png" style="height: 24px; width: 24px;"></a>
+                                    <a href="document/<?php echo $row2['document'];?>" target="_blank" class="btn btn-primary"><img src="assets/images/eye.png" style="height: 24px; width: 24px;"></a>
+                                </td>
+                            </tr>
+                        <?php
                     }
                 ?>
             </tbody>
@@ -142,12 +149,12 @@ $namepro = $row['namepro'];
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#showprojek', {
+    new DataTable('#tablelistprojek1', {
         scrollX: true
     });
 </script>
 <script>
-    new DataTable('#documenrprojek', {
+    new DataTable('#tablelistdocument', {
         scrollX: true
     });
 </script>
