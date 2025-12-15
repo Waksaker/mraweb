@@ -25,11 +25,6 @@ $Year_now = date('Y',strtotime($Date_now));
 </div>
 <div class="card">
     <div class="card-body">
-        
-    </div>
-</div>
-<div class="card">
-    <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Staff</h5>
         <br>
         <table id="stafflist" class="display nowrap" style="width:100%">
@@ -60,5 +55,10 @@ $Year_now = date('Y',strtotime($Date_now));
         </table>
         <br>
         <h1 style="text-align: center;">Total: <?php echo mysqli_num_rows($result); ?></h1>
+    </div>
+</div>
+<div
+    <div class="card">
+        <div></div>
     </div>
 </div>
