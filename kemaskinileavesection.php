@@ -166,33 +166,6 @@ $statusstaff = $row2['statusstaff'];
               </select>
             </div>
           </div>
-          <?php
-            if ($matter == 'MEDICAL LEAVE') {
-          ?>
-            <div class="row mb-3">
-              <label for="dateend" class="col-sm-2 col-form-label">MC</label>
-                <div class="col-sm-4">
-                  <input type="file" class="form-control mb-1" id="mc" name="mc" onchange="previewImageMc(event)">
-                  <input type="text" name="mc1" value="<?php echo $mc; ?>" style="display: none;">
-                  <sup><font style="color:red">Please fill the resit</font></sup>
-                </div>
-                <div class="container-img">
-                  <label for="input-file" id="drop-area">
-                      <div id="img-view">
-                        <?php 
-                        if ($mc!="") {
-                           echo '<img src="./mc/' . $mc . '" alt="" id="preview-img-sign">';
-                        } else {
-                           echo '<img alt="" id="preview-img-sign">';
-                        }
-                        ?>
-                      </div>
-                  </label>
-                </div>
-            </div>
-          <?php
-            }
-          ?>
         <?php
           } elseif ($statusstaff == 'LEADER STAFF' || $statusstaff == 'MANAGER') {
         ?>
@@ -209,6 +182,33 @@ $statusstaff = $row2['statusstaff'];
           </div>
         <?php
           }
+        ?>
+        <?php
+        if ($matter == 'MEDICAL LEAVE') {
+            ?>
+            <div class="row mb-3">
+                <label for="dateend" class="col-sm-2 col-form-label">MC</label>
+                <div class="col-sm-4">
+                    <input type="file" class="form-control mb-1" id="mc" name="mc" onchange="previewImageMc(event)">
+                    <input type="text" name="mc1" value="<?php echo $mc; ?>" style="display: none;">
+                    <sup><font style="color:red">Please fill the resit</font></sup>
+                </div>
+                <div class="container-img">
+                    <label for="input-file" id="drop-area">
+                        <div id="img-view">
+                            <?php
+                            if ($mc!="") {
+                                echo '<img src="./mc/' . $mc . '" alt="" id="preview-img-sign">';
+                            } else {
+                                echo '<img alt="" id="preview-img-sign">';
+                            }
+                            ?>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <?php
+        }
         ?>
         <button type="button" class="btn btn-primary" onClick="validateleave()">SUBMIT</button>
         <!-- <input type="submit" value="SUBMIT" class="btn btn-primary"> -->
