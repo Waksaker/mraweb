@@ -87,14 +87,14 @@ $namepro = $row['namepro'];
                                 }
                                 ?>
                                 <?php
-                                if ($row1['bildate'] > 30) {
-                                    echo '<td style="background-color: #198754; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
-                                } elseif ($row1['bildate'] < 30) {
-                                    echo '<td style="background-color: #ffc107; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                if ($row1['bildate'] == 0) {
+                                    echo '<td style="background-color: #dc3545; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
                                 } elseif ($row1['bildate'] < 14) {
                                     echo '<td style="background-color: #fd7e14; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
-                                } elseif ($row1['bildate'] == 0) {
-                                    echo '<td style="background-color: #dc3545; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                } elseif ($row1['bildate'] < 30) {
+                                    echo '<td style="background-color: #ffc107; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
+                                } else {
+                                    echo '<td style="background-color: #198754; color: #0c0c0c; text-align: center"><b>' . $row1['bildate'] . ' Days</b></td>';
                                 }
                                 ?>
                                 <td style="color: #0c0c0c; text-align: center">
