@@ -33,7 +33,8 @@ $statususer = $row['status'];
             <th style="text-align: center;">Date End</th>
             <th style="text-align: center;">Days</th>
             <th style="text-align: center;">Purpose</th>
-			      <th style="text-align: center;">Status</th>
+            <th style="text-align: center;">Matters</th>
+            <th style="text-align: center;">Status</th>
             <th style="text-align: center;">#</th>
           </tr>
         </thead>
@@ -71,6 +72,7 @@ $statususer = $row['status'];
                     <td style="text-align: center;"><?php echo $dateend; ?></td>
                     <td style="text-align: center;"><?php echo $daysleave; ?></td>
                     <td style="text-align: center;"><?php echo $purpose; ?></td>
+                      <td style="text-align: center;"><?php echo $matters;?></td>
                     <td style="text-align: center;">
                       <?php 
                         if ($statsupport == "1" && $statapprove == "1") {
@@ -87,9 +89,9 @@ $statususer = $row['status'];
                       ?>
                     </td>
                     <td style="text-align: center;">
-                      <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24px;"></a>
-				  <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
-		      <?php if($mc!="") echo '<a href="./mc/' . $mc . '" download="MC(' . $nameapply . ').png" class="btn btn-primary"><img src="assets/images/file.png" style="width: 24px; height: 24px;"></a>';?>
+                        <a href="printleave.php?id=<?php echo $leaveid; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24px;"></a>
+                        <a href="kemaskinileave.php?id=<?php echo $leaveid; ?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
+		                <?php if($mc!="") echo '<a href="./mc/' . $mc . '" download="MC(' . $nameapply . ').png" class="btn btn-primary"><img src="assets/images/file.png" style="width: 24px; height: 24px;"></a>';?>
                       <button type="button" onclick="test('<?php echo $leaveid; ?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width: 24px;  height: 24px;"></button>
                     </td>
                   </tr>
@@ -129,6 +131,7 @@ $statususer = $row['status'];
                     <td style="text-align: center;"><?php echo $dateend; ?></td>
                     <td style="text-align: center;"><?php echo $daysleave; ?></td>
                     <td style="text-align: center;"><?php echo $purpose; ?></td>
+                      <td style="text-align: center;"><?php echo $matters;?></td>
                     <td style="text-align: center;">
                       <?php 
                         if ($statsupport == "1" && $statapprove == "1") {
@@ -186,6 +189,7 @@ $statususer = $row['status'];
                     <td style="text-align: center;"><?php echo $dateend; ?></td>
                     <td style="text-align: center;"><?php echo $daysleave; ?></td>
                     <td style="text-align: center;"><?php echo $purpose; ?></td>
+                      <td style="text-align: center;"><?php echo $matters;?></td>
                     <td style="text-align: center;">
                       <?php 
                         if ($statsupport == "1" && $statapprove == "1") {

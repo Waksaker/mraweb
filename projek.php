@@ -12,7 +12,7 @@
 			<div class="col-md-12">
 				<div class="form-group row">
 					<h1 class="col-sm-4 col-form-label">Pleace Chooce</h1>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<select class="form-control mb-1" name="syarikat" id="syarikat" onchange="syarikat()">
 							<option value="">Please Choose</option>
 							<option value="MRA GLOBAL SDN BHD">MRA GLOBAL SDN BHD</option>

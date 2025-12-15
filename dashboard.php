@@ -74,6 +74,11 @@ $status = $row['status'];
 ?>
 <?php include("components/footer.php"); ?>  
 <script>
+    new DataTable('#leavelist', {
+        scrollX: true,
+    });
+</script>
+<script>
         new DataTable('#example', {
             scrollX: true,
             // layout: {

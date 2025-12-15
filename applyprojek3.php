@@ -25,7 +25,7 @@ $namecreate=$row['name'];
             <input type="text" name="namecreate" id="" value="<?php echo $namecreate;?>" style="display: none;">
             <div class="customer_records">
                 <div class="row mb-3">
-                    <label for="" class="col-sm-2 col-form-label">LPO NUMBER</label>
+                    <label for="" class="col-sm-2 col-form-label">PLEASE CHOOSE</label>
                     <div class="col-sm-4">
                         <select name="lponum" id="lponum" class="form-control mb-1">
                             <option value="">Please Choose</option>
@@ -33,7 +33,8 @@ $namecreate=$row['name'];
                             $res=mysqli_query($conn, "SELECT * FROM `projek` WHERE `rendom` = '$rendom'");
                             while ($row=mysqli_fetch_assoc($res)) {
                                 $lponum=$row['lponum'];
-                                echo '<option value="' . $lponum . '">' . $lponum . '</option>';
+                                $pembaikan=$row['pembaikan'];
+                                echo '<option value="' . $lponum . '">' . $pembaikan . '</option>';
                             }
                             ?>
                         </select>
