@@ -40,7 +40,7 @@ def updatebildate():
         today = datetime.now().date()
         end = duedate.date()
         total = (end - today).days
-        if total == -1:
+        if total <= -1:
             print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {0} days")
             cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (0, id))
         else:

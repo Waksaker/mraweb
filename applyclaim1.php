@@ -29,39 +29,100 @@
   });
 </script>
 <script>
-  function validateapplyclaim() {
-    form = document.applyclaim;
-    if (form.date.value == null || form.date.value == "") {
+function validateapplyclaim1() {
+  form1 = document.applyclaim1;
+  if (form1.name.value == null || form1.name.value == "") {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Please fill in name!',
+      confirmButtonColor: '#1B95CF'
+    })
+    form1.name.focus();
+    return;
+  } else if (form1.date.value == null || form1.date.value == "") {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Please fill in Date!',
+      confirmButtonColor: '#1B95CF'
+    })
+    form1.date.focus();
+    return;
+  } else if (form1.purpose.value == null || form1.purpose.value == "") {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Please fill in Purpose!',
+      confirmButtonColor: '#1B95CF'
+    })
+    form1.purpose.focus();
+    return;
+  } else if (form1.details.value == null || form1.details.value == "") {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Please fill in details!',
+      confirmButtonColor: '#1B95CF'
+    })
+    form1.details.focus();
+    return;
+  } else if (form1.amount.value == null || form1.amount.value == "") {
+    Swal.fire({
+      icon: 'warning',
+      text: 'Please fill in amount!',
+      confirmButtonColor: '#1B95CF'
+    })
+    form1.amount.focus();
+    return;
+  } else {
+    swal.fire({
+      text: "Please make sure everything is correct!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#1B95CF',
+      cancelButtonColor: '#BF000E',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+    }).then((result1) => {
+      if (result1.isConfirmed) {
+        form1.submit();
+      }
+    })
+  }
+}
+</script>
+<script>
+  function validateapplyclaim2() {
+    form2 = document.applyclaim2;
+    if (form2.date.value == null || form2.date.value == "") {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in Date!',
         confirmButtonColor: '#1B95CF'
       })
-      form.date.focus();
+      form2.date.focus();
       return;
-    } else if (form.purpose.value == null || form.purpose.value == "") {
+    } else if (form2.purpose.value == null || form2.purpose.value == "") {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in Purpose!',
         confirmButtonColor: '#1B95CF'
       })
-      form.purpose.focus();
+      form2.purpose.focus();
       return;
-    } else if (form.details.value == null || form.details.value == "") {
+    } else if (form2.details.value == null || form2.details.value == "") {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in details!',
         confirmButtonColor: '#1B95CF'
       })
-      form.details.focus();
+      form2.details.focus();
       return;
-    } else if (form.amount.value == null || form.amount.value == "") {
+    } else if (form2.amount.value == null || form2.amount.value == "") {
       Swal.fire({
         icon: 'warning',
         text: 'Please fill in amount!',
         confirmButtonColor: '#1B95CF'
       })
-      form.amount.focus();
+      form2.amount.focus();
       return;
     } else {
       swal.fire({
@@ -73,9 +134,9 @@
         confirmButtonText: 'Yes',
         cancelButtonText: 'No',
         reverseButtons: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          form.submit();
+      }).then((result2) => {
+        if (result2.isConfirmed) {
+          form2.submit();
         }
       })
     }

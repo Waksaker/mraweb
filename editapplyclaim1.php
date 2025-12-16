@@ -63,14 +63,6 @@
       })
       form.amount.focus();
       return;
-    } else if (form.resit.value == null || form.resit.value == "") {
-      Swal.fire({
-        icon: 'warning',
-        text: 'Please fill in resit!',
-        confirmButtonColor: '#1B95CF'
-      })
-      form.amount.focus();
-      return;
     } else {
       swal.fire({
         text: "Please make sure everything is correct!",
