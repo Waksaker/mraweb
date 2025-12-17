@@ -54,7 +54,7 @@ $row_emer = mysqli_fetch_assoc($result_emer);
                 <tr>
                     <th style="text-align: center;">No</th>
                     <th style="text-align: center;">Name Leave</th>
-                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: center;">Total Apply</th>
                 </tr>
             </thead>
             <tbody> 

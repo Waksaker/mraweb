@@ -122,6 +122,7 @@ $namepro = $row['namepro'];
                     <th style="text-align: center;">No</th>
                     <th style="text-align: center;">Repair</th>
                     <th style="text-align: center;">LPO Number</th>
+                    <th style="text-align: center;">Name Document</th>
                     <th style="text-align: center;">Document</th>
                 </tr>
             </thead>
@@ -135,6 +136,7 @@ $namepro = $row['namepro'];
                                 <td><?php echo ($index2);?></td>
                                 <td><?php echo $row2['pembaikan'];?></td>
                                 <td><?php echo $row2['lponum'];?></td>
+                                <td><?php echo $row2['document'];?></td>
                                 <td>
                                     <a href="document/<?php echo $row2['document'];?>" download="<?php echo $row2['document'];?>" class="btn btn-primary"><img src="assets/images/file.png" style="height: 24px; width: 24px;"></a>
                                     <a href="document/<?php echo $row2['document'];?>" target="_blank" class="btn btn-primary"><img src="assets/images/eye.png" style="height: 24px; width: 24px;"></a>
