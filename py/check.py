@@ -40,12 +40,14 @@ def updatebildate():
         today = datetime.now().date()
         end = duedate.date()
         total = (end - today).days
-        if total <= -1:
-            print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {0} days")
-            cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (0, id))
-        else:
-            print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {total} days")
-            cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (total, id))
+        # if total <= -1:
+        #     print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {0} days")
+        #     cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (0, id))
+        # else:
+        #     print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {total} days")
+        #     cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (total, id))
+        print(f"ID: {id}, LPO Number: {lponum}, Tarikh akhir: {end}, Tarikh hari ni: {today}, Jumlah hari: {total} days")
+        cursor.execute("UPDATE projek SET bildate = %s WHERE id = %s", (total, id))
     db.commit()
     db.close()
 
