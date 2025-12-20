@@ -5,15 +5,15 @@ if (isset($_POST['syarikat'])) {
 	$syarikat = $_POST['syarikat'];
 }
 ?>
-<table id="listprojek" class="display nowrap" style="width:100%">
-	<thead class="bg-primary text-white">
-		<tr>
-			<th>No</th>
-			<th>Company</th>
-			<th>Name Project</th>
-			<th>#</th>
-		</tr>
-	</thead>
+<div class="table-responsive">
+    <table id="listprojek" class="table table-sm table-bordered align-middle w-100">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>No</th>
+                <th>Name Project</th>
+                <th>#</th>
+            </tr>
+        </thead>
 	<tbody>
 		<?php
 			$index = 1;
@@ -22,7 +22,6 @@ if (isset($_POST['syarikat'])) {
 		?>
 			<tr>
 				<td><?php echo ($index++);?></td>
-				<td><?php echo $row['syarikat'];?></td>
 				<td><?php echo $row['namepro'];?></td>
 				<td>
 					<a href="editprojek1.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/Pencil.png" alt="" style="width: 24px; height: 24px;"></a>
@@ -37,7 +36,10 @@ if (isset($_POST['syarikat'])) {
 </table>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#listprojek', {
-        scrollX: true
-    });
+$('#listprojek').DataTable({
+	scrollX: true,
+	responsive: false,
+	autoWidth: false,
+	pageLength: 10
+});
 </script>

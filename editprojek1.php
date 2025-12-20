@@ -12,7 +12,7 @@ $id = base64_decode($_GET['id']);
 		<h5 class="card-title fw-semibold mb-4">Edit Job</h5>
 	</div>
 	<div align="center">
-		<h3>APPLY STEP 1</h3>
+		<h3>STEP 1</h3>
 	</div>
 	<br>
 	<?php

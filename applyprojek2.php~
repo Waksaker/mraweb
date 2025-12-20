@@ -95,6 +95,7 @@ $syarikat=$row1['syarikat'];
                 <thead class="bg-primary text-white">
                     <tr>
                         <th>No</th>
+                        <th>LPO Number</th>
                         <th>Invoice</th>
                         <th>#</th>
                     </tr>
@@ -107,6 +108,7 @@ $syarikat=$row1['syarikat'];
                         ?>
                         <tr>
                             <td><?php echo ($index++);?></td>
+                            <td><?php echo $row['lponum'];?></td>
                             <td>
                                 <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
                             </td>

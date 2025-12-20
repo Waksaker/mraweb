@@ -5,9 +5,24 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Project</h5>
-        <div align="right">
-            <a href="applyprojek1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Project</a>
-        </div>
+        <?php
+			$sql1 = "
+				SELECT
+					*
+				FROM
+					`mra_staff`
+				WHERE `name` = '$name'
+			";
+			$result1 = mysqli_query($conn, $sql1);
+			$row1=mysqli_fetch_assoc($result1);
+			if ($row1['status'] == 'ADMIN STAFF' || $row1['status'] == 'HR STAFF') {
+		?>
+			<div align="right">
+				<a href="applyprojek1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Apply Project</a>
+			</div>
+		<?php
+			}
+        ?>
         <div class="row">
 			<div class="col-md-12">
 				<div class="form-group row">

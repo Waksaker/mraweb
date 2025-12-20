@@ -67,14 +67,19 @@ $namecreate=$row['name'];
                     $index = 1;
                     $res1 = mysqli_query($conn, "SELECT * FROM `document` WHERE `rendom` = '$rendom'");
                     while ($row1=mysqli_fetch_assoc($res1)) {
-                        $maklumat = "
-                            <div class='p-2'>
-                                <div class='mb-1'><strong>Project:</strong> {$row1['pembaikan']}</div>
-                                <div class='mb-1'><strong>LPO No:</strong> {$row1['lponum']}</div>
-                                <div><strong>Document:</strong> {$row1['document']}</div>
+                    $maklumat = "
+                        <div>
+                            <div style='display: flex; justify-content: space-between;'>
+                                <div><strong>NAME PROJECT: </strong> {$row1['namprojek']}<br></div>
                             </div>
-                        ";
-
+                            <div style='display: flex; justify-content: space-between;'>
+                                <div><strong>LPO NUMBER: </strong> {$row1['lponum']}<br></div>
+                            </div>
+                            <div style='display: flex; justify-content: space-between;'>
+                                <div><strong>DOCUMENT: </strong> {$row1['document']}<br></div>
+                            </div>
+                        </div>
+                    ";
                 ?>
                     <tr>
                         <td style="text-align: center;"><?php echo ($index++);?></td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2025 at 10:19 AM
+-- Generation Time: Dec 20, 2025 at 05:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -110,7 +110,9 @@ INSERT INTO `document` (`id`, `rendom`, `pembaikan`, `namcretae`, `ic`, `lponum`
 (10, '60', 'Pembekalan Alat Ganti Simulator ACV ', 'NURUL SYUHADAH', '001221140176', 'C02500000001477793', '1000193814 (1).PDF', '2025-12-15 04:25:36'),
 (12, '71', 'Simulator Unit Perintah Kawalan Tembakan (UPKB) Astross', 'NURUL SYUHADAH', '001221140176', 'C0230000000446189', 'Certificate(MYSQL).pdf', '2025-12-15 12:29:08'),
 (13, '72', 'Robotic Vehicle Guardian UK - KL', 'NURUL SYUHADAH', '001221140176', 'CO230000000450026', 'claim_bulan_4(FARISH).pdf', '2025-12-15 12:37:23'),
-(14, '13', 'PEMBAIKAN DI BAWAH JAMINAN', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'A-327470/1', 'SENARAI KERJA - KERJA PT91 2021 AVP ENGINEERING.pdf', '2025-12-16 02:32:12');
+(14, '13', 'PEMBAIKAN DI BAWAH JAMINAN', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'A-327470/1', 'SENARAI KERJA - KERJA PT91 2021 AVP ENGINEERING.pdf', '2025-12-16 02:32:12'),
+(15, '97', 'Simulator Unit Perintah Kawalan Tembakan (UPKB) Astross', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'C0230000000446189', '2. PAYSLIP LETILICA - FARISH SHAH_FEB 25.pdf', '2025-12-18 04:12:12'),
+(16, '77', 'KD JEBAT 1', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'A-327471/1', 'claim form JUNE.staff.pdf', '2025-12-18 04:26:38');
 
 -- --------------------------------------------------------
 
@@ -455,15 +457,17 @@ CREATE TABLE `projek` (
 --
 
 INSERT INTO `projek` (`id`, `rendom`, `namecreate`, `ic`, `syarikat`, `lponum`, `stardate`, `duedate`, `pembaikan`, `payment`, `price`, `invoice`, `invoicedoc`, `status`, `bildate`, `catatan`) VALUES
-(6, '60', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO250000000347463', '2025-12-23 00:00:00', '2025-12-26 00:00:00', 'Membekal Alat Ganti Sistem Radar Amaran Tempatan TRML 3D/32\r\n', 131638.43, 131638.43, 'Dalam Pembaikan ', 'simple-invoice-2.png', 5, '9', 'test'),
-(7, '91', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO250000000347502', '2025-12-15 00:00:00', '2025-12-16 00:00:00', 'Simulator Unit Lancar Berganda (ULB) Astros ', 102000.00, 102000.00, 'INV-23072 / DO-23069', 'image-invoice.jpg', 1, '0', 'Test'),
-(5, '60', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO230000000450026', '2025-12-13 00:00:00', '2025-12-31 00:00:00', 'Robotic Vehicle Guardian UK - KL', 203000.00, 203000.00, 'INV-23072 / DO-23069', 'invoice-template.png', 1, '15', ' Dibawah Jaminan '),
-(8, '60', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C02500000001477793', '2025-12-16 00:00:00', '2025-12-19 00:00:00', 'Pembekalan Alat Ganti Simulator ACV ', 271955.60, 271955.60, 'INV-25020 | DO-25016', 'invoice-temple2.png', 1, '3', 'Dalam pembaikan'),
-(9, '71', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C0220000000413103', '2025-12-15 00:00:00', '2025-12-15 00:00:00', 'Senggaraan Lapang Sasar Elektronik 200 Meter Sius Ascor', 144000.00, 144000.00, 'INV-22045 / DO-22053', 'images-invoice.png', 1, '0', ' Dibawah Jaminan '),
-(10, '71', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C0230000000446189', '2025-12-16 00:00:00', '2025-12-17 00:00:00', 'Simulator Unit Perintah Kawalan Tembakan (UPKB) Astross', 287700.00, 287700.00, 'INV-23070 / DO-23067', 'images-invoice1.png', 1, '1', ' Dibawah Jaminan '),
-(11, '72', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO230000000450026', '2025-12-16 00:00:00', '2025-12-17 00:00:00', 'Robotic Vehicle Guardian UK - KL', 203000.00, 203000.00, 'INV-23072 / DO-23069', 'images-invoice2.png', 1, '1', ' Dibawah Jaminan '),
-(12, '72', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO230000000446191', '2025-12-17 00:00:00', '2025-12-19 00:00:00', 'Simulator Unit Kawalan Tembakan (UKT) Kenderaan Astros ', 300000.00, 300000.00, 'INV-23071 / DO-23068', 'images-invoice3.png', 2, '3', ' Dibawah Jaminan'),
-(14, '13', 'AZLIN NATASHA B', '980203565340', 'MIM DEFENSE SDN BHD', 'A-327470/1', '2025-07-05 00:00:00', '2025-07-05 00:00:00', 'PEMBAIKAN DI BAWAH JAMINAN', 102000.00, 255955.60, 'INV-25018', 'SENARAI KERJA - KERJA PT91 2024 AVP ENGINEERING.pdf', 2, '0', 'SPAREPART PENDING');
+(6, '60', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO250000000347463', '2025-12-23 00:00:00', '2025-12-26 00:00:00', 'Membekal Alat Ganti Sistem Radar Amaran Tempatan TRML 3D/32\r\n', 131638.43, 131638.43, 'Dalam Pembaikan ', 'simple-invoice-2.png', 5, '6', 'test'),
+(7, '91', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO250000000347502', '2025-12-15 00:00:00', '2025-12-16 00:00:00', 'Simulator Unit Lancar Berganda (ULB) Astros ', 102000.00, 102000.00, 'INV-23072 / DO-23069', 'image-invoice.jpg', 1, '-4', 'Test'),
+(5, '60', 'NURUL SYUHADAH', '001221140176', 'MIM DEFENSE SDN BHD', 'CO230000000450026', '2025-12-13 00:00:00', '2025-12-31 00:00:00', 'Robotic Vehicle Guardian UK - KL', 203000.00, 203000.00, 'INV-23072 / DO-23069', 'invoice-template.png', 1, '11', ' Dibawah Jaminan '),
+(8, '60', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C02500000001477793', '2025-12-16 00:00:00', '2025-12-19 00:00:00', 'Pembekalan Alat Ganti Simulator ACV ', 271955.60, 271955.60, 'INV-25020 | DO-25016', 'invoice-temple2.png', 1, '-1', 'Dalam pembaikan'),
+(9, '71', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C0220000000413103', '2025-12-15 00:00:00', '2025-12-15 00:00:00', 'Senggaraan Lapang Sasar Elektronik 200 Meter Sius Ascor', 144000.00, 144000.00, 'INV-22045 / DO-22053', 'images-invoice.png', 1, '-5', ' Dibawah Jaminan '),
+(10, '71', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'C0230000000446189', '2025-12-16 00:00:00', '2025-12-17 00:00:00', 'Simulator Unit Perintah Kawalan Tembakan (UPKB) Astross', 287700.00, 287700.00, 'INV-23070 / DO-23067', 'images-invoice1.png', 1, '-3', ' Dibawah Jaminan '),
+(11, '72', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO230000000450026', '2025-12-16 00:00:00', '2025-12-17 00:00:00', 'Robotic Vehicle Guardian UK - KL', 203000.00, 203000.00, 'INV-23072 / DO-23069', 'images-invoice2.png', 1, '-3', ' Dibawah Jaminan '),
+(12, '72', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'CO230000000446191', '2025-12-17 00:00:00', '2025-12-19 00:00:00', 'Simulator Unit Kawalan Tembakan (UKT) Kenderaan Astros ', 300000.00, 300000.00, 'INV-23071 / DO-23068', 'images-invoice3.png', 2, '-1', ' Dibawah Jaminan'),
+(14, '13', 'AZLIN NATASHA B', '980203565340', 'MIM DEFENSE SDN BHD', 'A-327470/1', '2025-07-05 00:00:00', '2025-07-05 00:00:00', 'PEMBAIKAN DI BAWAH JAMINAN', 102000.00, 255955.60, 'INV-25018', 'SENARAI KERJA - KERJA PT91 2024 AVP ENGINEERING.pdf', 2, '-168', 'SPAREPART PENDING'),
+(15, '97', 'AZLIN NATASHA B', '980203565340', 'MIM DEFENSE SDN BHD', 'C0230000000446189', '2025-12-19 00:00:00', '2025-12-26 00:00:00', 'Simulator Unit Perintah Kawalan Tembakan (UPKB) Astross', 287700.00, 287700.00, 'INV-23070 / DO-23067', 'images-invois2.jpg', 1, '6', ' Dibawah Jaminan '),
+(16, '77', 'AZLIN NATASHA B', '980203565340', 'MIM DEFENSE SDN BHD', 'A-327471/1', '2025-12-21 00:00:00', '2025-12-26 00:00:00', 'KD JEBAT 1', 255010.20, 255010.20, 'INV-25019', 'images-invois3.png', 1, '6', 'PAYMENT 11/9/2025');
 
 -- --------------------------------------------------------
 
@@ -487,12 +491,14 @@ CREATE TABLE `projekname` (
 --
 
 INSERT INTO `projekname` (`id`, `rendom`, `name`, `ic`, `syarikat`, `namepro`, `datecreate`, `update_at`) VALUES
-(1, '60', 'TUAN MAULANA', '670417035245', 'MRA GLOBAL SDN BHD', 'PERKHIDMATAN SENGGARAAN DAN PEMBEKAL ALAT GANTI SIMULATOR ACV 300 ( SEPT 2022 - SEPT 2025)', '2025-12-16', '2025-12-12 10:35:28'),
+(1, '60', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'MRA GLOBAL SDN BHD', 'PERKHIDMATAN SENGGARAAN DAN PEMBEKAL ALAT GANTI SIMULATOR ACV 300 ( SEPT 2022 - SEPT 2025)', '2025-12-20', '2025-12-12 10:35:28'),
 (2, '91', 'NURUL SYUHADAH', '001221140176', 'LETILICA SDN BHD', 'TEKNIKAL', '2025-12-14', '2025-12-13 17:46:51'),
 (3, '71', 'NURUL SYUHADAH', '001221140176', 'MRA GLOBAL SDN BHD', 'SENARAI PEMBAIKAN PADA TAHUN 2023 (DIBAWAH JAMINAN SYARIKAT)', '2025-12-15', '2025-12-15 12:24:19'),
 (4, '72', 'NURUL SYUHADAH', '001221140176', 'MIM DEFENSE SDN BHD', 'SENARAI PEMBAIKAN PADA TAHUN 2025', '2025-12-15', '2025-12-15 12:31:12'),
-(5, '83', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'MRA GLOBAL SDN BHD', 'LUNAS - JEBAT 2', '2025-12-16', '2025-12-16 02:24:52'),
-(6, '13', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', '', 'LUNAS - JEBAT 2', '2025-12-16', '2025-12-16 02:30:12');
+(5, '83', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'MRA GLOBAL SDN BHD', 'LUNAS - JEBAT 2', '2025-12-17', '2025-12-16 02:24:52'),
+(6, '13', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', '', 'LUNAS - JEBAT 2', '2025-12-16', '2025-12-16 02:30:12'),
+(7, '97', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'MRA GLOBAL SDN BHD', 'SENARAI PEMBAIKAN PADA TAHUN 2025 (DIBAWAH JAMINAN SYARIKAT)', '2025-12-18', '2025-12-18 01:04:24'),
+(8, '77', 'AZLIN NATASHA BINTI AZAHAR', '980203565340', 'MIM DEFENSE SDN BHD', 'Test', '2025-12-18', '2025-12-18 04:20:56');
 
 -- --------------------------------------------------------
 
@@ -688,7 +694,7 @@ ALTER TABLE `dateleave`
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `list_quotation`
@@ -742,13 +748,13 @@ ALTER TABLE `notpresent`
 -- AUTO_INCREMENT for table `projek`
 --
 ALTER TABLE `projek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `projekname`
 --
 ALTER TABLE `projekname`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `quotation`

@@ -16,7 +16,7 @@ $syarikat = $row['syarikat'];
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Edit Job</h5>
         <div align="center">
-            <h3>EDIT STEP 3</h3>
+            <h3>STEP 3</h3>
         </div>
         <br>
         <form name="editprojek3" action="projekaction.php" method="POST" enctype="multipart/form-data">
