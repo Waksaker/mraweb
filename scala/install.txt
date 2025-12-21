@@ -1,0 +1,15 @@
+window
+1) Install java dari link ini "https://www.oracle.com/asean/java/technologies/downloads/#jdk25-windows" (untuk java)
+2) Install scala dari link ini "https://get-coursier.io/docs/cli-installation" di bahagian window (untuk scala)
+3) Install connector database dari link ini "https://dev.mysql.com/downloads/connector/j/?utm_source=chatgpt.com"
+    - pilih Platform Independent.
+    - pilih fail ZIP.
+4) test untuk java "java --version" kalau untuk test scala "scala --version".
+5) pastikan kedua-dua ini keluar selain dari error
+
+server
+1) run "sudo apt update && sudo apt upgrade -y".
+2) install java run "sudo apt install openjdk-17-jdk -y".
+3) test java run "java -version".
+4) install scala run "sudo apt install scala -y".
+5) test scala run "scala -version".
