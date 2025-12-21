@@ -11,17 +11,29 @@ object Check {
         DriverManager.getConnection(url, username, password)
     }
 
+    def updatedata(id: String, Baki: Long, conn: Connection): Unit = {
+        println(s"ID: $id, Baki: $Baki")
+        val sql = "UPDATE projek SET bildate = ? WHERE id = ?"
+        val stm = conn.prepareStatement(sql)
+        stm.setLong(1, Baki)
+        stm.setString(2, id)
+        stm.executeUpdate()
+        stm.close()
+    }
+
     def main(args: Array[String]): Unit = {
         var connection: Connection = null
         connection = getConnection()
         val statement = connection.createStatement()
         while (true) {
-            val resultSet = statement.executeQuery("SELECT duedate FROM projek")
+            val resultSet = statement.executeQuery("SELECT id,duedate FROM projek")
             while (resultSet.next()) {
+                val id = resultSet.getString("id")
                 val tarikhAkhir = resultSet.getDate("duedate").toLocalDate
                 val harini = LocalDate.now()
                 val bakiHari = ChronoUnit.DAYS.between(harini, tarikhAkhir)
-                println(s"Tarikh harini: $harini, Tarihk akhir: $tarikhAkhir, Baki: $bakiHari")
+                updatedata(id, bakiHari, connection)
+                // println(s"ID: $id, Tarikh harini: $harini, Tarihk akhir: $tarikhAkhir, Baki: $bakiHari")
             }
             Thread.sleep(1000) 
         }
