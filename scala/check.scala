@@ -1,4 +1,6 @@
 import java.sql.{Connection, DriverManager, ResultSet}
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 object Check {
     def getConnection(): Connection = {
@@ -14,10 +16,12 @@ object Check {
         connection = getConnection()
         val statement = connection.createStatement()
         while (true) {
-            val resultSet = statement.executeQuery("SELECT * FROM mra_staff")
+            val resultSet = statement.executeQuery("SELECT duedate FROM projek")
             while (resultSet.next()) {
-                val name = resultSet.getString("name")
-                println(s"Name: $name")
+                val tarikhAkhir = resultSet.getDate("duedate").toLocalDate
+                val harini = LocalDate.now()
+                val bakiHari = ChronoUnit.DAYS.between(harini, tarikhAkhir)
+                println(s"Tarikh harini: $harini, Tarihk akhir: $tarikhAkhir, Baki: $bakiHari")
             }
             Thread.sleep(1000) 
         }
