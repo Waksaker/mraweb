@@ -12,6 +12,13 @@ $syarikat = $row['syarikat'];
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
+<style>
+#documenttablelistedit td,
+#documenttablelistedit th {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+</style>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Edit Job</h5>
@@ -54,12 +61,12 @@ $syarikat = $row['syarikat'];
 </div>
 <div class="card">
     <div class="card-body">
-        <table id="documenttablelistedit" class="display nowrap" style="width:100%">
+        <table id="documenttablelistedit" class="display" style="width:100%">
             <thead class="bg-primary text-white">
             <tr>
-                <th>No</th>
-                <th>Information</th>
-                <th>#</th>
+                <th style="text-align: center;">No</th>
+                <th style="text-align: center;">Information</th>
+                <th style="text-align: center;">#</th>
             </tr>
             </thead>
             <tbody>
@@ -70,13 +77,13 @@ $syarikat = $row['syarikat'];
                 $maklumat = "
                     <div>
                         <div style='display: flex; justify-content: space-between;'>
-                            <div><strong>REPAIR: </strong> {$row1['pembaikan']}<br></div>
+                            <div><strong>REPAIR: </strong><br> {$row1['pembaikan']}<br></div>
                         </div>
                         <div style='display: flex; justify-content: space-between;'>
-                            <div><strong>LPO NUMBER: </strong> {$row1['lponum']}<br></div>
+                            <div><strong>LPO NUMBER: </strong><br> {$row1['lponum']}<br></div>
                         </div>
                         <div style='display: flex; justify-content: space-between;'>
-                            <div><strong>DOCUMENT: </strong> {$row1['document']}<br></div>
+                            <div><strong>DOCUMENT: </strong><br> {$row1['document']}<br></div>
                         </div>
                     </div>
                 ";
@@ -84,7 +91,7 @@ $syarikat = $row['syarikat'];
                 <tr>
                     <td style="text-align: center;"><?php echo ($index++);?></td>
                     <td style="text-align: center;"><?php echo $maklumat;?></td>
-                    <td>
+                    <td style="text-align: center;">
                         <button  type="button" onclick="deletedocument('deleteeditprojek3','<?php echo $row1['id'];?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" style="width: 24px; height: 24px;"></button>
                     </td>
                 </tr>
@@ -97,9 +104,12 @@ $syarikat = $row['syarikat'];
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#documenttablelistedit', {
-        scrollX: true
-    });
+$('#documenttablelistedit').DataTable({
+    responsive: true,
+    autoWidth: false,
+    pageLength: 10,
+    lengthChange: false
+});
 </script>
 <script>
     function validate3() {

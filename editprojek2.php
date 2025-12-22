@@ -12,6 +12,13 @@ $syarikat = $row['syarikat'];
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
+<style>
+#edittablelistprojek td,
+#edittablelistprojek th {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+</style>
 <div class="card">
     <div class="card-body">
         <div class="col">
@@ -92,87 +99,36 @@ $syarikat = $row['syarikat'];
 </div>
 <div class="card">
     <div class="card-body">
-        <table id="edittablelistprojek" class="display nowrap" style="width:100%">
-            <thead class="bg-primary text-white">
-            <tr>
-                <th>No</th>
-                <th>Company</th>
-                <th>LPO Number</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Repaire</th>
-                <th>Payment</th>
-                <th>Price</th>
-                <th>Invoice</th>
-                <th>Status</th>
-                <th>Bil Date</th>
-                <th>Note</th>
-                <th>#</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            $index = 1;
-            $result = mysqli_query($conn, "SELECT * FROM `projek` WHERE `rendom`='$rendom'");
-            while ($row=mysqli_fetch_assoc($result)) {
-                ?>
+        <div class="table-responsive">
+            <table id="edittablelistprojek" class="display" style="width:100%">
+                <thead class="bg-primary text-white">
                 <tr>
-                    <td><?php echo ($index++);?></td>
-                    <td><?php echo $row['syarikat'];?></td>
-                    <td><?php echo $row['lponum'];?></td>
-                    <td>
-                        <?php
-                            $star = new DateTime($row['stardate']);
-                            echo $star->format('d/m/Y');
-                        ?>
-                    </td>
-                    <td>
-                        <?php
-                            $due = new DateTime($row['duedate']);
-                            echo $due->format('d/m/Y');
-                        ?>
-                    </td>
-                    <td><?php echo $row['pembaikan'];?></td>
-                    <td><?php echo number_format($row['payment'], 2, ',', '.'); ?></td>
-                    <td><?php echo number_format($row['price'], 2, ',', '.'); ?></td>
-                    <td>
-                        <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
-                    </td>
-                    <td>
-                        <?php
-                        $status = $row['status'];
-                        switch ($status) {
-                            case "1":
-                                echo "<span style='color:#0d6efd'>Repair in progress</span>";
-                                break;
-                            case "2":
-                                echo "<span style='color: #fd7e14;'>Pending spepart</span>";
-                                break;
-                            case "3":
-                                echo "<span style='color: #ffc107;'>Pending payment</span>";
-                                break;
-                            case "4":
-                                echo "<span style='color: #6f42c1;'>Pending claim</span>";
-                                break;
-                            case "5":
-                                echo "<span style='color: #198754;'>Settle</span>";
-                                break;
-                            default:
-                                echo "Error status";
-                        }
-                        ?>
-                    </td>
-                    <td><?php echo $row['bildate'];?></td>
-                    <td><?php echo $row['catatan'];?></td>
-                    <td>
-                        <a href="kemasprojek.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/Pencil.png" style="height: 24px; width: 24px;"></a>
-                        <button type="button" onclick="deleteprojek2('deleteeditprojek','<?php echo $row['id'];?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" style="width: 24px; height: 24px;"></button>
-                    </td>
+                    <th style="text-align: center;">No</th>
+                    <th style="text-align: center;">Invoice</th>
+                    <th style="text-align: center;">#</th>
                 </tr>
+                </thead>
+                <tbody>
                 <?php
-            } ?>
-            </tbody>
-        </table>
+                $index = 1;
+                $result = mysqli_query($conn, "SELECT * FROM `projek` WHERE `rendom`='$rendom'");
+                while ($row=mysqli_fetch_assoc($result)) {
+                    ?>
+                    <tr>
+                        <td style="text-align: center;"><?php echo ($index++);?></td>
+                        <td style="text-align: center;">
+                            <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="kemasprojek.php?id=<?php echo base64_encode($row['id']);?>" class="btn btn-primary"><img src="assets/images/Pencil.png" style="height: 24px; width: 24px;"></a>
+                            <button type="button" onclick="deleteprojek2('deleteeditprojek','<?php echo $row['id'];?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" style="width: 24px; height: 24px;"></button>
+                        </td>
+                    </tr>
+                    <?php
+                } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 <?php include("./components/footer.php"); ?>
@@ -288,7 +244,10 @@ $syarikat = $row['syarikat'];
     }
 </script>
 <script>
-    new DataTable('#edittablelistprojek', {
-        scrollX: true
-    });
+$('#edittablelistprojek').DataTable({
+    responsive: true,
+    autoWidth: false,
+    pageLength: 10,
+    lengthChange: false
+});
 </script>

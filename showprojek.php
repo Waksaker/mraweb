@@ -13,8 +13,16 @@ $syarikat1 = $row['syarikat'];
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
 <style>
-table.dataTable td {
+.tablelistprojek1 td,
+.tablelistprojek1 th {
     white-space: normal !important;
+    word-wrap: break-word;
+}
+
+.tablelistprojek2 td,
+.tablelistprojek2 th {
+    white-space: normal !important;
+    word-wrap: break-word;
 }
 </style>
 <div class="card">
@@ -60,10 +68,12 @@ if (mysqli_num_rows($result) > 0) {
                 <p class="text-muted mb-2">
                     <?php echo $row['pembaikan'] ? $row['pembaikan'] : '';?>
                 </p>
+                <br>
                 <strong>LPO Number:</strong><br>
                 <p class="text-muted mb-2">
                     <?php echo $row['lponum'] ? $row['lponum'] : '';?>
                 </p>
+                <br>
                 <strong>Start Date:</strong><br>
                 <p class="text-muted mb-2">
                     <?php
@@ -71,6 +81,7 @@ if (mysqli_num_rows($result) > 0) {
                         echo $startdate->format('d/m/Y');
                     ?>
                 </p>
+                <br>
                 <strong>End Date:</strong><br>
                 <p class="text-muted mb-2">
                     <?php
@@ -78,6 +89,7 @@ if (mysqli_num_rows($result) > 0) {
                         echo $enddate->format('d/m/Y');
                     ?>
                 </p>
+                <br>
                 <strong>Payment:</strong><br>
                 <p class="text-muted mb-2">
                     <?php echo $row['payment'] ? $row['payment'] : '';?>
@@ -86,10 +98,7 @@ if (mysqli_num_rows($result) > 0) {
                 <p class="text-muted mb-2">
                     <?php echo $row['price'] ? $row['price'] : '';?>
                 </p>
-                <strong>Invoice:</strong><br>
-                <p class="text-muted mb-2">
-                    <a href="invoice/<?php echo $row['invoicedoc'] ? $row['invoicedoc'] : '';?>"><?php echo $row['invoice'] ? $row['invoice'] : '';?></a>
-                </p>
+                <br>
                 <strong>Status:</strong><br>
                 <?php
                     switch ($row['status']) {
@@ -112,6 +121,7 @@ if (mysqli_num_rows($result) > 0) {
                             echo '<td>NULL</td>';
                     }
                 ?>
+                <br>
                 <strong>Bil. Date:</strong><br>
                 <?php
                 if ($row['bildate'] == 0) {
@@ -124,40 +134,65 @@ if (mysqli_num_rows($result) > 0) {
                     echo '<p class="text-muted mb-2"><b style="color: #198754;">' . $row['bildate'] . ' Days</b></p>';
                 }
                 ?>
+                <br>
                 <strong>Note:</strong><br>
                 <p class="text-muted mb-2">
                     <?php echo $row['catatan'] ? $row['catatan'] : '';?>
                 </p>
-                <div class="table-responsive">
-                    <table id="tablelistprojek" class="table table-sm table-bordered align-middle w-100">
-                        <thead class="bg-primary text-white">
-                            <tr>
-                                <th>No</th>
-                                <th>Document</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $index1 = 1;
-                                $ren=$row['rendom'];
-                                $pem=$row['pembaikan'];
-                                $sql1 = "SELECT * FROM `document` WHERE rendom='$ren' AND pembaikan='$pem'";
-                                $res1=mysqli_query($conn, $sql1);
+                <br>
+                <strong>Invoice:</strong><br>
+                <table id="" class="display tablelistprojek1" style="width:100%">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th style="text-align: center;">No</th>
+                            <th style="text-align: center;">Name</th>
+                            <th style="text-align: center;">Invoice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">1</td>
+                            <td style="text-align: center;"><?php echo $row['invoice'];?></td>
+                            <td style="text-align: center;">
+                                <a href="invoice/<?php echo $row['invoicedoc'];?>" download="<?php echo $row['invoice'];?>" class="btn btn-primary"><img src="assets/images/file.png" alt="" style="width: 24px; height: 24px;"></a>
+                                <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank" class="btn btn-primary"><img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;"></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <strong>Document:</strong><br>
+                <table id="" class="display tablelistprojek2" style="width:100%">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th style="text-align: center;">No</th>
+                            <th style="text-align: center;">Name</th>
+                            <th style="text-align: center;">Document</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $index1 = 1;
+                            $ren=$row['rendom'];
+                            $pem=$row['pembaikan'];
+                            $sql1 = "SELECT * FROM `document` WHERE rendom='$ren' AND pembaikan='$pem'";
+                            $res1=mysqli_query($conn, $sql1);
 
-                                while ($row1=mysqli_fetch_assoc($res1)) {
-                            ?>
-                                    <tr>
-                                        <td><?php echo ($index1++);?></td>
-                                        <td>
-                                            <a href="document/<?php echo $row1['document'];?>" target="_blank"><?php echo $row1['document'];?></a>
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                            while ($row1=mysqli_fetch_assoc($res1)) {
+                        ?>
+                                <tr>
+                                    <td style="text-align: center;"><?php echo ($index1++);?></td>
+                                    <td style="text-align: center;"><?php echo $row1['document'];?></td>
+                                    <td style="text-align: center;">
+                                        <a href="document/<?php echo $row1['document'];?>" download="<?php echo $row1['document'];?>" class="btn btn-primary"><img src="assets/images/file.png" alt="" style="width: 24px; height: 24px;"></a>
+                                        <a href="document/<?php echo $row1['document'];?>" target="_blank" class="btn btn-primary"><img src="assets/images/eye.png" alt="" style="width: 24px; height: 24px;"></a>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -169,10 +204,21 @@ if (mysqli_num_rows($result) > 0) {
 ?>
 <?php include("./components/footer.php"); ?>
 <script>
-$('tablelistprojek').DataTable({
-    scrollX: true,
-    responsive: false,
+$('.tablelistprojek1').DataTable({
+    responsive: true,
     autoWidth: false,
-    pageLength: 10
+    lengthChange: false,
+    paging: false,
+    searching: false,
+    info: false
+});
+
+$('.tablelistprojek2').DataTable({
+    responsive: true,
+    autoWidth: false,
+    lengthChange: false,
+    paging: false,
+    searching: false,
+    info: false
 });
 </script>

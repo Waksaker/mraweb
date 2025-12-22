@@ -94,9 +94,9 @@ $syarikat=$row1['syarikat'];
             <table id="tablelistprojek" class="table table-sm table-bordered align-middle w-100">
                 <thead class="bg-primary text-white">
                     <tr>
-                        <th>No</th>
-                        <th>Invoice</th>
-                        <th>#</th>
+                        <th style="text-align: center;">No</th>
+                        <th style="text-align: center;">Invoice</th>
+                        <th style="text-align: center;">#</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,11 +106,11 @@ $syarikat=$row1['syarikat'];
                     while ($row=mysqli_fetch_assoc($result)) {
                         ?>
                         <tr>
-                            <td><?php echo ($index++);?></td>
-                            <td>
+                            <td style="text-align: center;"><?php echo ($index++);?></td>
+                            <td style="text-align: center;">
                                 <a href="invoice/<?php echo $row['invoicedoc'];?>" target="_blank"><?php echo $row['invoice'];?></a>
                             </td>
-                            <td>
+                            <td style="text-align: center;">
                                 <a href="" class="btn btn-danger"><img src="assets/images/Trash_Can.png" alt="" style="width:24px;height:24px"></a>
                             </td>
                         </tr>

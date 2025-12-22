@@ -130,12 +130,12 @@ if (isset($_GET['date'])) {
 		if (unlink($file_resit)) {
 			mysqli_query($conn, "DELETE FROM `mra_claims` WHERE id = '$idapplyclaim'");
 			header("Location: claim1.php");
-			exit();		
+			exit();
 		}
 	} else {
 		mysqli_query($conn, "DELETE FROM `mra_claims` WHERE id = '$idapplyclaim'");
 		header("Location: claim1.php");
-		exit();	
+		exit();
 		echo "File tidak dijumpai";
 	}
 } elseif (isset($_GET['idcreatequo2'])) {
@@ -158,5 +158,47 @@ if (isset($_GET['date'])) {
     mysqli_query($conn, "DELETE FROM `quotation` WHERE namecreate = '$name' AND date = '$date' AND qtnno='$qtnno'");
     mysqli_query($conn, "DELETE FROM `list_quotation` WHERE name = '$name' AND date = '$date' AND qtnno='$qtnno'");
     header("Location: quotation.php");
+    exit();
+} elseif (isset($_GET['rendom'])) {
+
+    $rendom = base64_decode($_GET['rendom']);
+
+    if (empty($rendom)) {
+        exit("Invalid data");
+    }
+
+    /* ========= DELETE INVOICE FILE ========= */
+    $result = mysqli_query($conn, "SELECT invoicedoc FROM projek WHERE rendom='$rendom'");
+    while ($row = mysqli_fetch_assoc($result)) {
+        if (!empty($row['invoicedoc'])) {
+            $file_invoice = "invoice/" . $row['invoicedoc'];
+            if (file_exists($file_invoice)) {
+                unlink($file_invoice);
+				// echo "$file_invoice<br>";
+            }
+        }
+    }
+
+    /* ========= DELETE DOCUMENT FILE ========= */
+    $result2 = mysqli_query($conn, "SELECT document FROM document WHERE rendom='$rendom'");
+    while ($row2 = mysqli_fetch_assoc($result2)) {
+        if (!empty($row2['document'])) {
+            $document = trim($row2['document']);
+
+			if (!empty($document)) {
+				$file_document = "document/" . $document;
+				if (file_exists($file_document)) {
+					unlink($file_document);
+				}
+			}
+        }
+    }
+
+    /* ========= DELETE DATABASE RECORD ========= */
+    mysqli_query($conn, "DELETE FROM projekname WHERE rendom='$rendom'");
+    mysqli_query($conn, "DELETE FROM projek WHERE rendom='$rendom'");
+    mysqli_query($conn, "DELETE FROM document WHERE rendom='$rendom'");
+
+    header("Location: projek.php");
     exit();
 }

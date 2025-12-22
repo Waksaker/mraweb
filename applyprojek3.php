@@ -11,6 +11,13 @@ $namecreate=$row['name'];
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
+<style>
+#documenttablelist td,
+#documenttablelist th {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+</style>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Apply Job</h5>
@@ -54,12 +61,12 @@ $namecreate=$row['name'];
 </div>
 <div class="card">
     <div class="card-body">
-        <table id="documenttablelist" class="table table-sm table-bordered align-middle w-100">
+        <table id="documenttablelist" class="display" style="width:100%">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th>No</th>
-                    <th>Information</th>
-                    <th>#</th>
+                    <th style="text-align: center;">No</th>
+                    <th style="text-align: center;">Information</th>
+                    <th style="text-align: center;">#</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,9 +76,9 @@ $namecreate=$row['name'];
                     while ($row1=mysqli_fetch_assoc($res1)) {
                         $maklumat = "
                             <div class='p-2'>
-                                <div class='mb-1'><strong>Project:</strong> {$row1['pembaikan']}</div>
-                                <div class='mb-1'><strong>LPO No:</strong> {$row1['lponum']}</div>
-                                <div><strong>Document:</strong> {$row1['document']}</div>
+                                <div class='mb-1'><strong>Project:</strong><br> {$row1['pembaikan']}</div>
+                                <div class='mb-1'><strong>LPO No:</strong><br> {$row1['lponum']}</div>
+                                <div><strong>Document:</strong><br> {$row1['document']}</div>
                             </div>
                         ";
 
@@ -79,7 +86,7 @@ $namecreate=$row['name'];
                     <tr>
                         <td style="text-align: center;"><?php echo ($index++);?></td>
                         <td style="text-align: center;"><?php echo $maklumat;?></td>
-                        <td>
+                        <td style="text-align: center;">
                             <button  type="button" onclick="deletedocument('delete_doc','<?php echo $row1['id'];?>')" class="btn btn-danger"><img src="assets/images/Trash_Can.png" style="width: 24px; height: 24px;"></button>
                         </td>
                     </tr>
@@ -131,12 +138,12 @@ $namecreate=$row['name'];
     }
 </script>
 <script>
-    $('#documenttablelist').DataTable({
-        scrollX: true,
-        responsive: false,
-        autoWidth: false,
-        pageLength: 10
-    });
+$('#documenttablelist').DataTable({
+    responsive: true,
+    autoWidth: false,
+    pageLength: 10,
+    lengthChange: false
+});
 </script>
 <script>
     function deletedocument(val, val1) {
