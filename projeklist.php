@@ -37,10 +37,11 @@ if (isset($_POST['syarikat'])) {
 <?php include("./components/footer.php"); ?>
 <script>
 $('#listprojek').DataTable({
-	scrollX: true,
-	responsive: false,
-	autoWidth: false,
-	pageLength: 10
+	responsive: true,
+    autoWidth: false,
+    lengthChange: false,
+    paging: false,
+    info: false
 });
 </script>
 <script>

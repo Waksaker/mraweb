@@ -57,7 +57,7 @@ $row_emer = mysqli_fetch_assoc($result_emer);
                     <th style="text-align: center;">Total Apply</th>
                 </tr>
             </thead>
-            <tbody> 
+            <tbody>
                 <tr>
                     <td style="text-align: center;">1</td>
                     <td style="text-align: center;">ANNUAL LEAVE</td>

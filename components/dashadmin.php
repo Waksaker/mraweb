@@ -1,4 +1,4 @@
-<?php 
+<p?php 
 set_time_limit(0);
 error_reporting(E_NOTICE);
 include('conn.php');
@@ -17,6 +17,11 @@ $noic = $row['icno'];
 $Date_now=date('D, M d, Y H:i:s');
 $Year_now = date('Y',strtotime($Date_now));
 ?>
+<style>
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
+    background-color: #0d6efd;
+}
+</style>
 <div class="card">
     <div class="card-body">
     <h5 class="card-title fw-semibold mb-4">Hi, <?php echo $name; ?></h5>
@@ -27,116 +32,97 @@ $Year_now = date('Y',strtotime($Date_now));
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Leave</h5>
         <br>
-        <table id="leavelist" class="display nowrap" style="width: 100%">
-            <thead class="bg-primary text-white">
-                <tr>
-		            <th style="text-align: center">No</th>
- 		            <th style="text-align: center">Name</th>
-		            <th style="text-align: center">Ic</th>
-                    <th style="text-align: center">Start date</th>
-                    <th style="text-align: center">End date</th>
-                    <th style="text-align: center">Matters</th>
-                    <th style="text-align: center">Days</th>
-                    <th style="text-align: center">Status support</th>
-                    <th style="text-align: center">Status approve</th>
-		            <th style="text-align: center">#</th>
-                </tr>
-            </thead>
-	        <tbody>
-                <?php
-		            $index1 = 1;
-		            $result1 = mysqli_query($conn, "SELECT * FROM mra_leave");
-		            while ($row1=mysqli_fetch_assoc($result1)) {
-                        $mc = $row1['mc'];
-		        ?>
-		            <tr>
-                        <td style="text-align: center"><?php echo ($index1++);?></td>
-                        <td><?php echo $row1['nameapply'];?></td>
-                        <td style="text-align: center"><?php echo $row1['noic'];?></td>
-                        <td style="text-align: center">
-                            <?php
-                                $datestart = $row1['datestart'];
-                                echo date('d/m/Y', strtotime($datestart));
-                            ?>
-                        </td>
-                        <td style="text-align: center">
-                            <?php
-                                $enddate=$row1['dateend'];
-                                echo date('d/m/Y', strtotime($enddate));
-                            ?>
-                        </td>
-                        <td style="text-align: center"><?php echo $row1['matters'];?></td>
-                        <td style="text-align: center">
-                            <?php
-                                $days = $row1['daysleave'];
-                                echo "$days days";
-                            ?>
-                        </td>
-                        <?php
-                            if ($row1['statsupport'] == '1') {
-                                echo "<td style='background-color:#ffc107; text-align:center; color: #0c0c0c;'><b>PENDING</b></td>";
-                            } elseif ($row1['statsupport'] == '2') {
-                                echo "<td style='background-color:#198754; text-align:center; color: #0c0c0c;'><b>APPROVED</b></td>";
-                            } elseif ($row1['statsupport'] == '3') {
-                                echo "<td style='background-color:#fd7e14; text-align:center; color: #0c0c0c;'><b>CHECK AGAIN</b></td>";
-                            } elseif ($row1['statsupport'] == '4') {
-                                echo "<td style='background-color:#dc3545; text-align:center; color: #0c0c0c;'><b>REJECTED</b></td>";
-                            }
-                        ?>
-                        <?php
-                            if ($row1['statapprove'] == '1') {
-                                echo "<td style='background-color:#ffc107; text-align:center; color: #0c0c0c;'><b>PENDING</b></td>";
-                            } elseif ($row1['statapprove'] == '2') {
-                                echo "<td style='background-color:#198754; text-align:center; color: #0c0c0c;'><b>APPROVED</b></td>";
-                            } elseif ($row1['statapprove'] == '3') {
-                                echo "<td style='background-color:#fd7e14; text-align:center; color: #0c0c0c;'><b>CHECK AGAIN</b></td>";
-                            } elseif ($row1['statapprove'] == '4') {
-                                echo "<td style='background-color:#dc3545; text-align:center; color: #0c0c0c;'><b>REJECTED</b></td>";
-                            }
-                        ?>
-                        <td style="text-align: center">
-                            <a href="printleave.php?id=<?php echo $row1['leaveid']; ?>" target="_blank" class="btn btn-primary"><img src="assets/images/print.png" alt="" style="width: 24px; height: 24px;"></a>
-                            <?php if($mc!="") echo '<a href="./mc/' . $mc . '" download="MC(' . $row1['nameapply'] . ').png" class="btn btn-primary"><img src="assets/images/file.png" style="width: 24px; height: 24px;"></a>';?>
-                        </td>
-                    </tr>
-		        <?php
-  		            }
-                ?>
-	        </tbody>
-        </table>
+        <div>
+            <?php
+                $sql = "
+                    SELECT COUNT(*) AS total FROM mra_leave
+                ";
+                $resultleavetotal=mysqli_query($conn, $sql);
+                $rowleavetotal = mysqli_fetch_assoc($resultleavetotal);
+                $leave = $rowleavetotal['total'];
+                echo "
+                    <h4 style='text-align:center;'><b>$leave apply</b></h4>
+                "
+            ?>
+            <?php
+                $sql = "SELECT COUNT(*) AS total FROM mra_leave WHERE statsupport = '1'";
+                $res = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($res);
+                $pendingSupport = $row['total'];
+
+                $sql1 = "
+                    SELECT COUNT(*) AS total 
+                    FROM mra_leave 
+                    WHERE statsupport = '2' AND statapprove = '1'
+                ";
+                $res1 = mysqli_query($conn, $sql1);
+                $row1 = mysqli_fetch_assoc($res1);
+                $pendingApprove = $row1['total'];
+
+                $sql2 = "
+                    SELECT COUNT(*) AS total 
+                    FROM mra_leave 
+                    WHERE statsupport = '2' AND statapprove = '2'
+                ";
+                $res2 = mysqli_query($conn, $sql2);
+                $row2 = mysqli_fetch_assoc($res2);
+                $approved = $row2['total'];
+
+                $sql3 = "
+                    SELECT COUNT(*) AS total 
+                    FROM mra_leave 
+                    WHERE statsupport = '4' OR statapprove = '4'
+                ";
+                $res3 = mysqli_query($conn, $sql3);
+                $row3 = mysqli_fetch_assoc($res3);
+                $rejected = $row3['total'];
+            ?>
+                <strong>Pending Support<b> : <?php echo $pendingSupport;?></b></strong>
+                <br>
+                <strong>Pending Approve<b> : <?php echo $pendingApprove?></b></strong>
+                <br>
+                <strong>Approved<b> : <?php echo $approved;?></b></strong>
+                <br>
+                <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
+            <?php
+            ?>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Claim</h5>
+        <br>
+        <div>
+            
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Request</h5>
+        <br>
+        
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Quotation</h5>
+        <br>
+        
     </div>
 </div>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Staff</h5>
         <br>
-        <table id="stafflist" class="display nowrap" style="width:100%">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Status</th>
-                </tr>
-            </thead    ead>
-            <tbody>
-                <?php
-                    $index5 = 1;
-                    $result5 = mysqli_query($conn, "SELECT * FROM mra_staff");
-                    while ($row5 = mysqli_fetch_assoc($result5)) {
-                ?>
-                    <tr>
-                        <td style="text-align: center;"><?php echo $index5++; ?></td>
-                        <td style="text-align: center;"><?php echo $row5['name'] ? $row5['name'] : ''; ?></td>
-                        <td style="text-align: center;"><?php echo $row5['position'] ? $row5['position'] : ''; ?></td>
-                        <td style="text-align: center;"><?php echo $row5['status'] ? $row5['status'] : ''; ?></td>
-                    </tr>
-                <?php
-                    }
-                ?>
-            </tbody>
-        </table>
+        
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title fw-semibold mb-4">Projek</h5>
         <br>
-        <h1 style="text-align: center;">Total: <?php echo mysqli_num_rows($result); ?></h1>
+        
     </div>
 </div>
