@@ -30,6 +30,7 @@ if (isset($_POST['name']) && $_POST['name'] != '') {
 <?php
 }
 ?>
+<br>
 <table id="claim" class="display" style="width:100%">
     <thead class="bg-primary text-white">
         <tr>

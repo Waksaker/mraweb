@@ -29,26 +29,122 @@ if ($bulan == '01') {
 } else if ($bulan == '12') {
     $month3 = "December";
 }
+$sql = "
+SELECT 
+    *
+FROM 
+    `mra_staff`
+WHERE 
+    name = '$staff_name'
+";
+$result =  mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$icno = $row['icno'];
+
+$sql1 = "
+SELECT 
+    * 
+FROM 
+    `mra_claims` 
+WHERE 
+    YEAR(date) = '$tahun' AND MONTH(date) = '$bulan' AND noic = '$icno'
+";
+$result1 = mysqli_query($conn, $sql1);
+$row1 = mysqli_fetch_assoc($result1);
+if ($row1 !== null) {
+    $buktiresit = $row1['buktiresit'];
+    $status_claim = $row1['status']; 
+} else {
+}
 ?>
 <?php include("./components/header.php"); ?>
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
+<style>
+.container-img {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    /* align-content: center;
+    justify-content: center; */
+    align-items: center;
+}
+
+#drop-area {
+    width: 500px;
+    height: 300px;
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 30px;
+}
+
+#img-view {
+    width: 100%;
+    height: 100%;
+    border-radius: 23px;
+    border: 2px dashed lightgrey;
+    background: whitesmoke;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* penting untuk elak overflow image */
+}
+
+#img-view img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* atau 'cover' jika nak penuh */
+    border-radius: 15px;
+}
+
+#img-view h3, #img-view p {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+</style>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Update claim</h5>
-        <form name="kemaskiniclaim" action="" method="POST" enctype="multipart/form-data">
+        <form name="formkemaskiniclaim" action="kemaskiniclaimsaction.php" method="POST" enctype="multipart/form-data">
             <input type="text" name="bulan" value="<?php echo $bulan;?>">
             <input type="text" name="tahun" value="<?php echo $tahun;?>">
             <input type="text" name="name" value="<?php echo $name;?>">
+            <input type="text" name="icno" value="<?php echo $icno;?>">
+            <input type="text" name="bukticlaim" style="display: none;">
             <div class="customer_record">
                 <div class="row mb-3">
                     <label for="" class="col-sm-2 col-form-label">Status</label>
-                    <select name="statusclaim" id="status" class="form-control mb-1">
-                        <option value=""></option>
+                    <select name="statusbukticlaim" id="statusbukticlaim" class="form-control mb-1">
+                        <option value="">Please Choose</option>
+                        <option value="1" <?php echo ($status_claim == '1') ? 'selected' : ''; ?>>PENDING</option>
+                        <option value="2" <?php echo ($status_claim == '2') ? 'selected' : ''; ?>>APPROVED</option>
+                        <option value="3" <?php echo ($status_claim == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
+                        <option value="4" <?php echo ($status_claim == '4') ? 'selected' : ''; ?>>REJECTED</option>
                     </select>
                 </div>
+                <div class="row mb-3">
+                    <input type="text" name="resitbukti1" value="<?php echo $buktiresit; ?>" style="display: none;">
+                    <input type="file" name="resitbukti" class="form-control mb-1" onchange="previewImageResitClaim(event)">
+                    <div class="container-img">
+                        <label for="input-file" id="drop-area">
+                            <div id="img-view">
+                                <?php
+                                if (!empty($buktiresit)) {
+                                    echo '<img src="./resitbukticlaim/' . $buktiresit . '" id="preview-img-sign">';
+                                } else {
+                                    echo '<img id="preview-img-sign">';
+                                }
+                                ?>
+                            </div>
+                        </label>
+                    </div>
+                </div>
             </div>
+            <button type="button" class="btn btn-primary" onClick="validatekemaskiniclaim()">SUBMIT</button>
         </form>
     </div>
 </div>
@@ -146,7 +242,7 @@ if ($bulan == '01') {
                 $result1 = mysqli_query($conn, $sql1);
                 $row1=mysqli_fetch_assoc($result1);
                 $total_claim = $row1['total_claim'];
-                echo "<h3 style='text-align:center;'>Total: <b>$total_claim</b></h3>"
+                echo "<h3 style='text-align:center;'>Total: <b>RM $total_claim</b></h3>"
             ?>
         </h3>
     </div>
@@ -157,6 +253,32 @@ if ($bulan == '01') {
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script>
+function previewImageResitClaim(event) {
+    const input = event.target;
+    const preview = document.getElementById('preview-img-sign');
+
+
+    // Check if a file was selected
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        // Once the image is read, set it as the source of the preview image
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block'; // Show the image
+
+            // Hide the text and subtext once the image is displayed
+            // uploadText.style.display = 'none';
+            // uploadSubtext.style.display = 'none';
+        }
+
+        // Read the image file as a data URL
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+</script>
 <script>
     new DataTable('#kemaskiniclaim', {
       responsive: true,
@@ -171,4 +293,34 @@ if ($bulan == '01') {
         { responsivePriority: 10001, targets: [1,3,4,5,6,7] }
       ]
     });
+</script>
+<script>
+  function validatekemaskiniclaim() 
+  {
+    formkemaskiniclaim = document.formkemaskiniclaim;
+    if	(formkemaskiniclaim.statusbukticlaim.value == null || formkemaskiniclaim.statusbukticlaim.value=="") {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please fill in status!',
+        confirmButtonColor: '#1B95CF'
+      })
+      formkemaskiniclaim.statusbukticlaim.focus();
+      return;
+    } else {
+      swal.fire({
+      text: "Please make sure everything is correct!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#1B95CF',
+      cancelButtonColor: '#BF000E',
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+        formkemaskiniclaim.submit();
+        }
+      })
+    }
+  }
 </script>

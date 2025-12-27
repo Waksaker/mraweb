@@ -30,7 +30,12 @@ $contact = $row['contactno'];
 $matter = $row['matters'];
 $statsupport = $row['statsupport'];
 $statapprove = $row['statapprove'];
-$mc=$row['mc'];
+if ($row['mc'] != '' || $row['mc'] != NULL) {
+    $mc=$row['mc'];	
+} else {
+	$mc='NULL';	
+}
+
 
 $result2 = mysqli_query($conn, "SELECT status AS statusstaff FROM `mra_staff` WHERE name = '$name'");
 $row2 = mysqli_fetch_assoc($result2);
@@ -197,7 +202,7 @@ $statusstaff = $row2['statusstaff'];
                     <label for="input-file" id="drop-area">
                         <div id="img-view">
                             <?php
-                            if ($mc!="") {
+                            if ($mc!="NULL") {
                                 echo '<img src="./mc/' . $mc . '" alt="" id="preview-img-sign">';
                             } else {
                                 echo '<img alt="" id="preview-img-sign">';

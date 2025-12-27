@@ -49,9 +49,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date = date("Y-m-d");
 
     if ($statususer=="LEADER STAFF") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`mc`='$mc1',`statsupport`='$statusleave',`namesupport`='$nameuser',`datestatsupport`='$date' WHERE `leaveid` = '$id'";
+        $sqlinsert="
+            UPDATE `mra_leave` 
+            SET 
+                `dateapply`='$date',
+                `nameapply`='$name',
+                `noic`='$noic',
+                `position`='$position',
+                `status`='$statusleave',
+                `datestart`='$datestart',
+                `dateend`='$dateend',
+                `daysleave`='$days',
+                `purpose`='$purpose',
+                `contactno`='$contactno',
+                `matters`='$matters',
+                `statsupport`='$statusleave',
+                `namesupport`='$nameuser',
+                `datestatsupport`='$date' 
+            WHERE `leaveid` = '$id'
+        ";
     }elseif ($statususer=="MANAGER") {
-        $sqlinsert="UPDATE `mra_leave` SET `dateapply`='$date',`nameapply`='$name',`noic`='$noic',`position`='$position',`status`='$statusleave',`datestart`='$datestart',`dateend`='$dateend',`daysleave`='$days',`purpose`='$purpose',`contactno`='$contactno',`matters`='$matters',`mc`='$mc1',`statapprove`='$statusleave',`nameapprove`='$nameuser',`datestatapprove`='$date' WHERE `leaveid` = '$id'";
+        $sqlinsert="
+            UPDATE `mra_leave` 
+            SET 
+                `dateapply`='$date',
+                `nameapply`='$name',
+                `noic`='$noic',
+                `position`='$position',
+                `status`='$statusleave',
+                `datestart`='$datestart',
+                `dateend`='$dateend',
+                `daysleave`='$days',
+                `purpose`='$purpose',
+                `contactno`='$contactno',
+                `matters`='$matters',
+                `statapprove`='$statusleave',
+                `nameapprove`='$nameuser',
+                `datestatapprove`='$date' 
+            WHERE `leaveid` = '$id'
+        ";
     }elseif ($statususer == "ADMIN STAFF" || $statususer == "HR STAFF" || $statususer == "STAFF") {
         // Jika upload mc baru
         if ($mc != "") {
