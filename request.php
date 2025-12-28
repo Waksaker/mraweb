@@ -2,6 +2,11 @@
 <?php include("./components/sidenav.php"); ?>
 <?php include("./components/topnav.php"); ?>
 <?php include("./components/name.php"); ?>
+<style>
+#request tbody tr {
+    border-bottom: 1px solid #dee2e6;
+}
+</style>
 <?php
 set_time_limit(0);
 error_reporting(E_NOTICE);
@@ -28,7 +33,7 @@ $status = $row['status'];
 		<div class="row">
 			<div class="col-md-12">
 				<div class="form-group row">
-					<table id="request" class="display nowrap" style="width:100%">
+					<table id="request" class="display table table-bordered" style="width:100%">
 						<thead class="bg-primary text-white">
 							<tr>
 								<th style="text-align: center;">No</th>
@@ -66,39 +71,23 @@ $status = $row['status'];
 										$statusdirec = "<span class='badge bg-danger'>Rejected</span>";
 									}
 									$maklumat = "
-										<div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>NAME: </strong> {$row['namestaff']}<br></div>
-												<div><strong>DATE: </strong> {$row['dateapply']}</div>
+										<div class='request-card'>
+											<div class='fw-bold'>{$row['namestaff']}</div>
+											<div class='text-muted small'>{$row['department']}</div>
+											<div class='text-muted small'>{$row['appoiment']}</div>
+											<div class='mt-1'>
+												Status Accounting: {$statusacc}<br> Status Manager: {$statusmana}<br> Status DIrector: {$statusdirec}
 											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>APPOINTMENT: </strong> {$row['appoiment']}</div>
-												<div><strong>DEPARTMENT: </strong> {$row['department']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>SUPPLIER NAME: </strong> {$row['supplirename']}</div>
-												<div><strong>SUPPLIER ADDRESS: </strong> {$row['suppladderss']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>ATTENTION: </strong> {$row['attention']}</div>
-												<div><strong>TERMS OF PAYMENT: </strong> {$row['termpayment']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>PAY TO: </strong> {$row['payto']}</div>
-												<div><strong>ACCOUNT NO: </strong> {$row['accno']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>BANK: </strong> {$row['bankname']}</div>
-												<div><strong>REMARK: </strong> {$row['remark']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>COMPANY: </strong> {$row['syarikat']}</div>
-												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-												<div><strong>STATUS MANAGER: </strong> {$statusdirec}</div>
-											</div>
+
+											<details class='mt-2'>
+												<summary class='text-primary'>View Details</summary>
+												<div class='mt-2 small'>
+													<div><b>Date:</b> {$row['dateapply']}</div>
+													<div><b>Supplier:</b> {$row['supplirename']}</div>
+													<div><b>Bank:</b> {$row['bankname']} ({$row['accno']})</div>
+													<div><b>Remark:</b> {$row['remark']}</div>
+												</div>
+											</details>
 										</div>
 									";
 									?>
@@ -148,41 +137,26 @@ $status = $row['status'];
 										$statusdirec = "<span class='badge bg-danger'>Rejected</span>";
 									}
 									$maklumat = "
-										<div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>NAME: </strong> {$row['namestaff']}<br></div>
-												<div><strong>DATE: </strong> {$row['dateapply']}</div>
+										<div class='request-card'>
+											<div class='fw-bold'>{$row['namestaff']}</div>
+											<div class='text-muted small'>{$row['department']}</div>
+											<div class='text-muted small'>{$row['appoiment']}</div>
+											<div class='mt-1'>
+												Status Accounting: {$statusacc}<br> Status Manager: {$statusmana}<br> Status DIrector: {$statusdirec}
 											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>APPOINTMENT: </strong> {$row['appoiment']}</div>
-												<div><strong>DEPARTMENT: </strong> {$row['department']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>SUPPLIER NAME: </strong> {$row['supplirename']}</div>
-												<div><strong>SUPPLIER ADDRESS: </strong> {$row['suppladderss']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>ATTENTION: </strong> {$row['attention']}</div>
-												<div><strong>TERMS OF PAYMENT: </strong> {$row['termpayment']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>PAY TO: </strong> {$row['payto']}</div>
-												<div><strong>ACCOUNT NO: </strong> {$row['accno']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>BANK: </strong> {$row['bankname']}</div>
-												<div><strong>REMARK: </strong> {$row['remark']}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>COMPANY: </strong> {$row['syarikat']}</div>
-												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-											</div>
-											<div style='display: flex; justify-content: space-between;'>
-												<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-												<div><strong>STATUS MANAGER: </strong> {$statusdirec}</div>
-											</div>
+
+											<details class='mt-2'>
+												<summary class='text-primary'>View Details</summary>
+												<div class='mt-2 small'>
+													<div><b>Date:</b> {$row['dateapply']}</div>
+													<div><b>Supplier:</b> {$row['supplirename']}</div>
+													<div><b>Bank:</b> {$row['bankname']} ({$row['accno']})</div>
+													<div><b>Remark:</b> {$row['remark']}</div>
+												</div>
+											</details>
 										</div>
 									";
+
 									?>
 										<tbody>
 											<tr>
@@ -211,14 +185,22 @@ $status = $row['status'];
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#request', {
-        scrollX: true,
-        // layout: {
-        //     topStart: {
-        //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        //     }
-        // }
-    });
+new DataTable('#request', {
+    responsive: {
+        details: {
+            type: 'column',
+            target: 'tr'
+        }
+    },
+    scrollX: false,
+    pageLength: 5,
+    lengthChange: false,
+    autoWidth: false,
+    columnDefs: [
+        { targets: 0, width: "40px" },
+        { targets: 2, orderable: false }
+    ]
+});
 </script>
 <script type="text/javascript">
 	function test(idreq) {

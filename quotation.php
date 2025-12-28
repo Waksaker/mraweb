@@ -18,7 +18,7 @@ $status = $row['status'];
         <div align="right">
         	<a href="createquotation1.php" class="btn btn-primary py-8 fs-4 mb-4 rounded-2">Add Quotation</a>
         </div>
-        <table id="tablequotation" class="display nowrap" style="width:100%">
+        <table id="tablequotation" class="display" style="width:100%">
         	<thead class="bg-primary text-white">
         		<tr>
         			<th style="text-align: center;">No</th>
@@ -42,41 +42,26 @@ $status = $row['status'];
 						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
 						    }
 						    $alamat = $row['alamat1'] . ' ' . $row['alamat2'] . ' ' . $row['alamat3'] . ' ' . $row['alamat4'] . ' ' . $row['alamat5'];
-							$maklumat="
-								<div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>NAME: </strong> {$row['namecreate']}<br></div>
+							$maklumat = "
+								<div class='quotation-card'>
+									<div class='fw-bold'>{$row['project']}</div>
+									<div class='text-muted small'>{$row['qtnno']} {$row['date']}</div>
+
+									<div class='mt-1'>
+										{$statusmana}
 									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>LOCATION: </strong> {$alamat}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>QTN NO: </strong> {$row['qtnno']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>DATE: </strong> {$row['date']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>PROJECT: </strong> {$row['project']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>PAGE: </strong> {$row['page']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-									</div>
+
+									<details class='mt-2'>
+										<summary class='text-primary'>View Details</summary>
+										<div class='mt-2 small'>
+											<div><b>Name:</b> {$row['namecreate']}</div>
+											<div><b>Location:</b> {$alamat}</div>
+											<div><b>Contract No:</b> {$row['contractno']}</div>
+											<div><b>Register No:</b> {$row['nodaftar']}</div>
+											<div><b>Spare Part Cost:</b> {$row['sparepartcost']}</div>
+											<div><b>Remarks:</b> {$row['remarks']}</div>
+										</div>
+									</details>
 								</div>
 							";
 						?>
@@ -109,41 +94,26 @@ $status = $row['status'];
 						        $statusmana = "<span class='badge bg-dark'>Unknown</span>";
 						    }
 						    $alamat = $row['alamat1'] . ' ' . $row['alamat2'] . ' ' . $row['alamat3'] . ' ' . $row['alamat4'] . ' ' . $row['alamat5'];
-							$maklumat="
-								<div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>NAME: </strong> {$row['namecreate']}<br></div>
+							$maklumat = "
+								<div class='quotation-card'>
+									<div class='fw-bold'>{$row['project']}</div>
+									<div class='text-muted small'>{$row['qtnno']}</div>
+									<div class='text-muted small'>{$row['date']}</div>
+									<div class='mt-1'>
+										{$statusmana}
 									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>LOCATION: </strong> {$alamat}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>QTN NO: </strong> {$row['qtnno']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>DATE: </strong> {$row['date']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>PROJECT: </strong> {$row['project']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>PAGE: </strong> {$row['page']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>REGISTER NO: </strong> {$row['nodaftar']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>CONTRACT NO: </strong> {$row['contractno']}</div>
-									</div>
-									<div style='display: flex; justify-content: space-between;'>
-										<div><strong>SPARE PART COST: </strong> {$row['sparepartcost']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>REMARKS: </strong> {$row['remarks']}</div>
-									</div>
-                                    <div style='display: flex; justify-content: space-between;'>
-										<div><strong>STATUS MANAGER: </strong> {$statusmana}</div>
-									</div>
+
+									<details class='mt-2'>
+										<summary class='text-primary'>View Details</summary>
+										<div class='mt-2 small'>
+											<div><b>Name:</b> {$row['namecreate']}</div>
+											<div><b>Location:</b> {$alamat}</div>
+											<div><b>Contract No:</b> {$row['contractno']}</div>
+											<div><b>Register No:</b> {$row['nodaftar']}</div>
+											<div><b>Spare Part Cost:</b> {$row['sparepartcost']}</div>
+											<div><b>Remarks:</b> {$row['remarks']}</div>
+										</div>
+									</details>
 								</div>
 							";
 							?>
@@ -170,14 +140,22 @@ $status = $row['status'];
 </div>
 <?php include("./components/footer.php"); ?>
 <script>
-    new DataTable('#tablequotation', {
-        scrollX: true,
-        // layout: {
-        //     topStart: {
-        //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
-        //     }
-        // }
-    });
+new DataTable('#tablequotation', {
+    responsive: {
+        details: {
+            type: 'column',
+            target: 'tr'
+        }
+    },
+    scrollX: false,
+    pageLength: 5,
+    lengthChange: false,
+    autoWidth: false,
+    columnDefs: [
+        { targets: 0, width: "40px" },
+        { targets: 2, orderable: false }
+    ]
+});
 </script>
 <script type="text/javascript">
   function test(idquotation) {

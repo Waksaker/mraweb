@@ -44,6 +44,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                     <h4 style='text-align:center;'><b>$leave apply</b></h4>
                 "
             ?>
+            <br>
             <?php
                 $sql = "SELECT COUNT(*) AS total FROM mra_leave WHERE statsupport = '1'";
                 $res = mysqli_query($conn, $sql);
@@ -92,10 +93,26 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Claim</h5>
-        <br>
         <div>
-            
-            <strong></strong>
+            <?php 
+                $sql4 = "
+                    SELECT
+                        SUM(CASE WHEN claim.status = 1 THEN 1 ELSE 0 END) AS pending,
+                        SUM(CASE WHEN claim.status = 2 THEN 1 ELSE 0 END) AS approved,
+                        SUM(CASE WHEN claim.status = 3 THEN 1 ELSE 0 END) AS rejected
+                    FROM mra_claim claim
+                ";
+                $result4 = mysqli_query($conn, $sql4);
+                $row4 = mysqli_fetch_assoc($result4);
+                $pendingClaim = $row4['pending'];
+                $approvedClaim = $row4['approved'];
+                $rejectedClaim = $row4['rejected'];
+            ?>
+            <strong>Pending :<b><?php echo $pendingClaim;?></b></strong>
+            <br>
+            <strong>Approved :<b><?php echo $approvedClaim;?></b></strong>
+            <br>
+            <strong>Rejected :<b><?php echo $rejectedClaim;?></b></strong>
         </div>
     </div>
 </div>
