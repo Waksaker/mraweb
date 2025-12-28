@@ -122,8 +122,7 @@ if ($row1 !== null) {
                         <option value="">Please Choose</option>
                         <option value="1" <?php echo ($status_claim == '1') ? 'selected' : ''; ?>>PENDING</option>
                         <option value="2" <?php echo ($status_claim == '2') ? 'selected' : ''; ?>>APPROVED</option>
-                        <option value="3" <?php echo ($status_claim == '3') ? 'selected' : ''; ?>>CHECK AGAIN</option>
-                        <option value="4" <?php echo ($status_claim == '4') ? 'selected' : ''; ?>>REJECTED</option>
+                        <option value="3" <?php echo ($status_claim == '3') ? 'selected' : ''; ?>>REJECTED</option>
                     </select>
                 </div>
                 <div class="row mb-3">

@@ -23,6 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $temp_resitbukti = $_FILES['resitbukti']['tmp_name'];
         $resitbukti1 = $_POST['resitbukti1'];
         $icno = $_POST['icno'];
+        $result=mysqli_query($conn, "SELECT * FROM `mra_staff` WHERE icno = '$icno'");
+        $row=mysqli_fetch_assoc($result);
+        $name=$row['name'];
         if ($resitbukti != '') {
             $target_dir = "./resitbukticlaim/";
             $target_file = $target_dir . basename($resitbukti);
@@ -37,6 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 AND YEAR(date)='$tahun_apply' 
                 AND MONTH(date)='$bulan_apply'
             ";
+            $sql1 = "
+                UPDATE `mra_claim`
+                SET
+                    `nameapprove`='$name_approve',
+                    `resit`='$resitbukti',
+                    `status`='$statusbukticlaim'
+                WHERE `namestaff`='$name'
+                AND YEAR(date)='$tahun_apply'
+                AND MONTH(date)='$bulan_apply'
+            ";
         } else {
             $sql = "
                 UPDATE `mra_claims`
@@ -48,9 +61,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 AND YEAR(date)='$tahun_apply' 
                 AND MONTH(date)='$bulan_apply'
             ";
+            $sql1 = "
+                UPDATE `mra_claim`
+                SET
+                    `nameapprove`='$name_approve',
+                    `resit`='$resitbukti'
+                    `status`='$statusbukticlaim'
+                WHERE `namestaff`='$name'
+                AND YEAR(date)='$tahun_apply'
+                AND MONTH(date)='$bulan_apply'
+            ";
         }
         $result2 = mysqli_query($conn, $sql);
-        if ($result2) {
+        $result3 = mysqli_query($conn, $sql1);
+        if ($result2 && $result3) {
             echo "
                 <script>
                     Swal.fire({

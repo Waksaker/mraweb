@@ -95,6 +95,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
         <br>
         <div>
             
+            <strong></strong>
         </div>
     </div>
 </div>
