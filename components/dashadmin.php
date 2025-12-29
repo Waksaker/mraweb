@@ -120,7 +120,45 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Request</h5>
         <br>
-        
+        <div>
+            <?php
+                $sqlstatacc = "
+                    SELECT COUNT(*) AS totalstatusacc 
+                    FROM request 
+                    WHERE statusacc = '1'
+                ";
+                $resultstatacc=mysqli_query($conn, $sqlstatacc);
+                $rowstatacc = mysqli_fetch_assoc($resultstatacc);
+                $requestacc = $rowstatacc['totalstatusacc'];
+                
+                $sqlstatusmana = "
+                    SELECT COUNT(*) AS totalstatusmana 
+                    FROM request 
+                    WHERE statusacc = '2' AND statusmana = '1'
+                ";
+                $resultstatusmana=mysqli_query($conn, $sqlstatusmana);
+                $rowstatusmana = mysqli_fetch_assoc($resultstatusmana);
+                $requestmana = $rowstatusmana['totalstatusmana'];
+
+                $sqlstatusdirec = "
+                    SELECT COUNT(*) AS totalstatusdirec 
+                    FROM request 
+                    WHERE statusacc = '2' AND statusmana = '2' AND statusdirec = '1'
+                ";
+                $resultstatusdirec=mysqli_query($conn, $sqlstatusdirec);
+                $rowstatusdirec = mysqli_fetch_assoc($resultstatusdirec);
+                $requestdirec = $rowstatusdirec['totalstatusdirec'];
+
+                $sqlcompleted = "
+                    SELECT COUNT(*) AS totalcompleted 
+                    FROM request 
+                    WHERE statusacc = '2' AND statusmana = '2' AND statusdirec = '2'
+                ";
+                $resultcompleted=mysqli_query($conn, $sqlcompleted);
+                $rowcompleted = mysqli_fetch_assoc($resultcompleted);
+                $requestcompleted = $rowcompleted['totalcompleted'];
+            ?>
+        </div>
     </div>
 </div>
 <div class="card">
@@ -134,13 +172,57 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Staff</h5>
         <br>
-        
+        <?php
+            $sqltotal = "
+                SELECT COUNT(*) AS totaltstaff 
+                FROM mra_staff
+            ";
+            $resulttotal=mysqli_query($conn, $sqltotal);
+            $rowtotal = mysqli_fetch_assoc($resulttotal);
+            $staff = $rowtotal['totaltstaff'];
+        ?>
+        <strong>Total Staff :<b><?php echo $staff;?></b></strong>
     </div>
 </div>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Projek</h5>
         <br>
-        
+        <?php
+            $sqltotal = "
+                SELECT COUNT(*) AS totalprojek 
+                FROM projekname
+            ";
+            $resulttotal=mysqli_query($conn, $sqltotal);
+            $rowtotal = mysqli_fetch_assoc($resulttotal);
+            $totalprojek = $rowtotal['totalprojek'];
+
+            $sqlmra = "
+                SELECT COUNT(*) AS mra FROM `projekname` WHERE syarikat = 'MRA GLOBAL SDN BHD'
+            ";
+            $resultmra = mysqli_query($conn, $sqlmra);
+            $rowmra = mysqli_fetch_assoc($resultmra);
+            $projekmra = $rowmra['mra'];
+
+            $sqlmim = "
+                SELECT COUNT(*) AS mim FROM `projekname` WHERE syarikat = 'MIM DEFENSE SDN BHD'
+            ";
+            $resultmim = mysqli_query($conn, $sqlmim);
+            $rowmim = mysqli_fetch_assoc($resultmim);
+            $projekmim = $rowmim['mim'];
+
+            $sqllet = "
+                SELECT COUNT(*) AS let FROM `projekname` WHERE syarikat = 'LETILICA SDN BHD'
+            ";
+            $resultlet = mysqli_query($conn, $sqllet);
+            $rowlet = mysqli_fetch_assoc($resultlet);
+            $projeklet = $rowlet['let'];
+        ?>
+        <h4 style='text-align:center;'><b>Total Projek: <?php echo $totalprojek?></b></h4><br><br>
+        <strong>MRA Global Sdn Bhd :<b><?php echo $projekmra;?></b></strong>
+        <br>
+        <strong>MIM Defense Sdn Bhd :<b><?php echo $projekmim;?></b></strong>
+        <br>
+        <strong>Letilica Sdn Bhd :<b><?php echo $projeklet;?></b></strong>
     </div>
 </div>
