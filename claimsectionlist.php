@@ -131,6 +131,15 @@ if (isset($_POST['name']) && $_POST['name'] != '') {
                 ?>
             </td>
             <td style="text-align: center;">
+                <?php
+                    if ($resit != '') {
+                        echo "
+                            <a href='resitclaim/$resit' download='$resit' class='btn btn-primary'>
+                                <img src='assets/images/print.png' alt='' style='width:24px; height:24px;'>
+                            </a>
+                        ";
+                    }
+                ?>
                 <a href="editapplyclaim1.php?id=<?php echo base64_encode($id); ?>" class="btn btn-primary">
                     <img src="assets/images/Pencil.png" alt="" style="width: 24; height: 24px;">
                 </a>
