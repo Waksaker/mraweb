@@ -78,15 +78,13 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                 $row3 = mysqli_fetch_assoc($res3);
                 $rejected = $row3['total'];
             ?>
-                <strong>Pending Support<b> : <?php echo $pendingSupport;?></b></strong>
-                <br>
-                <strong>Pending Approve<b> : <?php echo $pendingApprove?></b></strong>
-                <br>
-                <strong>Approved<b> : <?php echo $approved;?></b></strong>
-                <br>
-                <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
-            <?php
-            ?>
+            <strong>Pending Support<b> : <?php echo $pendingSupport;?></b></strong>
+            <br>
+            <strong>Pending Approve<b> : <?php echo $pendingApprove?></b></strong>
+            <br>
+            <strong>Approved<b> : <?php echo $approved;?></b></strong>
+            <br>
+            <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
         </div>
     </div>
 </div>
@@ -119,7 +117,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Request</h5>
-        <br>
         <div>
             <?php
                 $sqlstatacc = "
@@ -157,7 +154,25 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                 $resultcompleted=mysqli_query($conn, $sqlcompleted);
                 $rowcompleted = mysqli_fetch_assoc($resultcompleted);
                 $requestcompleted = $rowcompleted['totalcompleted'];
+
+                $sqlreject = "
+                    SELECT COUNT(*) AS totalreject 
+                    FROM request 
+                    WHERE statusacc = '3' OR statusmana = '3' OR statusdirec = '3'
+                ";
+                $resultreject=mysqli_query($conn, $sqlreject);
+                $rowreject = mysqli_fetch_assoc($resultreject);
+                $requestreject = $rowreject['totalreject'];
             ?>
+            <strong>Pending Accounting :<b><?php echo $requestacc;?></b></strong>
+            <br>
+            <strong>Pending Manager :<b><?php echo $requestmana;?></b></strong>
+            <br>
+            <strong>Pending Director :<b><?php echo $requestdirec;?></b></strong>
+            <br>
+            <strong>Completed :<b><?php echo $requestcompleted;?></b></strong>
+            <br>
+            <strong>Rejected :<b><?php echo $requestreject;?></b></strong>
         </div>
     </div>
 </div>

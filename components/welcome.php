@@ -81,6 +81,10 @@ $noic = $row['icno'];
                 $res3 = mysqli_query($conn, $sql3);
                 $row3 = mysqli_fetch_assoc($res3);
                 $rejected = $row3['total'];
+                $dataleave = [
+                    "labels" => ["Pending Support", "Pending Approve", "Approved", "Rejected"],
+                    "data" => [$pendingSupport, $pendingApprove, $approved, $rejected]
+                ];
             ?>
                 <strong>Pending Support<b> : <?php echo $pendingSupport;?></b></strong>
                 <br>
@@ -89,6 +93,7 @@ $noic = $row['icno'];
                 <strong>Approved<b> : <?php echo $approved;?></b></strong>
                 <br>
                 <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
+                <canvas id="leavegraf" width="400" height="200"></canvas>
             <?php
             ?>
         </div>
@@ -111,18 +116,113 @@ $noic = $row['icno'];
             $pendingClaim = $row4['pending'];
             $approvedClaim = $row4['approved'];
             $rejectedClaim = $row4['rejected'];
+            $dataclaim = [
+                "labels" => ["Pending", "Approved", "Rejected"],
+                "data" => [$pendingClaim, $approvedClaim, $rejectedClaim]
+            ];
         ?>
         <strong>Pending :<b><?php echo $pendingClaim;?></b></strong>
         <br>
         <strong>Approved :<b><?php echo $approvedClaim;?></b></strong>
         <br>
         <strong>Rejected :<b><?php echo $rejectedClaim;?></b></strong>
+        <canvas id="claimgraf" width="400" height="200"></canvas>    
     </div>
 </div>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">Request</h5>
         <br>
+        <?php
+            $sqlstatacc = "
+                SELECT COUNT(*) AS totalstatusacc 
+                FROM request 
+                WHERE statusacc = '1'
+                AND namestaff = '$name2'
+            ";
+            $resultstatacc=mysqli_query($conn, $sqlstatacc);
+            $rowstatacc = mysqli_fetch_assoc($resultstatacc);
+            $requestacc = $rowstatacc['totalstatusacc'];
+                
+            $sqlstatusmana = "
+                SELECT COUNT(*) AS totalstatusmana 
+                FROM request 
+                WHERE statusacc = '2' 
+                AND statusmana = '1'
+                AND namestaff = '$name2'       
+            ";
+            $resultstatusmana=mysqli_query($conn, $sqlstatusmana);
+            $rowstatusmana = mysqli_fetch_assoc($resultstatusmana);
+            $requestmana = $rowstatusmana['totalstatusmana'];
 
+            $sqlstatusdirec = "
+                SELECT COUNT(*) AS totalstatusdirec 
+                FROM request 
+                WHERE statusacc = '2' 
+                AND statusmana = '2' 
+                AND statusdirec = '1'
+                AND namestaff = '$name2'
+            ";
+            $resultstatusdirec=mysqli_query($conn, $sqlstatusdirec);
+            $rowstatusdirec = mysqli_fetch_assoc($resultstatusdirec);
+            $requestdirec = $rowstatusdirec['totalstatusdirec'];
+
+            $sqlcompleted = "
+                SELECT COUNT(*) AS totalcompleted 
+                FROM request 
+                WHERE statusacc = '2' 
+                AND statusmana = '2' 
+                AND statusdirec = '2'
+                AND namestaff = '$name2'    
+            ";
+            $resultcompleted=mysqli_query($conn, $sqlcompleted);
+            $rowcompleted = mysqli_fetch_assoc($resultcompleted);
+            $requestcompleted = $rowcompleted['totalcompleted'];
+
+            $sqlreject = "
+                SELECT COUNT(*) AS totalreject 
+                FROM request 
+                WHERE statusacc = '3' 
+                OR statusmana = '3' 
+                OR statusdirec = '3'
+                AND namestaff = '$name2'    
+            ";
+            $resultreject=mysqli_query($conn, $sqlreject);
+            $rowreject = mysqli_fetch_assoc($resultreject);
+            $requestreject = $rowreject['totalreject'];
+        ?>
+        <strong>Pending Accounting :<b><?php echo $requestacc;?></b></strong>
+        <br>
+        <strong>Pending Manager :<b><?php echo $requestmana;?></b></strong>
+        <br>
+        <strong>Pending Director :<b><?php echo $requestdirec;?></b></strong>
+        <br>
+        <strong>Completed :<b><?php echo $requestcompleted;?></b></strong>
+        <br>
+        <strong>Rejected :<b><?php echo $requestreject;?></b></strong>
     </div>
 </div>
+<script src="C:\xampp1\htdocs\mraweb\assets\js\chart.js"></script>
+<script>
+const ctx = document.getElementById('leavegraf').getContext('2d');
+const leaveData = <?php echo json_encode($dataleave); ?>;
+const myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: leaveData.labels,
+        datasets: [{
+            label: 'Leave',
+            data: leaveData.data,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
