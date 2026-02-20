@@ -93,6 +93,7 @@ $noic = $row['icno'];
                 <strong>Approved<b> : <?php echo $approved;?></b></strong>
                 <br>
                 <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
+                <br>
                 <canvas id="leavegraf" width="400" height="200"></canvas>
             <?php
             ?>
@@ -126,7 +127,8 @@ $noic = $row['icno'];
         <strong>Approved :<b><?php echo $approvedClaim;?></b></strong>
         <br>
         <strong>Rejected :<b><?php echo $rejectedClaim;?></b></strong>
-        <canvas id="claimgraf" width="400" height="200"></canvas>    
+        <br>
+        <canvas id="claimgraf" width="400" height="200"></canvas>
     </div>
 </div>
 <div class="card">
@@ -190,6 +192,11 @@ $noic = $row['icno'];
             $resultreject=mysqli_query($conn, $sqlreject);
             $rowreject = mysqli_fetch_assoc($resultreject);
             $requestreject = $rowreject['totalreject'];
+
+            $datarequest = [
+                "labels" => ["Pending Accounting", "Pending Manager", "Pending Director", "Completed", "Rejected"],
+                "data" => [$requestacc, $requestmana, $requestdirec, $requestcompleted, $requestreject]
+            ];
         ?>
         <strong>Pending Accounting :<b><?php echo $requestacc;?></b></strong>
         <br>
@@ -200,6 +207,8 @@ $noic = $row['icno'];
         <strong>Completed :<b><?php echo $requestcompleted;?></b></strong>
         <br>
         <strong>Rejected :<b><?php echo $requestreject;?></b></strong>
+        <br>
+        <canvas id="requestgraf" width="400" height="200"></canvas>
     </div>
 </div>
 <script src="C:\xampp1\htdocs\mraweb\assets\js\chart.js"></script>
@@ -213,6 +222,52 @@ const myBarChart = new Chart(ctx, {
         datasets: [{
             label: 'Leave',
             data: leaveData.data,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+const ctx2 = document.getElementById('claimgraf').getContext('2d');
+const claimData = <?php echo json_encode($dataclaim); ?>;
+const myBarChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: claimData.labels,
+        datasets: [{
+            label: 'Claim',
+            data: claimData.data,
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+const ctx3 = document.getElementById('requestgraf').getContext('2d');
+const requestData = <?php echo json_encode($datarequest); ?>;
+const myBarChart3 = new Chart(ctx3, {
+    type: 'bar',
+    data: {
+        labels: requestData.labels,
+        datasets: [{
+            label: 'Request',
+            data: requestData.data,
             borderWidth: 1
         }]
     },
