@@ -1,4 +1,4 @@
-<p?php 
+<?php 
 set_time_limit(0);
 error_reporting(E_NOTICE);
 include('conn.php');
@@ -76,7 +76,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                 ";
                 $res3 = mysqli_query($conn, $sql3);
                 $row3 = mysqli_fetch_assoc($res3);
-                $rejected = $row3['total'];
+		$rejected = $row3['total'];
+		$dataleave = [
+			"labels" => ["Pending Support", "Pending Approve", "Approved", "Rejected"],
+			"data" => [$pendingSupport, $pendingApprove, $approved, $rejected]
+		];
             ?>
             <strong>Pending Support<b> : <?php echo $pendingSupport;?></b></strong>
             <br>
@@ -84,7 +88,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
             <br>
             <strong>Approved<b> : <?php echo $approved;?></b></strong>
             <br>
-            <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
+	    <strong>Rejected<b> : <?php echo $rejected;?></b></strong>
+	    <br>
+	    <canvas id="leavegraf" width="400" height="200"></canvas>
         </div>
     </div>
 </div>
@@ -104,13 +110,19 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                 $row4 = mysqli_fetch_assoc($result4);
                 $pendingClaim = $row4['pending'];
                 $approvedClaim = $row4['approved'];
-                $rejectedClaim = $row4['rejected'];
+		$rejectedClaim = $row4['rejected'];
+		$dataclaim = [
+		    "labels" => ["Pending", "Approved", "Rejected"],
+                    "data" => [$pendingClaim, $approvedClaim, $rejectedClaim]
+		];
             ?>
             <strong>Pending :<b><?php echo $pendingClaim;?></b></strong>
             <br>
             <strong>Approved :<b><?php echo $approvedClaim;?></b></strong>
             <br>
-            <strong>Rejected :<b><?php echo $rejectedClaim;?></b></strong>
+	    <strong>Rejected :<b><?php echo $rejectedClaim;?></b></strong>
+            <br>
+            <canvas id="claimgraf" width="400" height="200"></canvas>
         </div>
     </div>
 </div>
@@ -162,7 +174,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
                 ";
                 $resultreject=mysqli_query($conn, $sqlreject);
                 $rowreject = mysqli_fetch_assoc($resultreject);
-                $requestreject = $rowreject['totalreject'];
+		$requestreject = $rowreject['totalreject'];
+		$datareq = [
+		    "labels" => ["Pending Accounting", "Pending Manager", "Pending Director", "Completed", "Rejected"],
+                    "data" => [$requestacc, $requestmana, $requestdirec, $requestcompleted, $requestreject]
+		];
             ?>
             <strong>Pending Accounting :<b><?php echo $requestacc;?></b></strong>
             <br>
@@ -172,7 +188,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
             <br>
             <strong>Completed :<b><?php echo $requestcompleted;?></b></strong>
             <br>
-            <strong>Rejected :<b><?php echo $requestreject;?></b></strong>
+	    <strong>Rejected :<b><?php echo $requestreject;?></b></strong>
+            <br>
+            <canvas id="reqgraf" width="400" height="200"></canvas>
         </div>
     </div>
 </div>
@@ -241,3 +259,73 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
         <strong>Letilica Sdn Bhd :<b><?php echo $projeklet;?></b></strong>
     </div>
 </div>
+<script src="C:\xampp1\htdocs\mraweb\assets\js\chart.js"></script>
+<script>
+const ctx = document.getElementById('leavegraf').getContext('2d');
+const leavedata = <?php echo json_encode($dataleave); ?>;
+const myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: leavedata.labels,
+        datasets: [{
+	    label: 'Leave',
+	    data: leavedata.data,
+            borderWidth: 1	    
+        }]
+    },
+    option: {
+        responsive: true,
+        scales: {
+            y: {
+	        beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+const ctx1 = document.getElementById('claimgraf').getContext('2d');
+const claimdata = <?php echo json_encode($dataclaim); ?>;
+const myBarChart1 = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: claimdata.labels,
+        datasets: [{
+	    label: 'Claim',
+	    data: claimdata.data,
+	    borderWidth: 1
+	}]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<script>
+const ctx2 = document.getElementById('reqgraf').getContext('2d');
+const datareq  = <?php echo json_encode($datareq); ?>;
+const myBarChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: datareq.labels,
+        datasets: [{
+            label: 'Request',
+            data: datareq.data,
+	    borderWidth: 1
+        }]
+    },
+    option: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
