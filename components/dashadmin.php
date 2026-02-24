@@ -249,14 +249,21 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before {
             ";
             $resultlet = mysqli_query($conn, $sqllet);
             $rowlet = mysqli_fetch_assoc($resultlet);
-            $projeklet = $rowlet['let'];
+	    $projeklet = $rowlet['let'];
+
+	    $dataprojek = [
+                "labels" => ['MRA Global Sdn Bhd', 'MIM Defense Sdn Bhd', 'Letilica Sdn Bhd'],
+	        "data" => [$projekmra, $projekmim, $projeklet]
+	    ];
         ?>
         <h4 style='text-align:center;'><b>Total Projek: <?php echo $totalprojek?></b></h4><br><br>
         <strong>MRA Global Sdn Bhd :<b><?php echo $projekmra;?></b></strong>
         <br>
         <strong>MIM Defense Sdn Bhd :<b><?php echo $projekmim;?></b></strong>
         <br>
-        <strong>Letilica Sdn Bhd :<b><?php echo $projeklet;?></b></strong>
+	<strong>Letilica Sdn Bhd :<b><?php echo $projeklet;?></b></strong>
+        <br>
+        <canvas id="" width="" height=""></canvas>
     </div>
 </div>
 <script src="C:\xampp1\htdocs\mraweb\assets\js\chart.js"></script>
